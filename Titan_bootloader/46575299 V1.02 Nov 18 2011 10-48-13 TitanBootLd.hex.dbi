@@ -1,0 +1,4 @@
+[Application]
+LoaderTool=ARM
+ApplicationPath=C:\Users\Chris\Desktop\Development\Embedded\autostart\Titan_bootloader\46575299 V1.02 Nov 18 2011 10-48-13 TitanBootLd.hex
+Format=HEX

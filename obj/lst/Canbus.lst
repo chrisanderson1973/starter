@@ -1,0 +1,448 @@
+
+C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o:     file format elf32-littlearm
+C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+
+Disassembly of section .text.can_filter_0_action:
+
+00000000 <can_filter_0_action>:
+can_filter_0_action():
+   0:	6803      	ldr	r3, [r0, #0]
+   2:	f3c3 23c7 	ubfx	r3, r3, #11, #8
+   6:	2be5      	cmp	r3, #229
+   8:	d104      	bne.n	14 <can_filter_0_action+0x14>
+   a:	6883      	ldr	r3, [r0, #8]
+   c:	4a02      	ldr	r2, [pc, #8]	(18 <can_filter_0_action+0x18>)
+   e:	3301      	adds	r3, #1
+  10:	085b      	lsrs	r3, r3, #1
+  12:	6013      	str	r3, [r2, #0]
+  14:	4770      	bx	lr
+  16:	46c0      	nop			(mov r8, r8)
+  18:	00000000 	.word	0x00000000
+Disassembly of section .text.maintain_can_comm_wd:
+
+00000000 <maintain_can_comm_wd>:
+maintain_can_comm_wd():
+   0:	4a0b      	ldr	r2, [pc, #44]	(30 <maintain_can_comm_wd+0x30>)
+   2:	7813      	ldrb	r3, [r2, #0]
+   4:	2b31      	cmp	r3, #49
+   6:	d802      	bhi.n	e <maintain_can_comm_wd+0xe>
+   8:	3301      	adds	r3, #1
+   a:	7013      	strb	r3, [r2, #0]
+   c:	e002      	b.n	14 <maintain_can_comm_wd+0x14>
+   e:	4b09      	ldr	r3, [pc, #36]	(34 <maintain_can_comm_wd+0x34>)
+  10:	2200      	movs	r2, #0
+  12:	701a      	strb	r2, [r3, #0]
+  14:	4a08      	ldr	r2, [pc, #32]	(38 <maintain_can_comm_wd+0x38>)
+  16:	4909      	ldr	r1, [pc, #36]	(3c <maintain_can_comm_wd+0x3c>)
+  18:	7813      	ldrb	r3, [r2, #0]
+  1a:	b113      	cbz	r3, 22 <maintain_can_comm_wd+0x22>
+  1c:	3b01      	subs	r3, #1
+  1e:	7013      	strb	r3, [r2, #0]
+  20:	2303      	movs	r3, #3
+  22:	4a07      	ldr	r2, [pc, #28]	(40 <maintain_can_comm_wd+0x40>)
+  24:	700b      	strb	r3, [r1, #0]
+  26:	8813      	ldrh	r3, [r2, #0]
+  28:	b10b      	cbz	r3, 2e <maintain_can_comm_wd+0x2e>
+  2a:	3b01      	subs	r3, #1
+  2c:	8013      	strh	r3, [r2, #0]
+  2e:	4770      	bx	lr
+	...
+Disassembly of section .text.access_info_screens:
+
+00000000 <access_info_screens>:
+access_info_screens():
+   0:	4b29      	ldr	r3, [pc, #164]	(a8 <access_info_screens+0xa8>)
+   2:	b570      	push	{r4, r5, r6, lr}
+   4:	789b      	ldrb	r3, [r3, #2]
+   6:	2b05      	cmp	r3, #5
+   8:	d84d      	bhi.n	a6 <access_info_screens+0xa6>
+   a:	e8df f003 	tbb	[pc, r3]
+   e:	0803      	.short	0x0803
+  10:	47271b12 	.word	0x47271b12
+  14:	f7ff fffe 	bl	0 <access_novram_log>
+  18:	f7ff fffe 	bl	0 <access_fault_log>
+  1c:	e043      	b.n	a6 <access_info_screens+0xa6>
+  1e:	2002      	movs	r0, #2
+  20:	21ff      	movs	r1, #255
+  22:	f7ff fffe 	bl	0 <transmit_proprietary>
+  26:	4b20      	ldr	r3, [pc, #128]	(a8 <access_info_screens+0xa8>)
+  28:	2202      	movs	r2, #2
+  2a:	709a      	strb	r2, [r3, #2]
+  2c:	321c      	adds	r2, #28
+  2e:	70da      	strb	r2, [r3, #3]
+  30:	e039      	b.n	a6 <access_info_screens+0xa6>
+  32:	4a1d      	ldr	r2, [pc, #116]	(a8 <access_info_screens+0xa8>)
+  34:	78d3      	ldrb	r3, [r2, #3]
+  36:	b113      	cbz	r3, 3e <access_info_screens+0x3e>
+  38:	3b01      	subs	r3, #1
+  3a:	70d3      	strb	r3, [r2, #3]
+  3c:	e033      	b.n	a6 <access_info_screens+0xa6>
+  3e:	2304      	movs	r3, #4
+  40:	7093      	strb	r3, [r2, #2]
+  42:	e030      	b.n	a6 <access_info_screens+0xa6>
+  44:	4b19      	ldr	r3, [pc, #100]	(ac <access_info_screens+0xac>)
+  46:	4a1a      	ldr	r2, [pc, #104]	(b0 <access_info_screens+0xb0>)
+  48:	681b      	ldr	r3, [r3, #0]
+  4a:	7812      	ldrb	r2, [r2, #0]
+  4c:	1a9b      	subs	r3, r3, r2
+  4e:	b2db      	uxtb	r3, r3
+  50:	2b19      	cmp	r3, #25
+  52:	d928      	bls.n	a6 <access_info_screens+0xa6>
+  54:	4b14      	ldr	r3, [pc, #80]	(a8 <access_info_screens+0xa8>)
+  56:	2204      	movs	r2, #4
+  58:	709a      	strb	r2, [r3, #2]
+  5a:	e024      	b.n	a6 <access_info_screens+0xa6>
+  5c:	4d12      	ldr	r5, [pc, #72]	(a8 <access_info_screens+0xa8>)
+  5e:	88aa      	ldrh	r2, [r5, #4]
+  60:	b18a      	cbz	r2, 86 <access_info_screens+0x86>
+  62:	4b14      	ldr	r3, [pc, #80]	(b4 <access_info_screens+0xb4>)
+  64:	2040      	movs	r0, #64
+  66:	189b      	adds	r3, r3, r2
+  68:	f813 1c01 	ldrb.w	r1, [r3, #-1]
+  6c:	f7ff fffe 	bl	0 <transmit_proprietary>
+  70:	b1c8      	cbz	r0, a6 <access_info_screens+0xa6>
+  72:	88ab      	ldrh	r3, [r5, #4]
+  74:	3b01      	subs	r3, #1
+  76:	80ab      	strh	r3, [r5, #4]
+  78:	4b0c      	ldr	r3, [pc, #48]	(ac <access_info_screens+0xac>)
+  7a:	681a      	ldr	r2, [r3, #0]
+  7c:	4b0c      	ldr	r3, [pc, #48]	(b0 <access_info_screens+0xb0>)
+  7e:	701a      	strb	r2, [r3, #0]
+  80:	2303      	movs	r3, #3
+  82:	70ab      	strb	r3, [r5, #2]
+  84:	e00f      	b.n	a6 <access_info_screens+0xa6>
+  86:	4b0c      	ldr	r3, [pc, #48]	(b8 <access_info_screens+0xb8>)
+  88:	681b      	ldr	r3, [r3, #0]
+  8a:	f013 0401 	ands.w	r4, r3, #1	; 0x1
+  8e:	d10a      	bne.n	18 <fill_terminal_info+0x18>
+  90:	f7ff fffe 	bl	0 <fill_terminal_info>
+  94:	f7ff fffe 	bl	0 <send_sio_buffer>
+  98:	70ac      	strb	r4, [r5, #2]
+  9a:	e004      	b.n	a6 <access_info_screens+0xa6>
+  9c:	4b07      	ldr	r3, [pc, #28]	(bc <access_info_screens+0xbc>)
+  9e:	2041      	movs	r0, #65
+  a0:	7819      	ldrb	r1, [r3, #0]
+  a2:	f7ff fffe 	bl	0 <transmit_proprietary>
+  a6:	bd70      	pop	{r4, r5, r6, pc}
+	...
+  b8:	40020044 	.word	0x40020044
+  bc:	00000000 	.word	0x00000000
+Disassembly of section .text.can_message_action:
+
+00000000 <can_message_action>:
+can_message_action():
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4c44      	ldr	r4, [pc, #272]	(114 <can_message_action+0x114>)
+   4:	78e3      	ldrb	r3, [r4, #3]
+   6:	2bef      	cmp	r3, #239
+   8:	d002      	beq.n	10 <can_message_action+0x10>
+   a:	2bfe      	cmp	r3, #254
+   c:	d17f      	bne.n	10e <can_message_action+0x10e>
+   e:	e073      	b.n	f8 <can_message_action+0xf8>
+  10:	78a3      	ldrb	r3, [r4, #2]
+  12:	2b1d      	cmp	r3, #29
+  14:	d037      	beq.n	86 <can_message_action+0x86>
+  16:	d804      	bhi.n	22 <can_message_action+0x22>
+  18:	2b02      	cmp	r3, #2
+  1a:	d009      	beq.n	30 <can_message_action+0x30>
+  1c:	2b0f      	cmp	r3, #15
+  1e:	d176      	bne.n	10e <can_message_action+0x10e>
+  20:	e02a      	b.n	78 <can_message_action+0x78>
+  22:	2b40      	cmp	r3, #64
+  24:	d03c      	beq.n	a0 <can_message_action+0xa0>
+  26:	2b41      	cmp	r3, #65
+  28:	d04d      	beq.n	c6 <can_message_action+0xc6>
+  2a:	2b23      	cmp	r3, #35
+  2c:	d16f      	bne.n	10e <can_message_action+0x10e>
+  2e:	e00e      	b.n	4e <can_message_action+0x4e>
+  30:	7963      	ldrb	r3, [r4, #5]
+  32:	2b0a      	cmp	r3, #10
+  34:	d101      	bne.n	3a <can_message_action+0x3a>
+  36:	3346      	adds	r3, #70
+  38:	e02b      	b.n	92 <can_message_action+0x92>
+  3a:	4837      	ldr	r0, [pc, #220]	(118 <can_message_action+0x118>)
+  3c:	8881      	ldrh	r1, [r0, #4]
+  3e:	2903      	cmp	r1, #3
+  40:	d865      	bhi.n	10e <can_message_action+0x10e>
+  42:	7823      	ldrb	r3, [r4, #0]
+  44:	4a35      	ldr	r2, [pc, #212]	(11c <can_message_action+0x11c>)
+  46:	5453      	strb	r3, [r2, r1]
+  48:	1c4b      	adds	r3, r1, #1
+  4a:	8083      	strh	r3, [r0, #4]
+  4c:	e05f      	b.n	10e <can_message_action+0x10e>
+  4e:	7963      	ldrb	r3, [r4, #5]
+  50:	2ba5      	cmp	r3, #165
+  52:	d15c      	bne.n	10e <can_message_action+0x10e>
+  54:	79a3      	ldrb	r3, [r4, #6]
+  56:	2b5a      	cmp	r3, #90
+  58:	d159      	bne.n	10e <can_message_action+0x10e>
+  5a:	7863      	ldrb	r3, [r4, #1]
+  5c:	2b02      	cmp	r3, #2
+  5e:	d156      	bne.n	10e <can_message_action+0x10e>
+  60:	4b2f      	ldr	r3, [pc, #188]	(120 <can_message_action+0x120>)
+  62:	7820      	ldrb	r0, [r4, #0]
+  64:	781b      	ldrb	r3, [r3, #0]
+  66:	ea43 2000 	orr.w	r0, r3, r0, lsl #8
+  6a:	f7ff fffe 	bl	0 <set_option_bytes>
+  6e:	f7ff fffe 	bl	0 <write_novram>
+  72:	f7ff fffe 	bl	0 <software_reset>
+  76:	e04a      	b.n	10e <can_message_action+0x10e>
+  78:	4a2a      	ldr	r2, [pc, #168]	(124 <can_message_action+0x124>)
+  7a:	7893      	ldrb	r3, [r2, #2]
+  7c:	2b06      	cmp	r3, #6
+  7e:	d146      	bne.n	10e <can_message_action+0x10e>
+  80:	3301      	adds	r3, #1
+  82:	7093      	strb	r3, [r2, #2]
+  84:	e043      	b.n	10e <can_message_action+0x10e>
+  86:	7963      	ldrb	r3, [r4, #5]
+  88:	2b0a      	cmp	r3, #10
+  8a:	d105      	bne.n	98 <can_message_action+0x98>
+  8c:	f7ff fffe 	bl	0 <initialize_novram>
+  90:	2350      	movs	r3, #80
+  92:	7163      	strb	r3, [r4, #5]
+  94:	2001      	movs	r0, #1
+  96:	e03b      	b.n	110 <can_message_action+0x110>
+  98:	4823      	ldr	r0, [pc, #140]	(128 <can_message_action+0x128>)
+  9a:	f7ff fffe 	bl	0 <send_a_string>
+  9e:	e036      	b.n	10e <can_message_action+0x10e>
+  a0:	7963      	ldrb	r3, [r4, #5]
+  a2:	4d1d      	ldr	r5, [pc, #116]	(118 <can_message_action+0x118>)
+  a4:	2b0a      	cmp	r3, #10
+  a6:	d10b      	bne.n	c0 <can_message_action+0xc0>
+  a8:	7822      	ldrb	r2, [r4, #0]
+  aa:	4b20      	ldr	r3, [pc, #128]	(12c <can_message_action+0x12c>)
+  ac:	701a      	strb	r2, [r3, #0]
+  ae:	f7ff fffe 	bl	0 <fill_terminal_info>
+  b2:	2305      	movs	r3, #5
+  b4:	70ab      	strb	r3, [r5, #2]
+  b6:	4b1e      	ldr	r3, [pc, #120]	(130 <can_message_action+0x130>)
+  b8:	f04f 0200 	mov.w	r2, #0	; 0x0
+  bc:	801a      	strh	r2, [r3, #0]
+  be:	e026      	b.n	10e <can_message_action+0x10e>
+  c0:	2304      	movs	r3, #4
+  c2:	70ab      	strb	r3, [r5, #2]
+  c4:	e023      	b.n	10e <can_message_action+0x10e>
+  c6:	7864      	ldrb	r4, [r4, #1]
+  c8:	2000      	movs	r0, #0
+  ca:	2105      	movs	r1, #5
+  cc:	e007      	b.n	de <can_message_action+0xde>
+  ce:	4b11      	ldr	r3, [pc, #68]	(114 <can_message_action+0x114>)
+  d0:	5c5a      	ldrb	r2, [r3, r1]
+  d2:	4b18      	ldr	r3, [pc, #96]	(134 <can_message_action+0x134>)
+  d4:	541a      	strb	r2, [r3, r0]
+  d6:	1c43      	adds	r3, r0, #1
+  d8:	b298      	uxth	r0, r3
+  da:	1c4b      	adds	r3, r1, #1
+  dc:	b2d9      	uxtb	r1, r3
+  de:	42a0      	cmp	r0, r4
+  e0:	d3f5      	bcc.n	ce <can_message_action+0xce>
+  e2:	4b15      	ldr	r3, [pc, #84]	(138 <can_message_action+0x138>)
+  e4:	7019      	strb	r1, [r3, #0]
+  e6:	4b15      	ldr	r3, [pc, #84]	(13c <can_message_action+0x13c>)
+  e8:	8018      	strh	r0, [r3, #0]
+  ea:	f7ff fffe 	bl	0 <start_transmitting>
+  ee:	4b14      	ldr	r3, [pc, #80]	(140 <can_message_action+0x140>)
+  f0:	681a      	ldr	r2, [r3, #0]
+  f2:	4b14      	ldr	r3, [pc, #80]	(144 <can_message_action+0x144>)
+  f4:	701a      	strb	r2, [r3, #0]
+  f6:	e00a      	b.n	10e <can_message_action+0x10e>
+  f8:	78a3      	ldrb	r3, [r4, #2]
+  fa:	2bca      	cmp	r3, #202
+  fc:	d002      	beq.n	104 <can_message_action+0x104>
+  fe:	2beb      	cmp	r3, #235
+ 100:	d105      	bne.n	10e <can_message_action+0x10e>
+ 102:	e002      	b.n	10a <can_message_action+0x10a>
+ 104:	f7ff fffe 	bl	0 <dm1_message_action>
+ 108:	e001      	b.n	6 <get_engine_serial_number+0x6>
+ 10a:	f7ff fffe 	bl	0 <get_engine_serial_number>
+ 10e:	2000      	movs	r0, #0
+ 110:	bd70      	pop	{r4, r5, r6, pc}
+ 112:	46c0      	nop			(mov r8, r8)
+	...
+Disassembly of section .text.check_can:
+
+00000000 <check_can>:
+check_can():
+   0:	4b27      	ldr	r3, [pc, #156]	(a0 <check_can+0xa0>)
+   2:	b510      	push	{r4, lr}
+   4:	699b      	ldr	r3, [r3, #24]
+   6:	4a27      	ldr	r2, [pc, #156]	(a4 <check_can+0xa4>)
+   8:	f013 0f04 	tst.w	r3, #4	; 0x4
+   c:	4b26      	ldr	r3, [pc, #152]	(a8 <check_can+0xa8>)
+   e:	d007      	beq.n	20 <check_can+0x20>
+  10:	681b      	ldr	r3, [r3, #0]
+  12:	4826      	ldr	r0, [pc, #152]	(ac <check_can+0xac>)
+  14:	3364      	adds	r3, #100
+  16:	7193      	strb	r3, [r2, #6]
+  18:	f7ff fffe 	bl	0 <send_a_string>
+  1c:	2200      	movs	r2, #0
+  1e:	e005      	b.n	2c <check_can+0x2c>
+  20:	681b      	ldr	r3, [r3, #0]
+  22:	7992      	ldrb	r2, [r2, #6]
+  24:	b2db      	uxtb	r3, r3
+  26:	429a      	cmp	r2, r3
+  28:	d102      	bne.n	30 <check_can+0x30>
+  2a:	2201      	movs	r2, #1
+  2c:	4b20      	ldr	r3, [pc, #128]	(b0 <check_can+0xb0>)
+  2e:	701a      	strb	r2, [r3, #0]
+  30:	4b20      	ldr	r3, [pc, #128]	(b4 <check_can+0xb4>)
+  32:	781b      	ldrb	r3, [r3, #0]
+  34:	3b01      	subs	r3, #1
+  36:	2b05      	cmp	r3, #5
+  38:	d831      	bhi.n	9e <check_can+0x9e>
+  3a:	e8df f003 	tbb	[pc, r3]
+  3e:	3003      	.short	0x3003
+  40:	201d120b 	.word	0x201d120b
+  44:	f7ff fffe 	bl	0 <continue_mp_input>
+  48:	b348      	cbz	r0, 9e <check_can+0x9e>
+  4a:	4b1b      	ldr	r3, [pc, #108]	(b8 <check_can+0xb8>)
+  4c:	2200      	movs	r2, #0
+  4e:	701a      	strb	r2, [r3, #0]
+  50:	3202      	adds	r2, #2
+  52:	e003      	b.n	5c <check_can+0x5c>
+  54:	f7ff fffe 	bl	0 <end_mp_input>
+  58:	b308      	cbz	r0, 9e <check_can+0x9e>
+  5a:	2204      	movs	r2, #4
+  5c:	4b15      	ldr	r3, [pc, #84]	(b4 <check_can+0xb4>)
+  5e:	701a      	strb	r2, [r3, #0]
+  60:	e01d      	b.n	9e <check_can+0x9e>
+  62:	f7ff fffe 	bl	0 <check_can>
+  66:	4913      	ldr	r1, [pc, #76]	(b4 <check_can+0xb4>)
+  68:	4603      	mov	r3, r0
+  6a:	b118      	cbz	r0, 74 <check_can+0x74>
+  6c:	4a13      	ldr	r2, [pc, #76]	(bc <check_can+0xbc>)
+  6e:	2300      	movs	r3, #0
+  70:	7113      	strb	r3, [r2, #4]
+  72:	3305      	adds	r3, #5
+  74:	700b      	strb	r3, [r1, #0]
+  76:	e012      	b.n	9e <check_can+0x9e>
+  78:	f7ff fffe 	bl	0 <transmit_msg_buffer>
+  7c:	e00f      	b.n	9e <check_can+0x9e>
+  7e:	4c09      	ldr	r4, [pc, #36]	(a4 <check_can+0xa4>)
+  80:	79e3      	ldrb	r3, [r4, #7]
+  82:	b163      	cbz	r3, 9e <check_can+0x9e>
+  84:	4b0c      	ldr	r3, [pc, #48]	(b8 <check_can+0xb8>)
+  86:	2200      	movs	r2, #0
+  88:	701a      	strb	r2, [r3, #0]
+  8a:	f7ff fffe 	bl	0 <continue_mp_output>
+  8e:	b130      	cbz	r0, 9e <check_can+0x9e>
+  90:	4b0a      	ldr	r3, [pc, #40]	(bc <check_can+0xbc>)
+  92:	791a      	ldrb	r2, [r3, #4]
+  94:	3201      	adds	r2, #1
+  96:	711a      	strb	r2, [r3, #4]
+  98:	79e3      	ldrb	r3, [r4, #7]
+  9a:	3b01      	subs	r3, #1
+  9c:	71e3      	strb	r3, [r4, #7]
+  9e:	bd10      	pop	{r4, pc}
+  a0:	40006400 	.word	0x40006400
+	...
+  ac:	0000001c 	.word	0x0000001c
+	...
+Disassembly of section .text.initialize_can:
+
+00000000 <initialize_can>:
+initialize_can():
+   0:	4a3f      	ldr	r2, [pc, #252]	(100 <initialize_can+0x100>)
+   2:	4b40      	ldr	r3, [pc, #256]	(104 <initialize_can+0x104>)
+   4:	b510      	push	{r4, lr}
+   6:	601a      	str	r2, [r3, #0]
+   8:	2200      	movs	r2, #0
+   a:	e005      	b.n	18 <initialize_can+0x18>
+   c:	3201      	adds	r2, #1
+   e:	f5b2 3f80 	cmp.w	r2, #65536	; 0x10000
+  12:	d101      	bne.n	18 <initialize_can+0x18>
+  14:	483c      	ldr	r0, [pc, #240]	(108 <initialize_can+0x108>)
+  16:	e011      	b.n	3c <initialize_can+0x3c>
+  18:	493a      	ldr	r1, [pc, #232]	(104 <initialize_can+0x104>)
+  1a:	684b      	ldr	r3, [r1, #4]
+  1c:	f013 0f01 	tst.w	r3, #1	; 0x1
+  20:	d0f4      	beq.n	c <initialize_can+0xc>
+  22:	4b3a      	ldr	r3, [pc, #232]	(10c <initialize_can+0x10c>)
+  24:	2200      	movs	r2, #0
+  26:	61cb      	str	r3, [r1, #28]
+  28:	680b      	ldr	r3, [r1, #0]
+  2a:	f023 0301 	bic.w	r3, r3, #1	; 0x1
+  2e:	600b      	str	r3, [r1, #0]
+  30:	e007      	b.n	42 <initialize_can+0x42>
+  32:	3201      	adds	r2, #1
+  34:	f5b2 3f80 	cmp.w	r2, #65536	; 0x10000
+  38:	d103      	bne.n	42 <initialize_can+0x42>
+  3a:	4835      	ldr	r0, [pc, #212]	(110 <initialize_can+0x110>)
+  3c:	f7ff fffe 	bl	0 <send_a_string>
+  40:	e05c      	b.n	fc <initialize_can+0xfc>
+  42:	4830      	ldr	r0, [pc, #192]	(104 <initialize_can+0x104>)
+  44:	6843      	ldr	r3, [r0, #4]
+  46:	f013 0401 	ands.w	r4, r3, #1	; 0x1
+  4a:	d1f2      	bne.n	32 <initialize_can+0x32>
+  4c:	f8d0 3200 	ldr.w	r3, [r0, #512]
+  50:	4a30      	ldr	r2, [pc, #192]	(114 <initialize_can+0x114>)
+  52:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  56:	f8c0 3200 	str.w	r3, [r0, #512]
+  5a:	f643 73ff 	movw	r3, #16383	; 0x3fff
+  5e:	f8c0 421c 	str.w	r4, [r0, #540]
+  62:	f8c0 320c 	str.w	r3, [r0, #524]
+  66:	f642 23b2 	movw	r3, #10930	; 0x2ab2
+  6a:	f8c0 4204 	str.w	r4, [r0, #516]
+  6e:	f8c0 3214 	str.w	r3, [r0, #532]
+  72:	4b29      	ldr	r3, [pc, #164]	(118 <initialize_can+0x118>)
+  74:	4929      	ldr	r1, [pc, #164]	(11c <initialize_can+0x11c>)
+  76:	f8c0 3240 	str.w	r3, [r0, #576]
+  7a:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+  7e:	f8c0 2244 	str.w	r2, [r0, #580]
+  82:	f8c0 3248 	str.w	r3, [r0, #584]
+  86:	f5a3 03ef 	sub.w	r3, r3, #7831552	; 0x778000
+  8a:	f8c0 224c 	str.w	r2, [r0, #588]
+  8e:	f8c0 3250 	str.w	r3, [r0, #592]
+  92:	4b23      	ldr	r3, [pc, #140]	(120 <initialize_can+0x120>)
+  94:	4a23      	ldr	r2, [pc, #140]	(124 <initialize_can+0x124>)
+  96:	f8c0 3254 	str.w	r3, [r0, #596]
+  9a:	4b23      	ldr	r3, [pc, #140]	(128 <initialize_can+0x128>)
+  9c:	f8c0 3258 	str.w	r3, [r0, #600]
+  a0:	4b22      	ldr	r3, [pc, #136]	(12c <initialize_can+0x12c>)
+  a2:	f8c0 125c 	str.w	r1, [r0, #604]
+  a6:	f8c0 3260 	str.w	r3, [r0, #608]
+  aa:	4b21      	ldr	r3, [pc, #132]	(130 <initialize_can+0x130>)
+  ac:	f8c0 2264 	str.w	r2, [r0, #612]
+  b0:	781b      	ldrb	r3, [r3, #0]
+  b2:	02db      	lsls	r3, r3, #11
+  b4:	f043 63e8 	orr.w	r3, r3, #121634816	; 0x7400000
+  b8:	f043 0304 	orr.w	r3, r3, #4	; 0x4
+  bc:	f8c0 3268 	str.w	r3, [r0, #616]
+  c0:	4b1c      	ldr	r3, [pc, #112]	(134 <initialize_can+0x134>)
+  c2:	f8c0 226c 	str.w	r2, [r0, #620]
+  c6:	f8c0 3270 	str.w	r3, [r0, #624]
+  ca:	237f      	movs	r3, #127
+  cc:	f8c0 1274 	str.w	r1, [r0, #628]
+  d0:	f8c0 321c 	str.w	r3, [r0, #540]
+  d4:	f8d0 3200 	ldr.w	r3, [r0, #512]
+  d8:	2101      	movs	r1, #1
+  da:	f023 0301 	bic.w	r3, r3, #1	; 0x1
+  de:	f8c0 3200 	str.w	r3, [r0, #512]
+  e2:	2312      	movs	r3, #18
+  e4:	6143      	str	r3, [r0, #20]
+  e6:	2014      	movs	r0, #20
+  e8:	f7ff fffe 	bl	0 <enable_interrupt>
+  ec:	2015      	movs	r0, #21
+  ee:	2101      	movs	r1, #1
+  f0:	f7ff fffe 	bl	0 <enable_interrupt>
+  f4:	4b10      	ldr	r3, [pc, #64]	(138 <initialize_can+0x138>)
+  f6:	701c      	strb	r4, [r3, #0]
+  f8:	4b10      	ldr	r3, [pc, #64]	(13c <initialize_can+0x13c>)
+  fa:	701c      	strb	r4, [r3, #0]
+  fc:	bd10      	pop	{r4, pc}
+  fe:	46c0      	nop			(mov r8, r8)
+ 100:	00010041 	.word	0x00010041
+ 104:	40006400 	.word	0x40006400
+ 108:	0000002b 	.word	0x0000002b
+ 10c:	003a0007 	.word	0x003a0007
+ 110:	0000003d 	.word	0x0000003d
+ 114:	0fff8006 	.word	0x0fff8006
+ 118:	07f70004 	.word	0x07f70004
+ 11c:	0ffff806 	.word	0x0ffff806
+ 120:	0fffc006 	.word	0x0fffc006
+ 124:	0fc7f806 	.word	0x0fc7f806
+ 128:	07f65004 	.word	0x07f65004
+ 12c:	0747f804 	.word	0x0747f804
+ 130:	00000000 	.word	0x00000000
+ 134:	07f6f804 	.word	0x07f6f804
+	...

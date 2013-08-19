@@ -1,0 +1,1305 @@
+
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o:     file format elf32-littlearm
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+
+Disassembly of section .text.fill_a_switch:
+
+00000000 <fill_a_switch>:
+fill_a_switch():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:34
+
+u16 command_timer;
+
+
+void fill_a_switch(switch_state switch_status)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:35
+	switch(switch_status)
+   2:	2805      	cmp	r0, #5
+   4:	d820      	bhi.n	48 <fill_a_switch+0x48>
+   6:	e8df f000 	tbb	[pc, r0]
+   a:	0a03      	.short	0x0a03
+   c:	1818110a 	.word	0x1818110a
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:38
+	{
+		case SW_OPEN:
+			fill_a_string("OPEN   ");
+  10:	f240 0000 	movw	r0, #0	; 0x0
+  14:	f2c0 0000 	movt	r0, #0	; 0x0
+  18:	f7ff fffe 	bl	0 <fill_a_string>
+  1c:	e01a      	b.n	40 <fill_a_switch+0x40>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:43
+			break;		
+
+		case SW_CLOSING_A:
+		case SW_CLOSING_B:
+			fill_a_string("CLOSING");
+  1e:	f240 0000 	movw	r0, #0	; 0x0
+  22:	f2c0 0000 	movt	r0, #0	; 0x0
+  26:	f7ff fffe 	bl	0 <fill_a_string>
+  2a:	e013      	b.n	3a <fill_a_switch+0x3a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:47
+			break;		
+
+		case SW_CLOSED:
+			fill_a_string("CLOSED ");
+  2c:	f240 0000 	movw	r0, #0	; 0x0
+  30:	f2c0 0000 	movt	r0, #0	; 0x0
+  34:	f7ff fffe 	bl	0 <fill_a_string>
+  38:	e00c      	b.n	34 <fill_a_switch+0x34>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:52
+			break;
+
+		case SW_OPENING_A:
+		case SW_OPENING_B:
+			fill_a_string("OPENING");
+  3a:	f240 0000 	movw	r0, #0	; 0x0
+  3e:	f2c0 0000 	movt	r0, #0	; 0x0
+  42:	f7ff fffe 	bl	0 <fill_a_string>
+  46:	e005      	b.n	2e <fill_a_switch+0x2e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:56
+			break;
+
+		default:
+			fill_a_string("ERROR! ");
+  48:	f240 0000 	movw	r0, #0	; 0x0
+  4c:	f2c0 0000 	movt	r0, #0	; 0x0
+  50:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:59
+			break;
+	}
+}
+  54:	bd10      	pop	{r4, pc}
+  56:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fill_a_minutes:
+
+00000000 <fill_a_minutes>:
+fill_a_minutes():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:86
+ * Timers are passed as 100ms/bit.
+ * We show them as 0.1 minute resolution
+ *---------------------------------------------------------------*/
+
+void fill_a_minutes(u32 time_value)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:87
+	fill_a_number(time_value / 60, 1);
+   2:	f648 0389 	movw	r3, #34953	; 0x8889
+   6:	f6c8 0388 	movt	r3, #34952	; 0x8888
+   a:	fba3 2000 	umull	r2, r0, r3, r0
+   e:	ea4f 1050 	mov.w	r0, r0, lsr #5
+  12:	f04f 0101 	mov.w	r1, #1	; 0x1
+  16:	f7ff fffe 	bl	0 <fill_a_number>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:88
+	fill_a_string(" mins");
+  1a:	f240 0000 	movw	r0, #0	; 0x0
+  1e:	f2c0 0000 	movt	r0, #0	; 0x0
+  22:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:89
+}
+  26:	bd10      	pop	{r4, pc}
+Disassembly of section .text.fill_a_this_mins:
+
+00000000 <fill_a_this_mins>:
+fill_a_this_mins():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:93
+
+
+void fill_a_this_mins(u16 this_time)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:94
+	fill_a_string("      	This session: ");
+   4:	f240 0000 	movw	r0, #0	; 0x0
+   8:	f2c0 0000 	movt	r0, #0	; 0x0
+   c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:96
+	// "This" times are stored in system clock ticks (10ms) 
+	fill_a_minutes(this_time / 10);
+  10:	f64c 43cd 	movw	r3, #52429	; 0xcccd
+  14:	f6cc 43cc 	movt	r3, #52428	; 0xcccc
+  18:	fba3 2404 	umull	r2, r4, r3, r4
+  1c:	ea4f 00d4 	mov.w	r0, r4, lsr #3
+  20:	f7ff fffe 	bl	0 <fill_a_this_mins>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:97
+}
+  24:	bd10      	pop	{r4, pc}
+  26:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fill_a_hours:
+
+00000000 <fill_a_hours>:
+fill_a_hours():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:71
+ * Timers are passed as 100ms/bit.
+ * We show them as 0.1 hour resolution
+ *---------------------------------------------------------------*/
+
+void fill_a_hours(u32 time_value)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:72
+	fill_a_number(time_value / 3600, 1);
+   2:	f24b 33c5 	movw	r3, #46021	; 0xb3c5
+   6:	f2c9 13a2 	movt	r3, #37282	; 0x91a2
+   a:	fba3 2000 	umull	r2, r0, r3, r0
+   e:	ea4f 20d0 	mov.w	r0, r0, lsr #11
+  12:	f04f 0101 	mov.w	r1, #1	; 0x1
+  16:	f7ff fffe 	bl	0 <fill_a_number>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:73
+	fill_a_string(" hrs");
+  1a:	f240 0000 	movw	r0, #0	; 0x0
+  1e:	f2c0 0000 	movt	r0, #0	; 0x0
+  22:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:74
+}
+  26:	bd10      	pop	{r4, pc}
+Disassembly of section .text.send_health_screen:
+
+00000000 <send_health_screen>:
+send_health_screen():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:253
+	fill_a_string("\n\r");
+}
+
+
+void send_health_screen(void) 
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:254
+	fill_a_string("\n\n\rPower on cycles:	");
+   2:	f240 0000 	movw	r0, #0	; 0x0
+   6:	f2c0 0000 	movt	r0, #0	; 0x0
+   a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:255
+	fill_a_decimal(ram_novram.power_cycles);
+   e:	f240 0400 	movw	r4, #0	; 0x0
+  12:	f2c0 0400 	movt	r4, #0	; 0x0
+  16:	8ba0      	ldrh	r0, [r4, #28]
+  18:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:256
+	fill_a_string("\t\tNumber of crank attempts: ");
+  1c:	f240 0000 	movw	r0, #0	; 0x0
+  20:	f2c0 0000 	movt	r0, #0	; 0x0
+  24:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:257
+	fill_a_decimal(ram_novram.number_cranks);
+  28:	8c20      	ldrh	r0, [r4, #32]
+  2a:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:259
+
+	fill_a_string("\n\rNumber of Shutdowns:    ");
+  2e:	f240 0000 	movw	r0, #0	; 0x0
+  32:	f2c0 0000 	movt	r0, #0	; 0x0
+  36:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:260
+	fill_a_decimal(ram_novram.error_stops);
+  3a:	8be0      	ldrh	r0, [r4, #30]
+  3c:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:261
+	fill_a_string("\t\tNumber of starts: ");
+  40:	f240 0000 	movw	r0, #0	; 0x0
+  44:	f2c0 0000 	movt	r0, #0	; 0x0
+  48:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:262
+	fill_a_decimal(ram_novram.number_starts);
+  4c:	8c60      	ldrh	r0, [r4, #34]
+  4e:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:264
+
+	fill_a_string("\n\rTime powered: 		");
+  52:	f240 0000 	movw	r0, #0	; 0x0
+  56:	f2c0 0000 	movt	r0, #0	; 0x0
+  5a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:265
+	fill_a_hours(ram_novram.on_time);
+  5e:	6820      	ldr	r0, [r4, #0]
+  60:	f7ff fffe 	bl	0 <send_health_screen>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:266
+	fill_a_this_mins(this_on_time);
+  64:	f240 0300 	movw	r3, #0	; 0x0
+  68:	f2c0 0300 	movt	r3, #0	; 0x0
+  6c:	8818      	ldrh	r0, [r3, #0]
+  6e:	f7ff fffe 	bl	0 <send_health_screen>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:268
+
+	fill_a_string("\n\rRun time:		");
+  72:	f240 0000 	movw	r0, #0	; 0x0
+  76:	f2c0 0000 	movt	r0, #0	; 0x0
+  7a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:269
+	fill_a_hours(ram_novram.run_time);
+  7e:	6860      	ldr	r0, [r4, #4]
+  80:	f7ff fffe 	bl	0 <send_health_screen>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:271
+
+	send_sio_buffer();
+  84:	f7ff fffe 	bl	0 <send_sio_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:272
+}
+  88:	bd10      	pop	{r4, pc}
+  8a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fill_terminal_info:
+
+00000000 <fill_terminal_info>:
+fill_terminal_info():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:165
+ * Called in response to receiving a '?'
+ * Assemble the characters into sio_buffer[], ready to be transmitted
+ *------------------------------------------------------------------*/
+
+void fill_terminal_info(void)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:168
+	u16 temp_int;
+
+	fill_a_string("\n\n\r\t\t\tDoosan Infracore - Portable Power\n\r\t\t\t");
+   2:	f240 0000 	movw	r0, #0	; 0x0
+   6:	f2c0 0000 	movt	r0, #0	; 0x0
+   a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:170
+
+	fill_a_string("  TITAN Controller ");
+   e:	f240 0000 	movw	r0, #0	; 0x0
+  12:	f2c0 0000 	movt	r0, #0	; 0x0
+  16:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:172
+	
+	fill_a_string("\n\n\rSoftware Part Number ");
+  1a:	f240 0000 	movw	r0, #0	; 0x0
+  1e:	f2c0 0000 	movt	r0, #0	; 0x0
+  22:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:173
+	fill_a_decimal(SOFTWARE_PN);
+  26:	f249 6080 	movw	r0, #38528	; 0x9680
+  2a:	f2c0 0098 	movt	r0, #152	; 0x98
+  2e:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:174
+	fill_a_string(" V");
+  32:	f240 0500 	movw	r5, #0	; 0x0
+  36:	f2c0 0500 	movt	r5, #0	; 0x0
+  3a:	4628      	mov	r0, r5
+  3c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:175
+    fill_a_number(SOFTWARE_VERSION, 2);
+  40:	f04f 0001 	mov.w	r0, #1	; 0x1
+  44:	f04f 0102 	mov.w	r1, #2	; 0x2
+  48:	f7ff fffe 	bl	0 <fill_a_number>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:176
+	fill_a_string("B");
+  4c:	f240 0000 	movw	r0, #0	; 0x0
+  50:	f2c0 0000 	movt	r0, #0	; 0x0
+  54:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:178
+
+	fill_a_string("	Built on ");	
+  58:	f240 0000 	movw	r0, #0	; 0x0
+  5c:	f2c0 0000 	movt	r0, #0	; 0x0
+  60:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:179
+	fill_a_string(__DATE__);
+  64:	f240 0000 	movw	r0, #0	; 0x0
+  68:	f2c0 0000 	movt	r0, #0	; 0x0
+  6c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:180
+	fill_a_string(" at ");
+  70:	f240 0000 	movw	r0, #0	; 0x0
+  74:	f2c0 0000 	movt	r0, #0	; 0x0
+  78:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:181
+	fill_a_string(__TIME__);
+  7c:	f240 0000 	movw	r0, #0	; 0x0
+  80:	f2c0 0000 	movt	r0, #0	; 0x0
+  84:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:183
+
+	fill_a_string("\n\n\rController Name: ");
+  88:	f240 0000 	movw	r0, #0	; 0x0
+  8c:	f2c0 0000 	movt	r0, #0	; 0x0
+  90:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:184
+	fill_a_string( get_recent_identity(ID_CONTROLLER) );
+  94:	f04f 0001 	mov.w	r0, #1	; 0x1
+  98:	f7ff fffe 	bl	0 <get_recent_identity>
+  9c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:185
+	fill_a_string("	Machine Name: ");
+  a0:	f240 0000 	movw	r0, #0	; 0x0
+  a4:	f2c0 0000 	movt	r0, #0	; 0x0
+  a8:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:186
+	fill_a_string( get_recent_identity(ID_MACHINE) );
+  ac:	f04f 0000 	mov.w	r0, #0	; 0x0
+  b0:	f7ff fffe 	bl	0 <get_recent_identity>
+  b4:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:188
+
+		fill_a_string("\t\t\tEngine SN: ");
+  b8:	f240 0000 	movw	r0, #0	; 0x0
+  bc:	f2c0 0000 	movt	r0, #0	; 0x0
+  c0:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:189
+		fill_a_string( get_recent_identity(ID_ENGINE) );
+  c4:	f04f 0002 	mov.w	r0, #2	; 0x2
+  c8:	f7ff fffe 	bl	0 <get_recent_identity>
+  cc:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:190
+		fill_a_string("\n\rFaults: ");
+  d0:	f240 0000 	movw	r0, #0	; 0x0
+  d4:	f2c0 0000 	movt	r0, #0	; 0x0
+  d8:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:191
+		fill_a_decimal(number_of_faults());
+  dc:	f7ff fffe 	bl	0 <number_of_faults>
+  e0:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:192
+		fill_a_string("\t\t\t\tEngines: ");
+  e4:	f240 0000 	movw	r0, #0	; 0x0
+  e8:	f2c0 0000 	movt	r0, #0	; 0x0
+  ec:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:193
+		fill_a_decimal( get_number_identities(ID_ENGINE) );
+  f0:	f04f 0002 	mov.w	r0, #2	; 0x2
+  f4:	f7ff fffe 	bl	0 <get_number_identities>
+  f8:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:196
+
+
+		fill_a_string("\t\tActive engine codes: ");
+  fc:	f240 0000 	movw	r0, #0	; 0x0
+ 100:	f2c0 0000 	movt	r0, #0	; 0x0
+ 104:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:209
+        //    
+		//		fill_a_decimal(engActiveList[temp_int].spn);
+		//	}
+		}
+
+		fill_a_string("\t\t\tSaved engine codes: ");
+ 108:	f240 0000 	movw	r0, #0	; 0x0
+ 10c:	f2c0 0000 	movt	r0, #0	; 0x0
+ 110:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:222
+            //    
+			//	fill_a_decimal(savedFaultCodes[temp_int].spn);
+			//}
+		}
+
+		fill_a_string("\n\n\rPower on cycles: ");
+ 114:	f240 0000 	movw	r0, #0	; 0x0
+ 118:	f2c0 0000 	movt	r0, #0	; 0x0
+ 11c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:223
+		fill_a_decimal(ram_novram.power_cycles);
+ 120:	f240 0400 	movw	r4, #0	; 0x0
+ 124:	f2c0 0400 	movt	r4, #0	; 0x0
+ 128:	8ba0      	ldrh	r0, [r4, #28]
+ 12a:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:225
+
+		fill_a_string("\n\rRun time: ");
+ 12e:	f240 0000 	movw	r0, #0	; 0x0
+ 132:	f2c0 0000 	movt	r0, #0	; 0x0
+ 136:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:230
+		// Engine hours is stored as 0.1 hours/bit
+		// fill_a_hours() expects time in 0.1 sec
+		// 0.1hr * (3600s/hr) = 360s/bit
+//		fill_a_hours(engine_hours * 3600);
+		fill_a_hours(ram_novram.run_time);
+ 13a:	6860      	ldr	r0, [r4, #4]
+ 13c:	f7ff fffe 	bl	0 <fill_terminal_info>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:232
+ 	
+		fill_a_string(" RPM");
+ 140:	f240 0000 	movw	r0, #0	; 0x0
+ 144:	f2c0 0000 	movt	r0, #0	; 0x0
+ 148:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:234
+
+		fill_a_string("\n\rBattery voltage: ");
+ 14c:	f240 0000 	movw	r0, #0	; 0x0
+ 150:	f2c0 0000 	movt	r0, #0	; 0x0
+ 154:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:235
+		fill_a_number(battery_voltage, 1);
+ 158:	f240 0300 	movw	r3, #0	; 0x0
+ 15c:	f2c0 0300 	movt	r3, #0	; 0x0
+ 160:	8818      	ldrh	r0, [r3, #0]
+ 162:	f04f 0101 	mov.w	r1, #1	; 0x1
+ 166:	f7ff fffe 	bl	0 <fill_a_number>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:236
+		fill_a_string(" V");
+ 16a:	4628      	mov	r0, r5
+ 16c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:238
+
+		if (ram_novram.ambient_installed)
+ 170:	f894 3034 	ldrb.w	r3, [r4, #52]
+ 174:	b1ab      	cbz	r3, 26a <.LC36+0xe>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:240
+		{
+			fill_a_string("\t\t\tAmbiant temperature: ");
+ 176:	f240 0000 	movw	r0, #0	; 0x0
+ 17a:	f2c0 0000 	movt	r0, #0	; 0x0
+ 17e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:241
+			fill_a_decimal(ambient_temperature >> 4);
+ 182:	f240 0300 	movw	r3, #0	; 0x0
+ 186:	f2c0 0300 	movt	r3, #0	; 0x0
+ 18a:	f9b3 0000 	ldrsh.w	r0, [r3]
+ 18e:	ea4f 1020 	mov.w	r0, r0, asr #4
+ 192:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:242
+			fill_a_string(" F");
+ 196:	f240 0000 	movw	r0, #0	; 0x0
+ 19a:	f2c0 0000 	movt	r0, #0	; 0x0
+ 19e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:245
+		}
+
+		fill_a_string("\n\n\rFront panel START switch: ");
+ 1a2:	f240 0000 	movw	r0, #0	; 0x0
+ 1a6:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1aa:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:246
+		fill_a_switch(digital_input[DIN_UNIT_START]);
+ 1ae:	f240 0300 	movw	r3, #0	; 0x0
+ 1b2:	f2c0 0300 	movt	r3, #0	; 0x0
+ 1b6:	78d8      	ldrb	r0, [r3, #3]
+ 1b8:	f7ff fffe 	bl	0 <fill_terminal_info>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:248
+	
+	fill_a_string("\n\r");
+ 1bc:	f240 0000 	movw	r0, #0	; 0x0
+ 1c0:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1c4:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:249
+}
+ 1c8:	bd70      	pop	{r4, r5, r6, pc}
+ 1ca:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.display_analogs:
+
+00000000 <display_analogs>:
+display_analogs():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:101
+	fill_a_minutes(this_time / 10);
+}
+
+
+void display_analogs(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:103
+	// In case we're transmitting, wait for it to complete
+	wait_for_buffer();
+   2:	f7ff fffe 	bl	0 <wait_for_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:105
+
+	fill_a_string("\n\r\nbattery: 0x");
+   6:	f240 0000 	movw	r0, #0	; 0x0
+   a:	f2c0 0000 	movt	r0, #0	; 0x0
+   e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:106
+	fill_an_int(analog_input[AIN_BATTERY_V].average);
+  12:	f240 0400 	movw	r4, #0	; 0x0
+  16:	f2c0 0400 	movt	r4, #0	; 0x0
+  1a:	f8b4 005e 	ldrh.w	r0, [r4, #94]
+  1e:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:107
+	fill_a_string("\n\rregulation P: 0x");
+  22:	f240 0000 	movw	r0, #0	; 0x0
+  26:	f2c0 0000 	movt	r0, #0	; 0x0
+  2a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:108
+	fill_an_int(analog_input[AIN_REG_SYS_P].average);
+  2e:	f8b4 006a 	ldrh.w	r0, [r4, #106]
+  32:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:109
+	fill_a_string("\n\rseparation P: 0x");
+  36:	f240 0000 	movw	r0, #0	; 0x0
+  3a:	f2c0 0000 	movt	r0, #0	; 0x0
+  3e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:110
+	fill_an_int(analog_input[AIN_SEP_TANK_P].average);
+  42:	f8b4 0076 	ldrh.w	r0, [r4, #118]
+  46:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:111
+	fill_a_string("\n\rambient: 0x");
+  4a:	f240 0000 	movw	r0, #0	; 0x0
+  4e:	f2c0 0000 	movt	r0, #0	; 0x0
+  52:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:112
+	fill_an_int(analog_input[AIN_AMBIENT_T].average);
+  56:	8de0      	ldrh	r0, [r4, #46]
+  58:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:113
+	fill_a_string("\n\rdischarge T: 0x");
+  5c:	f240 0000 	movw	r0, #0	; 0x0
+  60:	f2c0 0000 	movt	r0, #0	; 0x0
+  64:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:114
+	fill_an_int(analog_input[AIN_DISCH_T].average);
+  68:	8960      	ldrh	r0, [r4, #10]
+  6a:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:115
+	fill_a_string("\n\rseparation T: 0x");
+  6e:	f240 0000 	movw	r0, #0	; 0x0
+  72:	f2c0 0000 	movt	r0, #0	; 0x0
+  76:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:116
+	fill_an_int(analog_input[AIN_SEP_TANK_T].average);
+  7a:	8ae0      	ldrh	r0, [r4, #22]
+  7c:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:117
+	fill_a_string("\n\rfuel: 0x");
+  80:	f240 0000 	movw	r0, #0	; 0x0
+  84:	f2c0 0000 	movt	r0, #0	; 0x0
+  88:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:118
+	fill_an_int(analog_input[AIN_FUEL_LEVEL].average);
+  8c:	8c60      	ldrh	r0, [r4, #34]
+  8e:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:119
+	fill_a_string("\n\rboard T: 0x");
+  92:	f240 0000 	movw	r0, #0	; 0x0
+  96:	f2c0 0000 	movt	r0, #0	; 0x0
+  9a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:120
+	fill_an_int(analog_input[AIN_BOARD_TEMP].average);
+  9e:	f8b4 0082 	ldrh.w	r0, [r4, #130]
+  a2:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:121
+	fill_a_string("\n\rairend oil P: 0x");
+  a6:	f240 0000 	movw	r0, #0	; 0x0
+  aa:	f2c0 0000 	movt	r0, #0	; 0x0
+  ae:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:122
+	fill_an_int(analog_input[AIN_AIREND_OIL_P].average);
+  b2:	8f60      	ldrh	r0, [r4, #58]
+  b4:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:123
+	fill_a_string("\n\rstart control: 0x");
+  b8:	f240 0000 	movw	r0, #0	; 0x0
+  bc:	f2c0 0000 	movt	r0, #0	; 0x0
+  c0:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:124
+	fill_an_int(analog_input[AIN_START_CONTROL].average);
+  c4:	f8b4 0046 	ldrh.w	r0, [r4, #70]
+  c8:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:125
+	fill_a_string("\n\rregen control: 0x");
+  cc:	f240 0000 	movw	r0, #0	; 0x0
+  d0:	f2c0 0000 	movt	r0, #0	; 0x0
+  d4:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:126
+	fill_an_int(analog_input[AIN_REGEN_CONTROL].average);
+  d8:	f8b4 0052 	ldrh.w	r0, [r4, #82]
+  dc:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:128
+//#ifdef NEVER
+	fill_a_string("\n\n\rraw board T: 0x");
+  e0:	f240 0000 	movw	r0, #0	; 0x0
+  e4:	f2c0 0000 	movt	r0, #0	; 0x0
+  e8:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:129
+	fill_an_int(raw_analog[ADC_BOARD_TEMP]);
+  ec:	f240 0400 	movw	r4, #0	; 0x0
+  f0:	f2c0 0400 	movt	r4, #0	; 0x0
+  f4:	8820      	ldrh	r0, [r4, #0]
+  f6:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:130
+	fill_a_string("\n\rraw battery: 0x");
+  fa:	f240 0000 	movw	r0, #0	; 0x0
+  fe:	f2c0 0000 	movt	r0, #0	; 0x0
+ 102:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:131
+	fill_an_int(raw_analog[ADC_BATTERY_V]);
+ 106:	8860      	ldrh	r0, [r4, #2]
+ 108:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:132
+	fill_a_string("\n\rraw ADC I 2: 0x");
+ 10c:	f240 0000 	movw	r0, #0	; 0x0
+ 110:	f2c0 0000 	movt	r0, #0	; 0x0
+ 114:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:133
+	fill_an_int(raw_analog[ADC_CURRENT_2]);
+ 118:	88a0      	ldrh	r0, [r4, #4]
+ 11a:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:134
+	fill_a_string("\n\rraw ADC I 1: 0x");
+ 11e:	f240 0000 	movw	r0, #0	; 0x0
+ 122:	f2c0 0000 	movt	r0, #0	; 0x0
+ 126:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:135
+	fill_an_int(raw_analog[ADC_CURRENT_1]);
+ 12a:	88e0      	ldrh	r0, [r4, #6]
+ 12c:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:136
+	fill_a_string("\n\rraw MUX: 0x");
+ 130:	f240 0000 	movw	r0, #0	; 0x0
+ 134:	f2c0 0000 	movt	r0, #0	; 0x0
+ 138:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:137
+	fill_an_int(raw_analog[ADC_MULTIPLEXER]);
+ 13c:	8920      	ldrh	r0, [r4, #8]
+ 13e:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:138
+	fill_a_string("\n\rraw RTD: 0x");
+ 142:	f240 0000 	movw	r0, #0	; 0x0
+ 146:	f2c0 0000 	movt	r0, #0	; 0x0
+ 14a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:139
+	fill_an_int(raw_analog[ADC_MUX_RTD]);
+ 14e:	8960      	ldrh	r0, [r4, #10]
+ 150:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:140
+	fill_a_string("\n\rraw AIN9: 0x");
+ 154:	f240 0000 	movw	r0, #0	; 0x0
+ 158:	f2c0 0000 	movt	r0, #0	; 0x0
+ 15c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:141
+	fill_an_int(raw_analog[ADC_AIN9]);
+ 160:	89a0      	ldrh	r0, [r4, #12]
+ 162:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:142
+	fill_a_string("\n\rraw AIN8: 0x");
+ 166:	f240 0000 	movw	r0, #0	; 0x0
+ 16a:	f2c0 0000 	movt	r0, #0	; 0x0
+ 16e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:143
+	fill_an_int(raw_analog[ADC_AIN8]);
+ 172:	89e0      	ldrh	r0, [r4, #14]
+ 174:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:144
+	fill_a_string("\n\rraw DIN2: 0x");
+ 178:	f240 0000 	movw	r0, #0	; 0x0
+ 17c:	f2c0 0000 	movt	r0, #0	; 0x0
+ 180:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:145
+	fill_an_int(raw_analog[ADC_DIN2]);
+ 184:	8a20      	ldrh	r0, [r4, #16]
+ 186:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:146
+	fill_a_string("\n\rraw DIN3: 0x");
+ 18a:	f240 0000 	movw	r0, #0	; 0x0
+ 18e:	f2c0 0000 	movt	r0, #0	; 0x0
+ 192:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:147
+	fill_an_int(raw_analog[ADC_DIN3]);
+ 196:	8a60      	ldrh	r0, [r4, #18]
+ 198:	f7ff fffe 	bl	0 <fill_an_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:150
+//#endif
+
+	fill_a_string("\n\r");
+ 19c:	f240 0000 	movw	r0, #0	; 0x0
+ 1a0:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1a4:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:151
+	send_sio_buffer();
+ 1a8:	f7ff fffe 	bl	0 <send_sio_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:152
+}
+ 1ac:	bd10      	pop	{r4, pc}
+ 1ae:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.serial_receive:
+
+00000000 <serial_receive>:
+serial_receive():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:276
+	send_sio_buffer();
+}
+
+
+void serial_receive(void)
+{
+   0:	b500      	push	{lr}
+   2:	b083      	sub	sp, #12
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:283
+	static u16 faults_to_show = 3;			   
+
+	u8 serial_character,
+	   temp_byte;
+
+	if ( get_serial_character(&serial_character) )
+   4:	f10d 0007 	add.w	r0, sp, #7	; 0x7
+   8:	f7ff fffe 	bl	0 <get_serial_character>
+   c:	2800      	cmp	r0, #0
+   e:	f000 8194 	beq.w	33a <serial_receive+0x33a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:285
+	{
+		if (serial_character == ESCAPE)
+  12:	f89d 3007 	ldrb.w	r3, [sp, #7]
+  16:	2b1b      	cmp	r3, #27
+  18:	d114      	bne.n	44 <serial_receive+0x44>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:290
+		{
+			// Enable the next character to be a command
+
+			// Timer for single character commands
+			command_timer = SECONDS(3);
+  1a:	f240 0300 	movw	r3, #0	; 0x0
+  1e:	f2c0 0300 	movt	r3, #0	; 0x0
+  22:	f44f 7296 	mov.w	r2, #300	; 0x12c
+  26:	801a      	strh	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:293
+
+			// Reset the buffer in case some other characters were received
+			sio_index = 0;
+  28:	f240 0300 	movw	r3, #0	; 0x0
+  2c:	f2c0 0300 	movt	r3, #0	; 0x0
+  30:	f04f 0200 	mov.w	r2, #0	; 0x0
+  34:	801a      	strh	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:295
+
+			send_a_string("\n\rSingle key commands enabled\n\r");
+  36:	f240 0000 	movw	r0, #0	; 0x0
+  3a:	f2c0 0000 	movt	r0, #0	; 0x0
+  3e:	f7ff fffe 	bl	0 <send_a_string>
+  42:	e17a      	b.n	2fa <serial_receive+0x2fa>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:297
+		}
+		else if (command_timer)
+  44:	f240 0300 	movw	r3, #0	; 0x0
+  48:	f2c0 0300 	movt	r3, #0	; 0x0
+  4c:	881b      	ldrh	r3, [r3, #0]
+  4e:	2b00      	cmp	r3, #0
+  50:	f000 8173 	beq.w	33a <serial_receive+0x33a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:301
+		{
+			// The previous character was ESC
+			// Allow only one single character command at a time
+			command_timer = 0;
+  54:	f240 0300 	movw	r3, #0	; 0x0
+  58:	f2c0 0300 	movt	r3, #0	; 0x0
+  5c:	f04f 0200 	mov.w	r2, #0	; 0x0
+  60:	801a      	strh	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:303
+
+			switch (serial_character)
+  62:	f89d 3007 	ldrb.w	r3, [sp, #7]
+  66:	f1a3 0321 	sub.w	r3, r3, #33	; 0x21
+  6a:	2b58      	cmp	r3, #88
+  6c:	f200 8165 	bhi.w	33a <serial_receive+0x33a>
+  70:	e8df f013 	tbh	[pc, r3, lsl #1]
+  74:	01630151 	.word	0x01630151
+  78:	01630163 	.word	0x01630163
+  7c:	01630163 	.word	0x01630163
+  80:	01630163 	.word	0x01630163
+  84:	01630163 	.word	0x01630163
+  88:	01630163 	.word	0x01630163
+  8c:	01630163 	.word	0x01630163
+  90:	01630163 	.word	0x01630163
+  94:	01630163 	.word	0x01630163
+  98:	01630163 	.word	0x01630163
+  9c:	01630163 	.word	0x01630163
+  a0:	01630163 	.word	0x01630163
+  a4:	01630163 	.word	0x01630163
+  a8:	01630163 	.word	0x01630163
+  ac:	01630163 	.word	0x01630163
+  b0:	0163015c 	.word	0x0163015c
+  b4:	01630163 	.word	0x01630163
+  b8:	01630163 	.word	0x01630163
+  bc:	01630163 	.word	0x01630163
+  c0:	00830163 	.word	0x00830163
+  c4:	01630080 	.word	0x01630080
+  c8:	01630163 	.word	0x01630163
+  cc:	01630163 	.word	0x01630163
+  d0:	01630163 	.word	0x01630163
+  d4:	005d0163 	.word	0x005d0163
+  d8:	01630163 	.word	0x01630163
+  dc:	01630163 	.word	0x01630163
+  e0:	01630163 	.word	0x01630163
+  e4:	01630163 	.word	0x01630163
+  e8:	01630163 	.word	0x01630163
+  ec:	01630163 	.word	0x01630163
+  f0:	01630163 	.word	0x01630163
+  f4:	01630067 	.word	0x01630067
+  f8:	01630062 	.word	0x01630062
+  fc:	0072006f 	.word	0x0072006f
+ 100:	007d0118 	.word	0x007d0118
+ 104:	01630163 	.word	0x01630163
+ 108:	01630163 	.word	0x01630163
+ 10c:	0163008b 	.word	0x0163008b
+ 110:	01630163 	.word	0x01630163
+ 114:	00590163 	.word	0x00590163
+ 118:	00ee0163 	.word	0x00ee0163
+ 11c:	01630163 	.word	0x01630163
+ 120:	01630163 	.word	0x01630163
+ 124:	0118      	.short	0x0118
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:312
+					// Reprogram this controller
+
+					// Set the "Program Valid" flag to a value that the
+					//  BootLoader recognizes as an RS232 reprogram and is 
+					//  something other than VALID_KEY 
+					set_option_bytes(0xAAAA);
+ 126:	f64a 20aa 	movw	r0, #43690	; 0xaaaa
+ 12a:	f7ff fffe 	bl	0 <set_option_bytes>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:318
+
+					// .. and reset to run the bootloader
+
+				case 'R':
+
+					write_novram();
+ 12e:	f7ff fffe 	bl	0 <write_novram>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:321
+
+					// Reset to get the BootLoader going
+					software_reset();
+ 132:	f7ff fffe 	bl	0 <software_reset>
+ 136:	e100      	b.n	33a <serial_receive+0x33a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:333
+					 * Reprogram CAN servers
+					 * A connected test tool is prompting us to begin 
+					 *  reprogramming all connected CAN devices.
+					 *----------------------------------------------*/
+
+					can_start_reprogram(CAN_ALL_ADDR);
+ 138:	f04f 00ff 	mov.w	r0, #255	; 0xff
+ 13c:	f7ff fffe 	bl	0 <can_start_reprogram>
+ 140:	e0fb      	b.n	1fa <number_of_faults+0x1fa>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:340
+					break;
+
+				case 'a':
+
+					// Transmit all faults
+					fault_transmit_count = number_of_faults();
+ 142:	f7ff fffe 	bl	0 <number_of_faults>
+ 146:	f240 0300 	movw	r3, #0	; 0x0
+ 14a:	f2c0 0300 	movt	r3, #0	; 0x0
+ 14e:	8018      	strh	r0, [r3, #0]
+ 150:	e0f3      	b.n	33a <serial_receive+0x33a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:345
+
+					break;
+
+				case 'e':
+					erase_fault_log();
+ 152:	f7ff fffe 	bl	0 <erase_fault_log>
+ 156:	e0f0      	b.n	1e4 <fault_transmit_count+0x1e4>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:351
+					break;
+
+				case 'f':
+
+					// Start transmitting faults
+					fault_transmit_count = faults_to_show;
+ 158:	f240 0200 	movw	r2, #0	; 0x0
+ 15c:	f2c0 0200 	movt	r2, #0	; 0x0
+ 160:	f240 0300 	movw	r3, #0	; 0x0
+ 164:	f2c0 0300 	movt	r3, #0	; 0x0
+ 168:	881b      	ldrh	r3, [r3, #0]
+ 16a:	8013      	strh	r3, [r2, #0]
+ 16c:	e0e5      	b.n	33a <serial_receive+0x33a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:356
+
+					break;
+
+				case 'h':
+					send_health_screen();
+ 16e:	f7ff fffe 	bl	0 <serial_receive>
+ 172:	e0e2      	b.n	1c8 <serial_receive+0x1c8>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:360
+					break;
+
+				case 'I':
+					display_analogs();
+ 174:	f7ff fffe 	bl	0 <serial_receive>
+ 178:	e0df      	b.n	1c2 <number_of_novram+0x1c2>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:365
+					break;
+
+				case 'H':
+					// Display previous novram stores
+					health_transmit_count = number_of_novram();
+ 17a:	f7ff fffe 	bl	0 <number_of_novram>
+ 17e:	f240 0300 	movw	r3, #0	; 0x0
+ 182:	f2c0 0300 	movt	r3, #0	; 0x0
+ 186:	8018      	strh	r0, [r3, #0]
+ 188:	e0d7      	b.n	33a <serial_receive+0x33a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:370
+					break;
+
+				case 'm':
+
+					fill_a_string("\n\n\rESC enables a single key command:");
+ 18a:	f240 0000 	movw	r0, #0	; 0x0
+ 18e:	f2c0 0000 	movt	r0, #0	; 0x0
+ 192:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:371
+					fill_a_string("\n\rd/x: Adjust discharge temperature AutoLoad threshold");
+ 196:	f240 0000 	movw	r0, #0	; 0x0
+ 19a:	f2c0 0000 	movt	r0, #0	; 0x0
+ 19e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:372
+					fill_a_string("\n\ry/g: Adjust # faults to display");
+ 1a2:	f240 0000 	movw	r0, #0	; 0x0
+ 1a6:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1aa:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:373
+					fill_a_string("\n\rt: Toggle Fault List<->Code");
+ 1ae:	f240 0000 	movw	r0, #0	; 0x0
+ 1b2:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1b6:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:374
+					fill_a_string("\n\rf: Display # of Faults");
+ 1ba:	f240 0000 	movw	r0, #0	; 0x0
+ 1be:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1c2:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:375
+					fill_a_string("\n\ra: Display all Faults");
+ 1c6:	f240 0000 	movw	r0, #0	; 0x0
+ 1ca:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1ce:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:376
+					fill_a_string("\n\re: Erase all Faults");
+ 1d2:	f240 0000 	movw	r0, #0	; 0x0
+ 1d6:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1da:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:377
+					fill_a_string("\n\rq: Change machine ID");
+ 1de:	f240 0000 	movw	r0, #0	; 0x0
+ 1e2:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1e6:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:378
+					fill_a_string("\n\rh: Display latest machine health data");
+ 1ea:	f240 0000 	movw	r0, #0	; 0x0
+ 1ee:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1f2:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:379
+					fill_a_string("\n\rH: Display all machine health data");
+ 1f6:	f240 0000 	movw	r0, #0	; 0x0
+ 1fa:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1fe:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:380
+					fill_a_string("\n\rI: Display raw averaged analog inputs");
+ 202:	f240 0000 	movw	r0, #0	; 0x0
+ 206:	f2c0 0000 	movt	r0, #0	; 0x0
+ 20a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:381
+					fill_a_string("\n\rR: Reset this module");
+ 20e:	f240 0000 	movw	r0, #0	; 0x0
+ 212:	f2c0 0000 	movt	r0, #0	; 0x0
+ 216:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:383
+
+					fill_a_string("\n\n\rr: Reprogram this device");
+ 21a:	f240 0000 	movw	r0, #0	; 0x0
+ 21e:	f2c0 0000 	movt	r0, #0	; 0x0
+ 222:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:384
+					fill_a_string("\n\rc: Reprogram other CAN devices");
+ 226:	f240 0000 	movw	r0, #0	; 0x0
+ 22a:	f2c0 0000 	movt	r0, #0	; 0x0
+ 22e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:386
+
+					fill_a_string("\n\n\r!: Initialize NOVRAM\n\r");
+ 232:	f240 0000 	movw	r0, #0	; 0x0
+ 236:	f2c0 0000 	movt	r0, #0	; 0x0
+ 23a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:387
+					fill_a_string("\n\r?: Display present operating conditions");
+ 23e:	f240 0000 	movw	r0, #0	; 0x0
+ 242:	f2c0 0000 	movt	r0, #0	; 0x0
+ 246:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:388
+					send_sio_buffer();
+ 24a:	f7ff fffe 	bl	0 <send_sio_buffer>
+ 24e:	e074      	b.n	724 <.LC84+0x40>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:397
+				case 't':
+
+					// Toggle between sending the entire fault listing 
+					//  and just sending the fault code for each one
+
+					fill_a_string("\n\rFault Log shows ");
+ 250:	f240 0000 	movw	r0, #0	; 0x0
+ 254:	f2c0 0000 	movt	r0, #0	; 0x0
+ 258:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:398
+					if (transmit_fault_log)
+ 25c:	f240 0300 	movw	r3, #0	; 0x0
+ 260:	f2c0 0300 	movt	r3, #0	; 0x0
+ 264:	781b      	ldrb	r3, [r3, #0]
+ 266:	b16b      	cbz	r3, 284 <serial_receive+0x284>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:400
+					{
+						fill_a_string("codes only");
+ 268:	f240 0000 	movw	r0, #0	; 0x0
+ 26c:	f2c0 0000 	movt	r0, #0	; 0x0
+ 270:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:401
+						transmit_fault_log = FALSE;
+ 274:	f240 0300 	movw	r3, #0	; 0x0
+ 278:	f2c0 0300 	movt	r3, #0	; 0x0
+ 27c:	f04f 0200 	mov.w	r2, #0	; 0x0
+ 280:	701a      	strb	r2, [r3, #0]
+ 282:	e00c      	b.n	29e <serial_receive+0x29e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:405
+					}
+					else
+					{
+						fill_a_string("all data");
+ 284:	f240 0000 	movw	r0, #0	; 0x0
+ 288:	f2c0 0000 	movt	r0, #0	; 0x0
+ 28c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:406
+						transmit_fault_log = TRUE;
+ 290:	f240 0300 	movw	r3, #0	; 0x0
+ 294:	f2c0 0300 	movt	r3, #0	; 0x0
+ 298:	f04f 0201 	mov.w	r2, #1	; 0x1
+ 29c:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:409
+					}
+
+					send_sio_buffer();
+ 29e:	f7ff fffe 	bl	0 <send_sio_buffer>
+ 2a2:	e04a      	b.n	98 <number_of_faults+0x98>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:416
+					break;
+
+				case 'y':
+				case 'g':
+
+					temp_byte = number_of_faults();
+ 2a4:	f7ff fffe 	bl	0 <number_of_faults>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:418
+
+					if (faults_to_show >= temp_byte)
+ 2a8:	b2c0      	uxtb	r0, r0
+ 2aa:	f240 0300 	movw	r3, #0	; 0x0
+ 2ae:	f2c0 0300 	movt	r3, #0	; 0x0
+ 2b2:	881a      	ldrh	r2, [r3, #0]
+ 2b4:	4290      	cmp	r0, r2
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:419
+						faults_to_show = temp_byte;
+ 2b6:	bf9e      	ittt	ls
+ 2b8:	f240 0300 	movwls	r3, #0	; 0x0
+ 2bc:	f2c0 0300 	movtls	r3, #0	; 0x0
+ 2c0:	8018      	strhls	r0, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:418
+				case 'y':
+				case 'g':
+
+					temp_byte = number_of_faults();
+
+					if (faults_to_show >= temp_byte)
+ 2c2:	d912      	bls.n	2ea <serial_receive+0x2ea>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:420
+						faults_to_show = temp_byte;
+					else if (serial_character == 'y')
+ 2c4:	f89d 3007 	ldrb.w	r3, [sp, #7]
+ 2c8:	2b79      	cmp	r3, #121
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:421
+						faults_to_show++;
+ 2ca:	bf01      	itttt	eq
+ 2cc:	f240 0300 	movweq	r3, #0	; 0x0
+ 2d0:	f2c0 0300 	movteq	r3, #0	; 0x0
+ 2d4:	3201      	addeq	r2, #1
+ 2d6:	801a      	strheq	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:420
+
+					temp_byte = number_of_faults();
+
+					if (faults_to_show >= temp_byte)
+						faults_to_show = temp_byte;
+					else if (serial_character == 'y')
+ 2d8:	d007      	beq.n	2ea <serial_receive+0x2ea>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:424
+						faults_to_show++;
+					else
+					{
+						if (faults_to_show > 0)
+ 2da:	b132      	cbz	r2, 2ea <serial_receive+0x2ea>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:425
+							faults_to_show--;
+ 2dc:	f240 0300 	movw	r3, #0	; 0x0
+ 2e0:	f2c0 0300 	movt	r3, #0	; 0x0
+ 2e4:	f102 32ff 	add.w	r2, r2, #4294967295	; 0xffffffff
+ 2e8:	801a      	strh	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:428
+					}
+
+					fill_a_string("f will show ");
+ 2ea:	f240 0000 	movw	r0, #0	; 0x0
+ 2ee:	f2c0 0000 	movt	r0, #0	; 0x0
+ 2f2:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:429
+					fill_a_decimal(faults_to_show);
+ 2f6:	f240 0300 	movw	r3, #0	; 0x0
+ 2fa:	f2c0 0300 	movt	r3, #0	; 0x0
+ 2fe:	8818      	ldrh	r0, [r3, #0]
+ 300:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:430
+					fill_a_string(" recent faults");
+ 304:	f240 0000 	movw	r0, #0	; 0x0
+ 308:	f2c0 0000 	movt	r0, #0	; 0x0
+ 30c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:431
+					send_sio_buffer();
+ 310:	f7ff fffe 	bl	0 <send_sio_buffer>
+ 314:	e011      	b.n	26 <initialize_novram+0x26>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:439
+
+				case '!':
+
+//					while ( transmit_proprietary(PCMD_RESET_NOVRAM, CAN_ALL_ADDR) == FALSE );
+
+					initialize_novram();
+ 316:	f7ff fffe 	bl	0 <initialize_novram>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:441
+
+					fill_a_string("\n\rNOVRAM is initialized\n\r");
+ 31a:	f240 0000 	movw	r0, #0	; 0x0
+ 31e:	f2c0 0000 	movt	r0, #0	; 0x0
+ 322:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:442
+					send_sio_buffer();
+ 326:	f7ff fffe 	bl	0 <send_sio_buffer>
+ 32a:	e006      	b.n	10 <remote_access_state+0x10>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:449
+					break;
+
+				case '?':
+
+					// Initiate screen access
+					remote_access_state = ACCESS_BEGIN;
+ 32c:	f240 0300 	movw	r3, #0	; 0x0
+ 330:	f2c0 0300 	movt	r3, #0	; 0x0
+ 334:	f04f 0201 	mov.w	r2, #1	; 0x1
+ 338:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:462
+//					send_sio_buffer();
+					break;
+			}
+		}
+	}
+}
+ 33a:	b003      	add	sp, #12
+ 33c:	bd00      	pop	{pc}
+ 33e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.check_serial:
+
+00000000 <check_serial>:
+check_serial():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:473
+ * Called continuously from the main task to look for a character 
+ *  in the RS232 input stream and take appropriate action.
+ *--------------------------------------------------------------*/
+
+void check_serial(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:476
+	// If a transmission is in process, we are still using sio_buffer[]
+	//  and so we just return and try again later
+	if ( buffer_is_busy() == FALSE )
+   2:	f7ff fffe 	bl	0 <buffer_is_busy>
+   6:	2800      	cmp	r0, #0
+   8:	d147      	bne.n	9a <check_serial+0x9a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:480
+	{
+		// If we are reprogramming a CAN server, report any 
+		//  in-process message to the programmer
+		switch (programming_server.state)
+   a:	f240 0300 	movw	r3, #0	; 0x0
+   e:	f2c0 0300 	movt	r3, #0	; 0x0
+  12:	789b      	ldrb	r3, [r3, #2]
+  14:	2b08      	cmp	r3, #8
+  16:	d840      	bhi.n	9a <check_serial+0x9a>
+  18:	e8df f003 	tbb	[pc, r3]
+  1c:	3f3f3f05 	.word	0x3f3f3f05
+  20:	243f2108 	.word	0x243f2108
+  24:	0032      	.short	0x0032
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:484
+		{
+			case PRGM_NORMAL:
+				// We are not programming a connected CAN device
+				serial_receive();
+  26:	f7ff fffe 	bl	0 <check_serial>
+  2a:	e036      	b.n	710 <.LC84+0x2c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:489
+				break;
+
+			case PRGM_READY:
+
+				fill_a_string("\n\rReady to reprogram CAN server ");
+  2c:	f240 0000 	movw	r0, #0	; 0x0
+  30:	f2c0 0000 	movt	r0, #0	; 0x0
+  34:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:490
+				fill_a_byte(programming_server.requestee);
+  38:	f240 0400 	movw	r4, #0	; 0x0
+  3c:	f2c0 0400 	movt	r4, #0	; 0x0
+  40:	7820      	ldrb	r0, [r4, #0]
+  42:	f7ff fffe 	bl	0 <fill_a_byte>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:491
+				fill_a_string("\n\r");	
+  46:	f240 0000 	movw	r0, #0	; 0x0
+  4a:	f2c0 0000 	movt	r0, #0	; 0x0
+  4e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:492
+				send_sio_buffer();
+  52:	f7ff fffe 	bl	0 <send_sio_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:494
+			
+				programming_server.state = PROGRAMMING;
+  56:	f04f 0305 	mov.w	r3, #5	; 0x5
+  5a:	70a3      	strb	r3, [r4, #2]
+  5c:	e01d      	b.n	9a <check_serial+0x9a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:499
+
+				break;
+
+			case PROGRAMMING:
+				can_send_binary();
+  5e:	f7ff fffe 	bl	0 <can_send_binary>
+  62:	e01a      	b.n	6fc <.LC84+0x18>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:504
+				break;
+
+			case PRGM_SUCCESS:
+
+				send_a_string("\n\rSuccessful reprogramming\n\r");
+  64:	f240 0000 	movw	r0, #0	; 0x0
+  68:	f2c0 0000 	movt	r0, #0	; 0x0
+  6c:	f7ff fffe 	bl	0 <send_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:506
+			
+				programming_server.state = PRGM_NORMAL;
+  70:	f240 0300 	movw	r3, #0	; 0x0
+  74:	f2c0 0300 	movt	r3, #0	; 0x0
+  78:	f04f 0200 	mov.w	r2, #0	; 0x0
+  7c:	709a      	strb	r2, [r3, #2]
+  7e:	e00c      	b.n	9a <check_serial+0x9a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:512
+
+				break;
+
+			case PRGM_ERROR:
+
+				send_a_string("\n\rCAN error - canbus offline\n\r");
+  80:	f240 0000 	movw	r0, #0	; 0x0
+  84:	f2c0 0000 	movt	r0, #0	; 0x0
+  88:	f7ff fffe 	bl	0 <send_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:514
+			
+				programming_server.state = PRGM_NORMAL;
+  8c:	f240 0300 	movw	r3, #0	; 0x0
+  90:	f2c0 0300 	movt	r3, #0	; 0x0
+  94:	f04f 0200 	mov.w	r2, #0	; 0x0
+  98:	709a      	strb	r2, [r3, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Serial.c:519
+
+				break;
+		}
+	}
+  9a:	bd10      	pop	{r4, pc}

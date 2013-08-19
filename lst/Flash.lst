@@ -1,0 +1,166 @@
+
+C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o:     file format elf32-littlearm
+C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+
+Disassembly of section .text.wait_for_flash:
+
+00000000 <wait_for_flash>:
+wait_for_flash():
+   0:	4a13      	ldr	r2, [pc, #76]	(50 <wait_for_flash+0x50>)
+   2:	68d3      	ldr	r3, [r2, #12]
+   4:	f013 0314 	ands.w	r3, r3, #20	; 0x14
+   8:	d101      	bne.n	e <wait_for_flash+0xe>
+   a:	461a      	mov	r2, r3
+   c:	e009      	b.n	22 <wait_for_flash+0x22>
+   e:	2314      	movs	r3, #20
+  10:	60d3      	str	r3, [r2, #12]
+  12:	4a10      	ldr	r2, [pc, #64]	(54 <wait_for_flash+0x54>)
+  14:	f892 302e 	ldrb.w	r3, [r2, #46]
+  18:	3301      	adds	r3, #1
+  1a:	f882 302e 	strb.w	r3, [r2, #46]
+  1e:	e015      	b.n	4c <wait_for_flash+0x4c>
+  20:	3201      	adds	r2, #1
+  22:	4b0b      	ldr	r3, [pc, #44]	(50 <wait_for_flash+0x50>)
+  24:	68db      	ldr	r3, [r3, #12]
+  26:	f013 0f01 	tst.w	r3, #1	; 0x1
+  2a:	d004      	beq.n	36 <wait_for_flash+0x36>
+  2c:	f06f 437f 	mvn.w	r3, #4278190080	; 0xff000000
+  30:	429a      	cmp	r2, r3
+  32:	d1f5      	bne.n	20 <wait_for_flash+0x20>
+  34:	e004      	b.n	40 <wait_for_flash+0x40>
+  36:	4b08      	ldr	r3, [pc, #32]	(58 <wait_for_flash+0x58>)
+  38:	429a      	cmp	r2, r3
+  3a:	d801      	bhi.n	40 <wait_for_flash+0x40>
+  3c:	2001      	movs	r0, #1
+  3e:	e006      	b.n	4e <wait_for_flash+0x4e>
+  40:	4a04      	ldr	r2, [pc, #16]	(54 <wait_for_flash+0x54>)
+  42:	f892 302f 	ldrb.w	r3, [r2, #47]
+  46:	3301      	adds	r3, #1
+  48:	f882 302f 	strb.w	r3, [r2, #47]
+  4c:	2000      	movs	r0, #0
+  4e:	4770      	bx	lr
+  50:	40022000 	.word	0x40022000
+  54:	00000000 	.word	0x00000000
+  58:	00fffffe 	.word	0x00fffffe
+Disassembly of section .text.write_flash_int:
+
+00000000 <write_flash_int>:
+write_flash_int():
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	460c      	mov	r4, r1
+   6:	f7ff fffe 	bl	0 <write_flash_int>
+   a:	b128      	cbz	r0, 18 <write_flash_int+0x18>
+   c:	4b04      	ldr	r3, [pc, #16]	(20 <write_flash_int+0x20>)
+   e:	2201      	movs	r2, #1
+  10:	611a      	str	r2, [r3, #16]
+  12:	802c      	strh	r4, [r5, #0]
+  14:	f7ff fffe 	bl	0 <write_flash_int>
+  18:	4b01      	ldr	r3, [pc, #4]	(20 <write_flash_int+0x20>)
+  1a:	2200      	movs	r2, #0
+  1c:	611a      	str	r2, [r3, #16]
+  1e:	bd70      	pop	{r4, r5, r6, pc}
+  20:	40022000 	.word	0x40022000
+Disassembly of section .text.unlock_FPEC:
+
+00000000 <unlock_FPEC>:
+unlock_FPEC():
+   0:	4a06      	ldr	r2, [pc, #24]	(1c <unlock_FPEC+0x1c>)
+   2:	6913      	ldr	r3, [r2, #16]
+   4:	f013 0f80 	tst.w	r3, #128	; 0x80
+   8:	d004      	beq.n	14 <unlock_FPEC+0x14>
+   a:	4b05      	ldr	r3, [pc, #20]	(20 <unlock_FPEC+0x20>)
+   c:	6053      	str	r3, [r2, #4]
+   e:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+  12:	6053      	str	r3, [r2, #4]
+  14:	4b01      	ldr	r3, [pc, #4]	(1c <unlock_FPEC+0x1c>)
+  16:	2234      	movs	r2, #52
+  18:	60da      	str	r2, [r3, #12]
+  1a:	4770      	bx	lr
+  1c:	40022000 	.word	0x40022000
+  20:	45670123 	.word	0x45670123
+Disassembly of section .text.set_option_bytes:
+
+00000000 <set_option_bytes>:
+set_option_bytes():
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4604      	mov	r4, r0
+   4:	f7ff fffe 	bl	0 <set_option_bytes>
+   8:	b340      	cbz	r0, 5c <set_option_bytes+0x5c>
+   a:	4e18      	ldr	r6, [pc, #96]	(6c <set_option_bytes+0x6c>)
+   c:	4b18      	ldr	r3, [pc, #96]	(70 <set_option_bytes+0x70>)
+   e:	60b3      	str	r3, [r6, #8]
+  10:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+  14:	60b3      	str	r3, [r6, #8]
+  16:	f44f 7308 	mov.w	r3, #544	; 0x220
+  1a:	6133      	str	r3, [r6, #16]
+  1c:	3340      	adds	r3, #64
+  1e:	6133      	str	r3, [r6, #16]
+  20:	f7ff fffe 	bl	0 <set_option_bytes>
+  24:	b1d0      	cbz	r0, 5c <set_option_bytes+0x5c>
+  26:	4d13      	ldr	r5, [pc, #76]	(74 <set_option_bytes+0x74>)
+  28:	f44f 7304 	mov.w	r3, #528	; 0x210
+  2c:	6133      	str	r3, [r6, #16]
+  2e:	80ac      	strh	r4, [r5, #4]
+  30:	f7ff fffe 	bl	0 <set_option_bytes>
+  34:	b190      	cbz	r0, 5c <set_option_bytes+0x5c>
+  36:	0a23      	lsrs	r3, r4, #8
+  38:	80eb      	strh	r3, [r5, #6]
+  3a:	f7ff fffe 	bl	0 <set_option_bytes>
+  3e:	b168      	cbz	r0, 5c <set_option_bytes+0x5c>
+  40:	2400      	movs	r4, #0
+  42:	812c      	strh	r4, [r5, #8]
+  44:	f7ff fffe 	bl	0 <set_option_bytes>
+  48:	b140      	cbz	r0, 5c <set_option_bytes+0x5c>
+  4a:	816c      	strh	r4, [r5, #10]
+  4c:	f7ff fffe 	bl	0 <set_option_bytes>
+  50:	b120      	cbz	r0, 5c <set_option_bytes+0x5c>
+  52:	802c      	strh	r4, [r5, #0]
+  54:	f7ff fffe 	bl	0 <set_option_bytes>
+  58:	6134      	str	r4, [r6, #16]
+  5a:	e005      	b.n	68 <set_option_bytes+0x68>
+  5c:	4b03      	ldr	r3, [pc, #12]	(6c <set_option_bytes+0x6c>)
+  5e:	2200      	movs	r2, #0
+  60:	611a      	str	r2, [r3, #16]
+  62:	4805      	ldr	r0, [pc, #20]	(78 <set_option_bytes+0x78>)
+  64:	f7ff fffe 	bl	0 <send_a_string>
+  68:	bd70      	pop	{r4, r5, r6, pc}
+  6a:	46c0      	nop			(mov r8, r8)
+  6c:	40022000 	.word	0x40022000
+  70:	45670123 	.word	0x45670123
+  74:	1ffff800 	.word	0x1ffff800
+  78:	00000000 	.word	0x00000000
+Disassembly of section .text.erase_flash_page:
+
+00000000 <erase_flash_page>:
+erase_flash_page():
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	f7ff fffe 	bl	0 <wait_for_buffer>
+   8:	480e      	ldr	r0, [pc, #56]	(3c <fill_a_string+0x3c>)
+   a:	f7ff fffe 	bl	0 <fill_a_string>
+   e:	4628      	mov	r0, r5
+  10:	f7ff fffe 	bl	0 <fill_a_long>
+  14:	f7ff fffe 	bl	0 <send_sio_buffer>
+  18:	f7ff fffe 	bl	0 <erase_flash_page>
+  1c:	b160      	cbz	r0, 38 <erase_flash_page+0x38>
+  1e:	4c0a      	ldr	r4, [pc, #40]	(48 <erase_flash_page+0x48>)
+  20:	2302      	movs	r3, #2
+  22:	6123      	str	r3, [r4, #16]
+  24:	3340      	adds	r3, #64
+  26:	6165      	str	r5, [r4, #20]
+  28:	6123      	str	r3, [r4, #16]
+  2a:	f7ff fffe 	bl	0 <erase_flash_page>
+  2e:	b118      	cbz	r0, 38 <erase_flash_page+0x38>
+  30:	2300      	movs	r3, #0
+  32:	6123      	str	r3, [r4, #16]
+  34:	2001      	movs	r0, #1
+  36:	e003      	b.n	40 <erase_flash_page+0x40>
+  38:	4b03      	ldr	r3, [pc, #12]	(48 <erase_flash_page+0x48>)
+  3a:	2200      	movs	r2, #0
+  3c:	611a      	str	r2, [r3, #16]
+  3e:	4610      	mov	r0, r2
+  40:	bd70      	pop	{r4, r5, r6, pc}
+  42:	46c0      	nop			(mov r8, r8)
+  44:	00000020 	.word	0x00000020
+  48:	40022000 	.word	0x40022000

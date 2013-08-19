@@ -1,0 +1,353 @@
+
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o:     file format elf32-littlearm
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+
+Disassembly of section .text.enable_interrupt:
+
+00000000 <enable_interrupt>:
+enable_interrupt():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:41
+}
+
+
+void enable_interrupt(u8 peripheral, u8 priority)
+{
+    NVIC->IP[peripheral] = priority;
+   0:	f24e 1200 	movw	r2, #57600	; 0xe100
+   4:	f2ce 0200 	movt	r2, #57344	; 0xe000
+   8:	eb02 0300 	add.w	r3, r2, r0
+   c:	f883 1300 	strb.w	r1, [r3, #768]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:43
+    
+    NVIC->ISER[peripheral >> 0x05] = (u32)1 << (peripheral & 0x1F);
+  10:	ea4f 1150 	mov.w	r1, r0, lsr #5
+  14:	f000 001f 	and.w	r0, r0, #31	; 0x1f
+  18:	f04f 0301 	mov.w	r3, #1	; 0x1
+  1c:	fa03 f300 	lsl.w	r3, r3, r0
+  20:	f842 3021 	str.w	r3, [r2, r1, lsl #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:44
+}
+  24:	4770      	bx	lr
+  26:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.clear_interrupt_pending:
+
+00000000 <clear_interrupt_pending>:
+clear_interrupt_pending():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:49
+
+
+void clear_interrupt_pending(u8 peripheral)
+{
+    NVIC->ICPR[peripheral >> 0x05] = (u32)1 << (peripheral & 0x1F);
+   0:	ea4f 1150 	mov.w	r1, r0, lsr #5
+   4:	f000 001f 	and.w	r0, r0, #31	; 0x1f
+   8:	f04f 0201 	mov.w	r2, #1	; 0x1
+   c:	fa02 f200 	lsl.w	r2, r2, r0
+  10:	f24e 1300 	movw	r3, #57600	; 0xe100
+  14:	f2ce 0300 	movt	r3, #57344	; 0xe000
+  18:	f101 0160 	add.w	r1, r1, #96	; 0x60
+  1c:	f843 2021 	str.w	r2, [r3, r1, lsl #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:50
+}
+  20:	4770      	bx	lr
+  22:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.get_reg:
+
+00000000 <get_reg>:
+get_reg():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:63
+
+u32 get_reg(void)
+{
+    u32 result;
+  
+   __ASM volatile ("mov %0, R0" : "=r" (result));
+   0:	4600      	mov	r0, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:65
+   return(result);
+}
+   2:	4770      	bx	lr
+Disassembly of section .text.PendSV_Handler:
+
+00000000 <PendSV_Handler>:
+PendSV_Handler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:137
+	while (1);
+}
+
+
+void PendSV_Handler(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:138
+	send_a_string("\r\nPending SV!");
+   2:	f240 0000 	movw	r0, #0	; 0x0
+   6:	f2c0 0000 	movt	r0, #0	; 0x0
+   a:	f7ff fffe 	bl	0 <send_a_string>
+   e:	e7fe      	b.n	e <send_a_string+0xe>
+Disassembly of section .text.DebugMon_Handler:
+
+00000000 <DebugMon_Handler>:
+DebugMon_Handler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:129
+	while (1);
+}
+
+
+void DebugMon_Handler(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:130
+	send_a_string("\r\nDebug Monitor!");
+   2:	f240 0000 	movw	r0, #0	; 0x0
+   6:	f2c0 0000 	movt	r0, #0	; 0x0
+   a:	f7ff fffe 	bl	0 <send_a_string>
+   e:	e7fe      	b.n	e <send_a_string+0xe>
+Disassembly of section .text.SVC_Handler:
+
+00000000 <SVC_Handler>:
+SVC_Handler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:121
+	send_status("\r\nUsage Fault!");
+}
+
+
+void SVC_Handler(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:122
+	send_a_string("\r\nSVC!");
+   2:	f240 0000 	movw	r0, #0	; 0x0
+   6:	f2c0 0000 	movt	r0, #0	; 0x0
+   a:	f7ff fffe 	bl	0 <send_a_string>
+   e:	e7fe      	b.n	e <send_a_string+0xe>
+Disassembly of section .text.NMI_Handler:
+
+00000000 <NMI_Handler>:
+NMI_Handler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:54
+    NVIC->ICPR[peripheral >> 0x05] = (u32)1 << (peripheral & 0x1F);
+}
+
+
+void NMI_Handler(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:55
+	send_a_string("\r\nNMI!");
+   2:	f240 0000 	movw	r0, #0	; 0x0
+   6:	f2c0 0000 	movt	r0, #0	; 0x0
+   a:	f7ff fffe 	bl	0 <send_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:56
+}
+   e:	bd10      	pop	{r4, pc}
+Disassembly of section .text.software_reset:
+
+00000000 <software_reset>:
+software_reset():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:21
+#include "SerialBuffer.h"
+#include "Interrupt.h"
+
+
+void software_reset(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:22
+	send_a_string("\n\rResetting");
+   2:	f240 0000 	movw	r0, #0	; 0x0
+   6:	f2c0 0000 	movt	r0, #0	; 0x0
+   a:	f7ff fffe 	bl	0 <send_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:25
+
+	// Wait for the string to transmit
+	USART1->SR = 0;				// Make sure transmission complete bit is FALSE
+   e:	f643 0300 	movw	r3, #14336	; 0x3800
+  12:	f2c4 0301 	movt	r3, #16385	; 0x4001
+  16:	f04f 0200 	mov.w	r2, #0	; 0x0
+  1a:	801a      	strh	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:26
+	while ( (USART1->SR & 0x40) == 0 );
+  1c:	f643 0300 	movw	r3, #14336	; 0x3800
+  20:	461a      	mov	r2, r3
+  22:	f2c4 0201 	movt	r2, #16385	; 0x4001
+  26:	8813      	ldrh	r3, [r2, #0]
+  28:	f013 0f40 	tst.w	r3, #64	; 0x40
+  2c:	d0fb      	beq.n	26 <send_a_string+0x26>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:29
+
+	// Set the software reset request
+	SCB->AIRCR = (APP_RESET_CONTROL | 0x04);
+  2e:	f64e 5200 	movw	r2, #60672	; 0xed00
+  32:	f2ce 0200 	movt	r2, #57344	; 0xe000
+  36:	f240 7304 	movw	r3, #1796	; 0x704
+  3a:	f2c0 53fa 	movt	r3, #1530	; 0x5fa
+  3e:	60d3      	str	r3, [r2, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:32
+
+	// Ensure completion of memory access
+	__asm volatile ("dsb");
+  40:	f3bf 8f4f 	dsb	sy
+  44:	e7fe      	b.n	44 <send_a_string+0x44>
+  46:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.send_status:
+
+00000000 <send_status>:
+send_status():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:69
+   return(result);
+}
+
+
+void send_status(s8 *trigger_name)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:70
+	wait_for_buffer();
+   4:	f7ff fffe 	bl	0 <wait_for_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:72
+
+	fill_a_string(trigger_name);
+   8:	4620      	mov	r0, r4
+   a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:74
+
+	fill_a_long(get_reg());
+   e:	f7ff fffe 	bl	0 <send_status>
+  12:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:75
+	fill_a_long(SCB->SHCSR);		// System Handler Control and State Register
+  16:	f64e 5400 	movw	r4, #60672	; 0xed00
+  1a:	f2ce 0400 	movt	r4, #57344	; 0xe000
+  1e:	6a60      	ldr	r0, [r4, #36]
+  20:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:76
+	fill_a_long(SCB->CFSR);			// Configurable Fault Status Register
+  24:	6aa0      	ldr	r0, [r4, #40]
+  26:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:77
+	fill_a_long(SCB->HFSR);			// Hard Fault Status Register
+  2a:	6ae0      	ldr	r0, [r4, #44]
+  2c:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:78
+	fill_a_long(SCB->DFSR);			// Debug Fault Status Register
+  30:	6b20      	ldr	r0, [r4, #48]
+  32:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:79
+	fill_a_long(SCB->MMFAR);		// Mem Manage Address Register
+  36:	6b60      	ldr	r0, [r4, #52]
+  38:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:80
+	fill_a_long(SCB->BFAR);			// Bus Fault Address Register
+  3c:	6ba0      	ldr	r0, [r4, #56]
+  3e:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:81
+	fill_a_long(SCB->AFSR);			// Auxiliary Fault Status Register
+  42:	6be0      	ldr	r0, [r4, #60]
+  44:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:82
+	send_sio_buffer();
+  48:	f7ff fffe 	bl	0 <send_sio_buffer>
+  4c:	e7fe      	b.n	4c <send_sio_buffer+0x4c>
+  4e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.UsageFault_Handler:
+
+00000000 <UsageFault_Handler>:
+UsageFault_Handler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:113
+	send_status("\r\nBus Fault!");
+}
+
+
+void UsageFault_Handler(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:114
+	__ASM volatile ("mov	R0, lr");
+   2:	4670      	mov	r0, lr
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:116
+
+	send_status("\r\nUsage Fault!");
+   4:	f240 0000 	movw	r0, #0	; 0x0
+   8:	f2c0 0000 	movt	r0, #0	; 0x0
+   c:	f7ff fffe 	bl	0 <UsageFault_Handler>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:117
+}
+  10:	bd10      	pop	{r4, pc}
+  12:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.BusFault_Handler:
+
+00000000 <BusFault_Handler>:
+BusFault_Handler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:105
+	send_status("\r\nMemory Manager!");
+}
+
+
+void BusFault_Handler(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:106
+	__ASM volatile ("mov	R0, lr");
+   2:	4670      	mov	r0, lr
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:108
+
+	send_status("\r\nBus Fault!");
+   4:	f240 0000 	movw	r0, #0	; 0x0
+   8:	f2c0 0000 	movt	r0, #0	; 0x0
+   c:	f7ff fffe 	bl	0 <BusFault_Handler>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:109
+}
+  10:	bd10      	pop	{r4, pc}
+  12:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.MemManage_Handler:
+
+00000000 <MemManage_Handler>:
+MemManage_Handler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:97
+	send_status("\r\nHard Fault!");
+}
+
+
+void MemManage_Handler(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:98
+	__ASM volatile ("mov	R0, lr");
+   2:	4670      	mov	r0, lr
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:100
+
+	send_status("\r\nMemory Manager!");
+   4:	f240 0000 	movw	r0, #0	; 0x0
+   8:	f2c0 0000 	movt	r0, #0	; 0x0
+   c:	f7ff fffe 	bl	0 <MemManage_Handler>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:101
+}
+  10:	bd10      	pop	{r4, pc}
+  12:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.HardFault_Handler:
+
+00000000 <HardFault_Handler>:
+HardFault_Handler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:89
+	while(1);
+}
+
+
+void HardFault_Handler(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:90
+	__ASM volatile ("mov	R0, lr");
+   2:	4670      	mov	r0, lr
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:92
+
+	send_status("\r\nHard Fault!");
+   4:	f240 0000 	movw	r0, #0	; 0x0
+   8:	f2c0 0000 	movt	r0, #0	; 0x0
+   c:	f7ff fffe 	bl	0 <HardFault_Handler>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Interrupt.c:93
+}
+  10:	bd10      	pop	{r4, pc}
+  12:	46c0      	nop			(mov r8, r8)

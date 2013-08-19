@@ -1,0 +1,833 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+top_red_led         0x1               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+raw_analog          0x14              C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+middle_yellow_led   0x1               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+remote_lists        0x5               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+analog_input        0x84              C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+battery_voltage     0x2               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+canMsgBuffer        0x2f              C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+sio_index           0x2               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+ram_novram          0x3c              C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+display_data_time   0x1               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+can_buffer_state    0x1               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+command_timer       0x2               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+remote_dump_index   0x2               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+alternator_charge_ok
+                    0x1               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+this_can_address    0x1               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+sio_buffer          0x800             C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+ambient_temperature
+                    0x2               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+transmit_fault_log  0x1               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+engine_hours        0x4               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+bottom_green_led    0x1               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+programming_server  0x3               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+can_buffer_index    0x1               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+serial_input        0x14              C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+received_packet_flags
+                    0x6               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+digital_input       0x8               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+dump_to_address     0x1               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+ECU_comm_watchdog   0x1               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+can_comm_watchdog   0x1               C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+
+Discarded input sections
+
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+ .data          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+ .bss           0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+ .data          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+ .text.initialize_watchdog
+                0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ .data          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ .text.deg_c16_to_f
+                0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ .text.kpa_to_psi
+                0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+ .data          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+ .data          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+ .text.fill_identity
+                0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+ .text.write_fault_log
+                0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+ .text.update_machine_code
+                0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+ .data          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+ .bss           0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+ .data          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+ .bss           0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+ .text.clear_interrupt_pending
+                0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+ .data          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+ .bss           0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+ .data          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+ .bss           0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+ .data          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+ .text          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\ThermTables.o
+ .data          0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\ThermTables.o
+ .bss           0x00000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\ThermTables.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x20000000         0x00010000         xrw
+FLASH            0x08001000         0x0000a000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+LOAD C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\ThermTables.o
+START GROUP
+LOAD C:\Program Files (x86)\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib
+LOAD C:\Program Files (x86)\Raisonance\Ride\Lib\ARM\smallprintf_thumb.a
+LOAD c:/program files (x86)/raisonance/ride/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/thumb2\libc.a
+LOAD c:/program files (x86)/raisonance/ride/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/thumb2\libm.a
+END GROUP
+                0x00000400                __Stack_Size = 0x400
+                0x00000400                PROVIDE (_Stack_Size, __Stack_Size)
+                0x2000fc00                __Stack_Init = (_estack - __Stack_Size)
+                0x2000fc00                PROVIDE (_Stack_Init, __Stack_Init)
+                0x00000100                _Minimum_Stack_Size = 0x100
+                0x20010000                _estack = 0x20010000
+
+.isr_vector     0x08001000      0x1e4
+                0x08001000                . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x08001000      0x1e4 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+                0x080011e4                . = ALIGN (0x4)
+
+.text           0x080011e4     0x3a0c
+                0x080011e4                . = ALIGN (0x4)
+ *(.text)
+ *(.text.*)
+ .text.Reset_Handler
+                0x080011e4       0x40 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+                0x080011e4                Reset_Handler
+ .text.Default_Handler
+                0x08001224        0x2 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+                0x08001224                EXTI2_IRQHandler
+                0x08001224                TIM8_TRG_COM_IRQHandler
+                0x08001224                TIM8_CC_IRQHandler
+                0x08001224                TIM1_CC_IRQHandler
+                0x08001224                TIM6_IRQHandler
+                0x08001224                PVD_IRQHandler
+                0x08001224                SDIO_IRQHandler
+                0x08001224                EXTI3_IRQHandler
+                0x08001224                EXTI0_IRQHandler
+                0x08001224                I2C2_EV_IRQHandler
+                0x08001224                ADC1_2_IRQHandler
+                0x08001224                SPI1_IRQHandler
+                0x08001224                TAMPER_IRQHandler
+                0x08001224                TIM8_UP_IRQHandler
+                0x08001224                DMA2_Channel2_IRQHandler
+                0x08001224                USART3_IRQHandler
+                0x08001224                RTC_IRQHandler
+                0x08001224                DMA1_Channel7_IRQHandler
+                0x08001224                UART5_IRQHandler
+                0x08001224                ADC3_IRQHandler
+                0x08001224                TIM4_IRQHandler
+                0x08001224                DMA2_Channel1_IRQHandler
+                0x08001224                I2C1_EV_IRQHandler
+                0x08001224                DMA1_Channel6_IRQHandler
+                0x08001224                UART4_IRQHandler
+                0x08001224                RCC_IRQHandler
+                0x08001224                TIM1_TRG_COM_IRQHandler
+                0x08001224                Default_Handler
+                0x08001224                EXTI15_10_IRQHandler
+                0x08001224                TIM7_IRQHandler
+                0x08001224                TIM5_IRQHandler
+                0x08001224                EXTI9_5_IRQHandler
+                0x08001224                SPI2_IRQHandler
+                0x08001224                DMA1_Channel5_IRQHandler
+                0x08001224                EXTI4_IRQHandler
+                0x08001224                USB_HP_CAN1_TX_IRQHandler
+                0x08001224                DMA1_Channel3_IRQHandler
+                0x08001224                FSMC_IRQHandler
+                0x08001224                TIM1_UP_IRQHandler
+                0x08001224                TIM2_IRQHandler
+                0x08001224                TIM1_BRK_IRQHandler
+                0x08001224                EXTI1_IRQHandler
+                0x08001224                RTCAlarm_IRQHandler
+                0x08001224                DMA2_Channel4_5_IRQHandler
+                0x08001224                USART2_IRQHandler
+                0x08001224                I2C2_ER_IRQHandler
+                0x08001224                DMA1_Channel2_IRQHandler
+                0x08001224                TIM8_BRK_IRQHandler
+                0x08001224                CAN1_SCE_IRQHandler
+                0x08001224                FLASH_IRQHandler
+                0x08001224                USART1_IRQHandler
+                0x08001224                SPI3_IRQHandler
+                0x08001224                I2C1_ER_IRQHandler
+                0x08001224                USBWakeUp_IRQHandler
+                0x08001224                DMA2_Channel3_IRQHandler
+ *fill*         0x08001226        0x2 00
+ .text.initialize_clocks
+                0x08001228       0xb8 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+                0x08001228                initialize_clocks
+ .text.initialize_timers
+                0x080012e0       0x24 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+                0x080012e0                initialize_timers
+ .text.wait_for_tic
+                0x08001304       0x14 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+                0x08001304                wait_for_tic
+ .text.wait_some_seconds
+                0x08001318       0x18 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+                0x08001318                wait_some_seconds
+ .text.SysTick_Handler
+                0x08001330       0x1c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+                0x08001330                SysTick_Handler
+ .text.TIM3_IRQHandler
+                0x0800134c       0x1c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+                0x0800134c                TIM3_IRQHandler
+ .text.WWDG_IRQHandler
+                0x08001368       0x10 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+                0x08001368                WWDG_IRQHandler
+ .text.update_analog_input
+                0x08001378       0x44 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+                0x08001378                update_analog_input
+ .text.read_raw_analogs
+                0x080013bc       0xa4 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+                0x080013bc                read_raw_analogs
+ .text.update_analogs
+                0x08001460       0x50 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+                0x08001460                update_analogs
+ .text.DMA1_Channel1_IRQHandler
+                0x080014b0       0x18 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+                0x080014b0                DMA1_Channel1_IRQHandler
+ .text.initialize_analog_input
+                0x080014c8       0xa4 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+                0x080014c8                initialize_analog_input
+ .text.can_filter_0_action
+                0x0800156c       0x1c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+                0x0800156c                can_filter_0_action
+ .text.maintain_can_comm_wd
+                0x08001588       0x44 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+                0x08001588                maintain_can_comm_wd
+ .text.access_info_screens
+                0x080015cc       0xc0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+                0x080015cc                access_info_screens
+ .text.can_message_action
+                0x0800168c      0x148 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+                0x0800168c                can_message_action
+ .text.check_can
+                0x080017d4       0xc0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+                0x080017d4                check_can
+ .text.initialize_can
+                0x08001894      0x140 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+                0x08001894                initialize_can
+ .text.select_transmitter
+                0x080019d4       0x44 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+                0x080019d4                select_transmitter
+ .text.transmit_proprietary
+                0x08001a18      0x170 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+                0x08001a18                transmit_proprietary
+ .text.request_engine_hours
+                0x08001b88       0x38 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+                0x08001b88                request_engine_hours
+ .text.dm1_message_action
+                0x08001bc0       0x18 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+                0x08001bc0                dm1_message_action
+ .text.request_engine_serial_num
+                0x08001bd8       0x38 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+                0x08001bd8                request_engine_serial_num
+ .text.timed_can_messages
+                0x08001c10       0xac C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+                0x08001c10                timed_can_messages
+ .text.get_engine_serial_number
+                0x08001cbc       0x84 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+                0x08001cbc                get_engine_serial_number
+ .text.can_send_binary
+                0x08001d40       0x90 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+                0x08001d40                can_send_binary
+ .text.can_start_reprogram
+                0x08001dd0       0x28 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+                0x08001dd0                can_start_reprogram
+ .text.start_multiple_packets
+                0x08001df8       0x6c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+                0x08001df8                start_multiple_packets
+ .text.prepare_for_mp_receive
+                0x08001e64       0x60 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+                0x08001e64                prepare_for_mp_receive
+ .text.buffer_a_can_packet
+                0x08001ec4       0xb0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+                0x08001ec4                buffer_a_can_packet
+ .text.CAN1_RX1_IRQHandler
+                0x08001f74      0x1f8 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+                0x08001f74                CAN1_RX1_IRQHandler
+ .text.USB_LP_CAN1_RX0_IRQHandler
+                0x0800216c       0x44 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+                0x0800216c                USB_LP_CAN1_RX0_IRQHandler
+ .text.end_mp_input
+                0x080021b0       0x64 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+                0x080021b0                end_mp_input
+ .text.continue_mp_input
+                0x08002214       0x60 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+                0x08002214                continue_mp_input
+ .text.continue_mp_output
+                0x08002274       0xfc C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+                0x08002274                continue_mp_output
+ .text.transmit_msg_buffer
+                0x08002370       0xd4 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+                0x08002370                transmit_msg_buffer
+ .text.next_novram_address
+                0x08002444       0x20 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x08002444                next_novram_address
+ .text.number_of_novram
+                0x08002464       0x18 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x08002464                number_of_novram
+ .text.update_health_timers
+                0x0800247c       0x40 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x0800247c                update_health_timers
+ .text.get_recent_identity
+                0x080024bc       0x28 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x080024bc                get_recent_identity
+ .text.get_number_identities
+                0x080024e4       0x2c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x080024e4                get_number_identities
+ .text.fault_address
+                0x08002510       0x24 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x08002510                fault_address
+ .text.number_of_faults
+                0x08002534       0x24 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x08002534                number_of_faults
+ .text.compare_serial_number
+                0x08002558       0x24 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x08002558                compare_serial_number
+ .text.erase_fault_log
+                0x0800257c       0x24 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x0800257c                erase_fault_log
+ .text.initialize_health
+                0x080025a0       0x40 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x080025a0                initialize_health
+ .text.fill_a_bool
+                0x080025e0       0x18 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x080025e0                fill_a_bool
+ .text.fill_engine_code
+                0x080025f8       0x28 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x080025f8                fill_engine_code
+ .text.fill_a_status
+                0x08002620       0x18 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x08002620                fill_a_status
+ .text.fill_fault
+                0x08002638      0x1b4 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x08002638                fill_fault
+ .text.access_fault_log
+                0x080027ec       0x74 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x080027ec                access_fault_log
+ .text.write_identity
+                0x08002860       0x7c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x08002860                write_identity
+ .text.write_novram
+                0x080028dc       0x54 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x080028dc                write_novram
+ .text.access_novram_log
+                0x08002930      0x1d0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x08002930                access_novram_log
+ .text.initialize_novram
+                0x08002b00       0x3c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x08002b00                initialize_novram
+ .text.read_novram
+                0x08002b3c       0x4c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x08002b3c                read_novram
+ .text.wait_for_flash
+                0x08002b88       0x5c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+                0x08002b88                wait_for_flash
+ .text.write_flash_int
+                0x08002be4       0x24 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+                0x08002be4                write_flash_int
+ .text.unlock_FPEC
+                0x08002c08       0x24 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+                0x08002c08                unlock_FPEC
+ .text.set_option_bytes
+                0x08002c2c       0x7c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+                0x08002c2c                set_option_bytes
+ .text.erase_flash_page
+                0x08002ca8       0x4c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+                0x08002ca8                erase_flash_page
+ .text.enable_interrupt
+                0x08002cf4       0x20 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+                0x08002cf4                enable_interrupt
+ .text.get_reg  0x08002d14        0x4 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+                0x08002d14                get_reg
+ .text.PendSV_Handler
+                0x08002d18       0x10 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+                0x08002d18                PendSV_Handler
+ .text.DebugMon_Handler
+                0x08002d28       0x10 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+                0x08002d28                DebugMon_Handler
+ .text.SVC_Handler
+                0x08002d38       0x10 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+                0x08002d38                SVC_Handler
+ .text.NMI_Handler
+                0x08002d48       0x10 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+                0x08002d48                NMI_Handler
+ .text.software_reset
+                0x08002d58       0x38 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+                0x08002d58                software_reset
+ .text.send_status
+                0x08002d90       0x4c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+                0x08002d90                send_status
+ .text.UsageFault_Handler
+                0x08002ddc       0x10 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+                0x08002ddc                UsageFault_Handler
+ .text.BusFault_Handler
+                0x08002dec       0x10 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+                0x08002dec                BusFault_Handler
+ .text.MemManage_Handler
+                0x08002dfc       0x10 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+                0x08002dfc                MemManage_Handler
+ .text.HardFault_Handler
+                0x08002e0c       0x10 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+                0x08002e0c                HardFault_Handler
+ .text.initialize_ports
+                0x08002e1c       0x84 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+                0x08002e1c                initialize_ports
+ .text.update_leds
+                0x08002ea0       0x88 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+                0x08002ea0                update_leds
+ .text.get_input_state
+                0x08002f28       0x94 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+                0x08002f28                get_input_state
+ .text.update_input_state
+                0x08002fbc       0x44 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+                0x08002fbc                update_input_state
+ .text.update_digital_in
+                0x08003000       0x18 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+                0x08003000                update_digital_in
+ .text.main     0x08003018      0x188 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+                0x08003018                main
+ .text.fill_a_switch
+                0x080031a0       0x3c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+                0x080031a0                fill_a_switch
+ .text.fill_a_minutes
+                0x080031dc       0x1c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+                0x080031dc                fill_a_minutes
+ .text.fill_a_this_mins
+                0x080031f8       0x1c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+                0x080031f8                fill_a_this_mins
+ .text.fill_a_hours
+                0x08003214       0x1c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+                0x08003214                fill_a_hours
+ .text.send_health_screen
+                0x08003230       0x7c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+                0x08003230                send_health_screen
+ .text.fill_terminal_info
+                0x080032ac      0x180 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+                0x080032ac                fill_terminal_info
+ .text.display_analogs
+                0x0800342c      0x180 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+                0x0800342c                display_analogs
+ .text.serial_receive
+                0x080035ac      0x21c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+                0x080035ac                serial_receive
+ .text.check_serial
+                0x080037c8       0x70 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+                0x080037c8                check_serial
+ .text.DMA1_Channel4_IRQHandler
+                0x08003838       0x24 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x08003838                DMA1_Channel4_IRQHandler
+ .text.get_serial_character
+                0x0800385c       0x38 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x0800385c                get_serial_character
+ .text.hex_to_ascii
+                0x08003894       0x10 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x08003894                hex_to_ascii
+ .text.fill_a_byte
+                0x080038a4       0x38 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x080038a4                fill_a_byte
+ .text.fill_an_int
+                0x080038dc       0x18 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x080038dc                fill_an_int
+ .text.fill_a_long
+                0x080038f4       0x14 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x080038f4                fill_a_long
+ .text.fill_a_number
+                0x08003908       0x80 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x08003908                fill_a_number
+ .text.fill_a_decimal
+                0x08003988        0xc C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x08003988                fill_a_decimal
+ .text.fill_a_string
+                0x08003994       0x34 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x08003994                fill_a_string
+ .text.buffer_is_busy
+                0x080039c8       0x10 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x080039c8                buffer_is_busy
+ .text.wait_for_buffer
+                0x080039d8        0xc C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x080039d8                wait_for_buffer
+ .text.start_transmitting
+                0x080039e4       0x18 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x080039e4                start_transmitting
+ .text.send_sio_buffer
+                0x080039fc       0x14 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x080039fc                send_sio_buffer
+ .text.send_a_string
+                0x08003a10       0x14 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x08003a10                send_a_string
+ .text.initialize_serial
+                0x08003a24       0x7c C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x08003a24                initialize_serial
+ *(.rodata)
+ .rodata        0x08003aa0       0x84 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+                0x08003aa0                multiplexer_setup
+ .rodata        0x08003b24      0x400 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\ThermTables.o
+                0x08003b24                temp16_lookup
+ *(.rodata*)
+ .rodata.str1.1
+                0x08003f24        0xe C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ .rodata.str1.1
+                0x08003f32       0x54 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+ .rodata.str1.1
+                0x08003f86        0xe C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+ .rodata.str1.1
+                0x08003f94      0x4e7 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                                0x4fb (size before relaxing)
+ .rodata.str1.1
+                0x0800447b       0x33 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+ .rodata.str1.1
+                0x080044ae       0x75 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+ .rodata.str1.1
+                0x08004523       0x5a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+ .rodata.str1.1
+                0x0800457d      0x673 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+                                0x683 (size before relaxing)
+ *(.glue_7)
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+ .glue_7        0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\ThermTables.o
+ *(.glue_7t)
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+ .glue_7t       0x08004bf0        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\ThermTables.o
+                0x08004bf0                . = ALIGN (0x4)
+                0x08004bf0                _etext = .
+                0x08004bf0                _sidata = _etext
+
+.vfp11_veneer   0x20000000        0x0
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\ThermTables.o
+
+.janus_2cc_veneer
+                0x20000000        0x0
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\ThermTables.o
+
+.v4_bx          0x20000000        0x0
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+ .v4_bx         0x20000000        0x0 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\ThermTables.o
+
+.data           0x20000000        0xc load address 0x08004bf0
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _sdata = .
+ *(.data)
+ .data          0x20000000        0x1 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+                0x20000000                can_on_line
+ *fill*         0x20000001        0x1 00
+ .data          0x20000002        0x8 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+ .data          0x2000000a        0x2 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+ *(.data.*)
+                0x2000000c                . = ALIGN (0x4)
+                0x2000000c                _edata = .
+
+.bss            0x2000000c      0x978 load address 0x08004bfc
+                0x2000000c                . = ALIGN (0x4)
+                0x2000000c                _sbss = .
+ *(.bss)
+ .bss           0x2000000c        0x8 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+                0x2000000c                system_timer
+ .bss           0x20000014        0x1 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ *fill*         0x20000015        0x1 00
+ .bss           0x20000016        0xa C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+                0x2000001a                remote_list_index
+                0x2000001e                engine_sn_received
+                0x20000016                dm1_timout_count
+                0x20000018                remote_access_state
+                0x2000001d                packets_to_transmit
+ .bss           0x20000020        0x2 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+ .bss           0x20000022        0x1 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+ *fill*         0x20000023        0x1 00
+ .bss           0x20000024        0xa C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x20000028                fault_transmit_count
+                0x2000002c                health_transmit_count
+                0x20000026                this_on_time
+ .bss           0x2000002e        0x6 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+ .bss           0x20000034        0x1 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+ *(COMMON)
+ *fill*         0x20000035        0x1 00
+ COMMON         0x20000036       0x9e C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+                0x20000036                raw_analog
+                0x2000004a                analog_input
+                0x200000ce                battery_voltage
+                0x200000d0                alternator_charge_ok
+                0x200000d2                ambient_temperature
+ COMMON         0x200000d4        0xf C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+                0x200000d4                remote_lists
+                0x200000d9                display_data_time
+                0x200000dc                engine_hours
+                0x200000e0                dump_to_address
+                0x200000e1                ECU_comm_watchdog
+                0x200000e2                can_comm_watchdog
+ *fill*         0x200000e3        0x1 00
+ COMMON         0x200000e4        0x6 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+                0x200000e4                remote_dump_index
+                0x200000e6                this_can_address
+                0x200000e7                programming_server
+ COMMON         0x200000ea       0x37 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+                0x200000ea                canMsgBuffer
+                0x20000119                can_buffer_state
+                0x2000011a                can_buffer_index
+                0x2000011b                received_packet_flags
+ *fill*         0x20000121        0x3 00
+ COMMON         0x20000124       0x3d C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+                0x20000124                ram_novram
+                0x20000160                transmit_fault_log
+ COMMON         0x20000161        0xb C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+                0x20000161                top_red_led
+                0x20000162                middle_yellow_led
+                0x20000163                bottom_green_led
+                0x20000164                digital_input
+ COMMON         0x2000016c        0x2 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+                0x2000016c                command_timer
+ COMMON         0x2000016e      0x816 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+                0x2000016e                sio_index
+                0x20000170                sio_buffer
+                0x20000970                serial_input
+                0x20000984                . = ALIGN (0x4)
+                0x20000984                _ebss = .
+                0x20000984                PROVIDE (end, _ebss)
+                0x20000984                PROVIDE (_end, _ebss)
+
+._usrstack      0x20000984      0x100 load address 0x08005574
+                0x20000984                . = ALIGN (0x4)
+                0x20000984                _susrstack = .
+                0x20000a84                . = (. + _Minimum_Stack_Size)
+ *fill*         0x20000984      0x100 00
+                0x20000a84                . = ALIGN (0x4)
+                0x20000a84                _eusrstack = .
+
+DISCARD
+ libc.a(*)
+ libm.a(*)
+ libgcc.a(*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000      0x222
+ *(.comment)
+ .comment       0x00000000       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+ .comment       0x0000002a       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ .comment       0x00000054       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+ .comment       0x0000007e       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+ .comment       0x000000a8       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+ .comment       0x000000d2       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+ .comment       0x000000fc       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+ .comment       0x00000126       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+ .comment       0x00000150       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+ .comment       0x0000017a       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+ .comment       0x000001a4       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+ .comment       0x000001ce       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+ .comment       0x000001f8       0x2a C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\ThermTables.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info .gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+START GROUP
+LOAD c:/program files (x86)/raisonance/ride/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.3.2/thumb2\libgcc.a
+LOAD c:/program files (x86)/raisonance/ride/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/thumb2\libc.a
+END GROUP
+OUTPUT(C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\cortexst.elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x2f
+ .ARM.attributes
+                0x00000000       0x21 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\startup.o
+ .ARM.attributes
+                0x00000021       0x31 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Timer.o
+ .ARM.attributes
+                0x00000052       0x31 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+ .ARM.attributes
+                0x00000083       0x31 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Canbus.o
+ .ARM.attributes
+                0x000000b4       0x31 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanCommands.o
+ .ARM.attributes
+                0x000000e5       0x31 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\CanPackets.o
+ .ARM.attributes
+                0x00000116       0x31 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\E3prom.o
+ .ARM.attributes
+                0x00000147       0x31 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Flash.o
+ .ARM.attributes
+                0x00000178       0x31 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Interrupt.o
+ .ARM.attributes
+                0x000001a9       0x31 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+ .ARM.attributes
+                0x000001da       0x31 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+ .ARM.attributes
+                0x0000020b       0x31 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Serial.o
+ .ARM.attributes
+                0x0000023c       0x31 C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\SerialBuffer.o
+ .ARM.attributes
+                0x0000026d       0x2f C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\ThermTables.o

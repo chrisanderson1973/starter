@@ -1,0 +1,117 @@
+
+<ApplicationBuild Header="cortexst" Extern=".\cortexst.rapp" Path=".\cortexst.rapp" OutputFile=".\obj\cortexst.elf" sate="96" >
+	<Group Header="source" Marker="-1" OutputFile="" sate="96" >
+		<NodeC Path=".\main.c" Header="main.c" Marker="-1" OutputFile=".\obj\main.o" sate="0" />
+		<NodeC Path=".\Analog.c" Header="Analog.c" Marker="-1" OutputFile=".\obj\Analog.o" sate="0" />
+		<NodeC Path=".\AStuff.c" Header="AStuff.c" Marker="-1" OutputFile=".\obj\AStuff.o" sate="0" />
+		<NodeC Path=".\Canbus.c" Header="Canbus.c" Marker="-1" OutputFile=".\obj\Canbus.o" sate="0" />
+		<NodeC Path=".\CanCommands.c" Header="CanCommands.c" Marker="-1" OutputFile=".\obj\CanCommands.o" sate="0" />
+		<NodeC Path=".\CanPackets.c" Header="CanPackets.c" Marker="-1" OutputFile=".\obj\CanPackets.o" sate="2" />
+		<NodeC Path=".\E3prom.c" Header="E3prom.c" Marker="-1" OutputFile=".\obj\E3prom.o" sate="0" />
+		<NodeC Path=".\Flash.c" Header="Flash.c" Marker="-1" OutputFile=".\obj\Flash.o" sate="0" />
+		<NodeC Path=".\Interrupt.c" Header="Interrupt.c" Marker="-1" OutputFile=".\obj\Interrupt.o" sate="0" />
+		<NodeC Path=".\IOdata.c" Header="IOdata.c" Marker="-1" OutputFile=".\obj\IOdata.o" sate="0" />
+		<NodeC Path=".\Serial.c" Header="Serial.c" Marker="-1" OutputFile=".\obj\Serial.o" sate="0" />
+		<NodeC Path=".\SerialBuffer.c" Header="SerialBuffer.c" Marker="-1" OutputFile=".\obj\SerialBuffer.o" sate="0" />
+		<NodeC Path=".\ThermTables.c" Header="ThermTables.c" Marker="-1" OutputFile=".\obj\ThermTables.o" sate="0" />
+		<NodeC Path=".\Timer.c" Header="Timer.c" Marker="-1" OutputFile=".\obj\Timer.o" sate="0" />
+															
+	</Group>
+	<Group Header="includes" Marker="-1" OutputFile="" sate="96" >
+		<NodeH Path=".\Analog.h" Header="Analog.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\AStuff.h" Header="AStuff.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\canbus.h" Header="canbus.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\CanCommands.h" Header="CanCommands.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\CanPackets.h" Header="CanPackets.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\define.h" Header="define.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\E3prom.h" Header="E3prom.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\Flash.h" Header="Flash.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\Interrupt.h" Header="Interrupt.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\IOdata.h" Header="IOdata.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\Serial.h" Header="Serial.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\SerialBuffer.h" Header="SerialBuffer.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\ThermTables.h" Header="ThermTables.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\Timer.h" Header="Timer.h" Marker="-1" OutputFile="" sate="0" />
+															
+	</Group>
+	<Options>
+		<Config Header="Standard" >
+			<Set Header="ApplicationBuild" >
+				<Section Header="General" >
+					<Property Header="TargetFamily" Value="ARM" />
+																																																																																																										
+				</Section>
+				<Section Header="Directories" >
+					<Property Header="IncDir" Value="." Removable="1" />
+					<Property Header="LibDir" Value="$(RkitLib)\ARM" Removable="1" />
+					<Property Header="OutDir" Value="$(ApplicationDir)\obj" Removable="1" />
+					<Property Header="ListDir" Value="$(ApplicationDir)\lst" Removable="1" />
+																																																																																								
+				</Section>
+																																																																				
+			</Set>
+			<Set Header="Target" >
+				<Section Header="ProcessorARM" >
+					<Property Header="Processor" Value="STM32F103VET6" />
+																																																																																																										
+				</Section>
+				<Section Header="ToolSetARM" >
+					<Property Header="BuildToolSetARM" Value="ARM\GNU.config" Removable="1" />
+																																																																																																										
+				</Section>
+																																																																																		
+			</Set>
+			<Set Header="GCC" >
+				<Section Header="DEBUG" >
+					<Property Header="DEBUGINFO" Value="" Removable="1" />
+																																																																																								
+				</Section>
+				<Section Header="OPTIMIZE" >
+					<Property Header="Optimize" Value="-Os" Removable="1" />
+																																																																																								
+				</Section>
+				<Section Header="CODE" >
+					<Property Header="ENUMS" Value="-fshort-enums" Removable="1" />
+					<Property Header="VPOINTERS" Value="" Removable="1" />
+																																																																																								
+				</Section>
+				<Section Header="WARNINGS" >
+					<Property Header="SHADOWARNINGS" Value="-Wshadow" Removable="1" />
+					<Property Header="UNUSEDWARNINGS" Value="-Wunused" Removable="1" />
+																																																																																								
+				</Section>
+																																																																				
+			</Set>
+			<Set Header="AS" >
+				<Section Header="Options" >
+					<Property Header="Warnings" Value="-Wa,-W" Removable="1" />
+																																																																																								
+				</Section>
+																																																																				
+			</Set>
+			<Set Header="LD" >
+				<Section Header="Linker" >
+					<Property Header="WARNONCE" Value="-Wl,--warn-once" Removable="1" />
+																																																																																								
+				</Section>
+				<Section Header="Startup" >
+					<Property Header="DEFAULTSTARTUP" Value="No" Removable="1" />
+					<Property Header="File" Value="$(ApplicationDir)\obj\startup.o" Removable="1" />
+																																																																																								
+				</Section>
+				<Section Header="Scripts" >
+					<Property Header="SCRIPTFILES" Value="No" Removable="1" />
+					<Property Header="File" Value="C:\Users\Chris\Desktop\Development\Embedded\autostart\cortexst.ld" Removable="1" />
+							
+				</Section>
+				<Section Header="LIB" >
+					<Property Header="PRINTFTYPE" Value="0" Removable="1" />
+					<Property Header="STM32LIB" Value="0" Removable="1" />
+					<Property Header="UART0PUTC" Value="0" Removable="1" />
+																																																																																								
+				</Section>
+					
+			</Set>
+		</Config>
+	</Options>
+</ApplicationBuild>

@@ -1,0 +1,229 @@
+
+C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o:     file format elf32-littlearm
+C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\IOdata.o
+
+Disassembly of section .text.initialize_ports:
+
+00000000 <initialize_ports>:
+initialize_ports():
+   0:	4a17      	ldr	r2, [pc, #92]	(60 <initialize_ports+0x60>)
+   2:	4b18      	ldr	r3, [pc, #96]	(64 <initialize_ports+0x64>)
+   4:	2100      	movs	r1, #0
+   6:	6011      	str	r1, [r2, #0]
+   8:	6053      	str	r3, [r2, #4]
+   a:	4b17      	ldr	r3, [pc, #92]	(68 <initialize_ports+0x68>)
+   c:	60d1      	str	r1, [r2, #12]
+   e:	f502 6280 	add.w	r2, r2, #1024	; 0x400
+  12:	6013      	str	r3, [r2, #0]
+  14:	4b15      	ldr	r3, [pc, #84]	(6c <initialize_ports+0x6c>)
+  16:	6053      	str	r3, [r2, #4]
+  18:	f44f 5380 	mov.w	r3, #4096	; 0x1000
+  1c:	60d3      	str	r3, [r2, #12]
+  1e:	4b14      	ldr	r3, [pc, #80]	(70 <initialize_ports+0x70>)
+  20:	f502 6280 	add.w	r2, r2, #1024	; 0x400
+  24:	6013      	str	r3, [r2, #0]
+  26:	f04f 3322 	mov.w	r3, #572662306	; 0x22222222
+  2a:	6053      	str	r3, [r2, #4]
+  2c:	f44f 6340 	mov.w	r3, #3072	; 0xc00
+  30:	60d3      	str	r3, [r2, #12]
+  32:	f502 6280 	add.w	r2, r2, #1024	; 0x400
+  36:	f04f 3344 	mov.w	r3, #1145324612	; 0x44444444
+  3a:	6013      	str	r3, [r2, #0]
+  3c:	4b0d      	ldr	r3, [pc, #52]	(74 <initialize_ports+0x74>)
+  3e:	6053      	str	r3, [r2, #4]
+  40:	4b0d      	ldr	r3, [pc, #52]	(78 <initialize_ports+0x78>)
+  42:	60d1      	str	r1, [r2, #12]
+  44:	f502 6280 	add.w	r2, r2, #1024	; 0x400
+  48:	6013      	str	r3, [r2, #0]
+  4a:	4b0c      	ldr	r3, [pc, #48]	(7c <initialize_ports+0x7c>)
+  4c:	6053      	str	r3, [r2, #4]
+  4e:	f640 239c 	movw	r3, #2716	; 0xa9c
+  52:	60d3      	str	r3, [r2, #12]
+  54:	4b0a      	ldr	r3, [pc, #40]	(80 <initialize_ports+0x80>)
+  56:	f44f 52de 	mov.w	r2, #7104	; 0x1bc0
+  5a:	605a      	str	r2, [r3, #4]
+  5c:	4770      	bx	lr
+  5e:	46c0      	nop			(mov r8, r8)
+  60:	40010800 	.word	0x40010800
+  64:	444a44a4 	.word	0x444a44a4
+  68:	22444444 	.word	0x22444444
+  6c:	d2d52244 	.word	0xd2d52244
+  70:	44004400 	.word	0x44004400
+  74:	24224444 	.word	0x24224444
+  78:	52222242 	.word	0x52222242
+  7c:	22242222 	.word	0x22242222
+  80:	40010000 	.word	0x40010000
+Disassembly of section .text.update_leds:
+
+00000000 <update_leds>:
+update_leds():
+   0:	4b1a      	ldr	r3, [pc, #104]	(6c <update_leds+0x6c>)
+   2:	681b      	ldr	r3, [r3, #0]
+   4:	f003 0140 	and.w	r1, r3, #64	; 0x40
+   8:	4b19      	ldr	r3, [pc, #100]	(70 <update_leds+0x70>)
+   a:	781b      	ldrb	r3, [r3, #0]
+   c:	2b01      	cmp	r3, #1
+   e:	d006      	beq.n	1e <update_leds+0x1e>
+  10:	2b02      	cmp	r3, #2
+  12:	d101      	bne.n	18 <update_leds+0x18>
+  14:	b919      	cbnz	r1, 1e <update_leds+0x1e>
+  16:	e004      	b.n	22 <update_leds+0x22>
+  18:	2b03      	cmp	r3, #3
+  1a:	d102      	bne.n	22 <update_leds+0x22>
+  1c:	b909      	cbnz	r1, 22 <update_leds+0x22>
+  1e:	2201      	movs	r2, #1
+  20:	e000      	b.n	24 <update_leds+0x24>
+  22:	2200      	movs	r2, #0
+  24:	4b13      	ldr	r3, [pc, #76]	(74 <update_leds+0x74>)
+  26:	701a      	strb	r2, [r3, #0]
+  28:	4b13      	ldr	r3, [pc, #76]	(78 <update_leds+0x78>)
+  2a:	781b      	ldrb	r3, [r3, #0]
+  2c:	2b01      	cmp	r3, #1
+  2e:	d006      	beq.n	3e <update_leds+0x3e>
+  30:	2b02      	cmp	r3, #2
+  32:	d101      	bne.n	38 <update_leds+0x38>
+  34:	b919      	cbnz	r1, 3e <update_leds+0x3e>
+  36:	e004      	b.n	42 <update_leds+0x42>
+  38:	2b03      	cmp	r3, #3
+  3a:	d102      	bne.n	42 <update_leds+0x42>
+  3c:	b909      	cbnz	r1, 42 <update_leds+0x42>
+  3e:	2201      	movs	r2, #1
+  40:	e000      	b.n	44 <update_leds+0x44>
+  42:	2200      	movs	r2, #0
+  44:	4b0d      	ldr	r3, [pc, #52]	(7c <update_leds+0x7c>)
+  46:	701a      	strb	r2, [r3, #0]
+  48:	4b0d      	ldr	r3, [pc, #52]	(80 <update_leds+0x80>)
+  4a:	781b      	ldrb	r3, [r3, #0]
+  4c:	2b01      	cmp	r3, #1
+  4e:	d006      	beq.n	5e <update_leds+0x5e>
+  50:	2b02      	cmp	r3, #2
+  52:	d101      	bne.n	58 <update_leds+0x58>
+  54:	b129      	cbz	r1, 62 <update_leds+0x62>
+  56:	e002      	b.n	5e <update_leds+0x5e>
+  58:	2b03      	cmp	r3, #3
+  5a:	d102      	bne.n	62 <update_leds+0x62>
+  5c:	b909      	cbnz	r1, 62 <update_leds+0x62>
+  5e:	2201      	movs	r2, #1
+  60:	e000      	b.n	64 <update_leds+0x64>
+  62:	2200      	movs	r2, #0
+  64:	4b07      	ldr	r3, [pc, #28]	(84 <update_leds+0x84>)
+  66:	701a      	strb	r2, [r3, #0]
+  68:	4770      	bx	lr
+  6a:	46c0      	nop			(mov r8, r8)
+	...
+  74:	42230190 	.word	0x42230190
+  78:	00000000 	.word	0x00000000
+  7c:	4223018c 	.word	0x4223018c
+  80:	00000000 	.word	0x00000000
+  84:	42230188 	.word	0x42230188
+Disassembly of section .text.get_input_state:
+
+00000000 <get_input_state>:
+get_input_state():
+   0:	2807      	cmp	r0, #7
+   2:	d805      	bhi.n	10 <get_input_state+0x10>
+   4:	e8df f000 	tbb	[pc, r0]
+   8:	16100d06 	.word	0x16100d06
+   c:	342b231f 	.word	0x342b231f
+  10:	2000      	movs	r0, #0
+  12:	e035      	b.n	80 <get_input_state+0x80>
+  14:	4b1b      	ldr	r3, [pc, #108]	(84 <get_input_state+0x84>)
+  16:	781b      	ldrb	r3, [r3, #0]
+  18:	f1d3 0001 	rsbs	r0, r3, #1	; 0x1
+  1c:	bf38      	it	cc
+  1e:	2000      	movcc	r0, #0
+  20:	e02e      	b.n	80 <get_input_state+0x80>
+  22:	4b19      	ldr	r3, [pc, #100]	(88 <get_input_state+0x88>)
+  24:	8a5b      	ldrh	r3, [r3, #18]
+  26:	e014      	b.n	52 <get_input_state+0x52>
+  28:	4b18      	ldr	r3, [pc, #96]	(8c <get_input_state+0x8c>)
+  2a:	781b      	ldrb	r3, [r3, #0]
+  2c:	1e18      	subs	r0, r3, #0
+  2e:	bf18      	it	ne
+  30:	2001      	movne	r0, #1
+  32:	e025      	b.n	80 <get_input_state+0x80>
+  34:	4b16      	ldr	r3, [pc, #88]	(90 <get_input_state+0x90>)
+  36:	f9b3 3046 	ldrsh.w	r3, [r3, #70]
+  3a:	f5b3 5f10 	cmp.w	r3, #9216	; 0x2400
+  3e:	bfd4      	ite	le
+  40:	2000      	movle	r0, #0
+  42:	2001      	movgt	r0, #1
+  44:	e01c      	b.n	80 <get_input_state+0x80>
+  46:	4b12      	ldr	r3, [pc, #72]	(90 <get_input_state+0x90>)
+  48:	f9b3 3046 	ldrsh.w	r3, [r3, #70]
+  4c:	e00a      	b.n	64 <get_input_state+0x64>
+  4e:	4b0e      	ldr	r3, [pc, #56]	(88 <get_input_state+0x88>)
+  50:	8a1b      	ldrh	r3, [r3, #16]
+  52:	f5b3 6f20 	cmp.w	r3, #2560	; 0xa00
+  56:	bf94      	ite	ls
+  58:	2000      	movls	r0, #0
+  5a:	2001      	movhi	r0, #1
+  5c:	e010      	b.n	80 <get_input_state+0x80>
+  5e:	4b0c      	ldr	r3, [pc, #48]	(90 <get_input_state+0x90>)
+  60:	f9b3 3052 	ldrsh.w	r3, [r3, #82]
+  64:	f5b3 7f3c 	cmp.w	r3, #752	; 0x2f0
+  68:	bfac      	ite	ge
+  6a:	2000      	movge	r0, #0
+  6c:	2001      	movlt	r0, #1
+  6e:	e007      	b.n	80 <get_input_state+0x80>
+  70:	4b07      	ldr	r3, [pc, #28]	(90 <get_input_state+0x90>)
+  72:	f9b3 3052 	ldrsh.w	r3, [r3, #82]
+  76:	f5b3 5f60 	cmp.w	r3, #14336	; 0x3800
+  7a:	bfd4      	ite	le
+  7c:	2000      	movle	r0, #0
+  7e:	2001      	movgt	r0, #1
+  80:	4770      	bx	lr
+  82:	46c0      	nop			(mov r8, r8)
+  84:	42218114 	.word	0x42218114
+  88:	00000000 	.word	0x00000000
+  8c:	42228138 	.word	0x42228138
+  90:	00000000 	.word	0x00000000
+Disassembly of section .text.update_input_state:
+
+00000000 <update_input_state>:
+update_input_state():
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	f7ff fffe 	bl	0 <update_input_state>
+   8:	4b0d      	ldr	r3, [pc, #52]	(40 <update_input_state+0x40>)
+   a:	5d1b      	ldrb	r3, [r3, r4]
+   c:	2b05      	cmp	r3, #5
+   e:	d811      	bhi.n	34 <update_input_state+0x34>
+  10:	e8df f003 	tbb	[pc, r3]
+  14:	090f0603 	.word	0x090f0603
+  18:	0f0c      	.short	0x0f0c
+  1a:	b180      	cbz	r0, 3e <update_input_state+0x3e>
+  1c:	2201      	movs	r2, #1
+  1e:	e00c      	b.n	3a <update_input_state+0x3a>
+  20:	b140      	cbz	r0, 34 <update_input_state+0x34>
+  22:	2202      	movs	r2, #2
+  24:	e009      	b.n	3a <update_input_state+0x3a>
+  26:	b950      	cbnz	r0, 3e <update_input_state+0x3e>
+  28:	2204      	movs	r2, #4
+  2a:	e006      	b.n	3a <update_input_state+0x3a>
+  2c:	b920      	cbnz	r0, 38 <update_input_state+0x38>
+  2e:	2205      	movs	r2, #5
+  30:	e003      	b.n	3a <update_input_state+0x3a>
+  32:	b908      	cbnz	r0, 38 <update_input_state+0x38>
+  34:	2200      	movs	r2, #0
+  36:	e000      	b.n	3a <update_input_state+0x3a>
+  38:	2203      	movs	r2, #3
+  3a:	4b01      	ldr	r3, [pc, #4]	(40 <update_input_state+0x40>)
+  3c:	551a      	strb	r2, [r3, r4]
+  3e:	bd10      	pop	{r4, pc}
+  40:	00000000 	.word	0x00000000
+Disassembly of section .text.update_digital_in:
+
+00000000 <update_digital_in>:
+update_digital_in():
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	2400      	movs	r4, #0
+   4:	4625      	mov	r5, r4
+   6:	4620      	mov	r0, r4
+   8:	3501      	adds	r5, #1
+   a:	f7ff fffe 	bl	0 <update_digital_in>
+   e:	1c63      	adds	r3, r4, #1
+  10:	2d08      	cmp	r5, #8
+  12:	b2dc      	uxtb	r4, r3
+  14:	d1f7      	bne.n	6 <update_digital_in+0x6>
+  16:	bd70      	pop	{r4, r5, r6, pc}

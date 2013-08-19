@@ -1,0 +1,1107 @@
+
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o:     file format elf32-littlearm
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+
+Disassembly of section .text.select_transmitter:
+
+00000000 <select_transmitter>:
+select_transmitter():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:48
+ *  interrupt to deliver CAN throttle to the engine.
+ *------------------------------------------------------------------------*/
+
+CAN_TxMailBox_TypeDef *select_transmitter(void)
+{
+	if (can_on_line)
+   0:	f240 0300 	movw	r3, #0	; 0x0
+   4:	f2c0 0300 	movt	r3, #0	; 0x0
+   8:	781b      	ldrb	r3, [r3, #0]
+   a:	b333      	cbz	r3, 5a <can_on_line+0x5a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:51
+	{
+		// Select an empty transmit mailbox
+		if (CAN1->TSR & 0x04000000)
+   c:	f246 4300 	movw	r3, #25600	; 0x6400
+  10:	f2c4 0300 	movt	r3, #16384	; 0x4000
+  14:	689b      	ldr	r3, [r3, #8]
+  16:	f013 6f80 	tst.w	r3, #67108864	; 0x4000000
+  1a:	bf1c      	itt	ne
+  1c:	f246 5080 	movwne	r0, #25984	; 0x6580
+  20:	f2c4 0000 	movtne	r0, #16384	; 0x4000
+  24:	d11b      	bne.n	5e <can_on_line+0x5e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:53
+			return &(CAN1->sTxMailBox[0]);
+		else if (CAN1->TSR & 0x08000000)
+  26:	f246 4300 	movw	r3, #25600	; 0x6400
+  2a:	f2c4 0300 	movt	r3, #16384	; 0x4000
+  2e:	689b      	ldr	r3, [r3, #8]
+  30:	f013 6f00 	tst.w	r3, #134217728	; 0x8000000
+  34:	bf1c      	itt	ne
+  36:	f246 5090 	movwne	r0, #26000	; 0x6590
+  3a:	f2c4 0000 	movtne	r0, #16384	; 0x4000
+  3e:	d10e      	bne.n	5e <can_on_line+0x5e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:55
+			return &(CAN1->sTxMailBox[1]);
+		else if (CAN1->TSR & 0x10000000)
+  40:	f246 4300 	movw	r3, #25600	; 0x6400
+  44:	f2c4 0300 	movt	r3, #16384	; 0x4000
+  48:	689b      	ldr	r3, [r3, #8]
+  4a:	f013 5f80 	tst.w	r3, #268435456	; 0x10000000
+  4e:	bf1c      	itt	ne
+  50:	f246 50a0 	movwne	r0, #26016	; 0x65a0
+  54:	f2c4 0000 	movtne	r0, #16384	; 0x4000
+  58:	d101      	bne.n	5e <can_on_line+0x5e>
+  5a:	f04f 0000 	mov.w	r0, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:60
+			return &(CAN1->sTxMailBox[2]);
+	}
+
+	return 0;
+}
+  5e:	4770      	bx	lr
+Disassembly of section .text.transmit_proprietary:
+
+00000000 <transmit_proprietary>:
+transmit_proprietary():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:70
+ *
+ * Called by the foreground task to transmit a proprietary command 
+ *---------------------------------------------------------------*/
+
+bool transmit_proprietary(proprietary_command_def command, can_id_def address)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	460c      	mov	r4, r1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:75
+	CAN_TxMailBox_TypeDef *mailbox;
+
+	u16 temp_uint;
+
+	mailbox = select_transmitter();
+   6:	f7ff fffe 	bl	0 <transmit_proprietary>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:77
+
+	if (mailbox)
+   a:	4606      	mov	r6, r0
+   c:	2800      	cmp	r0, #0
+   e:	f000 8113 	beq.w	238 <transmit_proprietary+0x238>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:80
+	{
+		// Transmit Mailbox Message Identifier Register
+		mailbox->TIR = CAN_XMIT_PRIORITY
+  12:	f240 0300 	movw	r3, #0	; 0x0
+  16:	f2c0 0300 	movt	r3, #0	; 0x0
+  1a:	781a      	ldrb	r2, [r3, #0]
+  1c:	f240 0304 	movw	r3, #4	; 0x4
+  20:	f2cc 7378 	movt	r3, #51064	; 0xc778
+  24:	ea43 03c2 	orr.w	r3, r3, r2, lsl #3
+  28:	ea43 23c4 	orr.w	r3, r3, r4, lsl #11
+  2c:	6003      	str	r3, [r0, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:84
+									| PF_PROP_A << 19
+									| address << 11
+									| this_can_address << 3;
+		switch (command)
+  2e:	f1a5 0302 	sub.w	r3, r5, #2	; 0x2
+  32:	2b3f      	cmp	r3, #63
+  34:	f200 80fa 	bhi.w	22c <transmit_proprietary+0x22c>
+  38:	e8df f013 	tbh	[pc, r3, lsl #1]
+  3c:	00f800f2 	.word	0x00f800f2
+  40:	00f800f8 	.word	0x00f800f8
+  44:	00f800f8 	.word	0x00f800f8
+  48:	007800f8 	.word	0x007800f8
+  4c:	00f800f8 	.word	0x00f800f8
+  50:	00f800f8 	.word	0x00f800f8
+  54:	004000f8 	.word	0x004000f8
+  58:	00f800f8 	.word	0x00f800f8
+  5c:	00f800f8 	.word	0x00f800f8
+  60:	00f800f8 	.word	0x00f800f8
+  64:	00f800f8 	.word	0x00f800f8
+  68:	00f800f8 	.word	0x00f800f8
+  6c:	00f800f8 	.word	0x00f800f8
+  70:	004700f8 	.word	0x004700f8
+  74:	00f800f8 	.word	0x00f800f8
+  78:	00f800f8 	.word	0x00f800f8
+  7c:	004e00f8 	.word	0x004e00f8
+  80:	00f80057 	.word	0x00f80057
+  84:	00f800f8 	.word	0x00f800f8
+  88:	00f800f8 	.word	0x00f800f8
+  8c:	00f800f8 	.word	0x00f800f8
+  90:	00f800f8 	.word	0x00f800f8
+  94:	00f800f8 	.word	0x00f800f8
+  98:	00f800f8 	.word	0x00f800f8
+  9c:	00f800f8 	.word	0x00f800f8
+  a0:	00f800f8 	.word	0x00f800f8
+  a4:	00f800f8 	.word	0x00f800f8
+  a8:	00f800f8 	.word	0x00f800f8
+  ac:	00f800f8 	.word	0x00f800f8
+  b0:	00f800f8 	.word	0x00f800f8
+  b4:	00f800f8 	.word	0x00f800f8
+  b8:	00a1009a 	.word	0x00a1009a
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:107
+				break;
+#endif
+			case PCMD_HEARTBEAT:
+
+				// Data Length Code
+				mailbox->TDTR = 1;
+  bc:	f04f 0301 	mov.w	r3, #1	; 0x1
+  c0:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:110
+
+				// Transmit Mailbox Data Registers
+				mailbox->TDLR = PCMD_HEARTBEAT;
+  c2:	f103 030e 	add.w	r3, r3, #14	; 0xe
+  c6:	6083      	str	r3, [r0, #8]
+  c8:	e0b0      	b.n	22c <transmit_proprietary+0x22c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:117
+				break;
+
+			case PCMD_RESET_NOVRAM:
+
+				// Data Length Code
+				mailbox->TDTR = 2;
+  ca:	f04f 0302 	mov.w	r3, #2	; 0x2
+  ce:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:120
+
+				// Transmit Mailbox Data Registers
+				mailbox->TDLR = PCMD_RESET_NOVRAM
+  d0:	f640 231d 	movw	r3, #2589	; 0xa1d
+  d4:	6083      	str	r3, [r0, #8]
+  d6:	e0a9      	b.n	22c <transmit_proprietary+0x22c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:132
+				// We are requesting to reprogram another device via CAN
+				// On receipt of this command, it gets the bootloader going
+				//  which then sends us a CTS to begin the cycle
+	
+				// Data Length Code
+				mailbox->TDTR = 3;
+  d8:	f04f 0303 	mov.w	r3, #3	; 0x3
+  dc:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:135
+
+				// Transmit Mailbox Data Registers
+				mailbox->TDLR = PCMD_REPROGRAM | (0x5AA5 << 8);
+  de:	f24a 5323 	movw	r3, #42275	; 0xa523
+  e2:	f2c0 035a 	movt	r3, #90	; 0x5a
+  e6:	6083      	str	r3, [r0, #8]
+  e8:	e0a0      	b.n	22c <transmit_proprietary+0x22c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:142
+				break;
+
+			case PCMD_PROGRAM_DATA:
+
+				// Data Length Code
+				mailbox->TDTR = 8;
+  ea:	f04f 0308 	mov.w	r3, #8	; 0x8
+  ee:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:145
+
+				// Transmit Mailbox Data Registers
+				mailbox->TDLR = PCMD_PROGRAM_DATA
+  f0:	f240 0100 	movw	r1, #0	; 0x0
+  f4:	f2c0 0100 	movt	r1, #0	; 0x0
+  f8:	780a      	ldrb	r2, [r1, #0]
+  fa:	784b      	ldrb	r3, [r1, #1]
+  fc:	ea4f 4303 	mov.w	r3, r3, lsl #16
+ 100:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+ 104:	f043 0324 	orr.w	r3, r3, #36	; 0x24
+ 108:	788a      	ldrb	r2, [r1, #2]
+ 10a:	ea43 6302 	orr.w	r3, r3, r2, lsl #24
+ 10e:	6083      	str	r3, [r0, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:150
+									| (sio_buffer[0] << 8)
+									| (sio_buffer[1] << 16)
+									| (sio_buffer[2] << 24);
+
+				mailbox->TDHR = (sio_buffer[3])
+ 110:	790a      	ldrb	r2, [r1, #4]
+ 112:	794b      	ldrb	r3, [r1, #5]
+ 114:	ea4f 4303 	mov.w	r3, r3, lsl #16
+ 118:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+ 11c:	78ca      	ldrb	r2, [r1, #3]
+ 11e:	ea43 0302 	orr.w	r3, r3, r2
+ 122:	798a      	ldrb	r2, [r1, #6]
+ 124:	ea43 6302 	orr.w	r3, r3, r2, lsl #24
+ 128:	60c3      	str	r3, [r0, #12]
+ 12a:	e07f      	b.n	22c <transmit_proprietary+0x22c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:159
+				break;
+
+			case PCMD_VERSION:
+
+				// Data Length Code
+				mailbox->TDTR = 8;
+ 12c:	f04f 0308 	mov.w	r3, #8	; 0x8
+ 130:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:165
+
+				temp_uint = SOFTWARE_VERSION;
+				temp_uint |= 0x8000;				// BETA version
+
+				// Transmit Mailbox Data Registers
+				mailbox->TDLR = (u32)PCMD_VERSION
+ 132:	f240 0100 	movw	r1, #0	; 0x0
+ 136:	f2c0 0100 	movt	r1, #0	; 0x0
+ 13a:	f9b1 2000 	ldrsh.w	r2, [r1]
+ 13e:	f402 427f 	and.w	r2, r2, #65280	; 0xff00
+ 142:	f248 0309 	movw	r3, #32777	; 0x8009
+ 146:	f2c0 0301 	movt	r3, #1	; 0x1
+ 14a:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+ 14e:	6083      	str	r3, [r0, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:170
+									| (u32)(temp_uint & 0xFF00)
+									| ((u32)(temp_uint & 0x00FF) << 16)
+									| ((u32)(ambient_temperature & 0xFF00) << 16);
+
+				mailbox->TDHR = (u32)(ambient_temperature & 0x00FF)
+ 150:	f240 0300 	movw	r3, #0	; 0x0
+ 154:	f2c0 0300 	movt	r3, #0	; 0x0
+ 158:	881a      	ldrh	r2, [r3, #0]
+ 15a:	780b      	ldrb	r3, [r1, #0]
+ 15c:	f002 01ff 	and.w	r1, r2, #255	; 0xff
+ 160:	ea43 4301 	orr.w	r3, r3, r1, lsl #16
+ 164:	f402 427f 	and.w	r2, r2, #65280	; 0xff00
+ 168:	ea43 0302 	orr.w	r3, r3, r2
+ 16c:	60c3      	str	r3, [r0, #12]
+ 16e:	e05d      	b.n	22c <transmit_proprietary+0x22c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:183
+
+				// This is the request side of getting a CAN device to start 
+				//  sending its '?' screen to us via CAN
+
+				// Data Length Code
+				mailbox->TDTR = 2;
+ 170:	f04f 0302 	mov.w	r3, #2	; 0x2
+ 174:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:186
+
+				// Transmit Mailbox Data Registers
+				mailbox->TDLR = PCMD_QUESTION_SCREEN | ( (u16)MSG_REQUEST << 8 );
+ 176:	f44f 6324 	mov.w	r3, #2624	; 0xa40
+ 17a:	6083      	str	r3, [r0, #8]
+ 17c:	e056      	b.n	22c <transmit_proprietary+0x22c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:197
+				// We are sending data via CAN to be transferred to 
+				//  RS232 by another module
+
+				// sio_index points to next available element in sio_buffer[]
+				// remote_dump_index points to the next one to send
+				if (remote_dump_index < sio_index)
+ 17e:	f240 0300 	movw	r3, #0	; 0x0
+ 182:	f2c0 0300 	movt	r3, #0	; 0x0
+ 186:	881a      	ldrh	r2, [r3, #0]
+ 188:	f240 0300 	movw	r3, #0	; 0x0
+ 18c:	f2c0 0300 	movt	r3, #0	; 0x0
+ 190:	881c      	ldrh	r4, [r3, #0]
+ 192:	42a2      	cmp	r2, r4
+ 194:	d231      	bcs.n	1fa <transmit_proprietary+0x1fa>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:200
+				{
+					// Get the number of characters left to move
+					temp_uint = sio_index - remote_dump_index;
+ 196:	ebc2 0404 	rsb	r4, r2, r4
+ 19a:	b2a4      	uxth	r4, r4
+ 19c:	2c07      	cmp	r4, #7
+ 19e:	bf28      	it	cs
+ 1a0:	2407      	movcs	r4, #7
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:208
+					if (temp_uint > 7)
+						temp_uint = 7;
+
+					// Data Length Code
+					// Length is one greater since command takes a data byte
+					mailbox->TDTR = temp_uint + 1;
+ 1a2:	f104 0301 	add.w	r3, r4, #1	; 0x1
+ 1a6:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:212
+
+					// Transmit Mailbox Data Registers
+					// Copy 7 data bytes even though they may not be used
+					mailbox->TDLR = PCMD_RS232_DATA
+ 1a8:	f240 0500 	movw	r5, #0	; 0x0
+ 1ac:	f2c0 0500 	movt	r5, #0	; 0x0
+ 1b0:	8828      	ldrh	r0, [r5, #0]
+ 1b2:	f240 0100 	movw	r1, #0	; 0x0
+ 1b6:	f2c0 0100 	movt	r1, #0	; 0x0
+ 1ba:	5c0b      	ldrb	r3, [r1, r0]
+ 1bc:	ea4f 2303 	mov.w	r3, r3, lsl #8
+ 1c0:	f043 0341 	orr.w	r3, r3, #65	; 0x41
+ 1c4:	4408      	add	r0, r1
+ 1c6:	7842      	ldrb	r2, [r0, #1]
+ 1c8:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+ 1cc:	7882      	ldrb	r2, [r0, #2]
+ 1ce:	ea43 6302 	orr.w	r3, r3, r2, lsl #24
+ 1d2:	60b3      	str	r3, [r6, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:217
+									| (sio_buffer[remote_dump_index] << 8)
+									| (sio_buffer[remote_dump_index + 1] << 16)
+									| (sio_buffer[remote_dump_index + 2] << 24);
+
+					mailbox->TDHR = sio_buffer[remote_dump_index + 3]
+ 1d4:	882b      	ldrh	r3, [r5, #0]
+ 1d6:	4419      	add	r1, r3
+ 1d8:	790a      	ldrb	r2, [r1, #4]
+ 1da:	794b      	ldrb	r3, [r1, #5]
+ 1dc:	ea4f 4303 	mov.w	r3, r3, lsl #16
+ 1e0:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+ 1e4:	78ca      	ldrb	r2, [r1, #3]
+ 1e6:	ea43 0302 	orr.w	r3, r3, r2
+ 1ea:	798a      	ldrb	r2, [r1, #6]
+ 1ec:	ea43 6302 	orr.w	r3, r3, r2, lsl #24
+ 1f0:	60f3      	str	r3, [r6, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:222
+									| (sio_buffer[remote_dump_index + 4] << 8)
+									| (sio_buffer[remote_dump_index + 5] << 16)
+									| (sio_buffer[remote_dump_index + 6] << 24);
+
+					remote_dump_index += temp_uint;
+ 1f2:	882b      	ldrh	r3, [r5, #0]
+ 1f4:	441c      	add	r4, r3
+ 1f6:	802c      	strh	r4, [r5, #0]
+ 1f8:	e018      	b.n	22c <transmit_proprietary+0x22c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:229
+				else
+				{
+					// There are no more characters to send
+					// End the session
+
+					sio_index = 0;
+ 1fa:	f240 0300 	movw	r3, #0	; 0x0
+ 1fe:	f2c0 0300 	movt	r3, #0	; 0x0
+ 202:	f04f 0200 	mov.w	r2, #0	; 0x0
+ 206:	801a      	strh	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:231
+
+					remote_access_state = ACCESS_IDLE;
+ 208:	f240 0300 	movw	r3, #0	; 0x0
+ 20c:	f2c0 0300 	movt	r3, #0	; 0x0
+ 210:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:234
+
+					// Data Length Code
+					mailbox->TDTR = 2;
+ 212:	f04f 0302 	mov.w	r3, #2	; 0x2
+ 216:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:237
+
+					// Transmit Mailbox Data Registers
+					mailbox->TDLR = PCMD_QUESTION_SCREEN | ( (u16)MSG_RESPONSE << 8 );
+ 218:	f245 0340 	movw	r3, #20544	; 0x5040
+ 21c:	6083      	str	r3, [r0, #8]
+ 21e:	e005      	b.n	22c <remote_access_state+0x22c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:245
+				break;
+
+			case PCMD_PING:
+
+				// Data Length Code
+				mailbox->TDTR = 2;
+ 220:	f04f 0302 	mov.w	r3, #2	; 0x2
+ 224:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:248
+
+				// Transmit Mailbox Data Registers
+				mailbox->TDLR = PCMD_PING | (MSG_REQUEST << 8);
+ 226:	f503 6320 	add.w	r3, r3, #2560	; 0xa00
+ 22a:	6083      	str	r3, [r0, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:254
+
+				break;
+		}
+
+		// Request transmit
+		mailbox->TIR |= 1;
+ 22c:	6833      	ldr	r3, [r6, #0]
+ 22e:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+ 232:	6033      	str	r3, [r6, #0]
+ 234:	f04f 0001 	mov.w	r0, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:260
+
+		return TRUE;
+	}
+	else
+		return FALSE;
+}
+ 238:	bd70      	pop	{r4, r5, r6, pc}
+ 23a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.request_engine_hours:
+
+00000000 <request_engine_hours>:
+request_engine_hours():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:367
+ * Called from the forground task no more often than every few 
+ *  minutes to request engine hours.
+ *-----------------------------------------------------------*/
+
+bool request_engine_hours(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:370
+	CAN_TxMailBox_TypeDef *mailbox;
+
+	mailbox = select_transmitter();
+   2:	f7ff fffe 	bl	0 <request_engine_hours>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:372
+
+	if (mailbox)
+   6:	b1b8      	cbz	r0, 33 <request_engine_hours+0x33>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:375
+	{
+		// Transmit Mailbox Message Identifier Register
+		mailbox->TIR = CAN_XMIT_PRIORITY
+   8:	f240 0300 	movw	r3, #0	; 0x0
+   c:	f2c0 0300 	movt	r3, #0	; 0x0
+  10:	781a      	ldrb	r2, [r3, #0]
+  12:	f240 0304 	movw	r3, #4	; 0x4
+  16:	f2cc 7350 	movt	r3, #51024	; 0xc750
+  1a:	ea43 03c2 	orr.w	r3, r3, r2, lsl #3
+  1e:	6003      	str	r3, [r0, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:381
+									| PF_REQUEST << 19
+									| CAN_ECU_ADDR << 11
+									| this_can_address << 3;
+
+		// Data Length Code
+		mailbox->TDTR = 3;
+  20:	f04f 0303 	mov.w	r3, #3	; 0x3
+  24:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:384
+
+		// Transmit Mailbox Data Registers
+		mailbox->TDLR = PS_HOURS | ( (PF_PDU << 8) | (0 << 16) );
+  26:	f64f 63e5 	movw	r3, #65253	; 0xfee5
+  2a:	6083      	str	r3, [r0, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:388
+//		mailbox->TDHR =
+
+		// Request transmit
+		mailbox->TIR |= 1;
+  2c:	6803      	ldr	r3, [r0, #0]
+  2e:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  32:	6003      	str	r3, [r0, #0]
+  34:	f04f 0001 	mov.w	r0, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:394
+
+		return TRUE;
+	}
+	else
+		return FALSE;
+}
+  38:	bd10      	pop	{r4, pc}
+  3a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.dm1_message_action:
+
+00000000 <dm1_message_action>:
+dm1_message_action():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:409
+ *  messages can deliver a single SPN.  Multiple packet DM1 messages are 
+ *  more common since they deliver a list of SPNs.
+ *----------------------------------------------------------------------*/
+
+void dm1_message_action(void)
+{
+   0:	f240 0300 	movw	r3, #0	; 0x0
+   4:	f2c0 0300 	movt	r3, #0	; 0x0
+   8:	f04f 021b 	mov.w	r2, #27	; 0x1b
+   c:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:451
+		// Increment away from the last byte used and 
+		//  skip the occurrance count byte
+		can_buffer_index += 2;
+	}
+
+	dm1_timout_count = SECONDS(3);
+   e:	f240 0300 	movw	r3, #0	; 0x0
+  12:	f2c0 0300 	movt	r3, #0	; 0x0
+  16:	f44f 7296 	mov.w	r2, #300	; 0x12c
+  1a:	801a      	strh	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:452
+}
+  1c:	4770      	bx	lr
+  1e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.request_engine_serial_num:
+
+00000000 <request_engine_serial_num>:
+request_engine_serial_num():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:456
+
+
+bool request_engine_serial_num(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:459
+	CAN_TxMailBox_TypeDef *mailbox;
+
+	mailbox = select_transmitter();
+   2:	f7ff fffe 	bl	0 <request_engine_serial_num>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:461
+
+	if (mailbox)
+   6:	b1b8      	cbz	r0, 33 <request_engine_serial_num+0x33>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:464
+	{
+		// Transmit Mailbox Message Identifier Register
+		mailbox->TIR = CAN_XMIT_PRIORITY
+   8:	f240 0300 	movw	r3, #0	; 0x0
+   c:	f2c0 0300 	movt	r3, #0	; 0x0
+  10:	781a      	ldrb	r2, [r3, #0]
+  12:	f64f 0304 	movw	r3, #63492	; 0xf804
+  16:	f2cc 7357 	movt	r3, #51031	; 0xc757
+  1a:	ea43 03c2 	orr.w	r3, r3, r2, lsl #3
+  1e:	6003      	str	r3, [r0, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:470
+									| PF_REQUEST << 19
+									| CAN_ALL_ADDR << 11
+									| this_can_address << 3;
+
+		// Data Length Code
+		mailbox->TDTR = 3;
+  20:	f04f 0303 	mov.w	r3, #3	; 0x3
+  24:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:473
+
+		// Transmit Mailbox Data Registers
+		mailbox->TDLR = PS_IDENTIFY	| ( (PF_PDU << 8) | (0 << 16) );
+  26:	f64f 63eb 	movw	r3, #65259	; 0xfeeb
+  2a:	6083      	str	r3, [r0, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:476
+
+		// Request transmit
+		mailbox->TIR |= 1;
+  2c:	6803      	ldr	r3, [r0, #0]
+  2e:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  32:	6003      	str	r3, [r0, #0]
+  34:	f04f 0001 	mov.w	r0, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:482
+
+		return TRUE;
+	}
+	else
+		return FALSE;
+}
+  38:	bd10      	pop	{r4, pc}
+  3a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.timed_can_messages:
+
+00000000 <timed_can_messages>:
+timed_can_messages():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:579
+ *  available, return without resetting the timer and that packet will 
+ *  be tried again on the next pass.
+ *--------------------------------------------------------------------*/
+
+void timed_can_messages(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:594
+		-SECONDS(25)				// Engine SN request
+	};
+
+	// Start broadcasting a few seconds after power up
+	// Set a flag so timer wrap is not a problem
+	if ( system_timer > SECONDS(3) )
+   2:	f240 0300 	movw	r3, #0	; 0x0
+   6:	f2c0 0300 	movt	r3, #0	; 0x0
+   a:	681b      	ldr	r3, [r3, #0]
+   c:	f5b3 7f96 	cmp.w	r3, #300	; 0x12c
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:595
+		startup_finished = TRUE;
+  10:	bf81      	itttt	hi
+  12:	f240 0300 	movwhi	r3, #0	; 0x0
+  16:	f2c0 0300 	movthi	r3, #0	; 0x0
+  1a:	2201      	movhi	r2, #1
+  1c:	701a      	strbhi	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:594
+		-SECONDS(25)				// Engine SN request
+	};
+
+	// Start broadcasting a few seconds after power up
+	// Set a flag so timer wrap is not a problem
+	if ( system_timer > SECONDS(3) )
+  1e:	d807      	bhi.n	30 <timed_can_messages+0x30>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:597
+		startup_finished = TRUE;
+
+	if (startup_finished)
+  20:	f240 0300 	movw	r3, #0	; 0x0
+  24:	f2c0 0300 	movt	r3, #0	; 0x0
+  28:	781b      	ldrb	r3, [r3, #0]
+  2a:	2b00      	cmp	r3, #0
+  2c:	f000 8083 	beq.w	136 <timed_can_messages+0x136>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:604
+		/*-------------------------------------
+		 * If a packet cannot be transmitted,
+		 *  just return and try again next time
+		 *------------------------------------*/
+
+		if ( (s16)(system_timer - trigger_time[MSGIX_BROADCAST]) >= SECONDS(1) / 5 )
+  30:	f240 0300 	movw	r3, #0	; 0x0
+  34:	f2c0 0300 	movt	r3, #0	; 0x0
+  38:	681a      	ldr	r2, [r3, #0]
+  3a:	f240 0300 	movw	r3, #0	; 0x0
+  3e:	f2c0 0300 	movt	r3, #0	; 0x0
+  42:	881b      	ldrh	r3, [r3, #0]
+  44:	ebc3 0202 	rsb	r2, r3, r2
+  48:	b212      	sxth	r2, r2
+  4a:	2a13      	cmp	r2, #19
+  4c:	dd10      	ble.n	70 <timed_can_messages+0x70>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:608
+		{
+			// Broadcast some operational parameters to anyone who might care
+
+			if ( transmit_proprietary(PCMD_PRESSURES, CAN_ALL_ADDR) )
+  4e:	f04f 0005 	mov.w	r0, #5	; 0x5
+  52:	f04f 01ff 	mov.w	r1, #255	; 0xff
+  56:	f7ff fffe 	bl	0 <timed_can_messages>
+  5a:	b148      	cbz	r0, 16 <system_timer+0x16>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:609
+				trigger_time[MSGIX_BROADCAST] = system_timer;
+  5c:	f240 0300 	movw	r3, #0	; 0x0
+  60:	f2c0 0300 	movt	r3, #0	; 0x0
+  64:	681a      	ldr	r2, [r3, #0]
+  66:	f240 0300 	movw	r3, #0	; 0x0
+  6a:	f2c0 0300 	movt	r3, #0	; 0x0
+  6e:	801a      	strh	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:612
+		}
+
+		if ( (s16)(system_timer - trigger_time[MSGIX_VERSION]) >= SECONDS(10) )
+  70:	f240 0300 	movw	r3, #0	; 0x0
+  74:	f2c0 0300 	movt	r3, #0	; 0x0
+  78:	681a      	ldr	r2, [r3, #0]
+  7a:	f240 0300 	movw	r3, #0	; 0x0
+  7e:	f2c0 0300 	movt	r3, #0	; 0x0
+  82:	885b      	ldrh	r3, [r3, #2]
+  84:	ebc3 0202 	rsb	r2, r3, r2
+  88:	b212      	sxth	r2, r2
+  8a:	f5b2 7f7a 	cmp.w	r2, #1000	; 0x3e8
+  8e:	db10      	blt.n	b2 <timed_can_messages+0xb2>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:617
+		{
+			// Send Software Version, Ambient temperature, 
+			//  Fuel level and Battery voltage
+
+			if ( transmit_proprietary(PCMD_VERSION, CAN_VIEWPORT_ADDR) )
+  90:	f04f 0009 	mov.w	r0, #9	; 0x9
+  94:	f04f 0136 	mov.w	r1, #54	; 0x36
+  98:	f7ff fffe 	bl	0 <timed_can_messages>
+  9c:	b148      	cbz	r0, 16 <system_timer+0x16>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:618
+				trigger_time[MSGIX_VERSION] = system_timer;
+  9e:	f240 0300 	movw	r3, #0	; 0x0
+  a2:	f2c0 0300 	movt	r3, #0	; 0x0
+  a6:	681a      	ldr	r2, [r3, #0]
+  a8:	f240 0300 	movw	r3, #0	; 0x0
+  ac:	f2c0 0300 	movt	r3, #0	; 0x0
+  b0:	805a      	strh	r2, [r3, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:621
+		}
+
+		if ( (s16)(system_timer - trigger_time[MSGIX_HOURS]) >= MINUTES(2) )
+  b2:	f240 0300 	movw	r3, #0	; 0x0
+  b6:	f2c0 0300 	movt	r3, #0	; 0x0
+  ba:	681a      	ldr	r2, [r3, #0]
+  bc:	f240 0300 	movw	r3, #0	; 0x0
+  c0:	f2c0 0300 	movt	r3, #0	; 0x0
+  c4:	889b      	ldrh	r3, [r3, #4]
+  c6:	ebc3 0202 	rsb	r2, r3, r2
+  ca:	b212      	sxth	r2, r2
+  cc:	f642 63df 	movw	r3, #11999	; 0x2edf
+  d0:	429a      	cmp	r2, r3
+  d2:	dd0c      	ble.n	ee <timed_can_messages+0xee>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:623
+		{
+			if ( request_engine_hours() )
+  d4:	f7ff fffe 	bl	0 <timed_can_messages>
+  d8:	b148      	cbz	r0, 16 <system_timer+0x16>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:624
+				trigger_time[MSGIX_HOURS] = system_timer;
+  da:	f240 0300 	movw	r3, #0	; 0x0
+  de:	f2c0 0300 	movt	r3, #0	; 0x0
+  e2:	681a      	ldr	r2, [r3, #0]
+  e4:	f240 0300 	movw	r3, #0	; 0x0
+  e8:	f2c0 0300 	movt	r3, #0	; 0x0
+  ec:	809a      	strh	r2, [r3, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:627
+		}
+
+		if (engine_sn_received == FALSE)
+  ee:	f240 0300 	movw	r3, #0	; 0x0
+  f2:	f2c0 0300 	movt	r3, #0	; 0x0
+  f6:	781b      	ldrb	r3, [r3, #0]
+  f8:	b9eb      	cbnz	r3, 136 <timed_can_messages+0x136>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:629
+		{
+			if ( (s16)(system_timer - trigger_time[MSGIX_SERIAL]) >= SECONDS(30) )
+  fa:	f240 0300 	movw	r3, #0	; 0x0
+  fe:	f2c0 0300 	movt	r3, #0	; 0x0
+ 102:	681a      	ldr	r2, [r3, #0]
+ 104:	f240 0300 	movw	r3, #0	; 0x0
+ 108:	f2c0 0300 	movt	r3, #0	; 0x0
+ 10c:	88db      	ldrh	r3, [r3, #6]
+ 10e:	ebc3 0202 	rsb	r2, r3, r2
+ 112:	b212      	sxth	r2, r2
+ 114:	f640 33b7 	movw	r3, #2999	; 0xbb7
+ 118:	429a      	cmp	r2, r3
+ 11a:	dd0c      	ble.n	136 <timed_can_messages+0x136>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:631
+			{
+				if ( request_engine_serial_num() )
+ 11c:	f7ff fffe 	bl	0 <timed_can_messages>
+ 120:	b148      	cbz	r0, 16 <system_timer+0x16>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:632
+					trigger_time[MSGIX_SERIAL] = system_timer;
+ 122:	f240 0300 	movw	r3, #0	; 0x0
+ 126:	f2c0 0300 	movt	r3, #0	; 0x0
+ 12a:	681a      	ldr	r2, [r3, #0]
+ 12c:	f240 0300 	movw	r3, #0	; 0x0
+ 130:	f2c0 0300 	movt	r3, #0	; 0x0
+ 134:	80da      	strh	r2, [r3, #6]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:636
+			}
+		}
+	}
+ 136:	bd10      	pop	{r4, pc}
+Disassembly of section .text.get_engine_serial_number:
+
+00000000 <get_engine_serial_number>:
+get_engine_serial_number():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:497
+ * That serial number is then added to our Identity if it is not the 
+ *  last one.  A serial number may appear more than once.
+ *--------------------------------------------------------------------*/
+ 
+void get_engine_serial_number(void)
+{
+   0:	b510      	push	{r4, lr}
+   2:	b088      	sub	sp, #32
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:511
+	 *-----------------------------------------*/
+
+	can_data = &canMsgBuffer[BUFF_DATA_BEGIN];
+
+	// Parse through the Engine make
+	while (*can_data != '*')
+   4:	f240 0300 	movw	r3, #0	; 0x0
+   8:	f2c0 0300 	movt	r3, #0	; 0x0
+   c:	795b      	ldrb	r3, [r3, #5]
+   e:	2b2a      	cmp	r3, #42
+  10:	bf08      	it	eq
+  12:	4a2a      	ldreq	r2, [pc, #168]	(bc <get_engine_serial_number+0xbc>)
+  14:	d004      	beq.n	20 <get_engine_serial_number+0x20>
+  16:	4a29      	ldr	r2, [pc, #164]	(bc <get_engine_serial_number+0xbc>)
+  18:	f812 3f01 	ldrb.w	r3, [r2, #1]!
+  1c:	2b2a      	cmp	r3, #42
+  1e:	d1fb      	bne.n	18 <get_engine_serial_number+0x18>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:518
+
+	// Increment past the delimiter
+	can_data++;
+
+	// Parse through the Engine model
+	while (*can_data != '*')
+  20:	f812 3f01 	ldrb.w	r3, [r2, #1]!
+  24:	2b2a      	cmp	r3, #42
+  26:	d003      	beq.n	30 <get_engine_serial_number+0x30>
+  28:	f812 3f01 	ldrb.w	r3, [r2, #1]!
+  2c:	2b2a      	cmp	r3, #42
+  2e:	d1fb      	bne.n	28 <get_engine_serial_number+0x28>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:525
+
+	// Increment past the delimiter
+	can_data++;
+	
+	// Retrieve the Engine serial number
+	while ( (*can_data != '*') && (count < (IDENTITY_LENGTH - 2)) )
+  30:	7851      	ldrb	r1, [r2, #1]
+  32:	292a      	cmp	r1, #42
+  34:	bf08      	it	eq
+  36:	2200      	moveq	r2, #0
+  38:	d018      	beq.n	6c <get_engine_serial_number+0x6c>
+  3a:	4610      	mov	r0, r2
+  3c:	f04f 0200 	mov.w	r2, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:527
+	{
+		sn[count++] = *can_data;
+  40:	ac08      	add	r4, sp, #32
+  42:	eb04 0302 	add.w	r3, r4, r2
+  46:	f803 1c1f 	strb.w	r1, [r3, #-31]
+  4a:	f102 0301 	add.w	r3, r2, #1	; 0x1
+  4e:	b2da      	uxtb	r2, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:525
+
+	// Increment past the delimiter
+	can_data++;
+	
+	// Retrieve the Engine serial number
+	while ( (*can_data != '*') && (count < (IDENTITY_LENGTH - 2)) )
+  50:	7881      	ldrb	r1, [r0, #2]
+  52:	f100 0001 	add.w	r0, r0, #1	; 0x1
+  56:	2a1d      	cmp	r2, #29
+  58:	bf8c      	ite	hi
+  5a:	2300      	movhi	r3, #0
+  5c:	2301      	movls	r3, #1
+  5e:	292a      	cmp	r1, #42
+  60:	bf0c      	ite	eq
+  62:	2300      	moveq	r3, #0
+  64:	f003 0301 	andne.w	r3, r3, #1	; 0x1
+  68:	2b00      	cmp	r3, #0
+  6a:	d1e9      	bne.n	40 <get_engine_serial_number+0x40>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:533
+
+		can_data++;
+	}
+
+	// Put the string terminating character at the end
+	sn[count] = NULL;
+  6c:	ab08      	add	r3, sp, #32
+  6e:	441a      	add	r2, r3
+  70:	f04f 0300 	mov.w	r3, #0	; 0x0
+  74:	f802 3c1f 	strb.w	r3, [r2, #-31]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:540
+	/*-------------------------------------------------------------
+	 * Update the Identity page with this serial number if this 
+	 *  engine is not the most recent one we have been connected to
+	 *------------------------------------------------------------*/
+
+	wait_for_buffer();
+  78:	f7ff fffe 	bl	0 <wait_for_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:541
+	fill_a_string("\n\rFound ECM: ");
+  7c:	f240 0000 	movw	r0, #0	; 0x0
+  80:	f2c0 0000 	movt	r0, #0	; 0x0
+  84:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:542
+	fill_a_string(sn);
+  88:	f10d 0401 	add.w	r4, sp, #1	; 0x1
+  8c:	4620      	mov	r0, r4
+  8e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:543
+	send_sio_buffer();
+  92:	f7ff fffe 	bl	0 <send_sio_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:545
+
+	if ( compare_serial_number(sn) == FALSE )
+  96:	4620      	mov	r0, r4
+  98:	f7ff fffe 	bl	0 <compare_serial_number>
+  9c:	b920      	cbnz	r0, a8 <get_engine_serial_number+0xa8>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:550
+	{
+		// The last engine in the Identity list does not match 
+		//  the one we're presently connected to
+
+		write_identity(ID_ENGINE, sn);
+  9e:	f100 0002 	add.w	r0, r0, #2	; 0x2
+  a2:	4621      	mov	r1, r4
+  a4:	f7ff fffe 	bl	0 <write_identity>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:553
+	}
+
+	engine_sn_received = TRUE;
+  a8:	f240 0300 	movw	r3, #0	; 0x0
+  ac:	f2c0 0300 	movt	r3, #0	; 0x0
+  b0:	f04f 0201 	mov.w	r2, #1	; 0x1
+  b4:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:554
+}
+  b6:	b008      	add	sp, #32
+  b8:	bd10      	pop	{r4, pc}
+  ba:	46c0      	nop			(mov r8, r8)
+  bc:	00000005 	.word	0x00000005
+Disassembly of section .text.can_send_binary:
+
+00000000 <can_send_binary>:
+can_send_binary():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:308
+ *  ~ 1ms/byte) and so is waiting for the next packet before we get 
+ *  enough for it from the tool.
+ *------------------------------------------------------------------*/
+
+void can_send_binary(void)
+{
+   0:	b530      	push	{r4, r5, lr}
+   2:	b083      	sub	sp, #12
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:312
+	static u8 search_index = 0;
+	u8 binary_character;
+
+	if ( get_serial_character(&binary_character) )
+   4:	f10d 0007 	add.w	r0, sp, #7	; 0x7
+   8:	f7ff fffe 	bl	0 <get_serial_character>
+   c:	2800      	cmp	r0, #0
+   e:	d05d      	beq.n	cc <can_send_binary+0xcc>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:314
+	{
+		sio_buffer[sio_index++] = binary_character;
+  10:	f240 0100 	movw	r1, #0	; 0x0
+  14:	f2c0 0100 	movt	r1, #0	; 0x0
+  18:	880a      	ldrh	r2, [r1, #0]
+  1a:	f89d 0007 	ldrb.w	r0, [sp, #7]
+  1e:	f240 0300 	movw	r3, #0	; 0x0
+  22:	f2c0 0300 	movt	r3, #0	; 0x0
+  26:	5498      	strb	r0, [r3, r2]
+  28:	f102 0201 	add.w	r2, r2, #1	; 0x1
+  2c:	b294      	uxth	r4, r2
+  2e:	800c      	strh	r4, [r1, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:321
+		/*---------------------------------------------------------------------
+		* Find the End Of File record in order to set programming_server.state 
+		*--------------------------------------------------------------------*/
+
+		// Reset search_index at the beginning of each record	 
+		if (binary_character == ':')
+  30:	283a      	cmp	r0, #58
+  32:	d10e      	bne.n	52 <can_send_binary+0x52>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:323
+		{
+			search_index = 0;
+  34:	f240 0300 	movw	r3, #0	; 0x0
+  38:	f2c0 0300 	movt	r3, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:326
+		
+			// Send a progress character
+			USART1->DR = '|';
+  3c:	f643 0200 	movw	r2, #14336	; 0x3800
+  40:	f2c4 0201 	movt	r2, #16385	; 0x4001
+  44:	f04f 017c 	mov.w	r1, #124	; 0x7c
+  48:	8091      	strh	r1, [r2, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:331
+		}
+
+		// No need to worry about wrapping around since each record 
+		//  is 32 bytes (64 characters) plus the record overhead
+		search_index++;
+  4a:	f04f 0201 	mov.w	r2, #1	; 0x1
+  4e:	705a      	strb	r2, [r3, #1]
+  50:	e013      	b.n	7a <can_send_binary+0x7a>
+  52:	f240 0200 	movw	r2, #0	; 0x0
+  56:	f2c0 0200 	movt	r2, #0	; 0x0
+  5a:	7853      	ldrb	r3, [r2, #1]
+  5c:	f103 0301 	add.w	r3, r3, #1	; 0x1
+  60:	b2db      	uxtb	r3, r3
+  62:	7053      	strb	r3, [r2, #1]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:334
+
+		// The EOF record is identified by a '1' in the 9th nybble
+		if ( (search_index == 9) && (binary_character == '1') )
+  64:	2b09      	cmp	r3, #9
+  66:	d108      	bne.n	7a <can_send_binary+0x7a>
+  68:	2831      	cmp	r0, #49
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:338
+		{
+			// Set search_index larger than it can otherwise be 
+			//  to indicate EOF
+			search_index = 0xF0;
+  6a:	bf01      	itttt	eq
+  6c:	f240 0300 	movweq	r3, #0	; 0x0
+  70:	f2c0 0300 	movteq	r3, #0	; 0x0
+  74:	f06f 020f 	mvneq.w	r2, #15	; 0xf
+  78:	705a      	strbeq	r2, [r3, #1]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:343
+		}
+
+		// Send a packet after 7 nybbles are accumulated or 
+		//  when the EOF record is complete
+		if ( (sio_index == 7) || (search_index == 0xF2) )
+  7a:	2c07      	cmp	r4, #7
+  7c:	d006      	beq.n	8c <can_send_binary+0x8c>
+  7e:	f240 0300 	movw	r3, #0	; 0x0
+  82:	f2c0 0300 	movt	r3, #0	; 0x0
+  86:	785b      	ldrb	r3, [r3, #1]
+  88:	2bf2      	cmp	r3, #242
+  8a:	d11f      	bne.n	cc <can_send_binary+0xcc>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:346
+		{
+			// Keep trying until a transmitter is available
+			while ( transmit_proprietary(PCMD_PROGRAM_DATA, programming_server.requestee) == FALSE );
+  8c:	f240 0400 	movw	r4, #0	; 0x0
+  90:	f2c0 0400 	movt	r4, #0	; 0x0
+  94:	f04f 0524 	mov.w	r5, #36	; 0x24
+  98:	4628      	mov	r0, r5
+  9a:	7821      	ldrb	r1, [r4, #0]
+  9c:	f7ff fffe 	bl	0 <can_send_binary>
+  a0:	2800      	cmp	r0, #0
+  a2:	d0f9      	beq.n	98 <can_send_binary+0x98>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:348
+
+			sio_index = 0;
+  a4:	f240 0300 	movw	r3, #0	; 0x0
+  a8:	f2c0 0300 	movt	r3, #0	; 0x0
+  ac:	f04f 0200 	mov.w	r2, #0	; 0x0
+  b0:	801a      	strh	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:352
+
+			// Wait for two checksum nybbles after the EOF record 
+			//  is identified
+			if (search_index == 0xF2) 
+  b2:	f240 0300 	movw	r3, #0	; 0x0
+  b6:	f2c0 0300 	movt	r3, #0	; 0x0
+  ba:	785b      	ldrb	r3, [r3, #1]
+  bc:	2bf2      	cmp	r3, #242
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:353
+				programming_server.state = PRGM_WAIT_ACK;
+  be:	bf01      	itttt	eq
+  c0:	f240 0300 	movweq	r3, #0	; 0x0
+  c4:	f2c0 0300 	movteq	r3, #0	; 0x0
+  c8:	2206      	moveq	r2, #6
+  ca:	709a      	strbeq	r2, [r3, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:356
+		}
+	}
+}
+  cc:	b003      	add	sp, #12
+  ce:	bd30      	pop	{r4, r5, pc}
+Disassembly of section .text.can_start_reprogram:
+
+00000000 <can_start_reprogram>:
+can_start_reprogram():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:275
+ * Send the command to a CAN server to begin reprogramming that server 
+ *  via CAN communication.
+ *--------------------------------------------------------------------*/
+
+void can_start_reprogram(can_id_def server_node)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:278
+	// Give the server time to finish processing any 
+	//  previous message
+	wait_for_tic(2);
+   4:	f04f 0002 	mov.w	r0, #2	; 0x2
+   8:	f7ff fffe 	bl	0 <wait_for_tic>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:280
+
+	if ( transmit_proprietary(PCMD_REPROGRAM, server_node) )
+   c:	f04f 0023 	mov.w	r0, #35	; 0x23
+  10:	4621      	mov	r1, r4
+  12:	f7ff fffe 	bl	0 <can_start_reprogram>
+  16:	b140      	cbz	r0, 17 <can_start_reprogram+0x17>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:282
+	{
+		programming_server.requestee = server_node;
+  18:	f240 0300 	movw	r3, #0	; 0x0
+  1c:	f2c0 0300 	movt	r3, #0	; 0x0
+  20:	701c      	strb	r4, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:285
+
+		// Enable waiting for that server to respond with "all clear"
+		programming_server.state = PRGM_WAIT_CTS;
+  22:	f04f 0201 	mov.w	r2, #1	; 0x1
+  26:	709a      	strb	r2, [r3, #2]
+  28:	e006      	b.n	38 <can_start_reprogram+0x38>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:288
+	}
+	else
+		programming_server.state = PRGM_ERROR;	
+  2a:	f240 0300 	movw	r3, #0	; 0x0
+  2e:	f2c0 0300 	movt	r3, #0	; 0x0
+  32:	f04f 0208 	mov.w	r2, #8	; 0x8
+  36:	709a      	strb	r2, [r3, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanCommands.c:289
+}
+  38:	bd10      	pop	{r4, pc}
+  3a:	46c0      	nop			(mov r8, r8)

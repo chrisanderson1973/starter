@@ -1,0 +1,156 @@
+
+C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o:     file format elf32-littlearm
+C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+
+Disassembly of section .text.main:
+
+00000000 <main>:
+main():
+   0:	4a59      	ldr	r2, [pc, #356]	(168 <main+0x168>)
+   2:	4b5a      	ldr	r3, [pc, #360]	(16c <main+0x16c>)
+   4:	b510      	push	{r4, lr}
+   6:	60da      	str	r2, [r3, #12]
+   8:	f7ff fffe 	bl	0 <initialize_clocks>
+   c:	f7ff fffe 	bl	0 <initialize_ports>
+  10:	4b57      	ldr	r3, [pc, #348]	(170 <main+0x170>)
+  12:	2201      	movs	r2, #1
+  14:	701a      	strb	r2, [r3, #0]
+  16:	f7ff fffe 	bl	0 <initialize_serial>
+  1a:	f7ff fffe 	bl	0 <initialize_timers>
+  1e:	4b55      	ldr	r3, [pc, #340]	(174 <main+0x174>)
+  20:	2233      	movs	r2, #51
+  22:	701a      	strb	r2, [r3, #0]
+  24:	f7ff fffe 	bl	0 <initialize_can>
+  28:	f7ff fffe 	bl	0 <initialize_psw>
+  2c:	f7ff fffe 	bl	0 <unlock_FPEC>
+  30:	4b51      	ldr	r3, [pc, #324]	(178 <main+0x178>)
+  32:	f645 243c 	movw	r4, #23100	; 0x5a3c
+  36:	69db      	ldr	r3, [r3, #28]
+  38:	ebb4 2f93 	cmp.w	r4, r3, lsr #10
+  3c:	d00d      	beq.n	5a <main+0x5a>
+  3e:	4b4f      	ldr	r3, [pc, #316]	(17c <main+0x17c>)
+  40:	200f      	movs	r0, #15
+  42:	88d9      	ldrh	r1, [r3, #6]
+  44:	b2c9      	uxtb	r1, r1
+  46:	f7ff fffe 	bl	0 <transmit_proprietary>
+  4a:	2002      	movs	r0, #2
+  4c:	f7ff fffe 	bl	0 <wait_for_tic>
+  50:	4620      	mov	r0, r4
+  52:	f7ff fffe 	bl	0 <set_option_bytes>
+  56:	f7ff fffe 	bl	0 <software_reset>
+  5a:	f7ff fffe 	bl	0 <initialize_analog_input>
+  5e:	4848      	ldr	r0, [pc, #288]	(124 <send_a_string+0x124>)
+  60:	f7ff fffe 	bl	0 <send_a_string>
+  64:	4847      	ldr	r0, [pc, #284]	(120 <send_a_string+0x120>)
+  66:	f7ff fffe 	bl	0 <send_a_string>
+  6a:	f7ff fffe 	bl	0 <read_novram>
+  6e:	4b46      	ldr	r3, [pc, #280]	(188 <main+0x188>)
+  70:	2200      	movs	r2, #0
+  72:	709a      	strb	r2, [r3, #2]
+  74:	4b45      	ldr	r3, [pc, #276]	(18c <main+0x18c>)
+  76:	2001      	movs	r0, #1
+  78:	701a      	strb	r2, [r3, #0]
+  7a:	4b45      	ldr	r3, [pc, #276]	(190 <main+0x190>)
+  7c:	3203      	adds	r2, #3
+  7e:	701a      	strb	r2, [r3, #0]
+  80:	4b44      	ldr	r3, [pc, #272]	(194 <main+0x194>)
+  82:	3a01      	subs	r2, #1
+  84:	701a      	strb	r2, [r3, #0]
+  86:	4a44      	ldr	r2, [pc, #272]	(198 <main+0x198>)
+  88:	f245 5355 	movw	r3, #21845	; 0x5555
+  8c:	6013      	str	r3, [r2, #0]
+  8e:	f64a 23aa 	movw	r3, #43690	; 0xaaaa
+  92:	6013      	str	r3, [r2, #0]
+  94:	f7ff fffe 	bl	0 <wait_some_seconds>
+  98:	4840      	ldr	r0, [pc, #256]	(19c <main+0x19c>)
+  9a:	4941      	ldr	r1, [pc, #260]	(1a0 <main+0x1a0>)
+  9c:	6803      	ldr	r3, [r0, #0]
+  9e:	880a      	ldrh	r2, [r1, #0]
+  a0:	b29b      	uxth	r3, r3
+  a2:	429a      	cmp	r2, r3
+  a4:	d042      	beq.n	12c <main+0x12c>
+  a6:	6803      	ldr	r3, [r0, #0]
+  a8:	800b      	strh	r3, [r1, #0]
+  aa:	884b      	ldrh	r3, [r1, #2]
+  ac:	3301      	adds	r3, #1
+  ae:	b29a      	uxth	r2, r3
+  b0:	2a32      	cmp	r2, #50
+  b2:	804a      	strh	r2, [r1, #2]
+  b4:	d901      	bls.n	ba <main+0xba>
+  b6:	2301      	movs	r3, #1
+  b8:	710b      	strb	r3, [r1, #4]
+  ba:	f002 030f 	and.w	r3, r2, #15	; 0xf
+  be:	2b07      	cmp	r3, #7
+  c0:	d825      	bhi.n	10e <main+0x10e>
+  c2:	e8df f003 	tbb	[pc, r3]
+  c6:	0704      	.short	0x0704
+  c8:	13100d0a 	.word	0x13100d0a
+  cc:	221f      	.short	0x221f
+  ce:	f7ff fffe 	bl	0 <autostart_enable_switch>
+  d2:	e01c      	b.n	3c <update_outputs+0x3c>
+  d4:	f7ff fffe 	bl	0 <update_outputs>
+  d8:	e019      	b.n	36 <update_ambient_temp+0x36>
+  da:	f7ff fffe 	bl	0 <update_ambient_temp>
+  de:	e016      	b.n	30 <update_leds+0x30>
+  e0:	f7ff fffe 	bl	0 <update_leds>
+  e4:	e013      	b.n	2a <update_health_timers+0x2a>
+  e6:	f7ff fffe 	bl	0 <update_health_timers>
+  ea:	e010      	b.n	10e <main+0x10e>
+  ec:	4a26      	ldr	r2, [pc, #152]	(188 <main+0x188>)
+  ee:	7893      	ldrb	r3, [r2, #2]
+  f0:	2b02      	cmp	r3, #2
+  f2:	d002      	beq.n	fa <main+0xfa>
+  f4:	2b03      	cmp	r3, #3
+  f6:	d10a      	bne.n	10e <main+0x10e>
+  f8:	e001      	b.n	fe <main+0xfe>
+  fa:	2303      	movs	r3, #3
+  fc:	e000      	b.n	100 <main+0x100>
+  fe:	2304      	movs	r3, #4
+ 100:	7093      	strb	r3, [r2, #2]
+ 102:	e004      	b.n	10e <main+0x10e>
+ 104:	f7ff fffe 	bl	0 <update_analogs>
+ 108:	e001      	b.n	6 <startnow_state+0x6>
+ 10a:	f7ff fffe 	bl	0 <startnow_state>
+ 10e:	f7ff fffe 	bl	0 <maintain_can_comm_wd>
+ 112:	f7ff fffe 	bl	0 <read_raw_analogs>
+ 116:	f7ff fffe 	bl	0 <update_digital_in>
+ 11a:	4a22      	ldr	r2, [pc, #136]	(1a4 <main+0x1a4>)
+ 11c:	8813      	ldrh	r3, [r2, #0]
+ 11e:	b10b      	cbz	r3, 124 <main+0x124>
+ 120:	3b01      	subs	r3, #1
+ 122:	8013      	strh	r3, [r2, #0]
+ 124:	f7ff fffe 	bl	0 <timed_can_messages>
+ 128:	f7ff fffe 	bl	0 <access_info_screens>
+ 12c:	f7ff fffe 	bl	0 <check_can>
+ 130:	f7ff fffe 	bl	0 <check_serial>
+ 134:	f7ff fffe 	bl	0 <check_reprogram_state>
+ 138:	4b1b      	ldr	r3, [pc, #108]	(1a8 <main+0x1a8>)
+ 13a:	789c      	ldrb	r4, [r3, #2]
+ 13c:	b94c      	cbnz	r4, 152 <main+0x152>
+ 13e:	f7ff fffe 	bl	0 <write_novram>
+ 142:	481a      	ldr	r0, [pc, #104]	(6c <send_a_string+0x6c>)
+ 144:	f7ff fffe 	bl	0 <send_a_string>
+ 148:	f7ff fffe 	bl	0 <wait_for_buffer>
+ 14c:	4b08      	ldr	r3, [pc, #32]	(170 <main+0x170>)
+ 14e:	701c      	strb	r4, [r3, #0]
+ 150:	e7fe      	b.n	150 <main+0x150>
+ 152:	f7ff fffe 	bl	0 <update_autostart_state>
+ 156:	4b10      	ldr	r3, [pc, #64]	(198 <main+0x198>)
+ 158:	f245 5255 	movw	r2, #21845	; 0x5555
+ 15c:	601a      	str	r2, [r3, #0]
+ 15e:	f64a 22aa 	movw	r2, #43690	; 0xaaaa
+ 162:	601a      	str	r2, [r3, #0]
+ 164:	e798      	b.n	98 <main+0x98>
+ 166:	46c0      	nop			(mov r8, r8)
+ 168:	05fa0700 	.word	0x05fa0700
+ 16c:	e000ed00 	.word	0xe000ed00
+ 170:	422281bc 	.word	0x422281bc
+ 174:	00000000 	.word	0x00000000
+ 178:	40022000 	.word	0x40022000
+ 17c:	1ffff800 	.word	0x1ffff800
+ 180:	00000000 	.word	0x00000000
+ 184:	00000025 	.word	0x00000025
+	...
+ 198:	40003000 	.word	0x40003000
+	...
+ 1ac:	00000043 	.word	0x00000043

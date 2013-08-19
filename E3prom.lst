@@ -1,0 +1,2197 @@
+
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o:     file format elf32-littlearm
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+
+Disassembly of section .text.next_novram_address:
+
+00000000 <next_novram_address>:
+next_novram_address():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:107
+ *  slot of the end of the page, or in case the page is filled
+ *  exactly, the returned address will be in the following page
+ *---------------------------------------------------------------*/
+
+u16 *next_novram_address(void)
+{
+   0:	b410      	push	{r4}
+   2:	f24f 0000 	movw	r0, #61440	; 0xf000
+   6:	f6c0 0001 	movt	r0, #2049	; 0x801
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:114
+
+	for ( search_address = (u16 *)FLASH_NOVRAM_ADDRESS;
+				(u32)search_address < (FLASH_NOVRAM_ADDRESS + FLASH_PAGE_SIZE);
+				search_address += (sizeof(novram_def) / 2) )
+	{
+		if (*search_address == 0xFFFF)
+   a:	f64f 71ff 	movw	r1, #65535	; 0xffff
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:111
+u16 *next_novram_address(void)
+{
+	u16 *search_address;
+
+	for ( search_address = (u16 *)FLASH_NOVRAM_ADDRESS;
+				(u32)search_address < (FLASH_NOVRAM_ADDRESS + FLASH_PAGE_SIZE);
+   e:	f64f 0c34 	movw	ip, #63540	; 0xf834
+  12:	4662      	mov	r2, ip
+  14:	f6c0 0201 	movt	r2, #2049	; 0x801
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:114
+				search_address += (sizeof(novram_def) / 2) )
+	{
+		if (*search_address == 0xFFFF)
+  18:	8803      	ldrh	r3, [r0, #0]
+  1a:	460c      	mov	r4, r1
+  1c:	428b      	cmp	r3, r1
+  1e:	d003      	beq.n	28 <next_novram_address+0x28>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:112
+{
+	u16 *search_address;
+
+	for ( search_address = (u16 *)FLASH_NOVRAM_ADDRESS;
+				(u32)search_address < (FLASH_NOVRAM_ADDRESS + FLASH_PAGE_SIZE);
+				search_address += (sizeof(novram_def) / 2) )
+  20:	f100 003c 	add.w	r0, r0, #60	; 0x3c
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:111
+u16 *next_novram_address(void)
+{
+	u16 *search_address;
+
+	for ( search_address = (u16 *)FLASH_NOVRAM_ADDRESS;
+				(u32)search_address < (FLASH_NOVRAM_ADDRESS + FLASH_PAGE_SIZE);
+  24:	4290      	cmp	r0, r2
+  26:	d1f7      	bne.n	18 <next_novram_address+0x18>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:119
+		if (*search_address == 0xFFFF)
+			break;
+	}
+
+	return search_address;
+}
+  28:	bc10      	pop	{r4}
+  2a:	4770      	bx	lr
+Disassembly of section .text.number_of_novram:
+
+00000000 <number_of_novram>:
+number_of_novram():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:123
+
+
+u16 number_of_novram(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:128
+	u16 address;
+
+	// Get the FLASH address of the next available slot for NOVRAM storage
+	// Subtract the base address to get the address offset
+	address = (u32)next_novram_address() - FLASH_NOVRAM_ADDRESS;
+   2:	f7ff fffe 	bl	0 <number_of_novram>
+   6:	f241 0300 	movw	r3, #4096	; 0x1000
+   a:	f2cf 73fe 	movt	r3, #63486	; 0xf7fe
+   e:	4418      	add	r0, r3
+  10:	b280      	uxth	r0, r0
+  12:	f648 0389 	movw	r3, #34953	; 0x8889
+  16:	f6c8 0388 	movt	r3, #34952	; 0x8888
+  1a:	fba3 2000 	umull	r2, r0, r3, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:132
+
+	// Divide by the size of a single NOVRAM save
+	return address / sizeof(novram_def);
+}
+  1e:	ea4f 1050 	mov.w	r0, r0, lsr #5
+  22:	bd10      	pop	{r4, pc}
+Disassembly of section .text.update_health_timers:
+
+00000000 <update_health_timers>:
+update_health_timers():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:340
+ *  to update some timers if it is time.  We may be away longer 
+ *  if the foreground is busy
+ *------------------------------------------------------------*/
+
+void update_health_timers(void)
+{
+   0:	b410      	push	{r4}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:346
+	static u16 previous_time = 0;
+
+	u16 delta_time;
+
+	// Get the number of timer ticks since we were here last 
+	delta_time = system_timer - previous_time;
+   2:	f240 0300 	movw	r3, #0	; 0x0
+   6:	f2c0 0300 	movt	r3, #0	; 0x0
+   a:	6819      	ldr	r1, [r3, #0]
+   c:	f240 0200 	movw	r2, #0	; 0x0
+  10:	f2c0 0200 	movt	r2, #0	; 0x0
+  14:	8810      	ldrh	r0, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:348
+
+	previous_time = system_timer;
+  16:	681b      	ldr	r3, [r3, #0]
+  18:	8013      	strh	r3, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:350
+
+	this_on_time += delta_time;
+  1a:	ebc0 0101 	rsb	r1, r0, r1
+  1e:	8853      	ldrh	r3, [r2, #2]
+  20:	4419      	add	r1, r3
+  22:	fa1f fc81 	uxth.w	ip, r1
+  26:	f8a2 c002 	strh.w	ip, [r2, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:352
+
+	while (this_on_time > 10)
+  2a:	f1bc 0f0a 	cmp.w	ip, #10	; 0xa
+  2e:	d921      	bls.n	82 <.LC9+0xe>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:355
+	{
+		this_on_time -= 10;
+		ram_novram.on_time++;
+  30:	f240 0000 	movw	r0, #0	; 0x0
+  34:	f2c0 0000 	movt	r0, #0	; 0x0
+  38:	6801      	ldr	r1, [r0, #0]
+  3a:	f101 0101 	add.w	r1, r1, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:340
+ *  to update some timers if it is time.  We may be away longer 
+ *  if the foreground is busy
+ *------------------------------------------------------------*/
+
+void update_health_timers(void)
+{
+  3e:	f1ac 020b 	sub.w	r2, ip, #11	; 0xb
+  42:	b292      	uxth	r2, r2
+  44:	f64c 43cd 	movw	r3, #52429	; 0xcccd
+  48:	f6cc 43cc 	movt	r3, #52428	; 0xcccc
+  4c:	fba3 4202 	umull	r4, r2, r3, r2
+  50:	ea4f 02d2 	mov.w	r2, r2, lsr #3
+  54:	4411      	add	r1, r2
+  56:	6001      	str	r1, [r0, #0]
+  58:	f240 0100 	movw	r1, #0	; 0x0
+  5c:	f2c0 0100 	movt	r1, #0	; 0x0
+  60:	ea4f 0242 	mov.w	r2, r2, lsl #1
+  64:	ea4f 0382 	mov.w	r3, r2, lsl #2
+  68:	441a      	add	r2, r3
+  6a:	f1ac 030a 	sub.w	r3, ip, #10	; 0xa
+  6e:	ebc2 0303 	rsb	r3, r2, r3
+  72:	804b      	strh	r3, [r1, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:357
+	while (this_on_time > 10)
+	{
+		this_on_time -= 10;
+		ram_novram.on_time++;
+	}
+}
+  74:	bc10      	pop	{r4}
+  76:	4770      	bx	lr
+Disassembly of section .text.get_recent_identity:
+
+00000000 <get_recent_identity>:
+get_recent_identity():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:488
+ * Search the identity page and return the address to the beginning 
+ *  of the most recent entry of the requested type
+ *----------------------------------------------------------------*/
+
+u8 *get_recent_identity(identity_type_def identity_type)
+{
+   0:	4601      	mov	r1, r0
+   2:	f64f 70e0 	movw	r0, #65504	; 0xffe0
+   6:	f6c0 0001 	movt	r0, #2049	; 0x801
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:493
+	u8 *address;
+
+	// Search from the end backward
+	for (address = (u8 *)((MACHINE_IDENTITY_ADDRESS + FLASH_PAGE_SIZE) - IDENTITY_LENGTH);
+				address >= (u8 *)MACHINE_IDENTITY_ADDRESS;
+   a:	f24f 73e0 	movw	r3, #63456	; 0xf7e0
+   e:	461a      	mov	r2, r3
+  10:	f6c0 0201 	movt	r2, #2049	; 0x801
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:496
+				address -= IDENTITY_LENGTH)
+	{
+		if (*address == identity_type)
+  14:	7803      	ldrb	r3, [r0, #0]
+  16:	428b      	cmp	r3, r1
+  18:	d102      	bne.n	20 <get_recent_identity+0x20>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:502
+		{
+			// address points to the beginning (type character) of 
+			//  the requested string
+
+			// Return the address of the string (skip the type character)
+			return address + 1;
+  1a:	f100 0001 	add.w	r0, r0, #1	; 0x1
+  1e:	e007      	b.n	30 <get_recent_identity+0x30>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:494
+	u8 *address;
+
+	// Search from the end backward
+	for (address = (u8 *)((MACHINE_IDENTITY_ADDRESS + FLASH_PAGE_SIZE) - IDENTITY_LENGTH);
+				address >= (u8 *)MACHINE_IDENTITY_ADDRESS;
+				address -= IDENTITY_LENGTH)
+  20:	f1a0 0020 	sub.w	r0, r0, #32	; 0x20
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:493
+{
+	u8 *address;
+
+	// Search from the end backward
+	for (address = (u8 *)((MACHINE_IDENTITY_ADDRESS + FLASH_PAGE_SIZE) - IDENTITY_LENGTH);
+				address >= (u8 *)MACHINE_IDENTITY_ADDRESS;
+  24:	4290      	cmp	r0, r2
+  26:	d1f5      	bne.n	14 <get_recent_identity+0x14>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:506
+			// Return the address of the string (skip the type character)
+			return address + 1;
+		}
+	}
+
+	return "NONE                ";
+  28:	f240 0000 	movw	r0, #0	; 0x0
+  2c:	f2c0 0000 	movt	r0, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:507
+}
+  30:	4770      	bx	lr
+  32:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.get_number_identities:
+
+00000000 <get_number_identities>:
+get_number_identities():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:518
+ * Find the address of the last string in the Identity page 
+ *  and return the number of strings stored
+ *--------------------------------------------------------*/
+
+u8 get_number_identities(identity_type_def identity_type)
+{
+   0:	b430      	push	{r4, r5}
+   2:	4604      	mov	r4, r0
+   4:	f04f 0000 	mov.w	r0, #0	; 0x0
+   8:	f64f 0120 	movw	r1, #63520	; 0xf820
+   c:	f6c0 0101 	movt	r1, #2049	; 0x801
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:524
+	u8 count = 0;
+	u8 *address;
+
+	// Search from the end backward
+	for (address = (u8 *)MACHINE_IDENTITY_ADDRESS;
+				address < (u8 *)(MACHINE_IDENTITY_ADDRESS + FLASH_PAGE_SIZE);
+  10:	f240 0520 	movw	r5, #32	; 0x20
+  14:	462b      	mov	r3, r5
+  16:	f6c0 0302 	movt	r3, #2050	; 0x802
+  1a:	469c      	mov	ip, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:527
+				address += IDENTITY_LENGTH)
+	{
+		if (*address == identity_type)
+  1c:	f811 2c20 	ldrb.w	r2, [r1, #-32]
+  20:	42a2      	cmp	r2, r4
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:532
+		{
+			// address points to the beginning (type character) of 
+			//  the requested string
+
+			count++;
+  22:	bf04      	itt	eq
+  24:	1c43      	addeq	r3, r0, #1
+  26:	b2d8      	uxtbeq	r0, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:527
+	// Search from the end backward
+	for (address = (u8 *)MACHINE_IDENTITY_ADDRESS;
+				address < (u8 *)(MACHINE_IDENTITY_ADDRESS + FLASH_PAGE_SIZE);
+				address += IDENTITY_LENGTH)
+	{
+		if (*address == identity_type)
+  28:	d001      	beq.n	2e <get_number_identities+0x2e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:534
+			// address points to the beginning (type character) of 
+			//  the requested string
+
+			count++;
+		}
+		else if (*address == 0xFF)
+  2a:	2aff      	cmp	r2, #255
+  2c:	d003      	beq.n	36 <get_number_identities+0x36>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:535
+			break;
+  2e:	f101 0120 	add.w	r1, r1, #32	; 0x20
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:524
+	u8 count = 0;
+	u8 *address;
+
+	// Search from the end backward
+	for (address = (u8 *)MACHINE_IDENTITY_ADDRESS;
+				address < (u8 *)(MACHINE_IDENTITY_ADDRESS + FLASH_PAGE_SIZE);
+  32:	4561      	cmp	r1, ip
+  34:	d1f2      	bne.n	1c <get_number_identities+0x1c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:539
+		else if (*address == 0xFF)
+			break;
+	}
+
+	return count;
+}
+  36:	bc30      	pop	{r4, r5}
+  38:	4770      	bx	lr
+  3a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fault_address:
+
+00000000 <fault_address>:
+fault_address():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:574
+u16 *fault_address(u8 fault_index)
+{
+	u16 address_offset = 0;
+
+	// The index spans from 0 to NUMBER - 1 on the first page
+	if (fault_index >= NUMBER_FAULTS_PER_PAGE)
+   0:	2827      	cmp	r0, #39
+   2:	bf91      	iteee	ls
+   4:	2100      	movls	r1, #0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:578
+	{
+		// The requested address is in the second page
+
+		fault_index -= NUMBER_FAULTS_PER_PAGE;
+   6:	f1a0 0328 	subhi.w	r3, r0, #40	; 0x28
+   a:	b2d8      	uxtbhi	r0, r3
+   c:	f44f 6100 	movhi.w	r1, #2048	; 0x800
+  10:	ea4f 0340 	mov.w	r3, r0, lsl #1
+  14:	ea4f 02c0 	mov.w	r2, r0, lsl #3
+  18:	4413      	add	r3, r2
+  1a:	ea4f 0283 	mov.w	r2, r3, lsl #2
+  1e:	4413      	add	r3, r2
+  20:	440b      	add	r3, r1
+  22:	b29b      	uxth	r3, r3
+  24:	f24e 0000 	movw	r0, #57344	; 0xe000
+  28:	f6c0 0001 	movt	r0, #2049	; 0x801
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:589
+	// Multiply the index by the number of bytes per fault 
+	//  to get the address offset of the beginning of the requested fault
+	address_offset += ((u16)fault_index * (NUMBER_INTS_PER_FAULT * 2));
+
+	return (u16 *)(address_offset + FAULT_LOG_ADDRESS);
+}
+  2c:	4418      	add	r0, r3
+  2e:	4770      	bx	lr
+Disassembly of section .text.number_of_faults:
+
+00000000 <number_of_faults>:
+number_of_faults():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:607
+	// Get the index to the next available fault storage
+	// It is the number available unless we have previously filled both 
+	//  pages and are working on re-writing the first page
+	// If we are re-writing the second page, it doesn't matter whether 
+	//  we have wrapped since both pages would have been erased as needed
+	faults = ram_novram.fault_log_index;
+   0:	f240 0300 	movw	r3, #0	; 0x0
+   4:	f2c0 0300 	movt	r3, #0	; 0x0
+   8:	f893 0033 	ldrb.w	r0, [r3, #51]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:610
+
+	// The number spans from 0 to NUMBER - 1 in the first page
+	if (faults < NUMBER_FAULTS_PER_PAGE)
+   c:	2827      	cmp	r0, #39
+   e:	d809      	bhi.n	60 <.LC8>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:614
+	{
+		// We are presently filling the first page
+
+		if ( *(u16 *)(FAULT_LOG_ADDRESS + FLASH_PAGE_SIZE) != 0xFFFF )
+  10:	f64e 0300 	movw	r3, #59392	; 0xe800
+  14:	f6c0 0301 	movt	r3, #2049	; 0x801
+  18:	881a      	ldrh	r2, [r3, #0]
+  1a:	f64f 73ff 	movw	r3, #65535	; 0xffff
+  1e:	429a      	cmp	r2, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:620
+		{
+			// The second page has something in it
+
+			// Increment the number of faults available by 
+			//  the number that fits in a page
+			faults += NUMBER_FAULTS_PER_PAGE;
+  20:	bf18      	it	ne
+  22:	3028      	addne	r0, #40
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:625
+		}
+	}
+
+	return faults;
+}
+  24:	4770      	bx	lr
+  26:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.compare_serial_number:
+
+00000000 <compare_serial_number>:
+compare_serial_number():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:935
+ * Use the most recent engine serial number as one of the strings, 
+ *  the other is at the passed address
+ *---------------------------------------------------------------*/
+
+bool compare_serial_number(u8 *questioned_string)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:943
+	// Number of characters to compare is one less than the _LENGTH since 
+	//  Identity Type is the first character and it is not compared
+	u8 count = IDENTITY_LENGTH - 1;
+
+	// Get the address of the most recent engine ECU SN string in FLASH memory
+	present_sn = get_recent_identity(ID_ENGINE);
+   4:	f04f 0002 	mov.w	r0, #2	; 0x2
+   8:	f7ff fffe 	bl	0 <compare_serial_number>
+   c:	f04f 0200 	mov.w	r2, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:947
+
+	while (count)
+	{
+		if (*questioned_string != *present_sn)
+  10:	5ca1      	ldrb	r1, [r4, r2]
+  12:	5c83      	ldrb	r3, [r0, r2]
+  14:	428b      	cmp	r3, r1
+  16:	d002      	beq.n	1e <compare_serial_number+0x1e>
+  18:	f04f 0000 	mov.w	r0, #0	; 0x0
+  1c:	e006      	b.n	2c <compare_serial_number+0x2c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:949
+			return FALSE;
+		else if (*questioned_string == NULL)
+  1e:	b119      	cbz	r1, 28 <compare_serial_number+0x28>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:950
+			break;
+  20:	f102 0201 	add.w	r2, r2, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:945
+	u8 count = IDENTITY_LENGTH - 1;
+
+	// Get the address of the most recent engine ECU SN string in FLASH memory
+	present_sn = get_recent_identity(ID_ENGINE);
+
+	while (count)
+  24:	2a1f      	cmp	r2, #31
+  26:	d1f3      	bne.n	10 <compare_serial_number+0x10>
+  28:	f04f 0001 	mov.w	r0, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:960
+			count--;
+		}
+	}
+
+	return TRUE;
+}
+  2c:	bd10      	pop	{r4, pc}
+  2e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.erase_fault_log:
+
+00000000 <erase_fault_log>:
+erase_fault_log():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:964
+
+
+void erase_fault_log(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:966
+	// Erase both pages of fault log entries
+	erase_flash_page(FAULT_LOG_ADDRESS);
+   2:	f24e 0000 	movw	r0, #57344	; 0xe000
+   6:	f6c0 0001 	movt	r0, #2049	; 0x801
+   a:	f7ff fffe 	bl	0 <erase_flash_page>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:967
+	erase_flash_page(FAULT_LOG_ADDRESS + FLASH_PAGE_SIZE);
+   e:	f64e 0000 	movw	r0, #59392	; 0xe800
+  12:	f6c0 0001 	movt	r0, #2049	; 0x801
+  16:	f7ff fffe 	bl	0 <erase_flash_page>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:968
+	ram_novram.fault_log_index = 0;
+  1a:	f240 0300 	movw	r3, #0	; 0x0
+  1e:	f2c0 0300 	movt	r3, #0	; 0x0
+  22:	f04f 0200 	mov.w	r2, #0	; 0x0
+  26:	f883 2033 	strb.w	r2, [r3, #51]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:969
+}
+  2a:	bd10      	pop	{r4, pc}
+Disassembly of section .text.initialize_health:
+
+00000000 <initialize_health>:
+initialize_health():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:973
+
+
+void initialize_health(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:974
+	ram_novram.power_cycles = 0;
+   2:	f240 0300 	movw	r3, #0	; 0x0
+   6:	f2c0 0300 	movt	r3, #0	; 0x0
+   a:	f04f 0200 	mov.w	r2, #0	; 0x0
+   e:	839a      	strh	r2, [r3, #28]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:975
+	ram_novram.error_stops = 0;
+  10:	83da      	strh	r2, [r3, #30]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:976
+	ram_novram.number_cranks = 0;
+  12:	841a      	strh	r2, [r3, #32]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:977
+	ram_novram.number_starts = 0;
+  14:	845a      	strh	r2, [r3, #34]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:978
+	ram_novram.fl_transitions = 0;
+  16:	849a      	strh	r2, [r3, #36]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:979
+	ram_novram.min_battery = 500;
+  18:	f44f 71fa 	mov.w	r1, #500	; 0x1f4
+  1c:	84d9      	strh	r1, [r3, #38]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:981
+
+	ram_novram.on_time = 0;
+  1e:	601a      	str	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:982
+	ram_novram.run_time = 0;
+  20:	605a      	str	r2, [r3, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:983
+	ram_novram.loaded_time = 0;
+  22:	609a      	str	r2, [r3, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:984
+	ram_novram.full_load_time = 0;
+  24:	60da      	str	r2, [r3, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:985
+	ram_novram.high_temp_time = 0;
+  26:	611a      	str	r2, [r3, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:986
+	ram_novram.high_delta_time = 0;
+  28:	615a      	str	r2, [r3, #20]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:987
+	ram_novram.low_temp_time = 0;
+  2a:	619a      	str	r2, [r3, #24]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:989
+
+	ram_novram.min_temperature = 0xF000;
+  2c:	f24f 0100 	movw	r1, #61440	; 0xf000
+  30:	8559      	strh	r1, [r3, #42]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:990
+	ram_novram.max_temperature = 0;
+  32:	859a      	strh	r2, [r3, #44]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:992
+
+	erase_fault_log();
+  34:	f7ff fffe 	bl	0 <initialize_health>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:997
+
+	// Erase the entire page of Identity strings
+	// They include Controller descriptions, Machine descriptions and 
+	//  Engine ECU serial numbers
+	erase_flash_page(MACHINE_IDENTITY_ADDRESS);
+  38:	f64f 0000 	movw	r0, #63488	; 0xf800
+  3c:	f6c0 0001 	movt	r0, #2049	; 0x801
+  40:	f7ff fffe 	bl	0 <erase_flash_page>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:998
+}
+  44:	bd10      	pop	{r4, pc}
+  46:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fill_a_bool:
+
+00000000 <fill_a_bool>:
+fill_a_bool():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:757
+	fill_a_decimal(*code_address >> 8);
+}
+
+
+void fill_a_bool(u8 boolean_state)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:758
+	if (boolean_state)
+   2:	b130      	cbz	r0, 12 <fill_a_bool+0x12>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:759
+		fill_a_string("CLOSED");
+   4:	f240 0000 	movw	r0, #0	; 0x0
+   8:	f2c0 0000 	movt	r0, #0	; 0x0
+   c:	f7ff fffe 	bl	0 <fill_a_string>
+  10:	e005      	b.n	2e <.LC3+0x6>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:761
+	else
+		fill_a_string("OPEN  ");
+  12:	f240 0000 	movw	r0, #0	; 0x0
+  16:	f2c0 0000 	movt	r0, #0	; 0x0
+  1a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:762
+}
+  1e:	bd10      	pop	{r4, pc}
+Disassembly of section .text.fill_identity:
+
+00000000 <fill_identity>:
+fill_identity():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:443
+ * They are reported in cronological order; the most recent is 
+ *  last.
+ *-------------------------------------------------------------*/
+
+void fill_identity(void)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	f64f 0401 	movw	r4, #63489	; 0xf801
+   8:	f6c0 0401 	movt	r4, #2049	; 0x801
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:463
+			{
+				case ID_MACHINE:
+					fill_a_string("\n\rMachine: ");
+					break;
+				case ID_CONTROLLER:
+					fill_a_string("\n\rController: ");
+   c:	f240 0800 	movw	r8, #0	; 0x0
+  10:	f2c0 0800 	movt	r8, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:460
+		else
+		{
+			switch (*address)
+			{
+				case ID_MACHINE:
+					fill_a_string("\n\rMachine: ");
+  14:	f240 0700 	movw	r7, #0	; 0x0
+  18:	f2c0 0700 	movt	r7, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:466
+					break;
+				case ID_CONTROLLER:
+					fill_a_string("\n\rController: ");
+					break;
+				case ID_ENGINE:
+					fill_a_string("\n\rEngine SN: ");
+  1c:	f240 0600 	movw	r6, #0	; 0x0
+  20:	f2c0 0600 	movt	r6, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:447
+void fill_identity(void)
+{
+	u8 *address;
+
+	for (address = (u8 *)MACHINE_IDENTITY_ADDRESS;
+				address < (u8 *)(MACHINE_IDENTITY_ADDRESS + FLASH_PAGE_SIZE);
+  24:	f240 0320 	movw	r3, #32	; 0x20
+  28:	461d      	mov	r5, r3
+  2a:	f6c0 0502 	movt	r5, #2050	; 0x802
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:450
+				address += IDENTITY_LENGTH)
+	{
+		if (*address == 0xFF)
+  2e:	f814 3c01 	ldrb.w	r3, [r4, #-1]
+  32:	2bff      	cmp	r3, #255
+  34:	d017      	beq.n	66 <fill_identity+0x66>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:457
+			// There are no more to fill
+			break;
+		}
+		else
+		{
+			switch (*address)
+  36:	2b01      	cmp	r3, #1
+  38:	d007      	beq.n	4a <fill_identity+0x4a>
+  3a:	b113      	cbz	r3, 42 <fill_identity+0x42>
+  3c:	2b02      	cmp	r3, #2
+  3e:	d10b      	bne.n	58 <fill_identity+0x58>
+  40:	e007      	b.n	52 <fill_identity+0x52>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:460
+			{
+				case ID_MACHINE:
+					fill_a_string("\n\rMachine: ");
+  42:	4638      	mov	r0, r7
+  44:	f7ff fffe 	bl	0 <fill_a_string>
+  48:	e006      	b.n	58 <fill_identity+0x58>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:463
+					break;
+				case ID_CONTROLLER:
+					fill_a_string("\n\rController: ");
+  4a:	4640      	mov	r0, r8
+  4c:	f7ff fffe 	bl	0 <fill_a_string>
+  50:	e002      	b.n	58 <fill_identity+0x58>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:466
+					break;
+				case ID_ENGINE:
+					fill_a_string("\n\rEngine SN: ");
+  52:	4630      	mov	r0, r6
+  54:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:474
+
+			// Increment past the type character
+			address++;
+
+			// Put the actual string in the serial buffer
+			fill_a_string(address);
+  58:	4620      	mov	r0, r4
+  5a:	f7ff fffe 	bl	0 <fill_a_string>
+  5e:	f104 0421 	add.w	r4, r4, #33	; 0x21
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:447
+void fill_identity(void)
+{
+	u8 *address;
+
+	for (address = (u8 *)MACHINE_IDENTITY_ADDRESS;
+				address < (u8 *)(MACHINE_IDENTITY_ADDRESS + FLASH_PAGE_SIZE);
+  62:	42ac      	cmp	r4, r5
+  64:	d1e3      	bne.n	2e <fill_a_string+0x2e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:477
+
+			// Put the actual string in the serial buffer
+			fill_a_string(address);
+		}
+	}
+}
+  66:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  6a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fill_engine_code:
+
+00000000 <fill_engine_code>:
+fill_engine_code():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:742
+		fill_a_decimal(status);
+}
+
+
+void fill_engine_code(u16 *code_address)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:745
+	u32 temp_data;
+	
+	temp_data = *code_address;
+   4:	8803      	ldrh	r3, [r0, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:749
+	code_address += 1;
+	temp_data |= ((*code_address & 0x07) << 16);
+
+	fill_a_decimal(temp_data);
+   6:	f834 0f02 	ldrh.w	r0, [r4, #2]!
+   a:	f000 0007 	and.w	r0, r0, #7	; 0x7
+   e:	ea43 4000 	orr.w	r0, r3, r0, lsl #16
+  12:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:751
+
+	fill_a_string("/");
+  16:	f240 0000 	movw	r0, #0	; 0x0
+  1a:	f2c0 0000 	movt	r0, #0	; 0x0
+  1e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:752
+	fill_a_decimal(*code_address >> 8);
+  22:	8820      	ldrh	r0, [r4, #0]
+  24:	ea4f 2010 	mov.w	r0, r0, lsr #8
+  28:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:753
+}
+  2c:	bd10      	pop	{r4, pc}
+  2e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fill_a_status:
+
+00000000 <fill_a_status>:
+fill_a_status():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:733
+	}
+}
+
+
+void fill_a_status(u8 status)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:734
+	if (status == 0xFF)
+   2:	28ff      	cmp	r0, #255
+   4:	d106      	bne.n	14 <fill_a_status+0x14>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:735
+		fill_a_string("NA  ");
+   6:	f240 0000 	movw	r0, #0	; 0x0
+   a:	f2c0 0000 	movt	r0, #0	; 0x0
+   e:	f7ff fffe 	bl	0 <fill_a_string>
+  12:	e001      	b.n	6 <fill_a_decimal+0x6>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:737
+	else
+		fill_a_decimal(status);
+  14:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:738
+}
+  18:	bd10      	pop	{r4, pc}
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.fill_fault:
+
+00000000 <fill_fault>:
+fill_fault():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:773
+ * Copy a fault listing from the Fault Log FLASH page to the 
+ *  serial buffer, ready to transmit
+ *---------------------------------------------------------*/
+ 
+void fill_fault(u8 fault_index)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:777
+	s8 *address;
+
+	// Get the address of the fault element to begin reading
+	address = (u8 *)fault_address(fault_index);
+   2:	f7ff fffe 	bl	0 <fill_fault>
+   6:	4604      	mov	r4, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:781
+
+	if (*address != 0xFF)
+	{
+		fill_a_string("\n\r\tPower ON count: ");
+   8:	f240 0000 	movw	r0, #0	; 0x0
+   c:	f2c0 0000 	movt	r0, #0	; 0x0
+  10:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:782
+		fill_a_decimal(*(u16 *)address);
+  14:	8820      	ldrh	r0, [r4, #0]
+  16:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:785
+
+		address += 2;
+		fill_a_string("\n\r\tProblem Code: ");
+  1a:	f240 0000 	movw	r0, #0	; 0x0
+  1e:	f2c0 0000 	movt	r0, #0	; 0x0
+  22:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:786
+		fill_a_decimal(*address);
+  26:	f914 0f02 	ldrsb.w	r0, [r4, #2]!
+  2a:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:788
+
+		if (transmit_fault_log)
+  2e:	f240 0300 	movw	r3, #0	; 0x0
+  32:	f2c0 0300 	movt	r3, #0	; 0x0
+  36:	781b      	ldrb	r3, [r3, #0]
+  38:	2b00      	cmp	r3, #0
+  3a:	f000 80e8 	beq.w	20e <fill_fault+0x20e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:790
+		{
+			address++;
+  3e:	4625      	mov	r5, r4
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:792
+
+			fill_a_string("\n\r\tE-Stop: ");
+  40:	f240 0000 	movw	r0, #0	; 0x0
+  44:	f2c0 0000 	movt	r0, #0	; 0x0
+  48:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:793
+			fill_a_bool(*address & 0x40);
+  4c:	f815 0f01 	ldrb.w	r0, [r5, #1]!
+  50:	f000 0040 	and.w	r0, r0, #64	; 0x40
+  54:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:794
+			fill_a_string("\t\t\t\tStart: ");
+  58:	f240 0000 	movw	r0, #0	; 0x0
+  5c:	f2c0 0000 	movt	r0, #0	; 0x0
+  60:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:795
+			fill_a_bool(*address & 0x80);
+  64:	7828      	ldrb	r0, [r5, #0]
+  66:	f000 0080 	and.w	r0, r0, #128	; 0x80
+  6a:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:797
+
+			fill_a_string("\n\r\tLow Fuel Alert: ");
+  6e:	f240 0000 	movw	r0, #0	; 0x0
+  72:	f2c0 0000 	movt	r0, #0	; 0x0
+  76:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:798
+			fill_a_bool(*address & 0x02);
+  7a:	7828      	ldrb	r0, [r5, #0]
+  7c:	f000 0002 	and.w	r0, r0, #2	; 0x2
+  80:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:799
+			fill_a_string("\t\t\tLow Fuel Shutdown: ");
+  84:	f240 0000 	movw	r0, #0	; 0x0
+  88:	f2c0 0000 	movt	r0, #0	; 0x0
+  8c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:800
+			fill_a_bool(*address & 0x04);
+  90:	7828      	ldrb	r0, [r5, #0]
+  92:	f000 0004 	and.w	r0, r0, #4	; 0x4
+  96:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:802
+
+			fill_a_string("\n\r\tEngine Air Filter: ");
+  9a:	f240 0000 	movw	r0, #0	; 0x0
+  9e:	f2c0 0000 	movt	r0, #0	; 0x0
+  a2:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:803
+			fill_a_bool(*address & 0x10);
+  a6:	7828      	ldrb	r0, [r5, #0]
+  a8:	f000 0010 	and.w	r0, r0, #16	; 0x10
+  ac:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:804
+			fill_a_string("\t\t:Wakeup ");
+  b0:	f240 0000 	movw	r0, #0	; 0x0
+  b4:	f2c0 0000 	movt	r0, #0	; 0x0
+  b8:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:805
+			fill_a_bool(*address & 0x01);
+  bc:	7828      	ldrb	r0, [r5, #0]
+  be:	f000 0001 	and.w	r0, r0, #1	; 0x1
+  c2:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:807
+
+			fill_a_string("\n\r\t:Manual Regen ");
+  c6:	f240 0000 	movw	r0, #0	; 0x0
+  ca:	f2c0 0000 	movt	r0, #0	; 0x0
+  ce:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:808
+			fill_a_bool(*address & 0x08);
+  d2:	7828      	ldrb	r0, [r5, #0]
+  d4:	f000 0008 	and.w	r0, r0, #8	; 0x8
+  d8:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:809
+			fill_a_string("\t\t\t:Regen Inhibit ");
+  dc:	f240 0000 	movw	r0, #0	; 0x0
+  e0:	f2c0 0000 	movt	r0, #0	; 0x0
+  e4:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:810
+			fill_a_bool(*address & 0x20);
+  e8:	462c      	mov	r4, r5
+  ea:	f814 0b01 	ldrb.w	r0, [r4], #1
+  ee:	f000 0020 	and.w	r0, r0, #32	; 0x20
+  f2:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:813
+
+			address++;
+			fill_a_string("\n\r\tEngine RPM: ");
+  f6:	f240 0000 	movw	r0, #0	; 0x0
+  fa:	f2c0 0000 	movt	r0, #0	; 0x0
+  fe:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:814
+			fill_a_decimal(*(u16 *)address);
+ 102:	8820      	ldrh	r0, [r4, #0]
+ 104:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:816
+
+			address += 2;
+ 108:	f105 0403 	add.w	r4, r5, #3	; 0x3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:817
+			fill_a_string("\t\t\t\tRegulation Pressure: ");
+ 10c:	f240 0000 	movw	r0, #0	; 0x0
+ 110:	f2c0 0000 	movt	r0, #0	; 0x0
+ 114:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:818
+			fill_a_number(*(u16 *)address, 2);
+ 118:	8820      	ldrh	r0, [r4, #0]
+ 11a:	f04f 0102 	mov.w	r1, #2	; 0x2
+ 11e:	f7ff fffe 	bl	0 <fill_a_number>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:820
+
+			address += 2;
+ 122:	f105 0405 	add.w	r4, r5, #5	; 0x5
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:821
+			fill_a_string(" PSI\n\r\tOutput Pressure: ");
+ 126:	f240 0000 	movw	r0, #0	; 0x0
+ 12a:	f2c0 0000 	movt	r0, #0	; 0x0
+ 12e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:822
+			fill_a_decimal(*(u16 *)address);
+ 132:	8820      	ldrh	r0, [r4, #0]
+ 134:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:824
+
+			address += 2;
+ 138:	f105 0407 	add.w	r4, r5, #7	; 0x7
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:825
+			fill_a_string(" PSI\t\t\tDischarge Temperature: ");
+ 13c:	f240 0000 	movw	r0, #0	; 0x0
+ 140:	f2c0 0000 	movt	r0, #0	; 0x0
+ 144:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:826
+			fill_a_decimal(*(u16 *)address);
+ 148:	8820      	ldrh	r0, [r4, #0]
+ 14a:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:828
+
+			address += 2;
+ 14e:	f105 0409 	add.w	r4, r5, #9	; 0x9
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:829
+			fill_a_string(" PSI\n\r\tSeparation Tank Temperature: ");
+ 152:	f240 0000 	movw	r0, #0	; 0x0
+ 156:	f2c0 0000 	movt	r0, #0	; 0x0
+ 15a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:830
+			fill_a_decimal(*(u16 *)address);
+ 15e:	8820      	ldrh	r0, [r4, #0]
+ 160:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:832
+
+			address += 2;
+ 164:	f105 040b 	add.w	r4, r5, #11	; 0xb
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:833
+			fill_a_string(" DegF\tThrottle Position: ");
+ 168:	f240 0000 	movw	r0, #0	; 0x0
+ 16c:	f2c0 0000 	movt	r0, #0	; 0x0
+ 170:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:834
+			fill_a_decimal(*(u16 *)address);
+ 174:	8820      	ldrh	r0, [r4, #0]
+ 176:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:836
+
+			address += 2;
+ 17a:	f105 040d 	add.w	r4, r5, #13	; 0xd
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:837
+			fill_a_string(" RPM\n\r\tMachine ID Code: ");
+ 17e:	f240 0000 	movw	r0, #0	; 0x0
+ 182:	f2c0 0000 	movt	r0, #0	; 0x0
+ 186:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:838
+			fill_a_decimal(*(u8 *)address);
+ 18a:	7820      	ldrb	r0, [r4, #0]
+ 18c:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:840
+
+			address++;
+ 190:	f105 040e 	add.w	r4, r5, #14	; 0xe
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:841
+			fill_a_string("\t\t\tAutoStart status: ");
+ 194:	f240 0000 	movw	r0, #0	; 0x0
+ 198:	f2c0 0000 	movt	r0, #0	; 0x0
+ 19c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:842
+			fill_a_status(*(u8 *)address);
+ 1a0:	7820      	ldrb	r0, [r4, #0]
+ 1a2:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:844
+
+			address++;
+ 1a6:	f105 040f 	add.w	r4, r5, #15	; 0xf
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:845
+			fill_a_string("\n\r\tOTC status: ");
+ 1aa:	f240 0000 	movw	r0, #0	; 0x0
+ 1ae:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1b2:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:846
+			fill_a_status(*(u8 *)address);
+ 1b6:	7820      	ldrb	r0, [r4, #0]
+ 1b8:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:848
+
+			address++;
+ 1bc:	f105 0410 	add.w	r4, r5, #16	; 0x10
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:849
+			fill_a_string("\t\t\tIQ status: ");
+ 1c0:	f240 0000 	movw	r0, #0	; 0x0
+ 1c4:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1c8:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:850
+			fill_a_status(*(u8 *)address);
+ 1cc:	7820      	ldrb	r0, [r4, #0]
+ 1ce:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:852
+
+			address++;
+ 1d2:	f105 0411 	add.w	r4, r5, #17	; 0x11
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:853
+			fill_a_string("\n\r\tEngine Fault Codes SPN/FMI: ");
+ 1d6:	f240 0000 	movw	r0, #0	; 0x0
+ 1da:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1de:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:854
+			fill_engine_code((u16 *)address);
+ 1e2:	4620      	mov	r0, r4
+ 1e4:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:856
+
+			address += 4;
+ 1e8:	f105 0615 	add.w	r6, r5, #21	; 0x15
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:857
+			fill_a_string(", ");
+ 1ec:	f240 0400 	movw	r4, #0	; 0x0
+ 1f0:	f2c0 0400 	movt	r4, #0	; 0x0
+ 1f4:	4620      	mov	r0, r4
+ 1f6:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:858
+			fill_engine_code((u16 *)address);
+ 1fa:	4630      	mov	r0, r6
+ 1fc:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:861
+
+			address += 4;
+			fill_a_string(", ");
+ 200:	4620      	mov	r0, r4
+ 202:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:862
+			fill_engine_code((u16 *)address);
+ 206:	f105 0019 	add.w	r0, r5, #25	; 0x19
+ 20a:	f7ff fffe 	bl	0 <fill_fault>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:865
+		}
+	}
+}
+ 20e:	bd70      	pop	{r4, r5, r6, pc}
+Disassembly of section .text.access_fault_log:
+
+00000000 <access_fault_log>:
+access_fault_log():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:882
+ *  most recent first.
+ * If transmit_fault_log is FALSE, we only send the fault code.
+ *---------------------------------------------------------------*/
+
+void access_fault_log(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:886
+	static u8 next_fault,
+			  fault_count;
+
+	if (fault_transmit_count)
+   2:	f240 0300 	movw	r3, #0	; 0x0
+   6:	f2c0 0300 	movt	r3, #0	; 0x0
+   a:	889b      	ldrh	r3, [r3, #4]
+   c:	2b00      	cmp	r3, #0
+   e:	d044      	beq.n	9a <access_fault_log+0x9a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:888
+	{
+		if ( (DMA1_Channel4->CCR & 1) == 0 )
+  10:	f240 0344 	movw	r3, #68	; 0x44
+  14:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  18:	681b      	ldr	r3, [r3, #0]
+  1a:	f013 0f01 	tst.w	r3, #1	; 0x1
+  1e:	d14a      	bne.n	98 <access_fault_log+0x98>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:893
+		{
+			// DMA is not enabled so the serial buffer is available
+
+			// Decrement to the bottom of the first page
+			if (next_fault)
+  20:	f240 0300 	movw	r3, #0	; 0x0
+  24:	f2c0 0300 	movt	r3, #0	; 0x0
+  28:	799a      	ldrb	r2, [r3, #6]
+  2a:	b13a      	cbz	r2, 3c <access_fault_log+0x3c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:894
+				next_fault--;
+  2c:	f240 0300 	movw	r3, #0	; 0x0
+  30:	f2c0 0300 	movt	r3, #0	; 0x0
+  34:	f102 32ff 	add.w	r2, r2, #4294967295	; 0xffffffff
+  38:	719a      	strb	r2, [r3, #6]
+  3a:	e006      	b.n	4a <access_fault_log+0x4a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:899
+			else
+			{
+				// .. and wrap to the top of the second page
+				// Faults are counted from 0 to NUMBER - 1
+				next_fault = (NUMBER_FAULTS_PER_PAGE * 2) - 1;
+  3c:	f240 0300 	movw	r3, #0	; 0x0
+  40:	f2c0 0300 	movt	r3, #0	; 0x0
+  44:	f04f 024f 	mov.w	r2, #79	; 0x4f
+  48:	719a      	strb	r2, [r3, #6]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:902
+			}
+
+			fault_count++;
+  4a:	f240 0400 	movw	r4, #0	; 0x0
+  4e:	f2c0 0400 	movt	r4, #0	; 0x0
+  52:	79e3      	ldrb	r3, [r4, #7]
+  54:	f103 0301 	add.w	r3, r3, #1	; 0x1
+  58:	71e3      	strb	r3, [r4, #7]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:903
+			fill_a_string("\n\n\r	DII-PP TITAN fault listing ");
+  5a:	f240 0000 	movw	r0, #0	; 0x0
+  5e:	f2c0 0000 	movt	r0, #0	; 0x0
+  62:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:904
+			fill_a_decimal(fault_count);
+  66:	79e0      	ldrb	r0, [r4, #7]
+  68:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:906
+
+			if (fault_count == 1)
+  6c:	79e3      	ldrb	r3, [r4, #7]
+  6e:	2b01      	cmp	r3, #1
+  70:	d105      	bne.n	7e <access_fault_log+0x7e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:907
+				fill_a_string(" - most recent");
+  72:	f240 0000 	movw	r0, #0	; 0x0
+  76:	f2c0 0000 	movt	r0, #0	; 0x0
+  7a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:909
+
+			fill_fault(next_fault);
+  7e:	f240 0400 	movw	r4, #0	; 0x0
+  82:	f2c0 0400 	movt	r4, #0	; 0x0
+  86:	79a0      	ldrb	r0, [r4, #6]
+  88:	f7ff fffe 	bl	0 <access_fault_log>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:911
+
+			send_sio_buffer();
+  8c:	f7ff fffe 	bl	0 <send_sio_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:913
+
+			fault_transmit_count--;
+  90:	88a3      	ldrh	r3, [r4, #4]
+  92:	f103 33ff 	add.w	r3, r3, #4294967295	; 0xffffffff
+  96:	80a3      	strh	r3, [r4, #4]
+  98:	e00d      	b.n	b6 <access_fault_log+0xb6>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:919
+		}
+	}
+	else
+	{
+		// Prepare to start the process over
+		next_fault = ram_novram.fault_log_index;
+  9a:	f240 0200 	movw	r2, #0	; 0x0
+  9e:	f2c0 0200 	movt	r2, #0	; 0x0
+  a2:	f240 0300 	movw	r3, #0	; 0x0
+  a6:	f2c0 0300 	movt	r3, #0	; 0x0
+  aa:	f893 3033 	ldrb.w	r3, [r3, #51]
+  ae:	7193      	strb	r3, [r2, #6]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:920
+		fault_count = 0;
+  b0:	f04f 0300 	mov.w	r3, #0	; 0x0
+  b4:	71d3      	strb	r3, [r2, #7]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:922
+	}
+}
+  b6:	bd10      	pop	{r4, pc}
+Disassembly of section .text.write_fault_log:
+
+00000000 <write_fault_log>:
+write_fault_log():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:638
+ * When the fault log is modified, remember to update fill_fault()
+ *  and set NUMBER_INTS_PER_FAULT.
+ *---------------------------------------------------------------*/
+
+void write_fault_log(void)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:643
+	u16 *address;
+	u16 uint_data;
+
+	// Get the address of the fault element to begin writing
+	address = fault_address(ram_novram.fault_log_index);
+   4:	f240 0500 	movw	r5, #0	; 0x0
+   8:	f2c0 0500 	movt	r5, #0	; 0x0
+   c:	f895 0033 	ldrb.w	r0, [r5, #51]
+  10:	f7ff fffe 	bl	0 <write_fault_log>
+  14:	4604      	mov	r4, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:645
+
+	wait_for_buffer();
+  16:	f7ff fffe 	bl	0 <wait_for_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:647
+
+	fill_a_string("\n\rWriting Fault: 0x");
+  1a:	f240 0000 	movw	r0, #0	; 0x0
+  1e:	f2c0 0000 	movt	r0, #0	; 0x0
+  22:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:648
+	fill_a_long( (u32)address );
+  26:	4620      	mov	r0, r4
+  28:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:649
+	send_sio_buffer();
+  2c:	f7ff fffe 	bl	0 <send_sio_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:651
+
+	write_flash_int(address++, ram_novram.power_cycles);			// 1
+  30:	f104 0602 	add.w	r6, r4, #2	; 0x2
+  34:	4620      	mov	r0, r4
+  36:	8ba9      	ldrh	r1, [r5, #28]
+  38:	f7ff fffe 	bl	0 <write_flash_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:656
+
+	// The character destined for the lowest address is in the lower half
+	uint_data = 0x00;
+
+	if (digital_input[DIN_POWER_SIGNAL] == SW_CLOSED)
+  3c:	f240 0300 	movw	r3, #0	; 0x0
+  40:	f2c0 0300 	movt	r3, #0	; 0x0
+  44:	789b      	ldrb	r3, [r3, #2]
+  46:	2b03      	cmp	r3, #3
+  48:	bf0c      	ite	eq
+  4a:	f44f 7180 	moveq.w	r1, #256	; 0x100
+  4e:	2100      	movne	r1, #0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:658
+		uint_data |= 0x0100;
+	if (digital_input[DIN_MANUAL_REGEN] == SW_CLOSED)
+  50:	f240 0300 	movw	r3, #0	; 0x0
+  54:	f2c0 0300 	movt	r3, #0	; 0x0
+  58:	799b      	ldrb	r3, [r3, #6]
+  5a:	2b03      	cmp	r3, #3
+  5c:	d105      	bne.n	6a <write_fault_log+0x6a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:659
+		uint_data |= 0x0800;
+  5e:	2900      	cmp	r1, #0
+  60:	bf14      	ite	ne
+  62:	f44f 6110 	movne.w	r1, #2304	; 0x900
+  66:	f44f 6100 	moveq.w	r1, #2048	; 0x800
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:660
+	if (digital_input[DIN_FILTER] == SW_CLOSED)
+  6a:	f240 0300 	movw	r3, #0	; 0x0
+  6e:	f2c0 0300 	movt	r3, #0	; 0x0
+  72:	781b      	ldrb	r3, [r3, #0]
+  74:	2b03      	cmp	r3, #3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:661
+		uint_data |= 0x1000;
+  76:	bf08      	it	eq
+  78:	f441 5180 	orreq.w	r1, r1, #4096	; 0x1000
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:662
+	if (digital_input[DIN_REGEN_INHIBIT] == SW_CLOSED)
+  7c:	f240 0300 	movw	r3, #0	; 0x0
+  80:	f2c0 0300 	movt	r3, #0	; 0x0
+  84:	79db      	ldrb	r3, [r3, #7]
+  86:	2b03      	cmp	r3, #3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:663
+		uint_data |= 0x2000;
+  88:	bf08      	it	eq
+  8a:	f441 5100 	orreq.w	r1, r1, #8192	; 0x2000
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:664
+	if (digital_input[DIN_UNIT_START] == SW_CLOSED)
+  8e:	f240 0300 	movw	r3, #0	; 0x0
+  92:	f2c0 0300 	movt	r3, #0	; 0x0
+  96:	78db      	ldrb	r3, [r3, #3]
+  98:	2b03      	cmp	r3, #3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:665
+		uint_data |= 0x8000;
+  9a:	bf08      	it	eq
+  9c:	f441 4100 	orreq.w	r1, r1, #32768	; 0x8000
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:667
+
+	write_flash_int(address++, uint_data);							// 2
+  a0:	f106 0502 	add.w	r5, r6, #2	; 0x2
+  a4:	4630      	mov	r0, r6
+  a6:	f7ff fffe 	bl	0 <write_flash_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:676
+//	write_flash_int(address++, output pressure / 10);				// 5
+//	write_flash_int(address++, discharge temperature >> 4);			// 6
+//	write_flash_int(address++, sep tank temperature >> 4);			// 7
+//	write_flash_int(address++, ThrottleToRPM());					// 8
+
+	uint_data = ram_novram.machine_code;
+  aa:	f240 0800 	movw	r8, #0	; 0x0
+  ae:	f2c0 0800 	movt	r8, #0	; 0x0
+  b2:	f898 6032 	ldrb.w	r6, [r8, #50]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:678
+
+	write_flash_int(address++, uint_data);							// 9
+  b6:	f105 0402 	add.w	r4, r5, #2	; 0x2
+  ba:	4628      	mov	r0, r5
+  bc:	4631      	mov	r1, r6
+  be:	f7ff fffe 	bl	0 <write_flash_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:680
+
+	write_flash_int(address++, 0xFF);								// 10
+  c2:	f104 0502 	add.w	r5, r4, #2	; 0x2
+  c6:	4620      	mov	r0, r4
+  c8:	f04f 01ff 	mov.w	r1, #255	; 0xff
+  cc:	f7ff fffe 	bl	0 <write_flash_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:691
+	// SPN can be larger than an int
+	// Put the upper bytes of the spn in the lower half of the second
+	//  halfword and put the fmi in the upper half
+//	write_flash_int(address++, engActiveList[0].spn);					// 20
+//	uint_data = (engActiveList[0].spn >> 16) | ((u16)engActiveList[0].fmi << 8);
+	write_flash_int(address++, uint_data);								// 21
+  d0:	f105 0402 	add.w	r4, r5, #2	; 0x2
+  d4:	4628      	mov	r0, r5
+  d6:	4631      	mov	r1, r6
+  d8:	f7ff fffe 	bl	0 <write_flash_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:695
+
+//	write_flash_int(address++, engActiveList[1].spn);					// 22
+//	uint_data = (engActiveList[1].spn >> 16) | ((u16)engActiveList[1].fmi << 8);
+	write_flash_int(address++, uint_data);								// 23
+  dc:	4620      	mov	r0, r4
+  de:	4631      	mov	r1, r6
+  e0:	f7ff fffe 	bl	0 <write_flash_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:699
+
+//	write_flash_int(address++, engActiveList[2].spn);					// 24
+//	uint_data = (engActiveList[2].spn >> 16) | ((u16)engActiveList[2].fmi << 8);
+	write_flash_int(address, uint_data);								// 25
+  e4:	f104 0002 	add.w	r0, r4, #2	; 0x2
+  e8:	4631      	mov	r1, r6
+  ea:	f7ff fffe 	bl	0 <write_flash_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:706
+	/*---------------------------------------------------
+	 * Increment the index for the next time it is needed
+	 *--------------------------------------------------*/
+
+	// If we have just written the last one to the second page...
+	if ( ram_novram.fault_log_index >= ((2 * NUMBER_FAULTS_PER_PAGE) - 1) )
+  ee:	f898 3033 	ldrb.w	r3, [r8, #51]
+  f2:	2b4e      	cmp	r3, #78
+  f4:	d90e      	bls.n	114 <write_fault_log+0x114>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:711
+	{
+		// The second page has just become full
+
+		// Erase the first page
+		erase_flash_page(FAULT_LOG_ADDRESS);
+  f6:	f24e 0000 	movw	r0, #57344	; 0xe000
+  fa:	f6c0 0001 	movt	r0, #2049	; 0x801
+  fe:	f7ff fffe 	bl	0 <erase_flash_page>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:714
+		
+		// .. and start the index over
+		ram_novram.fault_log_index = 0;
+ 102:	f240 0300 	movw	r3, #0	; 0x0
+ 106:	f2c0 0300 	movt	r3, #0	; 0x0
+ 10a:	f04f 0200 	mov.w	r2, #0	; 0x0
+ 10e:	f883 2033 	strb.w	r2, [r3, #51]
+ 112:	e011      	b.n	138 <write_fault_log+0x138>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:719
+	}
+	else
+	{
+		// Index spans from zero to number - 1
+		if ( ram_novram.fault_log_index == (NUMBER_FAULTS_PER_PAGE - 1) )
+ 114:	2b27      	cmp	r3, #39
+ 116:	d105      	bne.n	124 <write_fault_log+0x124>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:724
+		{
+			// The first page has just become full
+
+			// Erase the second page (even if not needed)
+			erase_flash_page(FAULT_LOG_ADDRESS + FLASH_PAGE_SIZE);
+ 118:	f64e 0000 	movw	r0, #59392	; 0xe800
+ 11c:	f6c0 0001 	movt	r0, #2049	; 0x801
+ 120:	f7ff fffe 	bl	0 <erase_flash_page>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:727
+		}
+
+		ram_novram.fault_log_index++;
+ 124:	f240 0200 	movw	r2, #0	; 0x0
+ 128:	f2c0 0200 	movt	r2, #0	; 0x0
+ 12c:	f892 3033 	ldrb.w	r3, [r2, #51]
+ 130:	f103 0301 	add.w	r3, r3, #1	; 0x1
+ 134:	f882 3033 	strb.w	r3, [r2, #51]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:729
+	}
+}
+ 138:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+Disassembly of section .text.write_identity:
+
+00000000 <write_identity>:
+write_identity():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:375
+ *  the machine description, controller description, or the engine 
+ *  serial number.
+ *-------------------------------------------------------------------*/
+
+void write_identity(u8 id_type, s8 *id_string)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4607      	mov	r7, r0
+   6:	460e      	mov	r6, r1
+   8:	f64f 0400 	movw	r4, #63488	; 0xf800
+   c:	f6c0 0401 	movt	r4, #2049	; 0x801
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:385
+	// Search the Machine Identity FLASH page for the next available slot
+	for ( flash_address = (u16 *)MACHINE_IDENTITY_ADDRESS;
+				flash_address < (u16 *)(MACHINE_IDENTITY_ADDRESS + FLASH_PAGE_SIZE);
+				flash_address += IDENTITY_LENGTH )
+	{
+		if (*flash_address == 0xFFFF)
+  10:	f64f 71ff 	movw	r1, #65535	; 0xffff
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:382
+	u16 *flash_address;
+	u16 ram_data;
+
+	// Search the Machine Identity FLASH page for the next available slot
+	for ( flash_address = (u16 *)MACHINE_IDENTITY_ADDRESS;
+				flash_address < (u16 *)(MACHINE_IDENTITY_ADDRESS + FLASH_PAGE_SIZE);
+  14:	f240 0300 	movw	r3, #0	; 0x0
+  18:	461a      	mov	r2, r3
+  1a:	f6c0 0202 	movt	r2, #2050	; 0x802
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:385
+				flash_address += IDENTITY_LENGTH )
+	{
+		if (*flash_address == 0xFFFF)
+  1e:	8823      	ldrh	r3, [r4, #0]
+  20:	428b      	cmp	r3, r1
+  22:	d12b      	bne.n	7c <write_identity+0x7c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:390
+		{
+			// There is room for this update and flash_address is pointing to 
+			//  the lowest available slot
+
+			wait_for_buffer();
+  24:	f7ff fffe 	bl	0 <wait_for_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:392
+
+			fill_a_string("\n\rWriting Identity: 0x");
+  28:	f240 0000 	movw	r0, #0	; 0x0
+  2c:	f2c0 0000 	movt	r0, #0	; 0x0
+  30:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:393
+			fill_a_long( (u32)flash_address );
+  34:	4620      	mov	r0, r4
+  36:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:394
+			send_sio_buffer();
+  3a:	f7ff fffe 	bl	0 <send_sio_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:400
+
+			// Assemble the identity type and the first character of the string 
+			//  into the first halfword
+			// The character destined for the lowest address is in the lower half
+			ram_data = id_type;
+			ram_data |= (*id_string << 8);
+  3e:	7831      	ldrb	r1, [r6, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:401
+			write_flash_int(flash_address++, ram_data);
+  40:	f104 0502 	add.w	r5, r4, #2	; 0x2
+  44:	4620      	mov	r0, r4
+  46:	ea47 2101 	orr.w	r1, r7, r1, lsl #8
+  4a:	f7ff fffe 	bl	0 <write_flash_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:408
+			// Get the number of halfwords to move (IDENTITY_LENGTH is number of characters)
+			// We have already moved one halfword (type is included in length)
+			count = (IDENTITY_LENGTH / 2) - 1;
+
+			// Copy the remaining characters to FLASH memory
+			for ( ; count > 0; count--)
+  4e:	f104 041e 	add.w	r4, r4, #30	; 0x1e
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:411
+			{
+				id_string++;
+				ram_data = *id_string;
+  52:	f816 2f01 	ldrb.w	r2, [r6, #1]!
+  56:	b253      	sxtb	r3, r2
+  58:	b299      	uxth	r1, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:413
+
+				if (*id_string != NULL)
+  5a:	b122      	cbz	r2, 66 <write_identity+0x66>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:416
+				{
+					id_string++;
+					ram_data |= (*id_string << 8);
+  5c:	f916 3f01 	ldrsb.w	r3, [r6, #1]!
+  60:	ea41 2303 	orr.w	r3, r1, r3, lsl #8
+  64:	b299      	uxth	r1, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:419
+				}
+
+				write_flash_int(flash_address++, ram_data);
+  66:	4628      	mov	r0, r5
+  68:	f7ff fffe 	bl	0 <write_flash_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:421
+
+				if (*id_string == NULL)
+  6c:	f996 3000 	ldrsb.w	r3, [r6]
+  70:	b143      	cbz	r3, 84 <write_flash_int+0x84>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:408
+			// Get the number of halfwords to move (IDENTITY_LENGTH is number of characters)
+			// We have already moved one halfword (type is included in length)
+			count = (IDENTITY_LENGTH / 2) - 1;
+
+			// Copy the remaining characters to FLASH memory
+			for ( ; count > 0; count--)
+  72:	42a5      	cmp	r5, r4
+  74:	d006      	beq.n	84 <write_flash_int+0x84>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:419
+				{
+					id_string++;
+					ram_data |= (*id_string << 8);
+				}
+
+				write_flash_int(flash_address++, ram_data);
+  76:	f105 0502 	add.w	r5, r5, #2	; 0x2
+  7a:	e7ea      	b.n	52 <write_flash_int+0x52>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:383
+	u16 ram_data;
+
+	// Search the Machine Identity FLASH page for the next available slot
+	for ( flash_address = (u16 *)MACHINE_IDENTITY_ADDRESS;
+				flash_address < (u16 *)(MACHINE_IDENTITY_ADDRESS + FLASH_PAGE_SIZE);
+				flash_address += IDENTITY_LENGTH )
+  7c:	f104 0440 	add.w	r4, r4, #64	; 0x40
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:382
+	u16 *flash_address;
+	u16 ram_data;
+
+	// Search the Machine Identity FLASH page for the next available slot
+	for ( flash_address = (u16 *)MACHINE_IDENTITY_ADDRESS;
+				flash_address < (u16 *)(MACHINE_IDENTITY_ADDRESS + FLASH_PAGE_SIZE);
+  80:	4294      	cmp	r4, r2
+  82:	d1cc      	bne.n	1e <write_flash_int+0x1e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:428
+			}
+
+			break;
+		}
+	}
+}
+  84:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+Disassembly of section .text.write_novram:
+
+00000000 <write_novram>:
+write_novram():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:181
+	}
+}
+
+
+void write_novram(void)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:187
+	u8 count;
+	u16 *flash_address;
+	u16 *ram_address;
+
+	// Get the begin address of the next available Health data slot
+	flash_address = next_novram_address();
+   2:	f7ff fffe 	bl	0 <write_novram>
+   6:	4606      	mov	r6, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:190
+
+	// Check to see if there is room
+	if ( ((u32)flash_address + (sizeof(novram_def) / 2))
+   8:	f100 021e 	add.w	r2, r0, #30	; 0x1e
+   c:	f24f 73ff 	movw	r3, #63487	; 0xf7ff
+  10:	f6c0 0301 	movt	r3, #2049	; 0x801
+  14:	429a      	cmp	r2, r3
+  16:	d907      	bls.n	28 <write_novram+0x28>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:196
+								>= (FLASH_NOVRAM_ADDRESS + FLASH_PAGE_SIZE) )
+	{
+		// There is not room for this update
+
+		// Erase the entire page 
+		erase_flash_page(FLASH_NOVRAM_ADDRESS);
+  18:	f24f 0400 	movw	r4, #61440	; 0xf000
+  1c:	f6c0 0401 	movt	r4, #2049	; 0x801
+  20:	4620      	mov	r0, r4
+  22:	f7ff fffe 	bl	0 <erase_flash_page>
+  26:	4626      	mov	r6, r4
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:202
+
+		// ..and write it in the first slot
+		flash_address = (u16 *)FLASH_NOVRAM_ADDRESS;
+	}
+
+	wait_for_buffer();
+  28:	f7ff fffe 	bl	0 <wait_for_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:204
+
+	fill_a_string("\n\rWriting NOVRAM 0x");
+  2c:	f240 0000 	movw	r0, #0	; 0x0
+  30:	f2c0 0000 	movt	r0, #0	; 0x0
+  34:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:205
+	fill_a_long((u32)flash_address);
+  38:	4630      	mov	r0, r6
+  3a:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:206
+	send_sio_buffer();
+  3e:	f7ff fffe 	bl	0 <send_sio_buffer>
+  42:	f04f 0400 	mov.w	r4, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:214
+	ram_address = (u16 *)&ram_novram.on_time;
+
+	// Copy the RAM structure to FLASH memory
+	for (count = 0; count < sizeof(novram_def) / 2; count++)
+	{
+		write_flash_int(flash_address, *ram_address);
+  46:	f240 0500 	movw	r5, #0	; 0x0
+  4a:	f2c0 0500 	movt	r5, #0	; 0x0
+  4e:	eb06 0004 	add.w	r0, r6, r4
+  52:	5b29      	ldrh	r1, [r5, r4]
+  54:	f7ff fffe 	bl	0 <write_flash_int>
+  58:	f104 0402 	add.w	r4, r4, #2	; 0x2
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:212
+
+	// Get the begin address of the RAM structure to write
+	ram_address = (u16 *)&ram_novram.on_time;
+
+	// Copy the RAM structure to FLASH memory
+	for (count = 0; count < sizeof(novram_def) / 2; count++)
+  5c:	2c3c      	cmp	r4, #60
+  5e:	d1f6      	bne.n	4e <write_flash_int+0x4e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:218
+	{
+		write_flash_int(flash_address, *ram_address);
+		flash_address++;
+		ram_address++;
+	}
+}
+  60:	bd70      	pop	{r4, r5, r6, pc}
+  62:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.update_machine_code:
+
+00000000 <update_machine_code>:
+update_machine_code():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:552
+ * This function does not return.  It waits for the watchdog 
+ *  timer to cause a reset.
+ *---------------------------------------------------------*/
+
+void update_machine_code(u8 new_type)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:554
+	// Save the machine type
+	ram_novram.machine_code = new_type;
+   2:	f240 0300 	movw	r3, #0	; 0x0
+   6:	f2c0 0300 	movt	r3, #0	; 0x0
+   a:	f883 0032 	strb.w	r0, [r3, #50]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:556
+
+	write_novram();
+   e:	f7ff fffe 	bl	0 <update_machine_code>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:559
+
+	// Initiate a reset to setup for the new machine
+	software_reset();
+  12:	f7ff fffe 	bl	0 <software_reset>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:560
+}
+  16:	bd10      	pop	{r4, pc}
+Disassembly of section .text.access_novram_log:
+
+00000000 <access_novram_log>:
+access_novram_log():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:238
+ * The NOVRAM page is erased and started over when it becomes full 
+ *  so the oldest image is in the lowest address.
+ *----------------------------------------------------------------*/
+
+void access_novram_log(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:241
+	novram_def *flash_novram;
+
+	if (health_transmit_count)
+   2:	f240 0300 	movw	r3, #0	; 0x0
+   6:	f2c0 0300 	movt	r3, #0	; 0x0
+   a:	891b      	ldrh	r3, [r3, #8]
+   c:	2b00      	cmp	r3, #0
+   e:	f000 810e 	beq.w	22e <access_novram_log+0x22e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:243
+	{
+		if ( (DMA1_Channel4->CCR & 1) == 0 )
+  12:	f240 0344 	movw	r3, #68	; 0x44
+  16:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  1a:	681b      	ldr	r3, [r3, #0]
+  1c:	f013 0f01 	tst.w	r3, #1	; 0x1
+  20:	f040 8105 	bne.w	22e <access_novram_log+0x22e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:247
+		{
+			// DMA is not enabled so the serial buffer is available
+
+			fill_a_string("\n\n\r	DII-PP TITAN machine health listing ");
+  24:	f240 0000 	movw	r0, #0	; 0x0
+  28:	f2c0 0000 	movt	r0, #0	; 0x0
+  2c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:248
+			fill_a_number(health_transmit_count, 0);
+  30:	f240 0400 	movw	r4, #0	; 0x0
+  34:	f2c0 0400 	movt	r4, #0	; 0x0
+  38:	8920      	ldrh	r0, [r4, #8]
+  3a:	f04f 0100 	mov.w	r1, #0	; 0x0
+  3e:	f7ff fffe 	bl	0 <fill_a_number>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:250
+
+			health_transmit_count--;
+  42:	8923      	ldrh	r3, [r4, #8]
+  44:	f103 33ff 	add.w	r3, r3, #4294967295	; 0xffffffff
+  48:	b29b      	uxth	r3, r3
+  4a:	8123      	strh	r3, [r4, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:252
+
+			flash_novram = (novram_def *)( (health_transmit_count
+  4c:	ea4f 0283 	mov.w	r2, r3, lsl #2
+  50:	ea4f 1383 	mov.w	r3, r3, lsl #6
+  54:	ebc2 0303 	rsb	r3, r2, r3
+  58:	f24f 0200 	movw	r2, #61440	; 0xf000
+  5c:	f6c0 0201 	movt	r2, #2049	; 0x801
+  60:	eb03 0402 	add.w	r4, r3, r2
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:256
+											* sizeof(novram_def))
+											+ FLASH_NOVRAM_ADDRESS );
+
+			fill_a_string("\n\rTime powered: ");
+  64:	f240 0000 	movw	r0, #0	; 0x0
+  68:	f2c0 0000 	movt	r0, #0	; 0x0
+  6c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:257
+			fill_a_hours(flash_novram->on_time);
+  70:	6820      	ldr	r0, [r4, #0]
+  72:	f7ff fffe 	bl	0 <fill_a_hours>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:259
+
+			fill_a_string("\n\rRun time: ");
+  76:	f240 0000 	movw	r0, #0	; 0x0
+  7a:	f2c0 0000 	movt	r0, #0	; 0x0
+  7e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:260
+			fill_a_hours(flash_novram->run_time);
+  82:	6860      	ldr	r0, [r4, #4]
+  84:	f7ff fffe 	bl	0 <fill_a_hours>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:262
+
+			fill_a_string("\n\rPower on cycles: ");
+  88:	f240 0000 	movw	r0, #0	; 0x0
+  8c:	f2c0 0000 	movt	r0, #0	; 0x0
+  90:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:263
+			fill_a_decimal(flash_novram->power_cycles);
+  94:	8ba0      	ldrh	r0, [r4, #28]
+  96:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:265
+
+			fill_a_string("\n\rNumber of crank attempts: ");
+  9a:	f240 0000 	movw	r0, #0	; 0x0
+  9e:	f2c0 0000 	movt	r0, #0	; 0x0
+  a2:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:266
+			fill_a_decimal(flash_novram->number_cranks);
+  a6:	8c20      	ldrh	r0, [r4, #32]
+  a8:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:268
+
+			fill_a_string("\n\rNumber of Shutdowns: ");
+  ac:	f240 0000 	movw	r0, #0	; 0x0
+  b0:	f2c0 0000 	movt	r0, #0	; 0x0
+  b4:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:269
+			fill_a_decimal(flash_novram->error_stops);
+  b8:	8be0      	ldrh	r0, [r4, #30]
+  ba:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:271
+
+			fill_a_string("\n\rNumber of starts: ");
+  be:	f240 0000 	movw	r0, #0	; 0x0
+  c2:	f2c0 0000 	movt	r0, #0	; 0x0
+  c6:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:272
+			fill_a_decimal(flash_novram->number_starts);
+  ca:	8c60      	ldrh	r0, [r4, #34]
+  cc:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:274
+
+			fill_a_string("\n\rTime running cold: ");
+  d0:	f240 0000 	movw	r0, #0	; 0x0
+  d4:	f2c0 0000 	movt	r0, #0	; 0x0
+  d8:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:275
+			fill_a_hours(flash_novram->low_temp_time);
+  dc:	69a0      	ldr	r0, [r4, #24]
+  de:	f7ff fffe 	bl	0 <fill_a_hours>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:277
+
+			fill_a_string("\n\rTime loaded: ");
+  e2:	f240 0000 	movw	r0, #0	; 0x0
+  e6:	f2c0 0000 	movt	r0, #0	; 0x0
+  ea:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:278
+			fill_a_hours(flash_novram->loaded_time);
+  ee:	68a0      	ldr	r0, [r4, #8]
+  f0:	f7ff fffe 	bl	0 <fill_a_hours>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:280
+
+			fill_a_string("\n\rTime disch above 220F: ");
+  f4:	f240 0000 	movw	r0, #0	; 0x0
+  f8:	f2c0 0000 	movt	r0, #0	; 0x0
+  fc:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:281
+			fill_a_minutes(flash_novram->high_temp_time);
+ 100:	6920      	ldr	r0, [r4, #16]
+ 102:	f7ff fffe 	bl	0 <fill_a_minutes>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:283
+
+			fill_a_string("\n\rT 120F+ above ambient: ");
+ 106:	f240 0000 	movw	r0, #0	; 0x0
+ 10a:	f2c0 0000 	movt	r0, #0	; 0x0
+ 10e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:284
+			fill_a_hours(flash_novram->high_delta_time);
+ 112:	6960      	ldr	r0, [r4, #20]
+ 114:	f7ff fffe 	bl	0 <fill_a_hours>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:286
+
+			fill_a_string("\n\rTime at full load: ");
+ 118:	f240 0000 	movw	r0, #0	; 0x0
+ 11c:	f2c0 0000 	movt	r0, #0	; 0x0
+ 120:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:287
+			fill_a_hours(flash_novram->full_load_time);
+ 124:	68e0      	ldr	r0, [r4, #12]
+ 126:	f7ff fffe 	bl	0 <fill_a_hours>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:289
+
+			fill_a_string("\n\rFull load transitions: ");
+ 12a:	f240 0000 	movw	r0, #0	; 0x0
+ 12e:	f2c0 0000 	movt	r0, #0	; 0x0
+ 132:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:290
+			fill_a_decimal(flash_novram->fl_transitions);
+ 136:	8ca0      	ldrh	r0, [r4, #36]
+ 138:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:292
+
+			fill_a_string("\n\rMinimum battery voltage: ");
+ 13c:	f240 0000 	movw	r0, #0	; 0x0
+ 140:	f2c0 0000 	movt	r0, #0	; 0x0
+ 144:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:293
+			fill_a_number(flash_novram->min_battery, 1);
+ 148:	8ce0      	ldrh	r0, [r4, #38]
+ 14a:	f04f 0101 	mov.w	r1, #1	; 0x1
+ 14e:	f7ff fffe 	bl	0 <fill_a_number>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:295
+
+			fill_a_string(" V\n\rAutoStart load temperature: ");
+ 152:	f240 0000 	movw	r0, #0	; 0x0
+ 156:	f2c0 0000 	movt	r0, #0	; 0x0
+ 15a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:296
+			fill_a_decimal(flash_novram->load_threshold >> 4);
+ 15e:	8d20      	ldrh	r0, [r4, #40]
+ 160:	ea4f 1010 	mov.w	r0, r0, lsr #4
+ 164:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:298
+
+			fill_a_string(" degF\n\rMinimum board temperature: ");
+ 168:	f240 0000 	movw	r0, #0	; 0x0
+ 16c:	f2c0 0000 	movt	r0, #0	; 0x0
+ 170:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:299
+			fill_a_decimal(flash_novram->min_temperature >> 4);
+ 174:	8d60      	ldrh	r0, [r4, #42]
+ 176:	ea4f 1010 	mov.w	r0, r0, lsr #4
+ 17a:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:301
+
+			fill_a_string(" degF\n\rMaximum board temperature: ");
+ 17e:	f240 0000 	movw	r0, #0	; 0x0
+ 182:	f2c0 0000 	movt	r0, #0	; 0x0
+ 186:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:302
+			fill_a_decimal(flash_novram->max_temperature >> 4);
+ 18a:	8da0      	ldrh	r0, [r4, #44]
+ 18c:	ea4f 1010 	mov.w	r0, r0, lsr #4
+ 190:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:304
+
+			fill_a_string("\n\rMachine ID code: ");
+ 194:	f240 0000 	movw	r0, #0	; 0x0
+ 198:	f2c0 0000 	movt	r0, #0	; 0x0
+ 19c:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:305
+			fill_a_decimal(flash_novram->machine_code);
+ 1a0:	f894 0032 	ldrb.w	r0, [r4, #50]
+ 1a4:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:307
+
+			fill_a_string("\n\rAmbient transducer ");
+ 1a8:	f240 0000 	movw	r0, #0	; 0x0
+ 1ac:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1b0:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:308
+			if (flash_novram->ambient_installed == FALSE)
+ 1b4:	f894 3034 	ldrb.w	r3, [r4, #52]
+ 1b8:	b92b      	cbnz	r3, 4b6 <.LC55+0x6>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:309
+				fill_a_string("not ");
+ 1ba:	f240 0000 	movw	r0, #0	; 0x0
+ 1be:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1c2:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:311
+
+			fill_a_string("installed\n\rAutoStart module ");
+ 1c6:	f240 0000 	movw	r0, #0	; 0x0
+ 1ca:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1ce:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:312
+			if (flash_novram->autostart_installed == FALSE)
+ 1d2:	f894 3035 	ldrb.w	r3, [r4, #53]
+ 1d6:	b92b      	cbnz	r3, 4b6 <.LC55+0x6>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:313
+				fill_a_string("not ");
+ 1d8:	f240 0000 	movw	r0, #0	; 0x0
+ 1dc:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1e0:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:315
+
+			fill_a_string("installed\n\rIQ system ");
+ 1e4:	f240 0000 	movw	r0, #0	; 0x0
+ 1e8:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1ec:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:316
+			if (flash_novram->iq_installed == FALSE)
+ 1f0:	f894 3036 	ldrb.w	r3, [r4, #54]
+ 1f4:	b92b      	cbnz	r3, 4b6 <.LC55+0x6>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:317
+				fill_a_string("not ");
+ 1f6:	f240 0000 	movw	r0, #0	; 0x0
+ 1fa:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1fe:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:319
+
+			fill_a_string("installed\n\rFLASH write errors: ");
+ 202:	f240 0000 	movw	r0, #0	; 0x0
+ 206:	f2c0 0000 	movt	r0, #0	; 0x0
+ 20a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:320
+			fill_a_decimal(flash_novram->error_count);
+ 20e:	f894 0038 	ldrb.w	r0, [r4, #56]
+ 212:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:322
+
+			fill_a_string("\n\rFLASH timeout errors: ");
+ 216:	f240 0000 	movw	r0, #0	; 0x0
+ 21a:	f2c0 0000 	movt	r0, #0	; 0x0
+ 21e:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:323
+			fill_a_decimal(flash_novram->timeout_count);
+ 222:	f894 0039 	ldrb.w	r0, [r4, #57]
+ 226:	f7ff fffe 	bl	0 <fill_a_decimal>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:325
+
+			send_sio_buffer();
+ 22a:	f7ff fffe 	bl	0 <send_sio_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:328
+		}
+	}
+}
+ 22e:	bd10      	pop	{r4, pc}
+Disassembly of section .text.initialize_novram:
+
+00000000 <initialize_novram>:
+initialize_novram():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:77
+// Define RAM space for the non-volatile parameters
+novram_def ram_novram;
+
+
+void initialize_novram(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:80
+	// The E3PROM has not been initialized
+
+	send_a_string("\n\rInitializing NOVRAM");
+   2:	f240 0000 	movw	r0, #0	; 0x0
+   6:	f2c0 0000 	movt	r0, #0	; 0x0
+   a:	f7ff fffe 	bl	0 <send_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:81
+	initialize_health();
+   e:	f7ff fffe 	bl	0 <initialize_novram>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:83
+
+	ram_novram.error_count = 0;
+  12:	f240 0300 	movw	r3, #0	; 0x0
+  16:	f2c0 0300 	movt	r3, #0	; 0x0
+  1a:	f04f 0100 	mov.w	r1, #0	; 0x0
+  1e:	f883 1038 	strb.w	r1, [r3, #56]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:85
+
+	ram_novram.autostart_installed = FALSE;
+  22:	f883 1035 	strb.w	r1, [r3, #53]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:86
+	ram_novram.iq_installed = FALSE;
+  26:	f883 1036 	strb.w	r1, [r3, #54]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:87
+	ram_novram.ambient_installed = TRUE;
+  2a:	f04f 0201 	mov.w	r2, #1	; 0x1
+  2e:	f883 2034 	strb.w	r2, [r3, #52]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:89
+
+	ram_novram.load_threshold = (50 * 16);			// 50 DegF
+  32:	f44f 7248 	mov.w	r2, #800	; 0x320
+  36:	851a      	strh	r2, [r3, #40]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:91
+
+	ram_novram.min_ess_temp = 0xF000;
+  38:	f24f 0200 	movw	r2, #61440	; 0xf000
+  3c:	85da      	strh	r2, [r3, #46]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:92
+	ram_novram.max_ess_temp = 0;
+  3e:	8619      	strh	r1, [r3, #48]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:93
+}
+  40:	bd10      	pop	{r4, pc}
+  42:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.read_novram:
+
+00000000 <read_novram>:
+read_novram():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:145
+ * If the Health Parameters are not initialized (never written)
+ *  initialize the RAM parameters.
+ *-------------------------------------------------------------*/
+
+void read_novram(void)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:152
+
+	u16 *flash_address;
+	u16 *ram_address;
+
+	// Get the begin address of the last written Health data
+	flash_address = next_novram_address() - (sizeof(novram_def) / 2);
+   2:	f7ff fffe 	bl	0 <read_novram>
+   6:	4604      	mov	r4, r0
+   8:	f1a0 053c 	sub.w	r5, r0, #60	; 0x3c
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:154
+
+	if (flash_address < (u16 *)FLASH_NOVRAM_ADDRESS)
+   c:	f64e 73ff 	movw	r3, #61439	; 0xefff
+  10:	f6c0 0301 	movt	r3, #2049	; 0x801
+  14:	429d      	cmp	r5, r3
+  16:	d802      	bhi.n	1e <read_novram+0x1e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:157
+	{
+		// There are no health parameters stored in FLASH
+		initialize_novram();
+  18:	f7ff fffe 	bl	0 <read_novram>
+  1c:	e01b      	b.n	3a <wait_for_buffer+0x3a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:161
+	}
+	else
+	{
+		wait_for_buffer();
+  1e:	f7ff fffe 	bl	0 <wait_for_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:163
+
+		fill_a_string("\n\rReading NOVRAM: 0x");
+  22:	f240 0000 	movw	r0, #0	; 0x0
+  26:	f2c0 0000 	movt	r0, #0	; 0x0
+  2a:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:164
+		fill_a_long((u32)flash_address);
+  2e:	4628      	mov	r0, r5
+  30:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:165
+		send_sio_buffer();
+  34:	f7ff fffe 	bl	0 <send_sio_buffer>
+  38:	f04f 0200 	mov.w	r2, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:172
+		// Get the begin address of the RAM structure to write
+		ram_address = (u16 *)&ram_novram;
+
+		for (count = 0; count < sizeof(novram_def) / 2; count++)
+		{
+			*ram_address = *flash_address;
+  3c:	f240 0100 	movw	r1, #0	; 0x0
+  40:	f2c0 0100 	movt	r1, #0	; 0x0
+  44:	eb04 0302 	add.w	r3, r4, r2
+  48:	f833 3c3c 	ldrh.w	r3, [r3, #-60]
+  4c:	528b      	strh	r3, [r1, r2]
+  4e:	f102 0202 	add.w	r2, r2, #2	; 0x2
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:170
+		send_sio_buffer();
+
+		// Get the begin address of the RAM structure to write
+		ram_address = (u16 *)&ram_novram;
+
+		for (count = 0; count < sizeof(novram_def) / 2; count++)
+  52:	2a3c      	cmp	r2, #60
+  54:	d1f6      	bne.n	80 <.LC9+0xc>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/E3prom.c:177
+			*ram_address = *flash_address;
+			ram_address++;
+			flash_address++;
+		}
+	}
+}
+  56:	bd70      	pop	{r4, r5, r6, pc}

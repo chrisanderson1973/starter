@@ -1,0 +1,4 @@
+
+<Project Header="Project 'cortexst'" Path=".\cortexst.rprj" Project="Yes" OutputFile="" sate="96" ActiveApp="cortexst" >
+	<ApplicationBuild Header="cortexst" Extern=".\cortexst.rapp" Path=".\cortexst.rapp" OutputFile=".\obj\cortexst.elf" sate="96" />
+</Project>

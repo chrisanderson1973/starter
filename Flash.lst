@@ -1,0 +1,462 @@
+
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o:     file format elf32-littlearm
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+
+Disassembly of section .text.wait_for_flash:
+
+00000000 <wait_for_flash>:
+wait_for_flash():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:29
+
+bool wait_for_flash(void)
+{
+	u32 timeout = 0;
+
+	if (FLASH->SR & 0x0014)
+   0:	f242 0300 	movw	r3, #8192	; 0x2000
+   4:	f2c4 0302 	movt	r3, #16386	; 0x4002
+   8:	68db      	ldr	r3, [r3, #12]
+   a:	f013 0f14 	tst.w	r3, #20	; 0x14
+   e:	d112      	bne.n	36 <wait_for_flash+0x36>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:42
+
+		return FALSE;
+	}
+
+	// Wait until a previous FLASH operation is compelete without errors
+	while( (FLASH->SR & 0x0001) && (timeout < 0xFFFFFF) )
+  10:	f242 0300 	movw	r3, #8192	; 0x2000
+  14:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  18:	68db      	ldr	r3, [r3, #12]
+  1a:	f013 0f01 	tst.w	r3, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:38
+		// Reset both status bits
+		FLASH->SR = 0x0014;
+
+		ram_novram.error_count++;
+
+		return FALSE;
+  1e:	bf1f      	itttt	ne
+  20:	2200      	movne	r2, #0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:42
+	}
+
+	// Wait until a previous FLASH operation is compelete without errors
+	while( (FLASH->SR & 0x0001) && (timeout < 0xFFFFFF) )
+  22:	f242 0300 	movwne	r3, #8192	; 0x2000
+  26:	4618      	movne	r0, r3
+  28:	f2c4 0002 	movtne	r0, #16386	; 0x4002
+  2c:	bf18      	it	ne
+  2e:	f06f 417f 	mvnne.w	r1, #4278190080	; 0xff000000
+  32:	d114      	bne.n	5e <wait_for_flash+0x5e>
+  34:	e02f      	b.n	96 <wait_for_flash+0x96>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:34
+	if (FLASH->SR & 0x0014)
+	{
+		// Write protect or un-erased FLASH encountered on a previous write
+
+		// Reset both status bits
+		FLASH->SR = 0x0014;
+  36:	f242 0300 	movw	r3, #8192	; 0x2000
+  3a:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  3e:	f04f 0214 	mov.w	r2, #20	; 0x14
+  42:	60da      	str	r2, [r3, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:36
+
+		ram_novram.error_count++;
+  44:	f240 0200 	movw	r2, #0	; 0x0
+  48:	f2c0 0200 	movt	r2, #0	; 0x0
+  4c:	f892 3038 	ldrb.w	r3, [r2, #56]
+  50:	f103 0301 	add.w	r3, r3, #1	; 0x1
+  54:	f882 3038 	strb.w	r3, [r2, #56]
+  58:	f04f 0000 	mov.w	r0, #0	; 0x0
+  5c:	e01d      	b.n	9a <wait_for_flash+0x9a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:43
+		return FALSE;
+	}
+
+	// Wait until a previous FLASH operation is compelete without errors
+	while( (FLASH->SR & 0x0001) && (timeout < 0xFFFFFF) )
+		timeout++;
+  5e:	f102 0201 	add.w	r2, r2, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:42
+
+		return FALSE;
+	}
+
+	// Wait until a previous FLASH operation is compelete without errors
+	while( (FLASH->SR & 0x0001) && (timeout < 0xFFFFFF) )
+  62:	68c3      	ldr	r3, [r0, #12]
+  64:	f013 0f01 	tst.w	r3, #1	; 0x1
+  68:	d002      	beq.n	70 <wait_for_flash+0x70>
+  6a:	428a      	cmp	r2, r1
+  6c:	d1f7      	bne.n	5e <wait_for_flash+0x5e>
+  6e:	e005      	b.n	7c <wait_for_flash+0x7c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:45
+		timeout++;
+
+	if (timeout < 0xFFFFFF)
+  70:	f64f 73fe 	movw	r3, #65534	; 0xfffe
+  74:	f2c0 03ff 	movt	r3, #255	; 0xff
+  78:	429a      	cmp	r2, r3
+  7a:	d90c      	bls.n	96 <wait_for_flash+0x96>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:49
+		return TRUE;
+	else
+	{
+		ram_novram.timeout_count++;
+  7c:	f240 0200 	movw	r2, #0	; 0x0
+  80:	f2c0 0200 	movt	r2, #0	; 0x0
+  84:	f892 3039 	ldrb.w	r3, [r2, #57]
+  88:	f103 0301 	add.w	r3, r3, #1	; 0x1
+  8c:	f882 3039 	strb.w	r3, [r2, #57]
+  90:	f04f 0000 	mov.w	r0, #0	; 0x0
+  94:	e001      	b.n	9a <ram_novram+0x9a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:50
+		return FALSE;
+  96:	f04f 0001 	mov.w	r0, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:52
+	}
+}
+  9a:	4770      	bx	lr
+Disassembly of section .text.write_flash_int:
+
+00000000 <write_flash_int>:
+write_flash_int():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:64
+ * The FPEC is unlocked
+ * The FLASH page to write has had write protection disabled
+ *---------------------------------------------------------*/
+
+void write_flash_int(u16 *address, u16 int_data)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	460c      	mov	r4, r1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:65
+	if ( wait_for_flash() )
+   6:	f7ff fffe 	bl	0 <write_flash_int>
+   a:	b148      	cbz	r0, 20 <write_flash_int+0x20>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:68
+	{
+		// Set the Program bit in the FLASH Program and Erase Controller
+		FLASH->CR = (u32)0x01;
+   c:	f242 0300 	movw	r3, #8192	; 0x2000
+  10:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  14:	f04f 0201 	mov.w	r2, #1	; 0x1
+  18:	611a      	str	r2, [r3, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:71
+
+		// Write the halfword to the destination address
+		*address = int_data;
+  1a:	802c      	strh	r4, [r5, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:73
+
+		wait_for_flash();
+  1c:	f7ff fffe 	bl	0 <write_flash_int>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:76
+	}
+
+	FLASH->CR = 0;		
+  20:	f242 0300 	movw	r3, #8192	; 0x2000
+  24:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  28:	f04f 0200 	mov.w	r2, #0	; 0x0
+  2c:	611a      	str	r2, [r3, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:77
+}
+  2e:	bd70      	pop	{r4, r5, r6, pc}
+Disassembly of section .text.unlock_FPEC:
+
+00000000 <unlock_FPEC>:
+unlock_FPEC():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:131
+ * Called in preparation of erasing or programming FLASH memory
+ *------------------------------------------------------------*/
+
+void unlock_FPEC(void)
+{
+	if (FLASH->CR & 0x0080)
+   0:	f242 0300 	movw	r3, #8192	; 0x2000
+   4:	f2c4 0302 	movt	r3, #16386	; 0x4002
+   8:	691b      	ldr	r3, [r3, #16]
+   a:	f013 0f80 	tst.w	r3, #128	; 0x80
+   e:	d00d      	beq.n	2c <unlock_FPEC+0x2c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:134
+	{
+		// Unlock the Flash Program Erase controller
+		FLASH->KEYR = FLASH_KEY1;
+  10:	f242 0300 	movw	r3, #8192	; 0x2000
+  14:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  18:	f240 1223 	movw	r2, #291	; 0x123
+  1c:	f2c4 5267 	movt	r2, #17767	; 0x4567
+  20:	605a      	str	r2, [r3, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:135
+		FLASH->KEYR = FLASH_KEY2;
+  22:	f648 12ab 	movw	r2, #35243	; 0x89ab
+  26:	f6cc 52ef 	movt	r2, #52719	; 0xcdef
+  2a:	605a      	str	r2, [r3, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:139
+	}
+
+	// Clear the FLASH’s error flags
+	FLASH->SR = 0x0034;
+  2c:	f242 0300 	movw	r3, #8192	; 0x2000
+  30:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  34:	f04f 0234 	mov.w	r2, #52	; 0x34
+  38:	60da      	str	r2, [r3, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:140
+}
+  3a:	4770      	bx	lr
+Disassembly of section .text.set_option_bytes:
+
+00000000 <set_option_bytes>:
+set_option_bytes():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:162
+ * Erase and reprogram the Option bytes.  This also disables program 
+ *  space write protection.
+ *----------------------------------------------------------------------*/
+
+void set_option_bytes(u16 option_data)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:164
+	// Wait for a previous operation to complete
+	if ( wait_for_flash() )
+   4:	f7ff fffe 	bl	0 <set_option_bytes>
+   8:	2800      	cmp	r0, #0
+   a:	d053      	beq.n	b4 <set_option_bytes+0xb4>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:167
+	{
+		// Enable option block programming
+		FLASH->OPTKEYR = FLASH_KEY1;
+   c:	f242 0200 	movw	r2, #8192	; 0x2000
+  10:	f2c4 0202 	movt	r2, #16386	; 0x4002
+  14:	f240 1323 	movw	r3, #291	; 0x123
+  18:	f2c4 5367 	movt	r3, #17767	; 0x4567
+  1c:	6093      	str	r3, [r2, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:168
+		FLASH->OPTKEYR = FLASH_KEY2;
+  1e:	f648 13ab 	movw	r3, #35243	; 0x89ab
+  22:	f6cc 53ef 	movt	r3, #52719	; 0xcdef
+  26:	6093      	str	r3, [r2, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:172
+    
+		// Set the Option Byte erase bit
+        // Keep the Option Write Enable bit set
+		FLASH->CR = 0x0220;
+  28:	f44f 7308 	mov.w	r3, #544	; 0x220
+  2c:	6113      	str	r3, [r2, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:175
+
+		// Start the Option Byte erasure
+		FLASH->CR = 0x0260;
+  2e:	f103 0340 	add.w	r3, r3, #64	; 0x40
+  32:	6113      	str	r3, [r2, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:178
+
+		// Wait for the option bytes to be erased
+		if ( wait_for_flash() )
+  34:	f7ff fffe 	bl	0 <set_option_bytes>
+  38:	2800      	cmp	r0, #0
+  3a:	d03b      	beq.n	b4 <set_option_bytes+0xb4>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:183
+		{
+			// Reset the Option Byte Erase bit
+			//  and set the Option Byte Program bit
+			// Keep the Option Byte Write Enable bit
+			FLASH->CR = 0x0210;
+  3c:	f242 0300 	movw	r3, #8192	; 0x2000
+  40:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  44:	f44f 7204 	mov.w	r2, #528	; 0x210
+  48:	611a      	str	r2, [r3, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:186
+
+			// Write the Data Byte 0 value
+			OB->Data0 = option_data;
+  4a:	f64f 0300 	movw	r3, #63488	; 0xf800
+  4e:	f6c1 73ff 	movt	r3, #8191	; 0x1fff
+  52:	809c      	strh	r4, [r3, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:189
+
+			// Wait for the Data Byte 0 write to complete
+			if ( wait_for_flash() )
+  54:	f7ff fffe 	bl	0 <set_option_bytes>
+  58:	b360      	cbz	r0, b4 <set_option_bytes+0xb4>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:192
+			{
+				// Write the Data Byte 1 value
+				OB->Data1 = option_data >> 8;
+  5a:	ea4f 2214 	mov.w	r2, r4, lsr #8
+  5e:	f64f 0300 	movw	r3, #63488	; 0xf800
+  62:	f6c1 73ff 	movt	r3, #8191	; 0x1fff
+  66:	80da      	strh	r2, [r3, #6]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:195
+
+				// Wait for the Data Byte 1 write to complete
+				if ( wait_for_flash() )
+  68:	f7ff fffe 	bl	0 <set_option_bytes>
+  6c:	b310      	cbz	r0, b4 <set_option_bytes+0xb4>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:205
+					//  WRP1 protects 0x08008000-0x0800FFFF
+					//  WRP2 protects 0x08010000-0x08017FFF
+					//  7 LS bits of WRP3 protects 0x08018000-0x0801EFFF
+					//  MS bit of WRP protects 0x0801F000-0x0807FFFF
+					// Write a bit to 0 to protect the corresponding pair of pages
+					OB->WRP0 = 0x00;
+  6e:	f64f 0300 	movw	r3, #63488	; 0xf800
+  72:	f6c1 73ff 	movt	r3, #8191	; 0x1fff
+  76:	f04f 0200 	mov.w	r2, #0	; 0x0
+  7a:	811a      	strh	r2, [r3, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:208
+
+					// Wait for the Write Protect Byte 0 write to complete
+					if ( wait_for_flash() )
+  7c:	f7ff fffe 	bl	0 <set_option_bytes>
+  80:	b1c0      	cbz	r0, b4 <set_option_bytes+0xb4>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:211
+					{
+						// Set program space write protection for 0x8000 - 0xFFFF
+						OB->WRP1 = 0x00;
+  82:	f64f 0300 	movw	r3, #63488	; 0xf800
+  86:	f6c1 73ff 	movt	r3, #8191	; 0x1fff
+  8a:	f04f 0200 	mov.w	r2, #0	; 0x0
+  8e:	815a      	strh	r2, [r3, #10]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:214
+
+						// Wait for the Write Protect Byte 1 write to complete
+						if ( wait_for_flash() )
+  90:	f7ff fffe 	bl	0 <set_option_bytes>
+  94:	b170      	cbz	r0, b4 <set_option_bytes+0xb4>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:220
+						{
+							// Program the Read Protection Option byte to 
+							//  something other than RDP_KEY to keep read protection 
+							//  active and prevent it from being deactivated without 
+							//  first erasing the Option Bytes
+							OB->RDP = 0;
+  96:	f64f 0300 	movw	r3, #63488	; 0xf800
+  9a:	f6c1 73ff 	movt	r3, #8191	; 0x1fff
+  9e:	f04f 0400 	mov.w	r4, #0	; 0x0
+  a2:	801c      	strh	r4, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:223
+
+							// Wait for the Read Protection byte to be programmed
+							wait_for_flash();
+  a4:	f7ff fffe 	bl	0 <set_option_bytes>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:227
+
+							// Reset the Option Byte Program bit and 
+							//  the Option Byte Write Enable bit
+							FLASH->CR = 0;
+  a8:	f242 0300 	movw	r3, #8192	; 0x2000
+  ac:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  b0:	611c      	str	r4, [r3, #16]
+  b2:	e00c      	b.n	ce <set_option_bytes+0xce>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:238
+			}
+		}
+	}
+
+	// Reset the Option Byte Program bit and the Option Byte Write Enable bit
+	FLASH->CR = 0;
+  b4:	f242 0300 	movw	r3, #8192	; 0x2000
+  b8:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  bc:	f04f 0200 	mov.w	r2, #0	; 0x0
+  c0:	611a      	str	r2, [r3, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:240
+
+	send_a_string("\n\rProblem writing option bytes!");
+  c2:	f240 0000 	movw	r0, #0	; 0x0
+  c6:	f2c0 0000 	movt	r0, #0	; 0x0
+  ca:	f7ff fffe 	bl	0 <send_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:241
+  ce:	bd10      	pop	{r4, pc}
+Disassembly of section .text.erase_flash_page:
+
+00000000 <erase_flash_page>:
+erase_flash_page():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:87
+ *
+ * Erase a specific FLASH page
+ *---------------------------*/
+
+bool erase_flash_page(u32 address)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:89
+	// Wait for a previous transmit to complete so we can use sio_buffer[]
+	wait_for_buffer();
+   4:	f7ff fffe 	bl	0 <wait_for_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:91
+
+	fill_a_string("\r\nErasing FLASH 0x");
+   8:	f240 0000 	movw	r0, #0	; 0x0
+   c:	f2c0 0000 	movt	r0, #0	; 0x0
+  10:	f7ff fffe 	bl	0 <fill_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:92
+	fill_a_long(address);
+  14:	4620      	mov	r0, r4
+  16:	f7ff fffe 	bl	0 <fill_a_long>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:93
+	send_sio_buffer();
+  1a:	f7ff fffe 	bl	0 <send_sio_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:96
+
+	// Wait for FLASH to be available
+	if ( wait_for_flash() )
+  1e:	f7ff fffe 	bl	0 <erase_flash_page>
+  22:	b1b8      	cbz	r0, 54 <erase_flash_page+0x54>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:99
+	{
+		// Set the Page Erase enable bit
+		FLASH->CR = 0x02;
+  24:	f242 0300 	movw	r3, #8192	; 0x2000
+  28:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  2c:	f04f 0202 	mov.w	r2, #2	; 0x2
+  30:	611a      	str	r2, [r3, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:102
+
+		// Set the address of the page to erase
+		FLASH->AR = address; 
+  32:	615c      	str	r4, [r3, #20]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:105
+
+		// Begin erasing the page
+		FLASH->CR = 0x42;
+  34:	f102 0240 	add.w	r2, r2, #64	; 0x40
+  38:	611a      	str	r2, [r3, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:107
+
+		if ( wait_for_flash() )
+  3a:	f7ff fffe 	bl	0 <erase_flash_page>
+  3e:	b148      	cbz	r0, 54 <erase_flash_page+0x54>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:110
+        {
+			// Reset the Page Erase enable bit
+			FLASH->CR = 0;
+  40:	f242 0300 	movw	r3, #8192	; 0x2000
+  44:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  48:	f04f 0200 	mov.w	r2, #0	; 0x0
+  4c:	611a      	str	r2, [r3, #16]
+  4e:	f04f 0001 	mov.w	r0, #1	; 0x1
+  52:	e007      	b.n	64 <erase_flash_page+0x64>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:117
+			return TRUE;
+		}
+	}
+
+	// Reset the Page Erase enable bit
+	FLASH->CR = 0;
+  54:	f242 0300 	movw	r3, #8192	; 0x2000
+  58:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  5c:	f04f 0200 	mov.w	r2, #0	; 0x0
+  60:	611a      	str	r2, [r3, #16]
+  62:	4610      	mov	r0, r2
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Flash.c:120
+
+	return FALSE;
+}
+  64:	bd10      	pop	{r4, pc}
+  66:	46c0      	nop			(mov r8, r8)

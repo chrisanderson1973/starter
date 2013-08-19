@@ -1,0 +1,169 @@
+
+C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o:     file format elf32-littlearm
+C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+
+Disassembly of section .text.initialize_clocks:
+
+00000000 <initialize_clocks>:
+initialize_clocks():
+   0:	4a29      	ldr	r2, [pc, #164]	(a8 <initialize_clocks+0xa8>)
+   2:	6813      	ldr	r3, [r2, #0]
+   4:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+   8:	6013      	str	r3, [r2, #0]
+   a:	4a27      	ldr	r2, [pc, #156]	(a8 <initialize_clocks+0xa8>)
+   c:	6813      	ldr	r3, [r2, #0]
+   e:	f013 0f02 	tst.w	r3, #2	; 0x2
+  12:	d0fa      	beq.n	a <initialize_clocks+0xa>
+  14:	f44f 2314 	mov.w	r3, #606208	; 0x94000
+  18:	6053      	str	r3, [r2, #4]
+  1a:	6813      	ldr	r3, [r2, #0]
+  1c:	f023 7384 	bic.w	r3, r3, #17301504	; 0x1080000
+  20:	f423 3380 	bic.w	r3, r3, #65536	; 0x10000
+  24:	6013      	str	r3, [r2, #0]
+  26:	6813      	ldr	r3, [r2, #0]
+  28:	f423 2380 	bic.w	r3, r3, #262144	; 0x40000
+  2c:	6013      	str	r3, [r2, #0]
+  2e:	f44f 031f 	mov.w	r3, #10420224	; 0x9f0000
+  32:	6093      	str	r3, [r2, #8]
+  34:	6813      	ldr	r3, [r2, #0]
+  36:	f443 3380 	orr.w	r3, r3, #65536	; 0x10000
+  3a:	6013      	str	r3, [r2, #0]
+  3c:	491a      	ldr	r1, [pc, #104]	(a8 <initialize_clocks+0xa8>)
+  3e:	680b      	ldr	r3, [r1, #0]
+  40:	f413 3f00 	tst.w	r3, #131072	; 0x20000
+  44:	d0fa      	beq.n	3c <initialize_clocks+0x3c>
+  46:	4b19      	ldr	r3, [pc, #100]	(ac <initialize_clocks+0xac>)
+  48:	2211      	movs	r2, #17
+  4a:	601a      	str	r2, [r3, #0]
+  4c:	f44f 2314 	mov.w	r3, #606208	; 0x94000
+  50:	604b      	str	r3, [r1, #4]
+  52:	680b      	ldr	r3, [r1, #0]
+  54:	f043 7380 	orr.w	r3, r3, #16777216	; 0x1000000
+  58:	600b      	str	r3, [r1, #0]
+  5a:	4a13      	ldr	r2, [pc, #76]	(a8 <initialize_clocks+0xa8>)
+  5c:	6813      	ldr	r3, [r2, #0]
+  5e:	f013 7f00 	tst.w	r3, #33554432	; 0x2000000
+  62:	d0fa      	beq.n	5a <initialize_clocks+0x5a>
+  64:	4b12      	ldr	r3, [pc, #72]	(b0 <initialize_clocks+0xb0>)
+  66:	6053      	str	r3, [r2, #4]
+  68:	4a0f      	ldr	r2, [pc, #60]	(a8 <initialize_clocks+0xa8>)
+  6a:	6853      	ldr	r3, [r2, #4]
+  6c:	f003 030c 	and.w	r3, r3, #12	; 0xc
+  70:	2b08      	cmp	r3, #8
+  72:	d1f9      	bne.n	68 <initialize_clocks+0x68>
+  74:	69d3      	ldr	r3, [r2, #28]
+  76:	f043 7300 	orr.w	r3, r3, #33554432	; 0x2000000
+  7a:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
+  7e:	61d3      	str	r3, [r2, #28]
+  80:	f244 237d 	movw	r3, #17021	; 0x427d
+  84:	6193      	str	r3, [r2, #24]
+  86:	6953      	ldr	r3, [r2, #20]
+  88:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  8c:	6153      	str	r3, [r2, #20]
+  8e:	f04f 4220 	mov.w	r2, #2684354560	; 0xa0000000
+  92:	2380      	movs	r3, #128
+  94:	6013      	str	r3, [r2, #0]
+  96:	6093      	str	r3, [r2, #8]
+  98:	6113      	str	r3, [r2, #16]
+  9a:	6193      	str	r3, [r2, #24]
+  9c:	4b05      	ldr	r3, [pc, #20]	(b4 <initialize_clocks+0xb4>)
+  9e:	f44f 22e0 	mov.w	r2, #458752	; 0x70000
+  a2:	625a      	str	r2, [r3, #36]
+  a4:	4770      	bx	lr
+  a6:	46c0      	nop			(mov r8, r8)
+  a8:	40021000 	.word	0x40021000
+  ac:	40022000 	.word	0x40022000
+  b0:	00094002 	.word	0x00094002
+  b4:	e000ed00 	.word	0xe000ed00
+Disassembly of section .text.initialize_watchdog:
+
+00000000 <initialize_watchdog>:
+initialize_watchdog():
+   0:	4770      	bx	lr
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.initialize_timers:
+
+00000000 <initialize_timers>:
+initialize_timers():
+   0:	4905      	ldr	r1, [pc, #20]	(18 <initialize_timers+0x18>)
+   2:	4b06      	ldr	r3, [pc, #24]	(1c <initialize_timers+0x1c>)
+   4:	2260      	movs	r2, #96
+   6:	604b      	str	r3, [r1, #4]
+   8:	4b05      	ldr	r3, [pc, #20]	(20 <initialize_timers+0x20>)
+   a:	f883 2023 	strb.w	r2, [r3, #35]
+   e:	2300      	movs	r3, #0
+  10:	608b      	str	r3, [r1, #8]
+  12:	3307      	adds	r3, #7
+  14:	600b      	str	r3, [r1, #0]
+  16:	4770      	bx	lr
+  18:	e000e010 	.word	0xe000e010
+  1c:	000270ff 	.word	0x000270ff
+  20:	e000ed00 	.word	0xe000ed00
+Disassembly of section .text.wait_for_tic:
+
+00000000 <wait_for_tic>:
+wait_for_tic():
+   0:	4b03      	ldr	r3, [pc, #12]	(10 <wait_for_tic+0x10>)
+   2:	681b      	ldr	r3, [r3, #0]
+   4:	18c0      	adds	r0, r0, r3
+   6:	4b02      	ldr	r3, [pc, #8]	(10 <wait_for_tic+0x10>)
+   8:	681b      	ldr	r3, [r3, #0]
+   a:	4298      	cmp	r0, r3
+   c:	d1fb      	bne.n	6 <wait_for_tic+0x6>
+   e:	4770      	bx	lr
+  10:	00000000 	.word	0x00000000
+Disassembly of section .text.wait_some_seconds:
+
+00000000 <wait_some_seconds>:
+wait_some_seconds():
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	e002      	b.n	c <wait_some_seconds+0xc>
+   6:	2064      	movs	r0, #100
+   8:	f7ff fffe 	bl	0 <wait_some_seconds>
+   c:	1e63      	subs	r3, r4, #1
+   e:	b25c      	sxtb	r4, r3
+  10:	f1b4 3fff 	cmp.w	r4, #4294967295	; 0xffffffff
+  14:	d1f7      	bne.n	6 <wait_some_seconds+0x6>
+  16:	bd10      	pop	{r4, pc}
+Disassembly of section .text.SysTick_Handler:
+
+00000000 <SysTick_Handler>:
+SysTick_Handler():
+   0:	4a05      	ldr	r2, [pc, #20]	(18 <SysTick_Handler+0x18>)
+   2:	8893      	ldrh	r3, [r2, #4]
+   4:	3301      	adds	r3, #1
+   6:	b29b      	uxth	r3, r3
+   8:	f013 0f01 	tst.w	r3, #1	; 0x1
+   c:	8093      	strh	r3, [r2, #4]
+   e:	d002      	beq.n	16 <SysTick_Handler+0x16>
+  10:	6813      	ldr	r3, [r2, #0]
+  12:	3301      	adds	r3, #1
+  14:	6013      	str	r3, [r2, #0]
+  16:	4770      	bx	lr
+  18:	00000000 	.word	0x00000000
+Disassembly of section .text.TIM3_IRQHandler:
+
+00000000 <TIM3_IRQHandler>:
+TIM3_IRQHandler():
+   0:	4a05      	ldr	r2, [pc, #20]	(18 <TIM3_IRQHandler+0x18>)
+   2:	8a13      	ldrh	r3, [r2, #16]
+   4:	f423 4380 	bic.w	r3, r3, #16384	; 0x4000
+   8:	041b      	lsls	r3, r3, #16
+   a:	0c1b      	lsrs	r3, r3, #16
+   c:	8213      	strh	r3, [r2, #16]
+   e:	f241 2334 	movw	r3, #4660	; 0x1234
+  12:	8493      	strh	r3, [r2, #36]
+  14:	4770      	bx	lr
+  16:	46c0      	nop			(mov r8, r8)
+  18:	40000400 	.word	0x40000400
+Disassembly of section .text.WWDG_IRQHandler:
+
+00000000 <WWDG_IRQHandler>:
+WWDG_IRQHandler():
+   0:	4a02      	ldr	r2, [pc, #8]	(c <WWDG_IRQHandler+0xc>)
+   2:	6893      	ldr	r3, [r2, #8]
+   4:	f023 0301 	bic.w	r3, r3, #1	; 0x1
+   8:	6093      	str	r3, [r2, #8]
+   a:	4770      	bx	lr
+   c:	40002c00 	.word	0x40002c00

@@ -1,0 +1,951 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+top_red_led         0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+raw_analog          0x14              C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+middle_yellow_led   0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+remote_lists        0x5               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+analog_input        0x90              C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+testVar             0x30              C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+battery_voltage     0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+canMsgBuffer        0x2f              C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+sio_index           0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+bottom_red_led      0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+ram_novram          0x34              C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+asState             0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+can_buffer_state    0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+startnow_sw_debounce
+                    0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+command_timer       0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+remote_dump_index   0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+startnow_sw_bool    0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+alternator_charge_ok
+                    0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+contStatus          0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+this_can_address    0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+cooldown_count      0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+sio_buffer          0x800             C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+pressure_range_input
+                    0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+auto_enable_sw      0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+transducer_pressure
+                    0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ambient_temperature
+                    0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+dm1_timout_count    0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+transmit_fault_log  0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+board_temperature   0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+asConfiguration     0x4               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+engine_hours        0x4               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+bottom_green_led    0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+programming_server  0x3               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+can_buffer_index    0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+serial_input        0x14              C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+received_packet_flags
+                    0x6               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+startnow_sw         0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+controllerMode      0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+digital_input       0x9               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+dump_to_address     0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+pressure_mode_current
+                    0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+STN_ACTSW_STATE     0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+pressure_threshold  0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+transmit_identity   0x1               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+can_comm_watchdog   0x2               C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+
+Discarded input sections
+
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+ .data          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+ .bss           0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+ .data          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ .data          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ .text.deg_c16_to_f
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ .text.kpa_to_psi
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .text.update_battery_voltage
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .text.turn_leds_off
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .text.turn_leds_on
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .text.perform_self_check
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .rodata.str1.1
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .data          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .text.request_engine_hours
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .text.request_engine_serial_num
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+ .data          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .data          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .text.get_number_identities
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .text.fill_identity
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .text.write_fault_log
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+ .data          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+ .bss           0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+ .data          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+ .bss           0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+ .data          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+ .bss           0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+ .text.fill_pressure_input
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+ .text.print_test_vars
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+ .data          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\ThermTables.o
+ .data          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\ThermTables.o
+ .bss           0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\ThermTables.o
+ .text          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+ .data          0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+ .text.initialize_watchdog
+                0x00000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x20000000         0x00010000         xrw
+FLASH            0x08001000         0x0000a000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\ThermTables.o
+LOAD C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+START GROUP
+LOAD C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib
+LOAD C:\Program Files\Raisonance\Ride\Lib\ARM\smallprintf_thumb.a
+LOAD c:/program files/raisonance/ride/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/thumb2\libc.a
+LOAD c:/program files/raisonance/ride/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/thumb2\libm.a
+END GROUP
+                0x00000400                __Stack_Size = 0x400
+                0x00000400                PROVIDE (_Stack_Size, __Stack_Size)
+                0x2000fc00                __Stack_Init = (_estack - __Stack_Size)
+                0x2000fc00                PROVIDE (_Stack_Init, __Stack_Init)
+                0x00000100                _Minimum_Stack_Size = 0x100
+                0x20010000                _estack = 0x20010000
+
+.isr_vector     0x08001000      0x1e4
+                0x08001000                . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x08001000      0x1e4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+                0x080011e4                . = ALIGN (0x4)
+
+.text           0x080011e4     0x4408
+                0x080011e4                . = ALIGN (0x4)
+ *(.text)
+ *(.text.*)
+ .text.Reset_Handler
+                0x080011e4       0x40 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+                0x080011e4                Reset_Handler
+ .text.Default_Handler
+                0x08001224        0x2 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+                0x08001224                EXTI2_IRQHandler
+                0x08001224                TIM8_TRG_COM_IRQHandler
+                0x08001224                TIM8_CC_IRQHandler
+                0x08001224                TIM1_CC_IRQHandler
+                0x08001224                TIM6_IRQHandler
+                0x08001224                PVD_IRQHandler
+                0x08001224                SDIO_IRQHandler
+                0x08001224                EXTI3_IRQHandler
+                0x08001224                EXTI0_IRQHandler
+                0x08001224                I2C2_EV_IRQHandler
+                0x08001224                ADC1_2_IRQHandler
+                0x08001224                SPI1_IRQHandler
+                0x08001224                TAMPER_IRQHandler
+                0x08001224                TIM8_UP_IRQHandler
+                0x08001224                DMA2_Channel2_IRQHandler
+                0x08001224                USART3_IRQHandler
+                0x08001224                RTC_IRQHandler
+                0x08001224                DMA1_Channel7_IRQHandler
+                0x08001224                UART5_IRQHandler
+                0x08001224                ADC3_IRQHandler
+                0x08001224                TIM4_IRQHandler
+                0x08001224                DMA2_Channel1_IRQHandler
+                0x08001224                I2C1_EV_IRQHandler
+                0x08001224                DMA1_Channel6_IRQHandler
+                0x08001224                UART4_IRQHandler
+                0x08001224                RCC_IRQHandler
+                0x08001224                TIM1_TRG_COM_IRQHandler
+                0x08001224                Default_Handler
+                0x08001224                EXTI15_10_IRQHandler
+                0x08001224                TIM7_IRQHandler
+                0x08001224                TIM5_IRQHandler
+                0x08001224                EXTI9_5_IRQHandler
+                0x08001224                SPI2_IRQHandler
+                0x08001224                DMA1_Channel5_IRQHandler
+                0x08001224                EXTI4_IRQHandler
+                0x08001224                USB_HP_CAN1_TX_IRQHandler
+                0x08001224                DMA1_Channel3_IRQHandler
+                0x08001224                FSMC_IRQHandler
+                0x08001224                TIM1_UP_IRQHandler
+                0x08001224                TIM2_IRQHandler
+                0x08001224                TIM1_BRK_IRQHandler
+                0x08001224                EXTI1_IRQHandler
+                0x08001224                RTCAlarm_IRQHandler
+                0x08001224                DMA2_Channel4_5_IRQHandler
+                0x08001224                USART2_IRQHandler
+                0x08001224                I2C2_ER_IRQHandler
+                0x08001224                DMA1_Channel2_IRQHandler
+                0x08001224                TIM8_BRK_IRQHandler
+                0x08001224                CAN1_SCE_IRQHandler
+                0x08001224                FLASH_IRQHandler
+                0x08001224                USART1_IRQHandler
+                0x08001224                SPI3_IRQHandler
+                0x08001224                I2C1_ER_IRQHandler
+                0x08001224                USBWakeUp_IRQHandler
+                0x08001224                DMA2_Channel3_IRQHandler
+ *fill*         0x08001226        0x2 00
+ .text.main     0x08001228      0x1b0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+                0x08001228                main
+ .text.update_analog_input
+                0x080013d8       0x44 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+                0x080013d8                update_analog_input
+ .text.read_raw_analogs
+                0x0800141c       0x94 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+                0x0800141c                read_raw_analogs
+ .text.scale_pressure
+                0x080014b0       0x28 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+                0x080014b0                scale_pressure
+ .text.update_analogs
+                0x080014d8       0x6c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+                0x080014d8                update_analogs
+ .text.DMA1_Channel1_IRQHandler
+                0x08001544       0x18 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+                0x08001544                DMA1_Channel1_IRQHandler
+ .text.initialize_analog_input
+                0x0800155c       0xa4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+                0x0800155c                initialize_analog_input
+ .text.update_ambient_temp
+                0x08001600       0x44 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+                0x08001600                update_ambient_temp
+ .text.update_autostart_state
+                0x08001644      0x144 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+                0x08001644                update_autostart_state
+ .text.fill_software_identity
+                0x08001788       0x48 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+                0x08001788                fill_software_identity
+ .text.fill_master_timing
+                0x080017d0       0x4c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+                0x080017d0                fill_master_timing
+ .text.setup_command
+                0x0800181c       0x68 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+                0x0800181c                setup_command
+ .text.can_filter_0_action
+                0x08001884       0x1c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+                0x08001884                can_filter_0_action
+ .text.maintain_can_comm_wd
+                0x080018a0       0x34 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+                0x080018a0                maintain_can_comm_wd
+ .text.access_info_screens
+                0x080018d4       0x2c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+                0x080018d4                access_info_screens
+ .text.can_message_action
+                0x08001900       0xbc C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+                0x08001900                can_message_action
+ .text.check_can
+                0x080019bc       0xf8 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+                0x080019bc                check_can
+ .text.initialize_can
+                0x08001ab4      0x144 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+                0x08001ab4                initialize_can
+ .text.select_transmitter
+                0x08001bf8       0x44 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+                0x08001bf8                select_transmitter
+ .text.transmit_proprietary
+                0x08001c3c      0x1c4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+                0x08001c3c                transmit_proprietary
+ .text.dm1_message_action
+                0x08001e00       0x18 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+                0x08001e00                dm1_message_action
+ .text.timed_can_messages
+                0x08001e18        0x4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+                0x08001e18                timed_can_messages
+ .text.get_engine_serial_number
+                0x08001e1c       0x78 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+                0x08001e1c                get_engine_serial_number
+ .text.can_send_binary
+                0x08001e94       0x90 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+                0x08001e94                can_send_binary
+ .text.can_start_reprogram
+                0x08001f24       0x28 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+                0x08001f24                can_start_reprogram
+ .text.start_multiple_packets
+                0x08001f4c       0x70 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                0x08001f4c                start_multiple_packets
+ .text.prepare_for_mp_receive
+                0x08001fbc       0x60 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                0x08001fbc                prepare_for_mp_receive
+ .text.buffer_a_can_packet
+                0x0800201c       0xb0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                0x0800201c                buffer_a_can_packet
+ .text.connection_management_action
+                0x080020cc       0xc4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                0x080020cc                connection_management_action
+ .text.data_transport_action
+                0x08002190       0xf4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                0x08002190                data_transport_action
+ .text.CAN1_RX1_IRQHandler
+                0x08002284      0x2b8 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                0x08002284                CAN1_RX1_IRQHandler
+ .text.USB_LP_CAN1_RX0_IRQHandler
+                0x0800253c       0x2c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                0x0800253c                USB_LP_CAN1_RX0_IRQHandler
+ .text.end_mp_input
+                0x08002568       0x64 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                0x08002568                end_mp_input
+ .text.continue_mp_input
+                0x080025cc       0x60 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                0x080025cc                continue_mp_input
+ .text.continue_mp_output
+                0x0800262c       0xfc C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                0x0800262c                continue_mp_output
+ .text.transmit_msg_buffer
+                0x08002728       0xd4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                0x08002728                transmit_msg_buffer
+ .text.next_novram_address
+                0x080027fc       0x20 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x080027fc                next_novram_address
+ .text.number_of_novram
+                0x0800281c       0x18 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x0800281c                number_of_novram
+ .text.update_health_timers
+                0x08002834       0x48 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x08002834                update_health_timers
+ .text.get_recent_identity
+                0x0800287c       0x28 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x0800287c                get_recent_identity
+ .text.fault_address
+                0x080028a4       0x24 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x080028a4                fault_address
+ .text.number_of_faults
+                0x080028c8       0x24 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x080028c8                number_of_faults
+ .text.compare_serial_number
+                0x080028ec       0x24 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x080028ec                compare_serial_number
+ .text.erase_fault_log
+                0x08002910       0x24 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x08002910                erase_fault_log
+ .text.initialize_health
+                0x08002934       0x30 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x08002934                initialize_health
+ .text.fill_a_bool
+                0x08002964       0x18 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x08002964                fill_a_bool
+ .text.fill_engine_code
+                0x0800297c       0x28 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x0800297c                fill_engine_code
+ .text.fill_a_status
+                0x080029a4       0x18 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x080029a4                fill_a_status
+ .text.fill_fault
+                0x080029bc      0x1b4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x080029bc                fill_fault
+ .text.access_fault_log
+                0x08002b70       0x74 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x08002b70                access_fault_log
+ .text.write_identity
+                0x08002be4       0x7c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x08002be4                write_identity
+ .text.write_novram
+                0x08002c60       0x54 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x08002c60                write_novram
+ .text.access_novram_log
+                0x08002cb4       0xd4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x08002cb4                access_novram_log
+ .text.initialize_novram
+                0x08002d88       0x5c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x08002d88                initialize_novram
+ .text.read_novram
+                0x08002de4       0x4c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x08002de4                read_novram
+ .text.wait_for_flash
+                0x08002e30       0x5c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+                0x08002e30                wait_for_flash
+ .text.write_flash_int
+                0x08002e8c       0x24 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+                0x08002e8c                write_flash_int
+ .text.unlock_FPEC
+                0x08002eb0       0x24 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+                0x08002eb0                unlock_FPEC
+ .text.set_option_bytes
+                0x08002ed4       0x7c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+                0x08002ed4                set_option_bytes
+ .text.erase_flash_page
+                0x08002f50       0x4c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+                0x08002f50                erase_flash_page
+ .text.enable_interrupt
+                0x08002f9c       0x20 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x08002f9c                enable_interrupt
+ .text.clear_interrupt_pending
+                0x08002fbc       0x18 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x08002fbc                clear_interrupt_pending
+ .text.get_reg  0x08002fd4        0x4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x08002fd4                get_reg
+ .text.PendSV_Handler
+                0x08002fd8       0x10 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x08002fd8                PendSV_Handler
+ .text.DebugMon_Handler
+                0x08002fe8       0x10 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x08002fe8                DebugMon_Handler
+ .text.SVC_Handler
+                0x08002ff8       0x10 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x08002ff8                SVC_Handler
+ .text.NMI_Handler
+                0x08003008       0x10 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x08003008                NMI_Handler
+ .text.software_reset
+                0x08003018       0x38 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x08003018                software_reset
+ .text.send_status
+                0x08003050       0x4c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x08003050                send_status
+ .text.UsageFault_Handler
+                0x0800309c       0x10 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x0800309c                UsageFault_Handler
+ .text.BusFault_Handler
+                0x080030ac       0x10 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x080030ac                BusFault_Handler
+ .text.MemManage_Handler
+                0x080030bc       0x10 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x080030bc                MemManage_Handler
+ .text.HardFault_Handler
+                0x080030cc       0x10 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+                0x080030cc                HardFault_Handler
+ .text.initialize_ports
+                0x080030dc       0x7c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+                0x080030dc                initialize_ports
+ .text.update_leds
+                0x08003158       0x88 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+                0x08003158                update_leds
+ .text.get_input_state
+                0x080031e0       0xa0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+                0x080031e0                get_input_state
+ .text.update_input_state
+                0x08003280       0x44 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+                0x08003280                update_input_state
+ .text.initialize_psw
+                0x080032c4       0x1c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+                0x080032c4                initialize_psw
+ .text.update_digital_in
+                0x080032e0       0x18 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+                0x080032e0                update_digital_in
+ .text.update_outputs
+                0x080032f8       0x58 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+                0x080032f8                update_outputs
+ .text.autostart_enable_switch
+                0x08003350       0x54 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+                0x08003350                autostart_enable_switch
+ .text.startnow_state
+                0x080033a4       0xa4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+                0x080033a4                startnow_state
+ .text.check_reprogram_state
+                0x08003448       0x1c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x08003448                check_reprogram_state
+ .text.fill_autostart_state
+                0x08003464       0x60 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x08003464                fill_autostart_state
+ .text.fill_machine_state
+                0x080034c4       0xb8 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x080034c4                fill_machine_state
+ .text.fill_a_psw_pol
+                0x0800357c       0x28 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x0800357c                fill_a_psw_pol
+ .text.set_column
+                0x080035a4       0x20 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x080035a4                set_column
+ .text.fill_a_switch
+                0x080035c4       0x3c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x080035c4                fill_a_switch
+ .text.fill_a_minutes
+                0x08003600       0x1c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x08003600                fill_a_minutes
+ .text.fill_a_this_mins
+                0x0800361c       0x1c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x0800361c                fill_a_this_mins
+ .text.fill_a_hours
+                0x08003638       0x1c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x08003638                fill_a_hours
+ .text.send_health_screen
+                0x08003654       0x4c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x08003654                send_health_screen
+ .text.fill_terminal_info
+                0x080036a0      0x1d4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x080036a0                fill_terminal_info
+ .text.display_analogs
+                0x08003874      0x180 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x08003874                display_analogs
+ .text.serial_receive
+                0x080039f4      0x334 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x080039f4                serial_receive
+ .text.check_serial
+                0x08003d28       0x70 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x08003d28                check_serial
+ .text.DMA1_Channel4_IRQHandler
+                0x08003d98       0x24 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003d98                DMA1_Channel4_IRQHandler
+ .text.get_serial_character
+                0x08003dbc       0x38 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003dbc                get_serial_character
+ .text.hex_to_ascii
+                0x08003df4       0x10 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003df4                hex_to_ascii
+ .text.fill_a_byte
+                0x08003e04       0x38 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003e04                fill_a_byte
+ .text.fill_an_int
+                0x08003e3c       0x18 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003e3c                fill_an_int
+ .text.fill_a_long
+                0x08003e54       0x14 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003e54                fill_a_long
+ .text.fill_a_number
+                0x08003e68       0x80 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003e68                fill_a_number
+ .text.fill_a_decimal
+                0x08003ee8        0xc C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003ee8                fill_a_decimal
+ .text.fill_a_string
+                0x08003ef4       0x34 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003ef4                fill_a_string
+ .text.buffer_is_busy
+                0x08003f28       0x10 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003f28                buffer_is_busy
+ .text.wait_for_buffer
+                0x08003f38        0xc C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003f38                wait_for_buffer
+ .text.start_transmitting
+                0x08003f44       0x18 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003f44                start_transmitting
+ .text.send_sio_buffer
+                0x08003f5c       0x14 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003f5c                send_sio_buffer
+ .text.send_a_string
+                0x08003f70       0x14 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003f70                send_a_string
+ .text.initialize_serial
+                0x08003f84       0x7c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x08003f84                initialize_serial
+ .text.initialize_clocks
+                0x08004000       0xb8 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+                0x08004000                initialize_clocks
+ .text.initialize_timers
+                0x080040b8       0x24 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+                0x080040b8                initialize_timers
+ .text.wait_for_tic
+                0x080040dc       0x14 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+                0x080040dc                wait_for_tic
+ .text.wait_some_seconds
+                0x080040f0       0x18 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+                0x080040f0                wait_some_seconds
+ .text.SysTick_Handler
+                0x08004108       0x1c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+                0x08004108                SysTick_Handler
+ .text.TIM3_IRQHandler
+                0x08004124       0x1c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+                0x08004124                TIM3_IRQHandler
+ .text.WWDG_IRQHandler
+                0x08004140       0x10 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+                0x08004140                WWDG_IRQHandler
+ *(.rodata)
+ .rodata        0x08004150       0x90 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+                0x08004150                multiplexer_setup
+ .rodata        0x080041e0      0x400 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\ThermTables.o
+                0x080041e0                temp16_lookup
+ *(.rodata*)
+ .rodata.str1.1
+                0x080045e0       0x55 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+ .rodata.str1.1
+                0x08004635        0xe C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ .rodata.str1.1
+                0x08004643       0x54 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+ .rodata.str1.1
+                0x08004697        0xe C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .rodata.str1.1
+                0x080046a5       0xf7 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                                 0xfa (size before relaxing)
+ .rodata.str1.1
+                0x0800479c      0x3a4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .rodata.str1.1
+                0x08004b40       0x33 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+ .rodata.str1.1
+                0x08004b73       0x75 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+ .rodata.str1.1
+                0x08004be8      0xa02 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                                0xa14 (size before relaxing)
+ *(.glue_7)
+ *fill*         0x080055ea        0x2 00
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\ThermTables.o
+ .glue_7        0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+ *(.glue_7t)
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\ThermTables.o
+ .glue_7t       0x080055ec        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+                0x080055ec                . = ALIGN (0x4)
+                0x080055ec                _etext = .
+                0x080055ec                _sidata = _etext
+
+.vfp11_veneer   0x20000000        0x0
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\ThermTables.o
+ .vfp11_veneer  0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+
+.janus_2cc_veneer
+                0x20000000        0x0
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\ThermTables.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+
+.v4_bx          0x20000000        0x0
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\ThermTables.o
+ .v4_bx         0x20000000        0x0 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+
+.data           0x20000000        0x8 load address 0x080055ec
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _sdata = .
+ *(.data)
+ .data          0x20000000        0x2 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .data          0x20000002        0x1 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+                0x20000002                can_on_line
+ *fill*         0x20000003        0x1 00
+ .data          0x20000004        0x2 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+ *(.data.*)
+                0x20000008                . = ALIGN (0x4)
+ *fill*         0x20000006        0x2 00
+                0x20000008                _edata = .
+
+.bss            0x20000008      0x9fc load address 0x080055f4
+                0x20000008                . = ALIGN (0x4)
+                0x20000008                _sbss = .
+ *(.bss)
+ .bss           0x20000008        0x6 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+ .bss           0x2000000e        0x1 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ *fill*         0x2000000f        0x1 00
+ .bss           0x20000010       0x2c C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .bss           0x2000003c        0xa C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+                0x2000003c                master_comm_wd
+                0x20000045                reprogram_state
+                0x20000040                remote_list_index
+                0x20000044                update_delays
+                0x2000003e                remote_access_state
+                0x20000043                packets_to_transmit
+ .bss           0x20000046        0x1 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .bss           0x20000047        0x1 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+ .bss           0x20000048        0xc C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x2000004e                fault_transmit_count
+                0x20000052                health_transmit_count
+                0x2000004a                this_on_time
+ .bss           0x20000054        0x2 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+ .bss           0x20000056        0x1 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+ *fill*         0x20000057        0x1 00
+ .bss           0x20000058        0xc C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+                0x20000060                previous_timer
+                0x20000058                system_timer
+ *(COMMON)
+ COMMON         0x20000064       0xb4 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+                0x20000064                raw_analog
+                0x20000078                analog_input
+                0x20000108                battery_voltage
+                0x2000010a                startnow_sw_debounce
+                0x2000010c                alternator_charge_ok
+                0x2000010e                cooldown_count
+                0x20000110                transducer_pressure
+                0x20000112                ambient_temperature
+                0x20000114                board_temperature
+                0x20000116                pressure_threshold
+ COMMON         0x20000118        0x1 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+                0x20000118                transmit_identity
+ *fill*         0x20000119        0x3 00
+ COMMON         0x2000011c       0x14 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+                0x2000011c                remote_lists
+                0x20000121                contStatus
+                0x20000122                pressure_range_input
+                0x20000124                dm1_timout_count
+                0x20000128                engine_hours
+                0x2000012c                controllerMode
+                0x2000012d                dump_to_address
+                0x2000012e                can_comm_watchdog
+ COMMON         0x20000130        0xb C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+                0x20000130                remote_dump_index
+                0x20000132                this_can_address
+                0x20000134                asConfiguration
+                0x20000138                programming_server
+ COMMON         0x2000013b       0x37 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+                0x2000013b                canMsgBuffer
+                0x2000016a                can_buffer_state
+                0x2000016b                can_buffer_index
+                0x2000016c                received_packet_flags
+ *fill*         0x20000172        0x2 00
+ COMMON         0x20000174       0x35 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+                0x20000174                ram_novram
+                0x200001a8                transmit_fault_log
+ COMMON         0x200001a9       0x13 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+                0x200001a9                top_red_led
+                0x200001aa                middle_yellow_led
+                0x200001ab                bottom_red_led
+                0x200001ac                asState
+                0x200001ad                startnow_sw_bool
+                0x200001ae                auto_enable_sw
+                0x200001af                bottom_green_led
+                0x200001b0                startnow_sw
+                0x200001b1                digital_input
+                0x200001ba                pressure_mode_current
+                0x200001bb                STN_ACTSW_STATE
+ COMMON         0x200001bc       0x32 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+                0x200001bc                testVar
+                0x200001ec                command_timer
+ COMMON         0x200001ee      0x816 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+                0x200001ee                sio_index
+                0x200001f0                sio_buffer
+                0x200009f0                serial_input
+                0x20000a04                . = ALIGN (0x4)
+                0x20000a04                _ebss = .
+                0x20000a04                PROVIDE (end, _ebss)
+                0x20000a04                PROVIDE (_end, _ebss)
+
+._usrstack      0x20000a04      0x100 load address 0x08005ff0
+                0x20000a04                . = ALIGN (0x4)
+                0x20000a04                _susrstack = .
+                0x20000b04                . = (. + _Minimum_Stack_Size)
+ *fill*         0x20000a04      0x100 00
+                0x20000b04                . = ALIGN (0x4)
+                0x20000b04                _eusrstack = .
+
+DISCARD
+ libc.a(*)
+ libm.a(*)
+ libgcc.a(*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000      0x24c
+ *(.comment)
+ .comment       0x00000000       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+ .comment       0x0000002a       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ .comment       0x00000054       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .comment       0x0000007e       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+ .comment       0x000000a8       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .comment       0x000000d2       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+ .comment       0x000000fc       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .comment       0x00000126       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+ .comment       0x00000150       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+ .comment       0x0000017a       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+ .comment       0x000001a4       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+ .comment       0x000001ce       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+ .comment       0x000001f8       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\ThermTables.o
+ .comment       0x00000222       0x2a C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info .gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+START GROUP
+LOAD c:/program files/raisonance/ride/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.3.2/thumb2\libgcc.a
+LOAD c:/program files/raisonance/ride/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/thumb2\libc.a
+END GROUP
+OUTPUT(C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\cortexst.elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x2f
+ .ARM.attributes
+                0x00000000       0x21 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\startup.o
+ .ARM.attributes
+                0x00000021       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\main.o
+ .ARM.attributes
+                0x00000052       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Analog.o
+ .ARM.attributes
+                0x00000083       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+ .ARM.attributes
+                0x000000b4       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+ .ARM.attributes
+                0x000000e5       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanCommands.o
+ .ARM.attributes
+                0x00000116       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\CanPackets.o
+ .ARM.attributes
+                0x00000147       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\E3prom.o
+ .ARM.attributes
+                0x00000178       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Flash.o
+ .ARM.attributes
+                0x000001a9       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Interrupt.o
+ .ARM.attributes
+                0x000001da       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\IOdata.o
+ .ARM.attributes
+                0x0000020b       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Serial.o
+ .ARM.attributes
+                0x0000023c       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\SerialBuffer.o
+ .ARM.attributes
+                0x0000026d       0x2f C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\ThermTables.o
+ .ARM.attributes
+                0x0000029c       0x31 C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Timer.o

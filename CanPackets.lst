@@ -1,0 +1,1685 @@
+
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o:     file format elf32-littlearm
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+
+Disassembly of section .text.start_multiple_packets:
+
+00000000 <start_multiple_packets>:
+start_multiple_packets():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:67
+// The status of the message canMsgBuffer[] contains
+buffer_state can_buffer_state;
+
+
+void start_multiple_packets(CAN_TxMailBox_TypeDef *mailbox)
+{
+   0:	b430      	push	{r4, r5}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:74
+	//  packet message per J1939-21
+	// We transmit the data when we get a CTS from the destination
+
+	// Number of data bytes in this RTS packet 
+	//  not the multiple packet message to deliver
+	mailbox->TDTR = 8;
+   2:	f04f 0308 	mov.w	r3, #8	; 0x8
+   6:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:77
+
+	// Transmit Mailbox Message Identifier Register
+	mailbox->TIR = CAN_XMIT_PRIORITY
+   8:	f240 0400 	movw	r4, #0	; 0x0
+   c:	f2c0 0400 	movt	r4, #0	; 0x0
+  10:	7822      	ldrb	r2, [r4, #0]
+  12:	f240 0300 	movw	r3, #0	; 0x0
+  16:	f2c0 0300 	movt	r3, #0	; 0x0
+  1a:	781b      	ldrb	r3, [r3, #0]
+  1c:	ea4f 03c3 	mov.w	r3, r3, lsl #3
+  20:	ea43 23c2 	orr.w	r3, r3, r2, lsl #11
+  24:	f240 0204 	movw	r2, #4	; 0x4
+  28:	f2cc 7260 	movt	r2, #51040	; 0xc760
+  2c:	ea43 0302 	orr.w	r3, r3, r2
+  30:	6003      	str	r3, [r0, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:87
+	/*--------------------------------
+	 * Transmit Mailbox Data Registers
+	 *-------------------------------*/
+
+	// Transport Protocol Connection Managment command byte		 	
+	mailbox->TDLR = TPCM_RTS
+  32:	7862      	ldrb	r2, [r4, #1]
+  34:	ea4f 2102 	mov.w	r1, r2, lsl #8
+  38:	f041 0110 	orr.w	r1, r1, #16	; 0x10
+  3c:	f102 0206 	add.w	r2, r2, #6	; 0x6
+  40:	f242 4393 	movw	r3, #9363	; 0x2493
+  44:	f2c9 2349 	movt	r3, #37449	; 0x9249
+  48:	fb83 5302 	smull	r5, r3, r3, r2
+  4c:	4413      	add	r3, r2
+  4e:	ea4f 03a3 	mov.w	r3, r3, asr #2
+  52:	ea41 6103 	orr.w	r1, r1, r3, lsl #24
+  56:	6081      	str	r1, [r0, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:96
+	// There are 7 bytes per packet max since sequence number 
+	//  occupies the first byte of each
+					| ((u32)((canMsgBuffer[BUFF_LENGTH] + 6) / 7) << 24);
+
+	// Number of packets allowed per CTS
+	mailbox->TDHR = 1
+  58:	78e3      	ldrb	r3, [r4, #3]
+  5a:	ea4f 4303 	mov.w	r3, r3, lsl #16
+  5e:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  62:	78a2      	ldrb	r2, [r4, #2]
+  64:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+  68:	60c3      	str	r3, [r0, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:103
+					| ((u16)canMsgBuffer[BUFF_COMMAND] << 8)	// PDU ps
+					| ((u32)canMsgBuffer[BUFF_FORMAT] << 16);	// PDU pf
+	//				| ((0 << 24);								// Extended MMSB
+
+	// Request transmit
+	mailbox->TIR |= 1;
+  6a:	6803      	ldr	r3, [r0, #0]
+  6c:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  70:	6003      	str	r3, [r0, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:105
+
+	can_buffer_state = BUFFER_TRANSMITTING;
+  72:	f240 0300 	movw	r3, #0	; 0x0
+  76:	f2c0 0300 	movt	r3, #0	; 0x0
+  7a:	f04f 0206 	mov.w	r2, #6	; 0x6
+  7e:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:108
+
+	// Reset the communication watchdog timer
+	can_comm_watchdog = 0;
+  80:	f240 0300 	movw	r3, #0	; 0x0
+  84:	f2c0 0300 	movt	r3, #0	; 0x0
+  88:	f1a2 0206 	sub.w	r2, r2, #6	; 0x6
+  8c:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:109
+}
+  8e:	bc30      	pop	{r4, r5}
+  90:	4770      	bx	lr
+  92:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.prepare_for_mp_receive:
+
+00000000 <prepare_for_mp_receive>:
+prepare_for_mp_receive():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:346
+
+
+void prepare_for_mp_receive(CAN_FIFOMailBox_TypeDef *mailbox)
+{
+	// Put the sender ID into the receive buffer
+	canMsgBuffer[BUFF_ADDRESS] = mailbox->RIR >> 3;
+   0:	6802      	ldr	r2, [r0, #0]
+   2:	f240 0300 	movw	r3, #0	; 0x0
+   6:	f2c0 0300 	movt	r3, #0	; 0x0
+   a:	ea4f 02d2 	mov.w	r2, r2, lsr #3
+   e:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:352
+
+	// Number of data bytes
+	// We only accept the first MAX_MP_BYTES of a long message
+	// If the high byte of message length is non-zero or the low byte 
+	//  is too big, set the count to maximum
+	if ( (u8)(mailbox->RDLR >> 16)
+  10:	6883      	ldr	r3, [r0, #8]
+  12:	ea4f 4313 	mov.w	r3, r3, lsr #16
+  16:	f013 0fff 	tst.w	r3, #255	; 0xff
+  1a:	d105      	bne.n	28 <prepare_for_mp_receive+0x28>
+  1c:	6883      	ldr	r3, [r0, #8]
+  1e:	ea4f 2313 	mov.w	r3, r3, lsr #8
+  22:	b2db      	uxtb	r3, r3
+  24:	2b29      	cmp	r3, #41
+  26:	d907      	bls.n	38 <prepare_for_mp_receive+0x38>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:355
+			|| ((u8)(mailbox->RDLR >> 8) >= MAX_MP_BYTES) )
+	{
+		canMsgBuffer[BUFF_LENGTH] = MAX_MP_BYTES;
+  28:	f240 0300 	movw	r3, #0	; 0x0
+  2c:	f2c0 0300 	movt	r3, #0	; 0x0
+  30:	f04f 022a 	mov.w	r2, #42	; 0x2a
+  34:	705a      	strb	r2, [r3, #1]
+  36:	e007      	b.n	48 <prepare_for_mp_receive+0x48>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:358
+	}
+	else
+		canMsgBuffer[BUFF_LENGTH] = mailbox->RDLR >> 8;
+  38:	6882      	ldr	r2, [r0, #8]
+  3a:	f240 0300 	movw	r3, #0	; 0x0
+  3e:	f2c0 0300 	movt	r3, #0	; 0x0
+  42:	ea4f 2212 	mov.w	r2, r2, lsr #8
+  46:	705a      	strb	r2, [r3, #1]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:361
+
+	// PDU
+	canMsgBuffer[BUFF_COMMAND] = mailbox->RDHR >> 8;
+  48:	68c3      	ldr	r3, [r0, #12]
+  4a:	f240 0200 	movw	r2, #0	; 0x0
+  4e:	f2c0 0200 	movt	r2, #0	; 0x0
+  52:	ea4f 2313 	mov.w	r3, r3, lsr #8
+  56:	7093      	strb	r3, [r2, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:362
+	canMsgBuffer[BUFF_FORMAT] = mailbox->RDHR >> 16;
+  58:	68c3      	ldr	r3, [r0, #12]
+  5a:	ea4f 4313 	mov.w	r3, r3, lsr #16
+  5e:	70d3      	strb	r3, [r2, #3]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:365
+
+	// First requested packet number
+	canMsgBuffer[BUFF_SEQUENCE] = 1;
+  60:	f04f 0301 	mov.w	r3, #1	; 0x1
+  64:	7113      	strb	r3, [r2, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:373
+	//  if that packet has been received
+	for (can_buffer_index = 0; 
+			can_buffer_index < MAX_NUMBER_PACKETS; 
+			can_buffer_index++)
+	{
+		received_packet_flags[can_buffer_index] = FALSE;
+  66:	f240 0300 	movw	r3, #0	; 0x0
+  6a:	f2c0 0300 	movt	r3, #0	; 0x0
+  6e:	f04f 0200 	mov.w	r2, #0	; 0x0
+  72:	701a      	strb	r2, [r3, #0]
+  74:	705a      	strb	r2, [r3, #1]
+  76:	709a      	strb	r2, [r3, #2]
+  78:	70da      	strb	r2, [r3, #3]
+  7a:	711a      	strb	r2, [r3, #4]
+  7c:	715a      	strb	r2, [r3, #5]
+  7e:	f240 0300 	movw	r3, #0	; 0x0
+  82:	f2c0 0300 	movt	r3, #0	; 0x0
+  86:	f102 0206 	add.w	r2, r2, #6	; 0x6
+  8a:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:375
+	}      
+}
+  8c:	4770      	bx	lr
+  8e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.buffer_a_can_packet:
+
+00000000 <buffer_a_can_packet>:
+buffer_a_can_packet():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:471
+}
+
+
+void buffer_a_can_packet(CAN_FIFOMailBox_TypeDef *mailbox)
+{
+	if (can_buffer_state == BUFFER_IDLE)
+   0:	f240 0300 	movw	r3, #0	; 0x0
+   4:	f2c0 0300 	movt	r3, #0	; 0x0
+   8:	781b      	ldrb	r3, [r3, #0]
+   a:	2b00      	cmp	r3, #0
+   c:	d177      	bne.n	fe <buffer_a_can_packet+0xfe>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:474
+	{
+		// Put the sender ID into the receive buffer
+		canMsgBuffer[BUFF_ADDRESS] = mailbox->RIR >> 3;
+   e:	6803      	ldr	r3, [r0, #0]
+  10:	f240 0200 	movw	r2, #0	; 0x0
+  14:	f2c0 0200 	movt	r2, #0	; 0x0
+  18:	ea4f 03d3 	mov.w	r3, r3, lsr #3
+  1c:	7013      	strb	r3, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:477
+
+		// Put the PDU format byte into the receive buffer
+		canMsgBuffer[BUFF_FORMAT] = mailbox->RIR >> 19;
+  1e:	6803      	ldr	r3, [r0, #0]
+  20:	ea4f 43d3 	mov.w	r3, r3, lsr #19
+  24:	b2db      	uxtb	r3, r3
+  26:	70d3      	strb	r3, [r2, #3]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:479
+
+		if (canMsgBuffer[BUFF_FORMAT] == PF_PROP_A)
+  28:	2bef      	cmp	r3, #239
+  2a:	d126      	bne.n	7a <buffer_a_can_packet+0x7a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:488
+			//  so only 7 bytes are available for payload
+
+			// Put the number of data bytes into the receive buffer
+			// The number of actual data bytes is one less 
+			//  since command occupies the first one
+			canMsgBuffer[BUFF_LENGTH] = (mailbox->RDTR & 0x0F) - 1;
+  2c:	6843      	ldr	r3, [r0, #4]
+  2e:	f240 0200 	movw	r2, #0	; 0x0
+  32:	f2c0 0200 	movt	r2, #0	; 0x0
+  36:	f003 030f 	and.w	r3, r3, #15	; 0xf
+  3a:	f103 33ff 	add.w	r3, r3, #4294967295	; 0xffffffff
+  3e:	7053      	strb	r3, [r2, #1]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:491
+
+			// Get the command from the first data byte 
+			canMsgBuffer[BUFF_COMMAND] = mailbox->RDLR;
+  40:	6883      	ldr	r3, [r0, #8]
+  42:	7093      	strb	r3, [r2, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:495
+
+			// Put the data bytes into the receive buffer even 
+			//  though they might not be valid
+			canMsgBuffer[BUFF_DATA_BEGIN] = mailbox->RDLR >> 8;
+  44:	6883      	ldr	r3, [r0, #8]
+  46:	ea4f 2313 	mov.w	r3, r3, lsr #8
+  4a:	7153      	strb	r3, [r2, #5]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:496
+			canMsgBuffer[BUFF_DATA_BEGIN + 1] = mailbox->RDLR >> 16;
+  4c:	6883      	ldr	r3, [r0, #8]
+  4e:	ea4f 4313 	mov.w	r3, r3, lsr #16
+  52:	7193      	strb	r3, [r2, #6]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:497
+			canMsgBuffer[BUFF_DATA_BEGIN + 2] = mailbox->RDLR >> 24;
+  54:	6883      	ldr	r3, [r0, #8]
+  56:	ea4f 6313 	mov.w	r3, r3, lsr #24
+  5a:	71d3      	strb	r3, [r2, #7]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:498
+			canMsgBuffer[BUFF_DATA_BEGIN + 3] = mailbox->RDHR;
+  5c:	68c3      	ldr	r3, [r0, #12]
+  5e:	7213      	strb	r3, [r2, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:499
+			canMsgBuffer[BUFF_DATA_BEGIN + 4] = mailbox->RDHR >> 8;
+  60:	68c3      	ldr	r3, [r0, #12]
+  62:	ea4f 2313 	mov.w	r3, r3, lsr #8
+  66:	7253      	strb	r3, [r2, #9]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:500
+			canMsgBuffer[BUFF_DATA_BEGIN + 5] = mailbox->RDHR >> 16;
+  68:	68c3      	ldr	r3, [r0, #12]
+  6a:	ea4f 4313 	mov.w	r3, r3, lsr #16
+  6e:	7293      	strb	r3, [r2, #10]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:501
+			canMsgBuffer[BUFF_DATA_BEGIN + 6] = mailbox->RDHR >> 24;
+  70:	68c3      	ldr	r3, [r0, #12]
+  72:	ea4f 6313 	mov.w	r3, r3, lsr #24
+  76:	72d3      	strb	r3, [r2, #11]
+  78:	e03a      	b.n	f0 <buffer_a_can_packet+0xf0>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:505
+		}
+		else
+		{
+			if (canMsgBuffer[BUFF_FORMAT] < PF_PROP_A)
+  7a:	2bee      	cmp	r3, #238
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:511
+			{							
+				// This is a destination specific transfer
+				// There is no PS (command) so 8 bytes are available for payload
+
+				// Set the command 
+				canMsgBuffer[BUFF_COMMAND] = 0xFF;
+  7c:	bf9f      	itttt	ls
+  7e:	f240 0300 	movwls	r3, #0	; 0x0
+  82:	f2c0 0300 	movtls	r3, #0	; 0x0
+  86:	f04f 32ff 	movls.w	r2, #4294967295	; 0xffffffff
+  8a:	709a      	strbls	r2, [r3, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:505
+			canMsgBuffer[BUFF_DATA_BEGIN + 5] = mailbox->RDHR >> 16;
+			canMsgBuffer[BUFF_DATA_BEGIN + 6] = mailbox->RDHR >> 24;
+		}
+		else
+		{
+			if (canMsgBuffer[BUFF_FORMAT] < PF_PROP_A)
+  8c:	d90c      	bls.n	a8 <buffer_a_can_packet+0xa8>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:520
+				// This is a not destination specific transfer
+				// The PS (command) is in the header where the destination 
+				//  would have been and 8 data bytes are possible
+
+				// Get the command from the CAN header 
+				canMsgBuffer[BUFF_COMMAND] = CAN1->sFIFOMailBox[0].RIR >> 11;
+  8e:	f246 4300 	movw	r3, #25600	; 0x6400
+  92:	f2c4 0300 	movt	r3, #16384	; 0x4000
+  96:	f8d3 21b0 	ldr.w	r2, [r3, #432]
+  9a:	f240 0300 	movw	r3, #0	; 0x0
+  9e:	f2c0 0300 	movt	r3, #0	; 0x0
+  a2:	ea4f 22d2 	mov.w	r2, r2, lsr #11
+  a6:	709a      	strb	r2, [r3, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:524
+			}
+
+			// Put the number of data bytes into the receive buffer
+			canMsgBuffer[BUFF_LENGTH] = mailbox->RDTR & 0x0F;
+  a8:	6843      	ldr	r3, [r0, #4]
+  aa:	f240 0200 	movw	r2, #0	; 0x0
+  ae:	f2c0 0200 	movt	r2, #0	; 0x0
+  b2:	f003 030f 	and.w	r3, r3, #15	; 0xf
+  b6:	7053      	strb	r3, [r2, #1]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:528
+
+			// Put the data bytes into the receive buffer even 
+			//  though they all might not be valid
+			canMsgBuffer[BUFF_DATA_BEGIN] = mailbox->RDLR;
+  b8:	6883      	ldr	r3, [r0, #8]
+  ba:	7153      	strb	r3, [r2, #5]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:529
+			canMsgBuffer[BUFF_DATA_BEGIN + 1] = mailbox->RDLR >> 8;
+  bc:	6883      	ldr	r3, [r0, #8]
+  be:	ea4f 2313 	mov.w	r3, r3, lsr #8
+  c2:	7193      	strb	r3, [r2, #6]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:530
+			canMsgBuffer[BUFF_DATA_BEGIN + 2] = mailbox->RDLR >> 16;
+  c4:	6883      	ldr	r3, [r0, #8]
+  c6:	ea4f 4313 	mov.w	r3, r3, lsr #16
+  ca:	71d3      	strb	r3, [r2, #7]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:531
+			canMsgBuffer[BUFF_DATA_BEGIN + 3] = mailbox->RDLR >> 24;
+  cc:	6883      	ldr	r3, [r0, #8]
+  ce:	ea4f 6313 	mov.w	r3, r3, lsr #24
+  d2:	7213      	strb	r3, [r2, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:532
+			canMsgBuffer[BUFF_DATA_BEGIN + 4] = mailbox->RDHR;
+  d4:	68c3      	ldr	r3, [r0, #12]
+  d6:	7253      	strb	r3, [r2, #9]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:533
+			canMsgBuffer[BUFF_DATA_BEGIN + 5] = mailbox->RDHR >> 8;
+  d8:	68c3      	ldr	r3, [r0, #12]
+  da:	ea4f 2313 	mov.w	r3, r3, lsr #8
+  de:	7293      	strb	r3, [r2, #10]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:534
+			canMsgBuffer[BUFF_DATA_BEGIN + 6] = mailbox->RDHR >> 16;
+  e0:	68c3      	ldr	r3, [r0, #12]
+  e2:	ea4f 4313 	mov.w	r3, r3, lsr #16
+  e6:	72d3      	strb	r3, [r2, #11]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:535
+			canMsgBuffer[BUFF_DATA_BEGIN + 7] = mailbox->RDHR >> 24;
+  e8:	68c3      	ldr	r3, [r0, #12]
+  ea:	ea4f 6313 	mov.w	r3, r3, lsr #24
+  ee:	7313      	strb	r3, [r2, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:538
+		}
+
+		can_buffer_state = BUFFER_READY_TO_READ;
+  f0:	f240 0300 	movw	r3, #0	; 0x0
+  f4:	f2c0 0300 	movt	r3, #0	; 0x0
+  f8:	f04f 0204 	mov.w	r2, #4	; 0x4
+  fc:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:540
+	}
+}
+  fe:	4770      	bx	lr
+Disassembly of section .text.CAN1_RX1_IRQHandler:
+
+00000000 <CAN1_RX1_IRQHandler>:
+CAN1_RX1_IRQHandler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:606
+ * Filter 4 receives PFs from 0xE8 to 0xEF directed to all nodes
+ * Filter 5 receives PFs from 0xE8 to 0xEF directed to this node	 
+ *-------------------------------------------------------------*/
+
+void CAN1_RX1_IRQHandler(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:618
+// Repeat until no message is pending
+// remember to wait for the FIFO to release
+
+	mailbox = &(CAN1->sFIFOMailBox[1]);
+
+	if ((u8)(mailbox->RIR >> 3) == CAN_ECU_ADDR)
+   2:	f246 53c0 	movw	r3, #26048	; 0x65c0
+   6:	f2c4 0300 	movt	r3, #16384	; 0x4000
+   a:	681b      	ldr	r3, [r3, #0]
+   c:	ea4f 03d3 	mov.w	r3, r3, lsr #3
+  10:	f013 0fff 	tst.w	r3, #255	; 0xff
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:619
+		ECU_comm_watchdog = ECU_WATCHDOG_TIMEOUT;
+  14:	bf01      	itttt	eq
+  16:	f240 0300 	movweq	r3, #0	; 0x0
+  1a:	f2c0 0300 	movteq	r3, #0	; 0x0
+  1e:	f06f 0205 	mvneq.w	r2, #5	; 0x5
+  22:	701a      	strbeq	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:622
+
+	// Get the Filter Match Index
+	temp_byte = mailbox->RDTR >> 8;
+  24:	f246 53c0 	movw	r3, #26048	; 0x65c0
+  28:	f2c4 0300 	movt	r3, #16384	; 0x4000
+  2c:	685b      	ldr	r3, [r3, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:624
+
+	switch (temp_byte)
+  2e:	ea4f 2313 	mov.w	r3, r3, lsr #8
+  32:	b2db      	uxtb	r3, r3
+  34:	f103 33ff 	add.w	r3, r3, #4294967295	; 0xffffffff
+  38:	2b01      	cmp	r3, #1
+  3a:	f200 81ab 	bhi.w	394 <CAN1_RX1_IRQHandler+0x394>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:630
+	{
+		case FILTER_4_INDEX:	// PFs from 0xE8 to 0xEF directed to all nodes
+		case FILTER_5_INDEX:	// PFs from 0xE8 to 0xEF directed to this node
+
+			// Get the PDU format to see which message it is 
+			switch ( (u8)(mailbox->RIR >> 19) )
+  3e:	f246 53c0 	movw	r3, #26048	; 0x65c0
+  42:	f2c4 0300 	movt	r3, #16384	; 0x4000
+  46:	681b      	ldr	r3, [r3, #0]
+  48:	ea4f 43d3 	mov.w	r3, r3, lsr #19
+  4c:	b2db      	uxtb	r3, r3
+  4e:	2beb      	cmp	r3, #235
+  50:	f000 80bd 	beq.w	1ce <CAN1_RX1_IRQHandler+0x1ce>
+  54:	2bec      	cmp	r3, #236
+  56:	f040 8197 	bne.w	388 <CAN1_RX1_IRQHandler+0x388>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:634
+			{
+				case PF_TPCM:	// Transport protocol connection management (0xECxx)
+
+					switch ( (u8)mailbox->RDLR )
+  5a:	f246 53c0 	movw	r3, #26048	; 0x65c0
+  5e:	f2c4 0300 	movt	r3, #16384	; 0x4000
+  62:	689b      	ldr	r3, [r3, #8]
+  64:	b2db      	uxtb	r3, r3
+  66:	2b13      	cmp	r3, #19
+  68:	d05c      	beq.n	124 <CAN1_RX1_IRQHandler+0x124>
+  6a:	d805      	bhi.n	78 <CAN1_RX1_IRQHandler+0x78>
+  6c:	2b10      	cmp	r3, #16
+  6e:	d061      	beq.n	134 <CAN1_RX1_IRQHandler+0x134>
+  70:	2b11      	cmp	r3, #17
+  72:	f040 818f 	bne.w	394 <CAN1_RX1_IRQHandler+0x394>
+  76:	e006      	b.n	86 <CAN1_RX1_IRQHandler+0x86>
+  78:	2b20      	cmp	r3, #32
+  7a:	f000 8086 	beq.w	18a <CAN1_RX1_IRQHandler+0x18a>
+  7e:	2bff      	cmp	r3, #255
+  80:	f040 8188 	bne.w	394 <CAN1_RX1_IRQHandler+0x394>
+  84:	e04e      	b.n	a1 <CAN1_RX1_IRQHandler+0xa1>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:640
+					{
+						case TPCM_CTS:
+
+							// Verify that we are in process of sending a multiple 
+							//  packet message to the source of this packet
+							if ( (can_buffer_state == BUFFER_TRANSMITTING)
+  86:	f240 0300 	movw	r3, #0	; 0x0
+  8a:	f2c0 0300 	movt	r3, #0	; 0x0
+  8e:	781b      	ldrb	r3, [r3, #0]
+  90:	2b06      	cmp	r3, #6
+  92:	d123      	bne.n	dc <CAN1_RX1_IRQHandler+0xdc>
+  94:	f246 53c0 	movw	r3, #26048	; 0x65c0
+  98:	f2c4 0300 	movt	r3, #16384	; 0x4000
+  9c:	681a      	ldr	r2, [r3, #0]
+  9e:	ea4f 02d2 	mov.w	r2, r2, lsr #3
+  a2:	f240 0300 	movw	r3, #0	; 0x0
+  a6:	f2c0 0300 	movt	r3, #0	; 0x0
+  aa:	781b      	ldrb	r3, [r3, #0]
+  ac:	b2d2      	uxtb	r2, r2
+  ae:	4293      	cmp	r3, r2
+  b0:	d114      	bne.n	dc <CAN1_RX1_IRQHandler+0xdc>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:645
+									&& ((u8)(mailbox->RIR >> 3) == canMsgBuffer[BUFF_ADDRESS]) )
+							{
+								// Number of data packets to transmit 
+								//  triggers the transmit process
+								packets_to_transmit = mailbox->RDLR >> 8; 
+  b2:	f246 51c0 	movw	r1, #26048	; 0x65c0
+  b6:	f2c4 0100 	movt	r1, #16384	; 0x4000
+  ba:	688a      	ldr	r2, [r1, #8]
+  bc:	f240 0300 	movw	r3, #0	; 0x0
+  c0:	f2c0 0300 	movt	r3, #0	; 0x0
+  c4:	ea4f 2212 	mov.w	r2, r2, lsr #8
+  c8:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:648
+
+								// The next packet number to transmit
+								canMsgBuffer[BUFF_SEQUENCE] = mailbox->RDLR >> 16;
+  ca:	688a      	ldr	r2, [r1, #8]
+  cc:	f240 0300 	movw	r3, #0	; 0x0
+  d0:	f2c0 0300 	movt	r3, #0	; 0x0
+  d4:	ea4f 4212 	mov.w	r2, r2, lsr #16
+  d8:	711a      	strb	r2, [r3, #4]
+  da:	e15b      	b.n	394 <CAN1_RX1_IRQHandler+0x394>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:665
+		 * We ignore CTS messages from the other servers 
+		 * programming_server.requestee = 0xFF and each server responds 
+		 *  with their ID as the CTS packet source
+		 *----------------------------------------------------------------*/
+							
+							else if ( (programming_server.state == PRGM_WAIT_CTS)
+  dc:	f240 0300 	movw	r3, #0	; 0x0
+  e0:	f2c0 0300 	movt	r3, #0	; 0x0
+  e4:	789b      	ldrb	r3, [r3, #2]
+  e6:	2b01      	cmp	r3, #1
+  e8:	f040 8154 	bne.w	394 <CAN1_RX1_IRQHandler+0x394>
+  ec:	f246 53c0 	movw	r3, #26048	; 0x65c0
+  f0:	f2c4 0300 	movt	r3, #16384	; 0x4000
+  f4:	68db      	ldr	r3, [r3, #12]
+  f6:	ea4f 2313 	mov.w	r3, r3, lsr #8
+  fa:	b2db      	uxtb	r3, r3
+  fc:	2b23      	cmp	r3, #35
+  fe:	f040 8149 	bne.w	394 <CAN1_RX1_IRQHandler+0x394>
+ 102:	f246 53c0 	movw	r3, #26048	; 0x65c0
+ 106:	f2c4 0300 	movt	r3, #16384	; 0x4000
+ 10a:	68db      	ldr	r3, [r3, #12]
+ 10c:	ea4f 4313 	mov.w	r3, r3, lsr #16
+ 110:	b2db      	uxtb	r3, r3
+ 112:	2bef      	cmp	r3, #239
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:669
+										&& ( (u8)(mailbox->RDHR >> 8) == PCMD_REPROGRAM )
+										&& ( (u8)(mailbox->RDHR >> 16) == PF_PROP_A ) )
+							{
+								programming_server.state = PRGM_DELAY1;
+ 114:	bf01      	itttt	eq
+ 116:	f240 0300 	movweq	r3, #0	; 0x0
+ 11a:	f2c0 0300 	movteq	r3, #0	; 0x0
+ 11e:	2202      	moveq	r2, #2
+ 120:	709a      	strbeq	r2, [r3, #2]
+ 122:	e137      	b.n	394 <CAN1_RX1_IRQHandler+0x394>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:676
+
+							break;
+
+						case TPCM_ACK:
+						case TPCM_ABORT:
+							can_buffer_state = BUFFER_IDLE;
+ 124:	f240 0300 	movw	r3, #0	; 0x0
+ 128:	f2c0 0300 	movt	r3, #0	; 0x0
+ 12c:	f04f 0200 	mov.w	r2, #0	; 0x0
+ 130:	701a      	strb	r2, [r3, #0]
+ 132:	e12f      	b.n	394 <CAN1_RX1_IRQHandler+0x394>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:689
+							 * Allow the reception if our buffer is available 
+							 *  and it is directed to us
+							 * We only accept the first MAX_MP_BYTES bytes
+							 *----------------------------------------------*/
+	
+							if ( (can_buffer_state == BUFFER_IDLE)
+ 134:	f240 0300 	movw	r3, #0	; 0x0
+ 138:	f2c0 0300 	movt	r3, #0	; 0x0
+ 13c:	781b      	ldrb	r3, [r3, #0]
+ 13e:	2b00      	cmp	r3, #0
+ 140:	f040 8128 	bne.w	394 <CAN1_RX1_IRQHandler+0x394>
+ 144:	f246 53c0 	movw	r3, #26048	; 0x65c0
+ 148:	f2c4 0300 	movt	r3, #16384	; 0x4000
+ 14c:	681a      	ldr	r2, [r3, #0]
+ 14e:	ea4f 22d2 	mov.w	r2, r2, lsr #11
+ 152:	f240 0300 	movw	r3, #0	; 0x0
+ 156:	f2c0 0300 	movt	r3, #0	; 0x0
+ 15a:	781b      	ldrb	r3, [r3, #0]
+ 15c:	b2d2      	uxtb	r2, r2
+ 15e:	4293      	cmp	r3, r2
+ 160:	f040 8118 	bne.w	394 <CAN1_RX1_IRQHandler+0x394>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:693
+									&& ( (u8)(mailbox->RIR >> 11) == this_can_address ) )
+							{
+								// Signal to transmit a CTS to the sender
+								can_buffer_state = BUFFER_SEND_CTS;
+ 164:	f240 0300 	movw	r3, #0	; 0x0
+ 168:	f2c0 0300 	movt	r3, #0	; 0x0
+ 16c:	f04f 0201 	mov.w	r2, #1	; 0x1
+ 170:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:695
+
+								handshake_exchange = TRUE;
+ 172:	f240 0300 	movw	r3, #0	; 0x0
+ 176:	f2c0 0300 	movt	r3, #0	; 0x0
+ 17a:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:697
+
+								prepare_for_mp_receive(mailbox);
+ 17c:	f246 50c0 	movw	r0, #26048	; 0x65c0
+ 180:	f2c4 0000 	movt	r0, #16384	; 0x4000
+ 184:	f7ff fffe 	bl	0 <CAN1_RX1_IRQHandler>
+ 188:	e104      	b.n	20d <CAN1_RX1_IRQHandler+0x20d>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:711
+							 *  in-coming broadcast multiple packet message 
+							 * Allow the reception if our buffer is available 
+							 * We only accept the first MAX_MP_BYTES bytes
+							 *----------------------------------------------*/
+	
+							if (can_buffer_state == BUFFER_IDLE)
+ 18a:	f240 0300 	movw	r3, #0	; 0x0
+ 18e:	f2c0 0300 	movt	r3, #0	; 0x0
+ 192:	781b      	ldrb	r3, [r3, #0]
+ 194:	2b00      	cmp	r3, #0
+ 196:	f040 80fd 	bne.w	394 <CAN1_RX1_IRQHandler+0x394>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:713
+							{
+								can_buffer_state = BUFFER_ACQUIRING;
+ 19a:	f240 0300 	movw	r3, #0	; 0x0
+ 19e:	f2c0 0300 	movt	r3, #0	; 0x0
+ 1a2:	f04f 0202 	mov.w	r2, #2	; 0x2
+ 1a6:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:716
+
+								// Reset the communication watchdog timer
+								can_comm_watchdog = 0;
+ 1a8:	f240 0300 	movw	r3, #0	; 0x0
+ 1ac:	f2c0 0300 	movt	r3, #0	; 0x0
+ 1b0:	f1a2 0202 	sub.w	r2, r2, #2	; 0x2
+ 1b4:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:718
+
+								handshake_exchange = FALSE;
+ 1b6:	f240 0300 	movw	r3, #0	; 0x0
+ 1ba:	f2c0 0300 	movt	r3, #0	; 0x0
+ 1be:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:720
+
+								prepare_for_mp_receive(mailbox);
+ 1c0:	f246 50c0 	movw	r0, #26048	; 0x65c0
+ 1c4:	f2c4 0000 	movt	r0, #16384	; 0x4000
+ 1c8:	f7ff fffe 	bl	0 <CAN1_RX1_IRQHandler>
+ 1cc:	e0e2      	b.n	1c9 <CAN1_RX1_IRQHandler+0x1c9>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:746
+					 * It is a receive data packet
+					 *-----------------------------------------------*/
+
+					// Verify that we are acquiring from the source of 
+					//  this packet
+					if ( (can_buffer_state == BUFFER_ACQUIRING)
+ 1ce:	f240 0300 	movw	r3, #0	; 0x0
+ 1d2:	f2c0 0300 	movt	r3, #0	; 0x0
+ 1d6:	781b      	ldrb	r3, [r3, #0]
+ 1d8:	2b02      	cmp	r3, #2
+ 1da:	f040 80db 	bne.w	394 <CAN1_RX1_IRQHandler+0x394>
+ 1de:	f246 53c0 	movw	r3, #26048	; 0x65c0
+ 1e2:	f2c4 0300 	movt	r3, #16384	; 0x4000
+ 1e6:	681a      	ldr	r2, [r3, #0]
+ 1e8:	ea4f 02d2 	mov.w	r2, r2, lsr #3
+ 1ec:	f240 0300 	movw	r3, #0	; 0x0
+ 1f0:	f2c0 0300 	movt	r3, #0	; 0x0
+ 1f4:	781b      	ldrb	r3, [r3, #0]
+ 1f6:	b2d2      	uxtb	r2, r2
+ 1f8:	4293      	cmp	r3, r2
+ 1fa:	f040 80cb 	bne.w	394 <CAN1_RX1_IRQHandler+0x394>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:750
+							&& ( (u8)(mailbox->RIR >> 3) == canMsgBuffer[BUFF_ADDRESS] ) )
+					{
+						// Reset the communication watchdog timer
+						can_comm_watchdog = 0;
+ 1fe:	f240 0300 	movw	r3, #0	; 0x0
+ 202:	f2c0 0300 	movt	r3, #0	; 0x0
+ 206:	f04f 0200 	mov.w	r2, #0	; 0x0
+ 20a:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:755
+
+						// Get this sequence number
+						// The zero data byte holds the packet sequence number 
+						//  which begins with 1							
+						temp_byte = mailbox->RDLR - 1;
+ 20c:	f246 53c0 	movw	r3, #26048	; 0x65c0
+ 210:	f2c4 0300 	movt	r3, #16384	; 0x4000
+ 214:	689a      	ldr	r2, [r3, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:758
+
+						// Flag this sequence as having been received
+						received_packet_flags[temp_byte] = TRUE;
+ 216:	f102 32ff 	add.w	r2, r2, #4294967295	; 0xffffffff
+ 21a:	b2d2      	uxtb	r2, r2
+ 21c:	f240 0300 	movw	r3, #0	; 0x0
+ 220:	f2c0 0300 	movt	r3, #0	; 0x0
+ 224:	f04f 0101 	mov.w	r1, #1	; 0x1
+ 228:	5499      	strb	r1, [r3, r2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:764
+
+						// Set the index into canMsgBuffer[] for this packet
+						// There are 7 bytes of data per packet, the packets are
+						//  numbered beginning with 1, and the data starts at 
+						//  BUFF_DATA_BEGIN
+						can_buffer_index = (temp_byte * 7) + BUFF_DATA_BEGIN;
+ 22a:	ea4f 03c2 	mov.w	r3, r2, lsl #3
+ 22e:	ebc2 0303 	rsb	r3, r2, r3
+ 232:	f103 0305 	add.w	r3, r3, #5	; 0x5
+ 236:	b2da      	uxtb	r2, r3
+ 238:	f240 0300 	movw	r3, #0	; 0x0
+ 23c:	f2c0 0300 	movt	r3, #0	; 0x0
+ 240:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:767
+
+						// If there is room, copy seven bytes from the hardware
+						if ( can_buffer_index <= (MAX_MP_BYTES + BUFF_DATA_BEGIN - 7) )
+ 242:	2a28      	cmp	r2, #40
+ 244:	d836      	bhi.n	2b4 <CAN1_RX1_IRQHandler+0x2b4>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:770
+						{
+							// Accumulate the data bytes of a multiple packet message
+							canMsgBuffer[can_buffer_index++] = mailbox->RDLR >> 8;
+ 246:	f246 54c0 	movw	r4, #26048	; 0x65c0
+ 24a:	f2c4 0400 	movt	r4, #16384	; 0x4000
+ 24e:	68a3      	ldr	r3, [r4, #8]
+ 250:	f240 0000 	movw	r0, #0	; 0x0
+ 254:	f2c0 0000 	movt	r0, #0	; 0x0
+ 258:	ea4f 2313 	mov.w	r3, r3, lsr #8
+ 25c:	5483      	strb	r3, [r0, r2]
+ 25e:	eb02 0301 	add.w	r3, r2, r1
+ 262:	b2db      	uxtb	r3, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:771
+							canMsgBuffer[can_buffer_index++] = mailbox->RDLR >> 16;
+ 264:	68a2      	ldr	r2, [r4, #8]
+ 266:	ea4f 4212 	mov.w	r2, r2, lsr #16
+ 26a:	54c2      	strb	r2, [r0, r3]
+ 26c:	440b      	add	r3, r1
+ 26e:	b2db      	uxtb	r3, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:772
+							canMsgBuffer[can_buffer_index++] = mailbox->RDLR >> 24;
+ 270:	68a2      	ldr	r2, [r4, #8]
+ 272:	ea4f 6212 	mov.w	r2, r2, lsr #24
+ 276:	54c2      	strb	r2, [r0, r3]
+ 278:	440b      	add	r3, r1
+ 27a:	b2db      	uxtb	r3, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:773
+							canMsgBuffer[can_buffer_index++] = mailbox->RDHR;
+ 27c:	68e2      	ldr	r2, [r4, #12]
+ 27e:	54c2      	strb	r2, [r0, r3]
+ 280:	440b      	add	r3, r1
+ 282:	b2db      	uxtb	r3, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:774
+							canMsgBuffer[can_buffer_index++] = mailbox->RDHR >> 8;
+ 284:	68e2      	ldr	r2, [r4, #12]
+ 286:	ea4f 2212 	mov.w	r2, r2, lsr #8
+ 28a:	54c2      	strb	r2, [r0, r3]
+ 28c:	440b      	add	r3, r1
+ 28e:	b2db      	uxtb	r3, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:775
+							canMsgBuffer[can_buffer_index++] = mailbox->RDHR >> 16;
+ 290:	68e2      	ldr	r2, [r4, #12]
+ 292:	ea4f 4212 	mov.w	r2, r2, lsr #16
+ 296:	54c2      	strb	r2, [r0, r3]
+ 298:	440b      	add	r3, r1
+ 29a:	b2db      	uxtb	r3, r3
+ 29c:	f240 0100 	movw	r1, #0	; 0x0
+ 2a0:	f2c0 0100 	movt	r1, #0	; 0x0
+ 2a4:	700b      	strb	r3, [r1, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:776
+							canMsgBuffer[can_buffer_index++] = mailbox->RDHR >> 24;
+ 2a6:	68e2      	ldr	r2, [r4, #12]
+ 2a8:	ea4f 6212 	mov.w	r2, r2, lsr #24
+ 2ac:	54c2      	strb	r2, [r0, r3]
+ 2ae:	f103 0301 	add.w	r3, r3, #1	; 0x1
+ 2b2:	700b      	strb	r3, [r1, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:779
+						}
+
+						if (handshake_exchange)
+ 2b4:	f240 0300 	movw	r3, #0	; 0x0
+ 2b8:	f2c0 0300 	movt	r3, #0	; 0x0
+ 2bc:	781b      	ldrb	r3, [r3, #0]
+ 2be:	2b00      	cmp	r3, #0
+ 2c0:	d04f      	beq.n	362 <CAN1_RX1_IRQHandler+0x362>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:789
+							// This gives us the opportunity to request a 
+							//  retransmit of a lost packet
+
+							// Preset buffer ready so we can set it  
+							//  when we find the first missing packet
+							can_buffer_state = BUFFER_SEND_ACK;
+ 2c2:	f240 0300 	movw	r3, #0	; 0x0
+ 2c6:	f2c0 0300 	movt	r3, #0	; 0x0
+ 2ca:	f04f 0203 	mov.w	r2, #3	; 0x3
+ 2ce:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:792
+
+							// Get the number of packets in this message
+							temp_byte = (canMsgBuffer[BUFF_LENGTH] + 6) / 7;
+ 2d0:	f240 0300 	movw	r3, #0	; 0x0
+ 2d4:	f2c0 0300 	movt	r3, #0	; 0x0
+ 2d8:	785a      	ldrb	r2, [r3, #1]
+ 2da:	f102 0206 	add.w	r2, r2, #6	; 0x6
+ 2de:	f242 4393 	movw	r3, #9363	; 0x2493
+ 2e2:	f2c9 2349 	movt	r3, #37449	; 0x9249
+ 2e6:	fb83 1302 	smull	r1, r3, r3, r2
+ 2ea:	4413      	add	r3, r2
+ 2ec:	ea4f 03a3 	mov.w	r3, r3, asr #2
+ 2f0:	b2d8      	uxtb	r0, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:795
+
+							// See if all the packets have been received
+							for (can_buffer_index = 0;
+ 2f2:	f240 0300 	movw	r3, #0	; 0x0
+ 2f6:	f2c0 0300 	movt	r3, #0	; 0x0
+ 2fa:	f04f 0200 	mov.w	r2, #0	; 0x0
+ 2fe:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:796
+									can_buffer_index < temp_byte;
+ 300:	2800      	cmp	r0, #0
+ 302:	d047      	beq.n	394 <CAN1_RX1_IRQHandler+0x394>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:799
+									can_buffer_index++)
+							{
+								if ( received_packet_flags[can_buffer_index] == FALSE)
+ 304:	f240 0300 	movw	r3, #0	; 0x0
+ 308:	f2c0 0300 	movt	r3, #0	; 0x0
+ 30c:	781b      	ldrb	r3, [r3, #0]
+ 30e:	b9bb      	cbnz	r3, 340 <CAN1_RX1_IRQHandler+0x340>
+ 310:	4611      	mov	r1, r2
+ 312:	e007      	b.n	324 <CAN1_RX1_IRQHandler+0x324>
+ 314:	f812 3f01 	ldrb.w	r3, [r2, #1]!
+ 318:	b9c3      	cbnz	r3, 35 <CAN1_RX1_IRQHandler+0x35>
+ 31a:	f240 0300 	movw	r3, #0	; 0x0
+ 31e:	f2c0 0300 	movt	r3, #0	; 0x0
+ 322:	7019      	strb	r1, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:803
+								{
+									// We have encountered a missing packet
+									// Trigger to send a CTS
+									can_buffer_state = BUFFER_SEND_CTS;
+ 324:	f240 0300 	movw	r3, #0	; 0x0
+ 328:	f2c0 0300 	movt	r3, #0	; 0x0
+ 32c:	f04f 0201 	mov.w	r2, #1	; 0x1
+ 330:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:807
+
+									// Put the missing sequence number in the buffer
+									// Packets are numbered beginning with 1
+		                            canMsgBuffer[BUFF_SEQUENCE] = can_buffer_index + 1;
+ 332:	f240 0300 	movw	r3, #0	; 0x0
+ 336:	f2c0 0300 	movt	r3, #0	; 0x0
+ 33a:	440a      	add	r2, r1
+ 33c:	711a      	strb	r2, [r3, #4]
+ 33e:	e029      	b.n	394 <CAN1_RX1_IRQHandler+0x394>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:810
+
+									// Stop looking when we find the first missing one
+									break;
+ 340:	f240 0200 	movw	r2, #0	; 0x0
+ 344:	f2c0 0200 	movt	r2, #0	; 0x0
+ 348:	f04f 0100 	mov.w	r1, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:797
+							temp_byte = (canMsgBuffer[BUFF_LENGTH] + 6) / 7;
+
+							// See if all the packets have been received
+							for (can_buffer_index = 0;
+									can_buffer_index < temp_byte;
+									can_buffer_index++)
+ 34c:	f101 0301 	add.w	r3, r1, #1	; 0x1
+ 350:	b2d9      	uxtb	r1, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:796
+							// Get the number of packets in this message
+							temp_byte = (canMsgBuffer[BUFF_LENGTH] + 6) / 7;
+
+							// See if all the packets have been received
+							for (can_buffer_index = 0;
+									can_buffer_index < temp_byte;
+ 352:	4288      	cmp	r0, r1
+ 354:	d8de      	bhi.n	314 <CAN1_RX1_IRQHandler+0x314>
+ 356:	f240 0300 	movw	r3, #0	; 0x0
+ 35a:	f2c0 0300 	movt	r3, #0	; 0x0
+ 35e:	7019      	strb	r1, [r3, #0]
+ 360:	e018      	b.n	394 <CAN1_RX1_IRQHandler+0x394>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:820
+						{
+							// This is not a handshake exchange
+
+							// If we are done, setup to take action 
+							//  if not, just quit and wait for the rest
+							if (can_buffer_index >= canMsgBuffer[BUFF_LENGTH])
+ 362:	f240 0200 	movw	r2, #0	; 0x0
+ 366:	f2c0 0200 	movt	r2, #0	; 0x0
+ 36a:	f240 0300 	movw	r3, #0	; 0x0
+ 36e:	f2c0 0300 	movt	r3, #0	; 0x0
+ 372:	7852      	ldrb	r2, [r2, #1]
+ 374:	781b      	ldrb	r3, [r3, #0]
+ 376:	429a      	cmp	r2, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:821
+								can_buffer_state = BUFFER_READY_TO_READ;
+ 378:	bf9f      	itttt	ls
+ 37a:	f240 0300 	movwls	r3, #0	; 0x0
+ 37e:	f2c0 0300 	movtls	r3, #0	; 0x0
+ 382:	2204      	movls	r2, #4
+ 384:	701a      	strbls	r2, [r3, #0]
+ 386:	e005      	b.n	394 <CAN1_RX1_IRQHandler+0x394>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:833
+
+					// A single packet message has been received 
+
+					// If the CAN buffer is available, assemble it 
+					//  there and parse it 
+					buffer_a_can_packet(mailbox);
+ 388:	f246 50c0 	movw	r0, #26048	; 0x65c0
+ 38c:	f2c4 0000 	movt	r0, #16384	; 0x4000
+ 390:	f7ff fffe 	bl	0 <CAN1_RX1_IRQHandler>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:855
+			// A filter not attached to FIFO 1 has reported a hit
+			break;
+	}
+
+	// Release FIFO 1
+	CAN1->RF1R = 0x20;
+ 394:	f246 4300 	movw	r3, #25600	; 0x6400
+ 398:	f2c4 0300 	movt	r3, #16384	; 0x4000
+ 39c:	f04f 0220 	mov.w	r2, #32	; 0x20
+ 3a0:	611a      	str	r2, [r3, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:858
+
+//	clear_interrupt_pending(CAN1_RX1_IRQn);
+ 3a2:	bd10      	pop	{r4, pc}
+Disassembly of section .text.USB_LP_CAN1_RX0_IRQHandler:
+
+00000000 <USB_LP_CAN1_RX0_IRQHandler>:
+USB_LP_CAN1_RX0_IRQHandler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:555
+ * Filter 3 receives PGN 0xFECA	(DM1 messages)
+ * Filter 6 receives PGN 0xFEDF (EEC3 message)
+ *-----------------------------------------------------------------*/
+
+void USB_LP_CAN1_RX0_IRQHandler(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:562
+
+	CAN_FIFOMailBox_TypeDef *mailbox;
+
+	mailbox = &(CAN1->sFIFOMailBox[0]);
+
+	if ((u8)(mailbox->RIR >> 3) == CAN_ECU_ADDR)
+   2:	f246 53b0 	movw	r3, #26032	; 0x65b0
+   6:	f2c4 0300 	movt	r3, #16384	; 0x4000
+   a:	681b      	ldr	r3, [r3, #0]
+   c:	ea4f 03d3 	mov.w	r3, r3, lsr #3
+  10:	f013 0fff 	tst.w	r3, #255	; 0xff
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:563
+		ECU_comm_watchdog = ECU_WATCHDOG_TIMEOUT;
+  14:	bf01      	itttt	eq
+  16:	f240 0300 	movweq	r3, #0	; 0x0
+  1a:	f2c0 0300 	movteq	r3, #0	; 0x0
+  1e:	f06f 0205 	mvneq.w	r2, #5	; 0x5
+  22:	701a      	strbeq	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:566
+
+	// Get the Filter Match Index
+	temp_byte = mailbox->RDTR >> 8;
+  24:	f246 53b0 	movw	r3, #26032	; 0x65b0
+  28:	f2c4 0300 	movt	r3, #16384	; 0x4000
+  2c:	685b      	ldr	r3, [r3, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:568
+
+	switch (temp_byte)
+  2e:	ea4f 2313 	mov.w	r3, r3, lsr #8
+  32:	b2db      	uxtb	r3, r3
+  34:	b113      	cbz	r3, 3c <USB_LP_CAN1_RX0_IRQHandler+0x3c>
+  36:	2b02      	cmp	r3, #2
+  38:	d10d      	bne.n	56 <USB_LP_CAN1_RX0_IRQHandler+0x56>
+  3a:	e006      	b.n	4a <USB_LP_CAN1_RX0_IRQHandler+0x4a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:571
+	{
+		case FILTER_0_INDEX:
+			can_filter_0_action(mailbox);
+  3c:	f246 50b0 	movw	r0, #26032	; 0x65b0
+  40:	f2c4 0000 	movt	r0, #16384	; 0x4000
+  44:	f7ff fffe 	bl	0 <can_filter_0_action>
+  48:	e005      	b.n	56 <USB_LP_CAN1_RX0_IRQHandler+0x56>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:586
+			 * So this DM1 message has 8 or fewer data bytes
+			 *---------------------------------------------*/
+
+			// If the CAN buffer is available, assemble it 
+			//  there and signal the foreground to parse it 
+			buffer_a_can_packet(mailbox);
+  4a:	f246 50b0 	movw	r0, #26032	; 0x65b0
+  4e:	f2c4 0000 	movt	r0, #16384	; 0x4000
+  52:	f7ff fffe 	bl	0 <USB_LP_CAN1_RX0_IRQHandler>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:592
+
+			break;
+	}
+
+	// Release FIFO 0
+	CAN1->RF0R = 0x20;
+  56:	f246 4300 	movw	r3, #25600	; 0x6400
+  5a:	f2c4 0300 	movt	r3, #16384	; 0x4000
+  5e:	f04f 0220 	mov.w	r2, #32	; 0x20
+  62:	60da      	str	r2, [r3, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:593
+}
+  64:	bd10      	pop	{r4, pc}
+  66:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.end_mp_input:
+
+00000000 <end_mp_input>:
+end_mp_input():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:429
+		return FALSE;
+}
+
+
+bool end_mp_input(void)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:432
+	CAN_TxMailBox_TypeDef *mailbox;
+
+	mailbox = select_transmitter();
+   2:	f7ff fffe 	bl	0 <select_transmitter>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:437
+
+	// If this packet does not transmit,
+	//  we will get back here to try it again
+
+	if (mailbox)
+   6:	4604      	mov	r4, r0
+   8:	2800      	cmp	r0, #0
+   a:	d037      	beq.n	7c <end_mp_input+0x7c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:440
+	{
+		// Transmit Mailbox Message Identifier Register
+		mailbox->TIR = CAN_XMIT_PRIORITY
+   c:	f240 0000 	movw	r0, #0	; 0x0
+  10:	f2c0 0000 	movt	r0, #0	; 0x0
+  14:	7803      	ldrb	r3, [r0, #0]
+  16:	f240 0204 	movw	r2, #4	; 0x4
+  1a:	f2cc 7260 	movt	r2, #51040	; 0xc760
+  1e:	ea42 22c3 	orr.w	r2, r2, r3, lsl #11
+  22:	f240 0300 	movw	r3, #0	; 0x0
+  26:	f2c0 0300 	movt	r3, #0	; 0x0
+  2a:	781b      	ldrb	r3, [r3, #0]
+  2c:	ea42 02c3 	orr.w	r2, r2, r3, lsl #3
+  30:	6022      	str	r2, [r4, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:448
+		//  destination of this packet
+							| ((u32)canMsgBuffer[BUFF_ADDRESS] << 11)
+							| ((u16)this_can_address << 3);
+
+		// CAN Transmit Mailbox Data Registers
+		mailbox->TDLR = TPCM_ACK
+  32:	7842      	ldrb	r2, [r0, #1]
+  34:	ea4f 2102 	mov.w	r1, r2, lsl #8
+  38:	f041 0113 	orr.w	r1, r1, #19	; 0x13
+  3c:	f102 0206 	add.w	r2, r2, #6	; 0x6
+  40:	f242 4393 	movw	r3, #9363	; 0x2493
+  44:	f2c9 2349 	movt	r3, #37449	; 0x9249
+  48:	fb83 5302 	smull	r5, r3, r3, r2
+  4c:	4413      	add	r3, r2
+  4e:	ea4f 03a3 	mov.w	r3, r3, asr #2
+  52:	ea41 6103 	orr.w	r1, r1, r3, lsl #24
+  56:	60a1      	str	r1, [r4, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:452
+							| ((u16)canMsgBuffer[BUFF_LENGTH] << 8)		// Message size (MSB = 0)
+							| ((u32)((canMsgBuffer[BUFF_LENGTH] + 6) / 7) << 24);	// Number of packets
+
+		mailbox->TDHR = 0xFF
+  58:	78c3      	ldrb	r3, [r0, #3]
+  5a:	ea4f 4303 	mov.w	r3, r3, lsl #16
+  5e:	f043 03ff 	orr.w	r3, r3, #255	; 0xff
+  62:	7882      	ldrb	r2, [r0, #2]
+  64:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+  68:	60e3      	str	r3, [r4, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:457
+							| ((u16)canMsgBuffer[BUFF_COMMAND] << 8)	// Message ps
+							| ((u32)canMsgBuffer[BUFF_FORMAT] << 16);	// Message pf (MSB = 0)
+
+		// Set data length
+		mailbox->TDTR = 8;
+  6a:	f04f 0308 	mov.w	r3, #8	; 0x8
+  6e:	6063      	str	r3, [r4, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:460
+
+		// Request transmit
+		mailbox->TIR |= 1;
+  70:	6823      	ldr	r3, [r4, #0]
+  72:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  76:	6023      	str	r3, [r4, #0]
+  78:	f04f 0001 	mov.w	r0, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:466
+
+		return TRUE;
+	}
+	else
+		return FALSE;
+}
+  7c:	bd70      	pop	{r4, r5, r6, pc}
+  7e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.continue_mp_input:
+
+00000000 <continue_mp_input>:
+continue_mp_input():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:387
+ *  packet message and after receiving a packet of data
+ * Assemble and transmit a CTS packet to the sender
+ *-----------------------------------------------------------*/
+  
+bool continue_mp_input(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:390
+	CAN_TxMailBox_TypeDef *mailbox;
+
+	mailbox = select_transmitter();
+   2:	f7ff fffe 	bl	0 <select_transmitter>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:395
+
+	// If this packet does not transmit,
+	//  we will get back here to try it again
+
+	if (mailbox)
+   6:	4604      	mov	r4, r0
+   8:	b360      	cbz	r0, 64 <continue_mp_input+0x64>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:398
+	{
+		// Transmit Mailbox Message Identifier Register
+		mailbox->TIR = CAN_XMIT_PRIORITY
+   a:	f240 0100 	movw	r1, #0	; 0x0
+   e:	f2c0 0100 	movt	r1, #0	; 0x0
+  12:	780b      	ldrb	r3, [r1, #0]
+  14:	f240 0204 	movw	r2, #4	; 0x4
+  18:	f2cc 7260 	movt	r2, #51040	; 0xc760
+  1c:	ea42 22c3 	orr.w	r2, r2, r3, lsl #11
+  20:	f240 0300 	movw	r3, #0	; 0x0
+  24:	f2c0 0300 	movt	r3, #0	; 0x0
+  28:	781b      	ldrb	r3, [r3, #0]
+  2a:	ea42 02c3 	orr.w	r2, r2, r3, lsl #3
+  2e:	6002      	str	r2, [r0, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:406
+		//  destination of this packet
+							| ((u32)canMsgBuffer[BUFF_ADDRESS] << 11)
+							| ((u16)this_can_address << 3);
+
+		// CAN Transmit Mailbox Data Registers
+		mailbox->TDLR = TPCM_CTS
+  30:	790a      	ldrb	r2, [r1, #4]
+  32:	f240 1311 	movw	r3, #273	; 0x111
+  36:	f6cf 7300 	movt	r3, #65280	; 0xff00
+  3a:	ea43 4302 	orr.w	r3, r3, r2, lsl #16
+  3e:	6083      	str	r3, [r0, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:411
+							| ((u16)1 << 8)								// Number of packets requested
+							| ((u32)canMsgBuffer[BUFF_SEQUENCE] << 16)	// Requested packet #
+							| 0xFF000000;								// Not used, filled per J1939
+
+		mailbox->TDHR = 0xFF
+  40:	78cb      	ldrb	r3, [r1, #3]
+  42:	ea4f 4303 	mov.w	r3, r3, lsl #16
+  46:	f043 03ff 	orr.w	r3, r3, #255	; 0xff
+  4a:	788a      	ldrb	r2, [r1, #2]
+  4c:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+  50:	60c3      	str	r3, [r0, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:416
+							| ((u16)canMsgBuffer[BUFF_COMMAND] << 8)	// Message ps
+							| ((u32)canMsgBuffer[BUFF_FORMAT] << 16);	// Message pf, (MSB = 0)
+
+		// Set data length
+		mailbox->TDTR = 8;
+  52:	f04f 0308 	mov.w	r3, #8	; 0x8
+  56:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:419
+
+		// Request transmit
+		mailbox->TIR |= 1;
+  58:	6803      	ldr	r3, [r0, #0]
+  5a:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  5e:	6003      	str	r3, [r0, #0]
+  60:	f04f 0001 	mov.w	r0, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:425
+
+		return TRUE;
+	}
+	else
+		return FALSE;
+}
+  64:	bd10      	pop	{r4, pc}
+  66:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.continue_mp_output:
+
+00000000 <continue_mp_output>:
+continue_mp_output():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:251
+ * Called to send another packet of a multiple packet message
+ * Get the packet from canMsgBuffer[] and send it
+ *----------------------------------------------------------*/
+ 
+bool continue_mp_output(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:257
+	u8 buffer_index,
+		last_index;
+
+	CAN_TxMailBox_TypeDef *mailbox;
+
+	mailbox = select_transmitter();
+   2:	f7ff fffe 	bl	0 <select_transmitter>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:262
+
+	// If this packet does not transmit,
+	//  we will get back here to try it again
+
+	if (mailbox)
+   6:	4604      	mov	r4, r0
+   8:	2800      	cmp	r0, #0
+   a:	f000 80a6 	beq.w	15a <continue_mp_output+0x15a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:269
+		// Get the index into canMsgBuffer[] for the packet to send
+		// Sequence number to transmit begins with 1
+		buffer_index = (canMsgBuffer[BUFF_SEQUENCE] - 1) * 7;
+
+		// Add the offset to get past the header stuff
+		buffer_index += BUFF_DATA_BEGIN;
+   e:	f240 0000 	movw	r0, #0	; 0x0
+  12:	f2c0 0000 	movt	r0, #0	; 0x0
+  16:	7903      	ldrb	r3, [r0, #4]
+  18:	ea4f 01c3 	mov.w	r1, r3, lsl #3
+  1c:	ebc3 0101 	rsb	r1, r3, r1
+  20:	f1a1 0102 	sub.w	r1, r1, #2	; 0x2
+  24:	b2c9      	uxtb	r1, r1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:272
+
+		// Transmit Mailbox Message Identifier Register
+		mailbox->TIR = CAN_XMIT_PRIORITY
+  26:	7803      	ldrb	r3, [r0, #0]
+  28:	f240 0204 	movw	r2, #4	; 0x4
+  2c:	f2cc 7258 	movt	r2, #51032	; 0xc758
+  30:	ea42 22c3 	orr.w	r2, r2, r3, lsl #11
+  34:	f240 0300 	movw	r3, #0	; 0x0
+  38:	f2c0 0300 	movt	r3, #0	; 0x0
+  3c:	781b      	ldrb	r3, [r3, #0]
+  3e:	ea42 02c3 	orr.w	r2, r2, r3, lsl #3
+  42:	6022      	str	r2, [r4, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:278
+							| ((u32)PF_TPDT << 19)						// This packet's pf
+							| ((u32)canMsgBuffer[BUFF_ADDRESS] << 11)	// This packet's destination
+							| ((u16)this_can_address << 3);
+
+		// Number of data bytes in this packet
+		mailbox->TDTR = 8;
+  44:	f04f 0308 	mov.w	r3, #8	; 0x8
+  48:	6063      	str	r3, [r4, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:281
+
+		// Get the index to the last data byte in this message
+		last_index = canMsgBuffer[BUFF_LENGTH] + BUFF_DATA_BEGIN - 1;
+  4a:	7843      	ldrb	r3, [r0, #1]
+  4c:	f103 0304 	add.w	r3, r3, #4	; 0x4
+  50:	fa5f fe83 	uxtb.w	lr, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:287
+
+		/*------------------------------------
+		 * CAN Transmit Mailbox Data Registers
+		 *-----------------------------------*/
+
+		mailbox->TDLR = canMsgBuffer[BUFF_SEQUENCE]		// This packet's sequence number
+  54:	5c42      	ldrb	r2, [r0, r1]
+  56:	7903      	ldrb	r3, [r0, #4]
+  58:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+  5c:	60a3      	str	r3, [r4, #8]
+  5e:	f101 0101 	add.w	r1, r1, #1	; 0x1
+  62:	b2c9      	uxtb	r1, r1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:291
+		// There must be at least one data byte
+							| ((u16)canMsgBuffer[buffer_index++] << 8);
+
+		mailbox->TDHR = 0xFFFFFFFF;
+  64:	f04f 33ff 	mov.w	r3, #4294967295	; 0xffffffff
+  68:	60e3      	str	r3, [r4, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:293
+
+		if (buffer_index > last_index)
+  6a:	458e      	cmp	lr, r1
+  6c:	d208      	bcs.n	80 <continue_mp_output+0x80>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:294
+			mailbox->TDLR |= 0xFFFF0000;
+  6e:	68a2      	ldr	r2, [r4, #8]
+  70:	f240 0300 	movw	r3, #0	; 0x0
+  74:	f6cf 73ff 	movt	r3, #65535	; 0xffff
+  78:	ea42 0203 	orr.w	r2, r2, r3
+  7c:	60a2      	str	r2, [r4, #8]
+  7e:	e066      	b.n	14e <continue_mp_output+0x14e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:298
+
+		else
+		{
+			mailbox->TDLR |= ((u32)canMsgBuffer[buffer_index++] << 16);
+  80:	68a2      	ldr	r2, [r4, #8]
+  82:	f240 0300 	movw	r3, #0	; 0x0
+  86:	f2c0 0300 	movt	r3, #0	; 0x0
+  8a:	5c5b      	ldrb	r3, [r3, r1]
+  8c:	ea42 4203 	orr.w	r2, r2, r3, lsl #16
+  90:	60a2      	str	r2, [r4, #8]
+  92:	f101 0301 	add.w	r3, r1, #1	; 0x1
+  96:	b2d9      	uxtb	r1, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:300
+
+			if (buffer_index > last_index)
+  98:	458e      	cmp	lr, r1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:301
+				mailbox->TDLR |= 0xFF000000;
+  9a:	bf3e      	ittt	cc
+  9c:	68a3      	ldrcc	r3, [r4, #8]
+  9e:	f043 437f 	orrcc.w	r3, r3, #4278190080	; 0xff000000
+  a2:	60a3      	strcc	r3, [r4, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:300
+
+		else
+		{
+			mailbox->TDLR |= ((u32)canMsgBuffer[buffer_index++] << 16);
+
+			if (buffer_index > last_index)
+  a4:	d353      	bcc.n	14e <continue_mp_output+0x14e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:305
+				mailbox->TDLR |= 0xFF000000;
+
+			else
+			{
+				mailbox->TDLR |= ((u32)canMsgBuffer[buffer_index++] << 24);
+  a6:	68a2      	ldr	r2, [r4, #8]
+  a8:	f240 0300 	movw	r3, #0	; 0x0
+  ac:	f2c0 0300 	movt	r3, #0	; 0x0
+  b0:	5c5b      	ldrb	r3, [r3, r1]
+  b2:	ea42 6203 	orr.w	r2, r2, r3, lsl #24
+  b6:	60a2      	str	r2, [r4, #8]
+  b8:	f101 0301 	add.w	r3, r1, #1	; 0x1
+  bc:	b2d9      	uxtb	r1, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:307
+
+				if (buffer_index <= last_index)
+  be:	458e      	cmp	lr, r1
+  c0:	d345      	bcc.n	14e <continue_mp_output+0x14e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:309
+				{
+					mailbox->TDHR = canMsgBuffer[buffer_index++];
+  c2:	f240 0300 	movw	r3, #0	; 0x0
+  c6:	f2c0 0300 	movt	r3, #0	; 0x0
+  ca:	5c5b      	ldrb	r3, [r3, r1]
+  cc:	60e3      	str	r3, [r4, #12]
+  ce:	f101 0301 	add.w	r3, r1, #1	; 0x1
+  d2:	b2d9      	uxtb	r1, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:311
+
+					if (buffer_index > last_index)
+  d4:	458e      	cmp	lr, r1
+  d6:	d206      	bcs.n	e6 <continue_mp_output+0xe6>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:312
+						mailbox->TDHR |= 0xFFFFFF00;
+  d8:	68e3      	ldr	r3, [r4, #12]
+  da:	ea6f 6303 	mvn.w	r3, r3, lsl #24
+  de:	ea6f 6313 	mvn.w	r3, r3, lsr #24
+  e2:	60e3      	str	r3, [r4, #12]
+  e4:	e033      	b.n	14e <continue_mp_output+0x14e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:315
+					else
+					{
+						mailbox->TDHR |= ((u16)canMsgBuffer[buffer_index++] << 8);
+  e6:	68e2      	ldr	r2, [r4, #12]
+  e8:	f240 0300 	movw	r3, #0	; 0x0
+  ec:	f2c0 0300 	movt	r3, #0	; 0x0
+  f0:	5c5b      	ldrb	r3, [r3, r1]
+  f2:	ea42 2203 	orr.w	r2, r2, r3, lsl #8
+  f6:	60e2      	str	r2, [r4, #12]
+  f8:	f101 0301 	add.w	r3, r1, #1	; 0x1
+  fc:	b2d9      	uxtb	r1, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:317
+
+						if (buffer_index > last_index)
+  fe:	458e      	cmp	lr, r1
+ 100:	d208      	bcs.n	114 <continue_mp_output+0x114>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:318
+							mailbox->TDHR |= 0xFFFF0000;
+ 102:	68e2      	ldr	r2, [r4, #12]
+ 104:	f240 0300 	movw	r3, #0	; 0x0
+ 108:	f6cf 73ff 	movt	r3, #65535	; 0xffff
+ 10c:	ea42 0203 	orr.w	r2, r2, r3
+ 110:	60e2      	str	r2, [r4, #12]
+ 112:	e01c      	b.n	14e <continue_mp_output+0x14e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:321
+						else
+						{
+							mailbox->TDHR |= ((u32)canMsgBuffer[buffer_index++] << 16);
+ 114:	68e2      	ldr	r2, [r4, #12]
+ 116:	f240 0300 	movw	r3, #0	; 0x0
+ 11a:	f2c0 0300 	movt	r3, #0	; 0x0
+ 11e:	5c5b      	ldrb	r3, [r3, r1]
+ 120:	ea42 4203 	orr.w	r2, r2, r3, lsl #16
+ 124:	60e2      	str	r2, [r4, #12]
+ 126:	f101 0301 	add.w	r3, r1, #1	; 0x1
+ 12a:	b2d9      	uxtb	r1, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:323
+
+							if (buffer_index > last_index)
+ 12c:	458e      	cmp	lr, r1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:324
+								mailbox->TDHR |= 0xFF000000;
+ 12e:	bf3d      	ittte	cc
+ 130:	68e3      	ldrcc	r3, [r4, #12]
+ 132:	f043 437f 	orrcc.w	r3, r3, #4278190080	; 0xff000000
+ 136:	60e3      	strcc	r3, [r4, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:326
+							else
+								mailbox->TDHR |= ((u32)canMsgBuffer[buffer_index++] << 24);
+ 138:	68e3      	ldrcs	r3, [r4, #12]
+ 13a:	bf21      	itttt	cs
+ 13c:	f240 0200 	movwcs	r2, #0	; 0x0
+ 140:	f2c0 0200 	movtcs	r2, #0	; 0x0
+ 144:	5c52      	ldrbcs	r2, [r2, r1]
+ 146:	ea43 6302 	orrcs.w	r3, r3, r2, lsl #24
+ 14a:	bf28      	it	cs
+ 14c:	60e3      	strcs	r3, [r4, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:334
+				}
+			}
+		}
+
+		// Request transmit
+		mailbox->TIR |= 1;
+ 14e:	6823      	ldr	r3, [r4, #0]
+ 150:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+ 154:	6023      	str	r3, [r4, #0]
+ 156:	f04f 0001 	mov.w	r0, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:340
+
+		return TRUE;
+	}
+	else
+		return FALSE;
+}
+ 15a:	bd10      	pop	{r4, pc}
+Disassembly of section .text.transmit_msg_buffer:
+
+00000000 <transmit_msg_buffer>:
+transmit_msg_buffer():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:123
+ *  packet transmission.
+ * Otherwise send the single packet message.
+ *-------------------------------------------------------------*/
+
+void transmit_msg_buffer(void) 
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:126
+	CAN_TxMailBox_TypeDef *mailbox;
+
+	mailbox = select_transmitter();
+   2:	f7ff fffe 	bl	0 <select_transmitter>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:131
+
+	// If this packet transmits, set the buffer state to IDLE
+	//  else, leave it as is and we will get back here to try it again
+
+	if (mailbox)
+   6:	4604      	mov	r4, r0
+   8:	2800      	cmp	r0, #0
+   a:	f000 8092 	beq.w	132 <transmit_msg_buffer+0x132>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:135
+	{
+		// Transmit Mailbox Message Identifier Register
+		// Leave ID2 set to zero
+		mailbox->TIR = CAN_XMIT_PRIORITY
+   e:	f240 0100 	movw	r1, #0	; 0x0
+  12:	f2c0 0100 	movt	r1, #0	; 0x0
+  16:	78cb      	ldrb	r3, [r1, #3]
+  18:	f240 0204 	movw	r2, #4	; 0x4
+  1c:	f2cc 0200 	movt	r2, #49152	; 0xc000
+  20:	ea42 42c3 	orr.w	r2, r2, r3, lsl #19
+  24:	f240 0300 	movw	r3, #0	; 0x0
+  28:	f2c0 0300 	movt	r3, #0	; 0x0
+  2c:	781b      	ldrb	r3, [r3, #0]
+  2e:	ea42 02c3 	orr.w	r2, r2, r3, lsl #3
+  32:	6002      	str	r2, [r0, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:139
+									| ((u32)canMsgBuffer[BUFF_FORMAT] << 19)
+									| ((u16)this_can_address << 3);
+
+ 		if ( canMsgBuffer[BUFF_FORMAT] == PF_PROP_A )
+  34:	78ca      	ldrb	r2, [r1, #3]
+  36:	2aef      	cmp	r2, #239
+  38:	d131      	bne.n	9e <transmit_msg_buffer+0x9e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:151
+			 *  byte in the CAN header, the COMMAND occupies the 
+			 *  first data byte and only seven data bytes are 
+			 *  possible in a single packet transmission
+			 *--------------------------------------------------*/
+
+			if ( canMsgBuffer[BUFF_LENGTH] > 7)
+  3a:	f240 0300 	movw	r3, #0	; 0x0
+  3e:	f2c0 0300 	movt	r3, #0	; 0x0
+  42:	785b      	ldrb	r3, [r3, #1]
+  44:	2b07      	cmp	r3, #7
+  46:	d902      	bls.n	4e <transmit_msg_buffer+0x4e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:155
+			{
+				// There are more than 7 data bytes to send
+				// Multiple packet protocol is required
+				start_multiple_packets(mailbox);
+  48:	f7ff fffe 	bl	0 <transmit_msg_buffer>
+  4c:	e071      	b.n	132 <transmit_msg_buffer+0x132>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:161
+
+				return;
+			}
+
+			// Put the destination address in the CAN header
+			mailbox->TIR |= ((u32)canMsgBuffer[BUFF_ADDRESS] << 11);
+  4e:	6802      	ldr	r2, [r0, #0]
+  50:	f240 0100 	movw	r1, #0	; 0x0
+  54:	f2c0 0100 	movt	r1, #0	; 0x0
+  58:	780b      	ldrb	r3, [r1, #0]
+  5a:	ea42 22c3 	orr.w	r2, r2, r3, lsl #11
+  5e:	6002      	str	r2, [r0, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:164
+
+			// Length is one greater since command takes a data byte
+			mailbox->TDTR = canMsgBuffer[BUFF_LENGTH] + 1;
+  60:	784b      	ldrb	r3, [r1, #1]
+  62:	f103 0301 	add.w	r3, r3, #1	; 0x1
+  66:	6043      	str	r3, [r0, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:167
+
+			// Command goes into the first (#0) data byte
+			mailbox->TDLR = canMsgBuffer[BUFF_COMMAND]
+  68:	79cb      	ldrb	r3, [r1, #7]
+  6a:	798a      	ldrb	r2, [r1, #6]
+  6c:	ea4f 4202 	mov.w	r2, r2, lsl #16
+  70:	ea42 6203 	orr.w	r2, r2, r3, lsl #24
+  74:	7948      	ldrb	r0, [r1, #5]
+  76:	788b      	ldrb	r3, [r1, #2]
+  78:	ea43 2300 	orr.w	r3, r3, r0, lsl #8
+  7c:	ea42 0203 	orr.w	r2, r2, r3
+  80:	60a2      	str	r2, [r4, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:174
+			// Copy 7 data bytes even though they all may not be used
+							| ((u16)canMsgBuffer[BUFF_DATA_BEGIN] << 8)
+							| ((u32)canMsgBuffer[BUFF_DATA_BEGIN + 1] << 16)
+							| ((u32)canMsgBuffer[BUFF_DATA_BEGIN + 2] << 24);
+
+			mailbox->TDHR = canMsgBuffer[BUFF_DATA_BEGIN + 3]
+  82:	7acb      	ldrb	r3, [r1, #11]
+  84:	7a8a      	ldrb	r2, [r1, #10]
+  86:	ea4f 4202 	mov.w	r2, r2, lsl #16
+  8a:	ea42 6203 	orr.w	r2, r2, r3, lsl #24
+  8e:	7a48      	ldrb	r0, [r1, #9]
+  90:	7a0b      	ldrb	r3, [r1, #8]
+  92:	ea43 2300 	orr.w	r3, r3, r0, lsl #8
+  96:	ea42 0203 	orr.w	r2, r2, r3
+  9a:	60e2      	str	r2, [r4, #12]
+  9c:	e03e      	b.n	11c <transmit_msg_buffer+0x11c>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:192
+			 *  specific.  For FORMAT > 0xEF, packets are global.  
+			 *  In either case, eight data bytes are possible in 
+			 *  a single packet.
+			 *---------------------------------------------------*/
+
+			if ( canMsgBuffer[BUFF_LENGTH] > 8)
+  9e:	f240 0300 	movw	r3, #0	; 0x0
+  a2:	f2c0 0300 	movt	r3, #0	; 0x0
+  a6:	785b      	ldrb	r3, [r3, #1]
+  a8:	2b08      	cmp	r3, #8
+  aa:	d902      	bls.n	b2 <transmit_msg_buffer+0xb2>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:196
+			{
+				// There are more than 8 data bytes to send
+				// Multiple packet protocol is required
+				start_multiple_packets(mailbox);
+  ac:	f7ff fffe 	bl	0 <transmit_msg_buffer>
+  b0:	e03f      	b.n	132 <transmit_msg_buffer+0x132>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:201
+
+				return;
+			}
+
+		 	if ( canMsgBuffer[BUFF_FORMAT] < PF_PROP_A )
+  b2:	2aee      	cmp	r2, #238
+  b4:	d809      	bhi.n	ca <transmit_msg_buffer+0xca>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:206
+	 		{
+	 			// This is a destination specific transfer
+
+				// Put the ADDRESS in the CAN header
+				mailbox->TIR |= ((u32)canMsgBuffer[BUFF_ADDRESS] << 11);
+  b6:	6803      	ldr	r3, [r0, #0]
+  b8:	f240 0200 	movw	r2, #0	; 0x0
+  bc:	f2c0 0200 	movt	r2, #0	; 0x0
+  c0:	7812      	ldrb	r2, [r2, #0]
+  c2:	ea43 23c2 	orr.w	r3, r3, r2, lsl #11
+  c6:	6003      	str	r3, [r0, #0]
+  c8:	e008      	b.n	dc <transmit_msg_buffer+0xdc>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:218
+
+				// Since the ADDRESS is not used, the COMMAND occupies 
+				//  the PDU specific byte in the CAN arbitration header 
+
+				// Put the COMMAND in the CAN header
+				mailbox->TIR |= ((u32)canMsgBuffer[BUFF_COMMAND] << 11);
+  ca:	6803      	ldr	r3, [r0, #0]
+  cc:	f240 0200 	movw	r2, #0	; 0x0
+  d0:	f2c0 0200 	movt	r2, #0	; 0x0
+  d4:	7892      	ldrb	r2, [r2, #2]
+  d6:	ea43 23c2 	orr.w	r3, r3, r2, lsl #11
+  da:	6003      	str	r3, [r0, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:221
+		 	}
+
+			mailbox->TDTR = canMsgBuffer[BUFF_LENGTH];
+  dc:	f240 0100 	movw	r1, #0	; 0x0
+  e0:	f2c0 0100 	movt	r1, #0	; 0x0
+  e4:	784b      	ldrb	r3, [r1, #1]
+  e6:	6063      	str	r3, [r4, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:224
+
+			// Copy 8 data bytes even though they all may not be used
+			mailbox->TDLR = canMsgBuffer[BUFF_DATA_BEGIN]
+  e8:	7a0b      	ldrb	r3, [r1, #8]
+  ea:	79ca      	ldrb	r2, [r1, #7]
+  ec:	ea4f 4202 	mov.w	r2, r2, lsl #16
+  f0:	ea42 6203 	orr.w	r2, r2, r3, lsl #24
+  f4:	7988      	ldrb	r0, [r1, #6]
+  f6:	794b      	ldrb	r3, [r1, #5]
+  f8:	ea43 2300 	orr.w	r3, r3, r0, lsl #8
+  fc:	ea42 0203 	orr.w	r2, r2, r3
+ 100:	60a2      	str	r2, [r4, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:229
+							| ((u16)canMsgBuffer[BUFF_DATA_BEGIN + 1] << 8)
+							| ((u32)canMsgBuffer[BUFF_DATA_BEGIN + 2] << 16)
+							| ((u32)canMsgBuffer[BUFF_DATA_BEGIN + 3] << 24);
+
+			mailbox->TDHR = canMsgBuffer[BUFF_DATA_BEGIN + 4]
+ 102:	7b0b      	ldrb	r3, [r1, #12]
+ 104:	7aca      	ldrb	r2, [r1, #11]
+ 106:	ea4f 4202 	mov.w	r2, r2, lsl #16
+ 10a:	ea42 6203 	orr.w	r2, r2, r3, lsl #24
+ 10e:	7a88      	ldrb	r0, [r1, #10]
+ 110:	7a4b      	ldrb	r3, [r1, #9]
+ 112:	ea43 2300 	orr.w	r3, r3, r0, lsl #8
+ 116:	ea42 0203 	orr.w	r2, r2, r3
+ 11a:	60e2      	str	r2, [r4, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:236
+							| ((u32)canMsgBuffer[BUFF_DATA_BEGIN + 6] << 16)
+							| ((u32)canMsgBuffer[BUFF_DATA_BEGIN + 7] << 24);
+		}
+		
+		// Request transmit
+		mailbox->TIR |= 1;
+ 11c:	6823      	ldr	r3, [r4, #0]
+ 11e:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+ 122:	6023      	str	r3, [r4, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:238
+
+		can_buffer_state = BUFFER_IDLE;
+ 124:	f240 0300 	movw	r3, #0	; 0x0
+ 128:	f2c0 0300 	movt	r3, #0	; 0x0
+ 12c:	f04f 0200 	mov.w	r2, #0	; 0x0
+ 130:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/CanPackets.c:240
+	}		
+}
+ 132:	bd10      	pop	{r4, pc}

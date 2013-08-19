@@ -1,0 +1,579 @@
+
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o:     file format elf32-littlearm
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+
+Disassembly of section .text.update_analog_input:
+
+00000000 <update_analog_input>:
+update_analog_input():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:188
+ * The sum is called .average and is 4 times larger than analog input
+ * So, for input = 0x0FFF, the .average is 0x3FFC
+ *-------------------------------------------------------------------*/
+
+void update_analog_input(analog_index_def which, u16 value)
+{
+   0:	b470      	push	{r4, r5, r6}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:194
+	u16 summation;
+	u8 count;
+
+	// Get the index to the previous reading
+	// Increment it to the place for the present reading
+	count = (analog_input[which].index + 1) & 0x03;
+   2:	f240 0500 	movw	r5, #0	; 0x0
+   6:	f2c0 0500 	movt	r5, #0	; 0x0
+   a:	ea4f 0380 	mov.w	r3, r0, lsl #2
+   e:	ea4f 1600 	mov.w	r6, r0, lsl #4
+  12:	ebc3 0606 	rsb	r6, r3, r6
+  16:	442e      	add	r6, r5
+  18:	7833      	ldrb	r3, [r6, #0]
+  1a:	f103 0301 	add.w	r3, r3, #1	; 0x1
+  1e:	f003 0303 	and.w	r3, r3, #3	; 0x3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:197
+
+	// Store it back away
+	analog_input[which].index = count;
+  22:	46b4      	mov	ip, r6
+  24:	f80c 3b02 	strb.w	r3, [ip], #2
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:200
+
+	// Put the present reading there
+	analog_input[which].history[count] = value;
+  28:	ea4f 0440 	mov.w	r4, r0, lsl #1
+  2c:	ea4f 02c0 	mov.w	r2, r0, lsl #3
+  30:	ebc4 0202 	rsb	r2, r4, r2
+  34:	4413      	add	r3, r2
+  36:	ea4f 0343 	mov.w	r3, r3, lsl #1
+  3a:	442b      	add	r3, r5
+  3c:	8059      	strh	r1, [r3, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:205
+
+	// Sum the history samples
+	summation = 0;
+	for (count = 0; count < 4; count++)
+		summation += analog_input[which].history[count];
+  3e:	f102 0201 	add.w	r2, r2, #1	; 0x1
+  42:	ea4f 0242 	mov.w	r2, r2, lsl #1
+  46:	442a      	add	r2, r5
+  48:	f8bc 3000 	ldrh.w	r3, [ip]
+  4c:	8852      	ldrh	r2, [r2, #2]
+  4e:	4413      	add	r3, r2
+  50:	4404      	add	r4, r0
+  52:	f104 0401 	add.w	r4, r4, #1	; 0x1
+  56:	ea4f 0484 	mov.w	r4, r4, lsl #2
+  5a:	4425      	add	r5, r4
+  5c:	886a      	ldrh	r2, [r5, #2]
+  5e:	4413      	add	r3, r2
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:209
+
+	// Store the sum as the average
+	// maximum 0x3FFC
+	analog_input[which].average = summation;
+  60:	8932      	ldrh	r2, [r6, #8]
+  62:	4413      	add	r3, r2
+  64:	8173      	strh	r3, [r6, #10]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:210
+}
+  66:	bc70      	pop	{r4, r5, r6}
+  68:	4770      	bx	lr
+  6a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.read_raw_analogs:
+
+00000000 <read_raw_analogs>:
+read_raw_analogs():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:227
+ * The directly connected analog inputs are updated every pass 
+ *  so they respond to a step change in 40ms.
+ *------------------------------------------------------------*/
+
+void read_raw_analogs(void)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:235
+	/*-----------------------------------------
+	 * Update the unmultiplexed analog channels
+	 * Read the present value from raw_analog[]
+	 *----------------------------------------*/
+
+	update_analog_input(AIN_BATTERY_V, raw_analog[ADC_BATTERY_V]);
+   2:	f240 0400 	movw	r4, #0	; 0x0
+   6:	f2c0 0400 	movt	r4, #0	; 0x0
+   a:	f04f 0007 	mov.w	r0, #7	; 0x7
+   e:	8861      	ldrh	r1, [r4, #2]
+  10:	f7ff fffe 	bl	0 <read_raw_analogs>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:236
+	update_analog_input(AIN_REG_SYS_P, raw_analog[ADC_REG_PRESSURE]);
+  14:	f04f 0008 	mov.w	r0, #8	; 0x8
+  18:	89e1      	ldrh	r1, [r4, #14]
+  1a:	f7ff fffe 	bl	0 <read_raw_analogs>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:237
+	update_analog_input(AIN_SEP_TANK_P, raw_analog[ADC_SEP_PRESSURE]);
+  1e:	f04f 0009 	mov.w	r0, #9	; 0x9
+  22:	89a1      	ldrh	r1, [r4, #12]
+  24:	f7ff fffe 	bl	0 <read_raw_analogs>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:238
+	update_analog_input(AIN_BOARD_TEMP, raw_analog[ADC_BOARD_TEMP]);
+  28:	f04f 000a 	mov.w	r0, #10	; 0xa
+  2c:	8821      	ldrh	r1, [r4, #0]
+  2e:	f7ff fffe 	bl	0 <read_raw_analogs>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:244
+
+	/*--------------------------------------------------------
+	 * Update the multiplexed channel that was setup last pass
+	 *-------------------------------------------------------*/
+
+	if (analog_index == AIN_START_CONTROL)
+  32:	f240 0300 	movw	r3, #0	; 0x0
+  36:	f2c0 0300 	movt	r3, #0	; 0x0
+  3a:	781e      	ldrb	r6, [r3, #0]
+  3c:	2e05      	cmp	r6, #5
+  3e:	d11a      	bne.n	76 <read_raw_analogs+0x76>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:250
+	{
+		// The digital input for START and LOAD needs to be updated faster
+		// Store the raw number (raw_analog[ADC_MULTIPLEXER]) x 4 as the average
+		// So this one responds to a step change in 100ms max and there is 
+		//  an additional 30ms to get DIN_ updated
+		analog_input[analog_index].average = raw_analog[multiplexer_setup[AIN_START_CONTROL].adc_channel] << 2;
+  40:	f240 0000 	movw	r0, #0	; 0x0
+  44:	f2c0 0000 	movt	r0, #0	; 0x0
+  48:	f240 0200 	movw	r2, #0	; 0x0
+  4c:	f2c0 0200 	movt	r2, #0	; 0x0
+  50:	f240 0100 	movw	r1, #0	; 0x0
+  54:	f2c0 0100 	movt	r1, #0	; 0x0
+  58:	f891 303c 	ldrb.w	r3, [r1, #60]
+  5c:	f832 3013 	ldrh.w	r3, [r2, r3, lsl #1]
+  60:	ea4f 0383 	mov.w	r3, r3, lsl #2
+  64:	f8a0 3046 	strh.w	r3, [r0, #70]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:256
+	}
+	else
+		update_analog_input(analog_index, raw_analog[multiplexer_setup[analog_index].adc_channel]);
+
+	// Disable the terminator(s) for the analog input we just updated
+	TURN_OFF(multiplexer_setup[analog_index].terminator_1);
+  68:	6c0b      	ldr	r3, [r1, #64]
+  6a:	f04f 0200 	mov.w	r2, #0	; 0x0
+  6e:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:257
+	TURN_OFF(multiplexer_setup[analog_index].terminator_2);
+  70:	6c4b      	ldr	r3, [r1, #68]
+  72:	701a      	strb	r2, [r3, #0]
+  74:	e025      	b.n	c2 <read_raw_analogs+0xc2>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:253
+		// So this one responds to a step change in 100ms max and there is 
+		//  an additional 30ms to get DIN_ updated
+		analog_input[analog_index].average = raw_analog[multiplexer_setup[AIN_START_CONTROL].adc_channel] << 2;
+	}
+	else
+		update_analog_input(analog_index, raw_analog[multiplexer_setup[analog_index].adc_channel]);
+  76:	f240 0100 	movw	r1, #0	; 0x0
+  7a:	f2c0 0100 	movt	r1, #0	; 0x0
+  7e:	f240 0500 	movw	r5, #0	; 0x0
+  82:	f2c0 0500 	movt	r5, #0	; 0x0
+  86:	ea4f 0286 	mov.w	r2, r6, lsl #2
+  8a:	ea4f 1306 	mov.w	r3, r6, lsl #4
+  8e:	ebc2 0303 	rsb	r3, r2, r3
+  92:	441d      	add	r5, r3
+  94:	462c      	mov	r4, r5
+  96:	f814 3b04 	ldrb.w	r3, [r4], #4
+  9a:	4630      	mov	r0, r6
+  9c:	f831 1013 	ldrh.w	r1, [r1, r3, lsl #1]
+  a0:	f7ff fffe 	bl	0 <read_raw_analogs>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:256
+
+	// Disable the terminator(s) for the analog input we just updated
+	TURN_OFF(multiplexer_setup[analog_index].terminator_1);
+  a4:	6823      	ldr	r3, [r4, #0]
+  a6:	f04f 0200 	mov.w	r2, #0	; 0x0
+  aa:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:257
+	TURN_OFF(multiplexer_setup[analog_index].terminator_2);
+  ac:	68ab      	ldr	r3, [r5, #8]
+  ae:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:259
+
+	if ( analog_index < (NUMBER_MULTIPLEXED - 1) )
+  b0:	2e05      	cmp	r6, #5
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:262
+		analog_index++;
+	else
+		analog_index = 0;
+  b2:	bf81      	itttt	hi
+  b4:	f240 0300 	movwhi	r3, #0	; 0x0
+  b8:	f2c0 0300 	movthi	r3, #0	; 0x0
+  bc:	2200      	movhi	r2, #0
+  be:	701a      	strbhi	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:259
+
+	// Disable the terminator(s) for the analog input we just updated
+	TURN_OFF(multiplexer_setup[analog_index].terminator_1);
+	TURN_OFF(multiplexer_setup[analog_index].terminator_2);
+
+	if ( analog_index < (NUMBER_MULTIPLEXED - 1) )
+  c0:	d806      	bhi.n	d0 <read_raw_analogs+0xd0>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:260
+		analog_index++;
+  c2:	f240 0300 	movw	r3, #0	; 0x0
+  c6:	f2c0 0300 	movt	r3, #0	; 0x0
+  ca:	f106 0201 	add.w	r2, r6, #1	; 0x1
+  ce:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:265
+	else
+		analog_index = 0;
+
+	// Select the multiplexed channel for the next pass
+	GPIOC->BSRR = 0xE0000000 | (multiplexer_setup[analog_index].mux_select << 13);
+  d0:	f240 0300 	movw	r3, #0	; 0x0
+  d4:	f2c0 0300 	movt	r3, #0	; 0x0
+  d8:	781b      	ldrb	r3, [r3, #0]
+  da:	f240 0100 	movw	r1, #0	; 0x0
+  de:	f2c0 0100 	movt	r1, #0	; 0x0
+  e2:	ea4f 0283 	mov.w	r2, r3, lsl #2
+  e6:	ea4f 1303 	mov.w	r3, r3, lsl #4
+  ea:	ebc2 0303 	rsb	r3, r2, r3
+  ee:	4419      	add	r1, r3
+  f0:	784a      	ldrb	r2, [r1, #1]
+  f2:	ea4f 3242 	mov.w	r2, r2, lsl #13
+  f6:	f042 4260 	orr.w	r2, r2, #3758096384	; 0xe0000000
+  fa:	f241 0300 	movw	r3, #4096	; 0x1000
+  fe:	f2c4 0301 	movt	r3, #16385	; 0x4001
+ 102:	611a      	str	r2, [r3, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:268
+
+	// Enable the terminator for the next analog input we will update
+	TURN_ON(multiplexer_setup[analog_index].terminator_1);
+ 104:	684b      	ldr	r3, [r1, #4]
+ 106:	f04f 0201 	mov.w	r2, #1	; 0x1
+ 10a:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:269
+	TURN_ON(multiplexer_setup[analog_index].terminator_2);
+ 10c:	688b      	ldr	r3, [r1, #8]
+ 10e:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:270
+}
+ 110:	bd70      	pop	{r4, r5, r6, pc}
+ 112:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.deg_c16_to_f:
+
+00000000 <deg_c16_to_f>:
+deg_c16_to_f():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:283
+	// T * ((180/100) / 16) + 32
+	//	=> T * 9/80 + 32
+	answer = c_temp * 9;
+
+	// Round up, divide by 80 and add 32
+	answer += 40;
+   0:	eb00 00c0 	add.w	r0, r0, r0, lsl #3
+   4:	f100 0028 	add.w	r0, r0, #40	; 0x28
+   8:	b200      	sxth	r0, r0
+   a:	f246 6367 	movw	r3, #26215	; 0x6667
+   e:	f2c6 6366 	movt	r3, #26214	; 0x6666
+  12:	fb83 2300 	smull	r2, r3, r3, r0
+  16:	ea4f 70e0 	mov.w	r0, r0, asr #31
+  1a:	ebc0 1053 	rsb	r0, r0, r3, lsr #5
+  1e:	f100 0020 	add.w	r0, r0, #32	; 0x20
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:285
+	return (answer / 80) + 32;
+}
+  22:	b200      	sxth	r0, r0
+  24:	4770      	bx	lr
+  26:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.kpa_to_psi:
+
+00000000 <kpa_to_psi>:
+kpa_to_psi():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:302
+{
+	s32 answer;
+
+	// 1kPa = 0.1450377PSI
+	// Multiply by 0.14 * 10 * 2^18 / 16
+	answer = pressure * 23756;
+   0:	f645 43cc 	movw	r3, #23756	; 0x5ccc
+   4:	fb03 f300 	mul.w	r3, r3, r0
+   8:	f503 3300 	add.w	r3, r3, #131072	; 0x20000
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:307
+	
+	answer += 0x20000;
+
+	return (answer >> 18);
+}
+   c:	ea4f 40a3 	mov.w	r0, r3, asr #18
+  10:	4770      	bx	lr
+  12:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.update_analogs:
+
+00000000 <update_analogs>:
+update_analogs():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:322
+ *  to a step change.
+ *--------------------------------------------------------*/
+ 
+void update_analogs(void)
+{
+	ambient_temperature = temp16_lookup[analog_input[AIN_AMBIENT_T].average >> 5];
+   0:	f240 0000 	movw	r0, #0	; 0x0
+   4:	f2c0 0000 	movt	r0, #0	; 0x0
+   8:	f240 0100 	movw	r1, #0	; 0x0
+   c:	f2c0 0100 	movt	r1, #0	; 0x0
+  10:	f240 0200 	movw	r2, #0	; 0x0
+  14:	f2c0 0200 	movt	r2, #0	; 0x0
+  18:	f9b2 302e 	ldrsh.w	r3, [r2, #46]
+  1c:	ea4f 1363 	mov.w	r3, r3, asr #5
+  20:	f831 3013 	ldrh.w	r3, [r1, r3, lsl #1]
+  24:	8003      	strh	r3, [r0, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:334
+	 *		P1: 0, 0	P2: 0x3FFC (16380), 343
+	 *		M = 343 / 16380 = 0.02094 , B = 0
+	 *------------------------------------------------------------------*/
+
+	// Multiply by (0.02094 * 2^16), round up and divide back down by 2^16
+	battery_voltage = (((u32)analog_input[AIN_BATTERY_V].average * 1372) + 0x8000) >> 16;
+  26:	f9b2 205e 	ldrsh.w	r2, [r2, #94]
+  2a:	f240 535c 	movw	r3, #1372	; 0x55c
+  2e:	fb03 f302 	mul.w	r3, r3, r2
+  32:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+  36:	ea4f 4213 	mov.w	r2, r3, lsr #16
+  3a:	f240 0300 	movw	r3, #0	; 0x0
+  3e:	f2c0 0300 	movt	r3, #0	; 0x0
+  42:	801a      	strh	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:342
+	 * Set a flag describing the alternator charge voltage with 
+	 *  some hysteresis
+	 * This is really just battery voltage when we are not running
+	 *-----------------------------------------------------------*/
+
+	if (battery_voltage > 260)
+  44:	f5b2 7f82 	cmp.w	r2, #260	; 0x104
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:343
+		alternator_charge_ok = TRUE;
+  48:	bf81      	itttt	hi
+  4a:	f240 0300 	movwhi	r3, #0	; 0x0
+  4e:	f2c0 0300 	movthi	r3, #0	; 0x0
+  52:	2201      	movhi	r2, #1
+  54:	701a      	strbhi	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:342
+	 * Set a flag describing the alternator charge voltage with 
+	 *  some hysteresis
+	 * This is really just battery voltage when we are not running
+	 *-----------------------------------------------------------*/
+
+	if (battery_voltage > 260)
+  56:	d807      	bhi.n	68 <update_analogs+0x68>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:344
+		alternator_charge_ok = TRUE;
+	else if (battery_voltage < 255)
+  58:	2afe      	cmp	r2, #254
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:345
+		alternator_charge_ok = FALSE;
+  5a:	bf9f      	itttt	ls
+  5c:	f240 0300 	movwls	r3, #0	; 0x0
+  60:	f2c0 0300 	movtls	r3, #0	; 0x0
+  64:	2200      	movls	r2, #0
+  66:	701a      	strbls	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:346
+  68:	4770      	bx	lr
+  6a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.DMA1_Channel1_IRQHandler:
+
+00000000 <DMA1_Channel1_IRQHandler>:
+DMA1_Channel1_IRQHandler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:165
+ * The transfer error interrupt is the only one enabled
+ * If this hits, the ADC stops converting
+ *----------------------------------------------------------------*/
+
+void DMA1_Channel1_IRQHandler(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:166
+	send_a_string("ADC DMA error");
+   2:	f240 0000 	movw	r0, #0	; 0x0
+   6:	f2c0 0000 	movt	r0, #0	; 0x0
+   a:	f7ff fffe 	bl	0 <send_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:171
+
+	// rewrite setup?
+
+	// Clear all DMA1 Channel1 interrupt flags
+	DMA1->IFCR = 0x00000001;
+   e:	f240 0300 	movw	r3, #0	; 0x0
+  12:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  16:	f04f 0201 	mov.w	r2, #1	; 0x1
+  1a:	605a      	str	r2, [r3, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:175
+
+	// Re-enable DMA1 channel1
+//	DMA1_Channel1->CCR |= 1;
+}
+  1c:	bd10      	pop	{r4, pc}
+  1e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.initialize_analog_input:
+
+00000000 <initialize_analog_input>:
+initialize_analog_input():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:80
+ * There are ten on-chip analog channels used so each one is converted 
+ *  every 51.25us.
+ *-----------------------------------------------------------------------*/
+
+void initialize_analog_input(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:86
+	/*-------------------------
+	 * Configure DMA1 Channel 1
+	 *------------------------*/
+
+	// Disable DMA1 Channel 1
+	DMA1_Channel1->CCR = 0;
+   2:	f240 0108 	movw	r1, #8	; 0x8
+   6:	f2c4 0102 	movt	r1, #16386	; 0x4002
+   a:	f04f 0300 	mov.w	r3, #0	; 0x0
+   e:	600b      	str	r3, [r1, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:89
+
+	// Peripheral address register
+	DMA1_Channel1->CPAR = (u32)&ADC1->DR;			// ADC1_DR_Address
+  10:	f242 434c 	movw	r3, #9292	; 0x244c
+  14:	f2c4 0301 	movt	r3, #16385	; 0x4001
+  18:	608b      	str	r3, [r1, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:92
+
+	// Memory address register
+	DMA1_Channel1->CMAR = (u32)raw_analog;
+  1a:	f240 0300 	movw	r3, #0	; 0x0
+  1e:	f2c0 0300 	movt	r3, #0	; 0x0
+  22:	60cb      	str	r3, [r1, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:95
+  
+	// Set the number of transfers per cycle
+	DMA1_Channel1->CNDTR = 10;
+  24:	f04f 030a 	mov.w	r3, #10	; 0xa
+  28:	604b      	str	r3, [r1, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:102
+	// Disable memory to memory mode, set high priority
+	// Memory size is 16 bits, peripheral size is 16 bits
+	// Enable memory address increment, disable peripheral address increment
+	// Enable circular mode, transfer from peripheral to memory
+	// Enable transfer error interrupt, disable other interrupts
+	DMA1_Channel1->CCR = 0x000025A8;				// .. 0010 0101 1010 1000
+  2a:	f242 53a8 	movw	r3, #9640	; 0x25a8
+  2e:	600b      	str	r3, [r1, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:105
+
+    // Reset all DMA1 Channel 1 interrupt pending bits
+    DMA1->IFCR |= 0x0000000F;
+  30:	f240 0200 	movw	r2, #0	; 0x0
+  34:	f2c4 0202 	movt	r2, #16386	; 0x4002
+  38:	6853      	ldr	r3, [r2, #4]
+  3a:	f043 030f 	orr.w	r3, r3, #15	; 0xf
+  3e:	6053      	str	r3, [r2, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:108
+
+	// Enable DMA1 channel1
+	DMA1_Channel1->CCR |= 1;
+  40:	680b      	ldr	r3, [r1, #0]
+  42:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  46:	600b      	str	r3, [r1, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:111
+
+	// Configure the NVIC DMA1 Channel1 interrupt
+	enable_interrupt(DMA1_Channel1_IRQn, 2);
+  48:	f04f 000b 	mov.w	r0, #11	; 0xb
+  4c:	f04f 0102 	mov.w	r1, #2	; 0x2
+  50:	f7ff fffe 	bl	0 <enable_interrupt>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:120
+	 *--------------*/
+
+	// Disable analog watchdog mode, set independant conversion mode
+	// Disble discontinuous mode, no automatic injected group conversion
+	// Enable scan mode, disable interrupts
+	ADC1->CR1 = 0x00000100;
+  54:	f242 4200 	movw	r2, #9216	; 0x2400
+  58:	f2c4 0201 	movt	r2, #16385	; 0x4001
+  5c:	f44f 7380 	mov.w	r3, #256	; 0x100
+  60:	6053      	str	r3, [r2, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:128
+	// Enable regular channel conversion on external event: SWSTART
+	// Disable injected channel conversion on external event
+	// Set for right data alignment, enable DMA
+	// Clear calibration registers, do not start calibration
+	// Continuous conversion, enable the ADC
+	ADC1->CR2 = 0x001E010B;
+  62:	f240 130b 	movw	r3, #267	; 0x10b
+  66:	f2c0 031e 	movt	r3, #30	; 0x1e
+  6a:	6093      	str	r3, [r2, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:131
+
+    // Set the channel sample time for all channels to 28.5 clocks
+    ADC1->SMPR1 = 0x006DB6DB;			// 0000 0000 0110 1101 1011 0110 1101 1011
+  6c:	f24b 63db 	movw	r3, #46811	; 0xb6db
+  70:	f2c0 036d 	movt	r3, #109	; 0x6d
+  74:	60d3      	str	r3, [r2, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:132
+	ADC1->SMPR2 = 0x1B6DB6DB;			// 0001 1011 0110 1101 1011 0110 1101 1011
+  76:	f24b 63db 	movw	r3, #46811	; 0xb6db
+  7a:	f6c1 336d 	movt	r3, #7021	; 0x1b6d
+  7e:	6113      	str	r3, [r2, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:136
+
+	// Set regular conversion sequence length for 10 conversions
+	// Set regular conversion for channels 0, 1, 2, 3, 6, 7, 14, 15, 10 and 11
+	ADC1->SQR1 = 0x00900000;
+  80:	f44f 0310 	mov.w	r3, #9437184	; 0x900000
+  84:	62d3      	str	r3, [r2, #44]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:137
+	ADC1->SQR2 = 0x0005A9EE;			// 0000 0000 0000 0101 1010 1001 1110 1110
+  86:	f64a 13ee 	movw	r3, #43502	; 0xa9ee
+  8a:	f2c0 0305 	movt	r3, #5	; 0x5
+  8e:	6313      	str	r3, [r2, #48]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:138
+    ADC1->SQR3 = 0x0E618820;			// 0000 1110 0110 0001 1000 1000 0010 0000
+  90:	f648 0320 	movw	r3, #34848	; 0x8820
+  94:	f6c0 6361 	movt	r3, #3681	; 0xe61
+  98:	6353      	str	r3, [r2, #52]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:141
+
+	// Wait for the calibration registers to be reset
+	while(ADC1->CR2 & 8);
+  9a:	f242 4300 	movw	r3, #9216	; 0x2400
+  9e:	461a      	mov	r2, r3
+  a0:	f2c4 0201 	movt	r2, #16385	; 0x4001
+  a4:	6893      	ldr	r3, [r2, #8]
+  a6:	f013 0f08 	tst.w	r3, #8	; 0x8
+  aa:	d1fb      	bne.n	a4 <enable_interrupt+0xa4>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:144
+
+	// Start ADC1 calibaration
+	ADC1->CR2 |= 0x04;
+  ac:	f242 4300 	movw	r3, #9216	; 0x2400
+  b0:	f2c4 0301 	movt	r3, #16385	; 0x4001
+  b4:	689a      	ldr	r2, [r3, #8]
+  b6:	f042 0204 	orr.w	r2, r2, #4	; 0x4
+  ba:	609a      	str	r2, [r3, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:147
+
+	// Wait for calibration to complete
+	while(ADC1->CR2 & 4);
+  bc:	f242 4300 	movw	r3, #9216	; 0x2400
+  c0:	461a      	mov	r2, r3
+  c2:	f2c4 0201 	movt	r2, #16385	; 0x4001
+  c6:	6893      	ldr	r3, [r2, #8]
+  c8:	f013 0f04 	tst.w	r3, #4	; 0x4
+  cc:	d1fb      	bne.n	c6 <enable_interrupt+0xc6>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:150
+     
+	// Start the conversion
+    ADC1->CR2 |= 0x00400000;	
+  ce:	f242 4200 	movw	r2, #9216	; 0x2400
+  d2:	f2c4 0201 	movt	r2, #16385	; 0x4001
+  d6:	6893      	ldr	r3, [r2, #8]
+  d8:	f443 0380 	orr.w	r3, r3, #4194304	; 0x400000
+  dc:	6093      	str	r3, [r2, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Analog.c:151
+}
+  de:	bd10      	pop	{r4, pc}

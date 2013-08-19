@@ -1,0 +1,426 @@
+
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o:     file format elf32-littlearm
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+
+Disassembly of section .text.main:
+
+00000000 <main>:
+main():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:28
+#include "Flash.h"
+#include "ThermTables.h"
+
+
+int main(void)
+{
+   0:	e92d 4ff8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:36
+	static bool inputs_valid = FALSE;
+
+	static u16 hold_timer = 0,
+				pass_counter = 0;
+
+	SCB->AIRCR = APP_RESET_CONTROL;
+   4:	f64e 5200 	movw	r2, #60672	; 0xed00
+   8:	f2ce 0200 	movt	r2, #57344	; 0xe000
+   c:	f240 7300 	movw	r3, #1792	; 0x700
+  10:	f2c0 53fa 	movt	r3, #1530	; 0x5fa
+  14:	60d3      	str	r3, [r2, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:38
+
+	initialize_clocks();
+  16:	f7ff fffe 	bl	0 <initialize_clocks>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:40
+
+	initialize_ports();
+  1a:	f7ff fffe 	bl	0 <initialize_ports>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:42
+
+	TURN_ON(POWER_HOLD);
+  1e:	f248 13bc 	movw	r3, #33212	; 0x81bc
+  22:	f2c4 2322 	movt	r3, #16930	; 0x4222
+  26:	f04f 0201 	mov.w	r2, #1	; 0x1
+  2a:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:46
+
+	// Setup USART1 for 9600 Baud, 1 stop bit, no parity, no handshake,
+	//  and DMA multi-buffered input and output
+	initialize_serial();
+  2c:	f7ff fffe 	bl	0 <initialize_serial>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:48
+
+	initialize_timers();
+  30:	f7ff fffe 	bl	0 <initialize_timers>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:50
+
+	this_can_address = CAN_TITAN_ADDR;
+  34:	f240 0300 	movw	r3, #0	; 0x0
+  38:	f2c0 0300 	movt	r3, #0	; 0x0
+  3c:	f04f 0230 	mov.w	r2, #48	; 0x30
+  40:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:52
+
+	initialize_can();
+  42:	f7ff fffe 	bl	0 <initialize_can>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:56
+
+	// We keep the Flash Program and Erase Controller unlocked since we 
+	//  use FLASH memory to emulate EEPROM
+	unlock_FPEC();
+  46:	f7ff fffe 	bl	0 <unlock_FPEC>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:58
+
+	if ( (FLASH->OBR >> 10) != VALID_KEY)
+  4a:	f242 0300 	movw	r3, #8192	; 0x2000
+  4e:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  52:	69da      	ldr	r2, [r3, #28]
+  54:	f645 233c 	movw	r3, #23100	; 0x5a3c
+  58:	ebb3 2f92 	cmp.w	r3, r2, lsr #10
+  5c:	d013      	beq.n	86 <main+0x86>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:65
+		// The Program Valid bytes have not been set
+		// This must be the first time running after reprogramming
+
+		// Transmit a packet to a possible programming master 
+		//  to acknowledge a successful programming cycle
+		transmit_proprietary(PCMD_HEARTBEAT, OB->Data1);
+  5e:	f64f 0300 	movw	r3, #63488	; 0xf800
+  62:	f6c1 73ff 	movt	r3, #8191	; 0x1fff
+  66:	88d9      	ldrh	r1, [r3, #6]
+  68:	f04f 000f 	mov.w	r0, #15	; 0xf
+  6c:	b2c9      	uxtb	r1, r1
+  6e:	f7ff fffe 	bl	0 <transmit_proprietary>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:68
+
+		// Wait for it to transmit (if it does)
+		wait_for_tic(2);
+  72:	f04f 0002 	mov.w	r0, #2	; 0x2
+  76:	f7ff fffe 	bl	0 <wait_for_tic>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:71
+
+		// Write the "Program Valid" flag and set program space write protection
+		set_option_bytes(VALID_KEY);
+  7a:	f645 203c 	movw	r0, #23100	; 0x5a3c
+  7e:	f7ff fffe 	bl	0 <set_option_bytes>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:74
+
+		// Reset to make write protection active and get the BootLoader going
+		software_reset();
+  82:	f7ff fffe 	bl	0 <software_reset>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:77
+	}
+
+	initialize_analog_input();
+  86:	f7ff fffe 	bl	0 <initialize_analog_input>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:79
+
+	send_a_string("\r\n\nDoosan TITAN Dynamic Load controller\r\n");
+  8a:	f240 0000 	movw	r0, #0	; 0x0
+  8e:	f2c0 0000 	movt	r0, #0	; 0x0
+  92:	f7ff fffe 	bl	0 <send_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:80
+	send_a_string("\n\rPress ESC then 'm' for menu");
+  96:	f240 0000 	movw	r0, #0	; 0x0
+  9a:	f2c0 0000 	movt	r0, #0	; 0x0
+  9e:	f7ff fffe 	bl	0 <send_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:84
+
+	// Read the block of non-volotile status values into RAM
+	//  or initialize them if this is the first execution
+	read_novram();
+  a2:	f7ff fffe 	bl	0 <read_novram>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:86
+
+	programming_server.state = PRGM_NORMAL;
+  a6:	f240 0300 	movw	r3, #0	; 0x0
+  aa:	f2c0 0300 	movt	r3, #0	; 0x0
+  ae:	f04f 0200 	mov.w	r2, #0	; 0x0
+  b2:	709a      	strb	r2, [r3, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:94
+	 * The three on-board LEDs are turned on at initialization
+	 * We set the LED control to OFF here but the state is not 
+	 *  changed until update_leds() is called
+	 *-------------------------------------------------------*/
+
+	top_red_led= LED_OFF;
+  b4:	f240 0300 	movw	r3, #0	; 0x0
+  b8:	f2c0 0300 	movt	r3, #0	; 0x0
+  bc:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:95
+	middle_yellow_led = LED_NEG_BLINK;
+  be:	f240 0300 	movw	r3, #0	; 0x0
+  c2:	f2c0 0300 	movt	r3, #0	; 0x0
+  c6:	f102 0203 	add.w	r2, r2, #3	; 0x3
+  ca:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:96
+	bottom_green_led = LED_BLINK;
+  cc:	f240 0300 	movw	r3, #0	; 0x0
+  d0:	f2c0 0300 	movt	r3, #0	; 0x0
+  d4:	f102 32ff 	add.w	r2, r2, #4294967295	; 0xffffffff
+  d8:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:98
+
+	TICKLE_THE_DOG
+  da:	f243 0300 	movw	r3, #12288	; 0x3000
+  de:	f2c4 0300 	movt	r3, #16384	; 0x4000
+  e2:	f245 5255 	movw	r2, #21845	; 0x5555
+  e6:	601a      	str	r2, [r3, #0]
+  e8:	f64a 22aa 	movw	r2, #43690	; 0xaaaa
+  ec:	601a      	str	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:100
+
+	wait_some_seconds(1);
+  ee:	f04f 0001 	mov.w	r0, #1	; 0x1
+  f2:	f7ff fffe 	bl	0 <wait_some_seconds>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:104
+
+	while(TRUE)
+    {
+    	if ( (u16)system_timer != hold_timer )
+  f6:	f240 0600 	movw	r6, #0	; 0x0
+  fa:	f2c0 0600 	movt	r6, #0	; 0x0
+  fe:	f240 0400 	movw	r4, #0	; 0x0
+ 102:	f2c0 0400 	movt	r4, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:166
+			// Read and debounce the on-board digital inputs
+			update_digital_in();
+
+			// Serial command timer allows single character commands 
+			//  for a limited time after after ESC is pressed
+			if (command_timer)
+ 106:	f240 0700 	movw	r7, #0	; 0x0
+ 10a:	f2c0 0700 	movt	r7, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:132
+					update_health_timers();
+					break;
+
+	    		case 2:
+
+					switch (programming_server.state)
+ 10e:	f240 0500 	movw	r5, #0	; 0x0
+ 112:	f2c0 0500 	movt	r5, #0	; 0x0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:135
+					{
+						case PRGM_DELAY1:
+							programming_server.state = PRGM_DELAY2;
+ 116:	f04f 0803 	mov.w	r8, #3	; 0x3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:139
+							break;
+
+						case PRGM_DELAY2:
+							programming_server.state = PRGM_READY;
+ 11a:	f04f 0904 	mov.w	r9, #4	; 0x4
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:117
+			//  we resume where we left off instead of skipping tasks
+			pass_counter++;
+
+			// Allow alerts and shutdowns after input values stabilize
+			if (pass_counter > 50)
+				inputs_valid = TRUE;
+ 11e:	f04f 0a01 	mov.w	sl, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:198
+			TURN_OFF(POWER_HOLD);
+
+			while(1);
+		}
+	
+		TICKLE_THE_DOG
+ 122:	f243 0300 	movw	r3, #12288	; 0x3000
+ 126:	f2c4 0300 	movt	r3, #16384	; 0x4000
+ 12a:	469b      	mov	fp, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:104
+
+	wait_some_seconds(1);
+
+	while(TRUE)
+    {
+    	if ( (u16)system_timer != hold_timer )
+ 12c:	6833      	ldr	r3, [r6, #0]
+ 12e:	8822      	ldrh	r2, [r4, #0]
+ 130:	b29b      	uxth	r3, r3
+ 132:	429a      	cmp	r2, r3
+ 134:	d033      	beq.n	19e <main+0x19e>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:109
+    	{
+	  		// We get here no more often than once every 10ms
+
+			// Reload the present timer value for the next time around
+			hold_timer = system_timer;
+ 136:	6833      	ldr	r3, [r6, #0]
+ 138:	8023      	strh	r3, [r4, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:113
+
+			// Count the number of times we get here so if we get busy, 
+			//  we resume where we left off instead of skipping tasks
+			pass_counter++;
+ 13a:	8863      	ldrh	r3, [r4, #2]
+ 13c:	f103 0301 	add.w	r3, r3, #1	; 0x1
+ 140:	b29b      	uxth	r3, r3
+ 142:	8063      	strh	r3, [r4, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:116
+
+			// Allow alerts and shutdowns after input values stabilize
+			if (pass_counter > 50)
+ 144:	2b32      	cmp	r3, #50
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:117
+				inputs_valid = TRUE;
+ 146:	bf88      	it	hi
+ 148:	f884 a004 	strbhi.w	sl, [r4, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:120
+
+			// Each case is executed no more often than 160ms
+	    	switch (pass_counter & 0x0F)
+ 14c:	f003 030f 	and.w	r3, r3, #15	; 0xf
+ 150:	2b04      	cmp	r3, #4
+ 152:	d817      	bhi.n	184 <main+0x184>
+ 154:	e8df f003 	tbb	[pc, r3]
+ 158:	16090603 	.word	0x16090603
+ 15c:	0014      	.short	0x0014
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:123
+	    	{
+				case 0:
+					update_leds();
+ 15e:	f7ff fffe 	bl	0 <update_leds>
+ 162:	e00f      	b.n	22 <update_health_timers+0x22>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:127
+					break;
+
+				case 1:
+					update_health_timers();
+ 164:	f7ff fffe 	bl	0 <update_health_timers>
+ 168:	e00c      	b.n	184 <main+0x184>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:132
+					break;
+
+	    		case 2:
+
+					switch (programming_server.state)
+ 16a:	78ab      	ldrb	r3, [r5, #2]
+ 16c:	2b02      	cmp	r3, #2
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:135
+					{
+						case PRGM_DELAY1:
+							programming_server.state = PRGM_DELAY2;
+ 16e:	bf08      	it	eq
+ 170:	f885 8002 	strbeq.w	r8, [r5, #2]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:132
+					update_health_timers();
+					break;
+
+	    		case 2:
+
+					switch (programming_server.state)
+ 174:	d006      	beq.n	184 <main+0x184>
+ 176:	2b03      	cmp	r3, #3
+ 178:	d104      	bne.n	184 <main+0x184>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:139
+						case PRGM_DELAY1:
+							programming_server.state = PRGM_DELAY2;
+							break;
+
+						case PRGM_DELAY2:
+							programming_server.state = PRGM_READY;
+ 17a:	f885 9002 	strb.w	r9, [r5, #2]
+ 17e:	e001      	b.n	6 <update_analogs+0x6>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:149
+
+				case 4:
+
+					// Calculate global values for temperatures and pressures 
+					//  from the averaged values read from the hardware
+					update_analogs();
+ 180:	f7ff fffe 	bl	0 <update_analogs>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:154
+
+					break;
+			}
+
+			maintain_can_comm_wd();
+ 184:	f7ff fffe 	bl	0 <maintain_can_comm_wd>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:159
+
+			// Read a raw analog input value that the DMA transferred
+			//  from the hardware to raw_analog[] and update the four sample 
+			//  moving window sum in analog_input[].average
+			read_raw_analogs();
+ 188:	f7ff fffe 	bl	0 <read_raw_analogs>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:162
+
+			// Read and debounce the on-board digital inputs
+			update_digital_in();
+ 18c:	f7ff fffe 	bl	0 <update_digital_in>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:166
+
+			// Serial command timer allows single character commands 
+			//  for a limited time after after ESC is pressed
+			if (command_timer)
+ 190:	883b      	ldrh	r3, [r7, #0]
+ 192:	b113      	cbz	r3, 19a <main+0x19a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:167
+				command_timer--;
+ 194:	f103 33ff 	add.w	r3, r3, #4294967295	; 0xffffffff
+ 198:	803b      	strh	r3, [r7, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:170
+
+			// Manage display of data screens
+			access_info_screens();
+ 19a:	f7ff fffe 	bl	0 <access_info_screens>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:173
+		}
+
+		timed_can_messages();
+ 19e:	f7ff fffe 	bl	0 <timed_can_messages>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:177
+
+		// Manage receipt and transmission of CAN messages 
+		//  and take appropriate action 
+		check_can();
+ 1a2:	f7ff fffe 	bl	0 <check_can>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:179
+
+		check_serial();
+ 1a6:	f7ff fffe 	bl	0 <check_serial>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:181
+
+		if (digital_input[DIN_POWER_SIGNAL] == SW_OPEN)
+ 1aa:	f240 0300 	movw	r3, #0	; 0x0
+ 1ae:	f2c0 0300 	movt	r3, #0	; 0x0
+ 1b2:	789b      	ldrb	r3, [r3, #2]
+ 1b4:	b98b      	cbnz	r3, 1da <main+0x1da>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:186
+		{
+			// Hold power on after power down request
+			//  long enough to store NOVRAM
+
+			write_novram();
+ 1b6:	f7ff fffe 	bl	0 <write_novram>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:188
+
+			send_a_string("\r\n\nShutting down ");
+ 1ba:	f240 0000 	movw	r0, #0	; 0x0
+ 1be:	f2c0 0000 	movt	r0, #0	; 0x0
+ 1c2:	f7ff fffe 	bl	0 <send_a_string>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:191
+
+			// Wait for outgoing messages to complete
+			wait_for_buffer();
+ 1c6:	f7ff fffe 	bl	0 <wait_for_buffer>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:193
+
+			TURN_OFF(POWER_HOLD);
+ 1ca:	f248 13bc 	movw	r3, #33212	; 0x81bc
+ 1ce:	f2c4 2322 	movt	r3, #16930	; 0x4222
+ 1d2:	f04f 0200 	mov.w	r2, #0	; 0x0
+ 1d6:	701a      	strb	r2, [r3, #0]
+ 1d8:	e7fe      	b.n	1d8 <wait_for_buffer+0x1d8>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/main.c:198
+
+			while(1);
+		}
+	
+		TICKLE_THE_DOG
+ 1da:	f245 5355 	movw	r3, #21845	; 0x5555
+ 1de:	f8cb 3000 	str.w	r3, [fp]
+ 1e2:	f64a 23aa 	movw	r3, #43690	; 0xaaaa
+ 1e6:	f8cb 3000 	str.w	r3, [fp]
+ 1ea:	e79f      	b.n	12c <wait_for_buffer+0x12c>

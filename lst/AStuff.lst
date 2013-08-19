@@ -1,0 +1,290 @@
+
+C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o:     file format elf32-littlearm
+C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\AStuff.o
+
+Disassembly of section .text.update_ambient_temp:
+
+00000000 <update_ambient_temp>:
+update_ambient_temp():
+   0:	4a0c      	ldr	r2, [pc, #48]	(34 <update_ambient_temp+0x34>)
+   2:	7813      	ldrb	r3, [r2, #0]
+   4:	2b0e      	cmp	r3, #14
+   6:	d901      	bls.n	c <update_ambient_temp+0xc>
+   8:	2300      	movs	r3, #0
+   a:	e000      	b.n	e <update_ambient_temp+0xe>
+   c:	3301      	adds	r3, #1
+   e:	7013      	strb	r3, [r2, #0]
+  10:	4b08      	ldr	r3, [pc, #32]	(34 <update_ambient_temp+0x34>)
+  12:	2100      	movs	r1, #0
+  14:	781a      	ldrb	r2, [r3, #0]
+  16:	189b      	adds	r3, r3, r2
+  18:	4a07      	ldr	r2, [pc, #28]	(38 <update_ambient_temp+0x38>)
+  1a:	8dd2      	ldrh	r2, [r2, #46]
+  1c:	705a      	strb	r2, [r3, #1]
+  1e:	460a      	mov	r2, r1
+  20:	4b06      	ldr	r3, [pc, #24]	(3c <update_ambient_temp+0x3c>)
+  22:	5c9b      	ldrb	r3, [r3, r2]
+  24:	3201      	adds	r2, #1
+  26:	18cb      	adds	r3, r1, r3
+  28:	2a10      	cmp	r2, #16
+  2a:	b299      	uxth	r1, r3
+  2c:	d1f8      	bne.n	20 <update_ambient_temp+0x20>
+  2e:	4b04      	ldr	r3, [pc, #16]	(40 <update_ambient_temp+0x40>)
+  30:	8019      	strh	r1, [r3, #0]
+  32:	4770      	bx	lr
+	...
+  3c:	00000001 	.word	0x00000001
+  40:	00000000 	.word	0x00000000
+Disassembly of section .text.update_battery_voltage:
+
+00000000 <update_battery_voltage>:
+update_battery_voltage():
+   0:	4a0d      	ldr	r2, [pc, #52]	(38 <update_battery_voltage+0x38>)
+   2:	7c53      	ldrb	r3, [r2, #17]
+   4:	2b0e      	cmp	r3, #14
+   6:	d901      	bls.n	c <update_battery_voltage+0xc>
+   8:	2300      	movs	r3, #0
+   a:	e000      	b.n	e <update_battery_voltage+0xe>
+   c:	3301      	adds	r3, #1
+   e:	7453      	strb	r3, [r2, #17]
+  10:	4b09      	ldr	r3, [pc, #36]	(38 <update_battery_voltage+0x38>)
+  12:	2100      	movs	r1, #0
+  14:	7c5a      	ldrb	r2, [r3, #17]
+  16:	189b      	adds	r3, r3, r2
+  18:	4a08      	ldr	r2, [pc, #32]	(3c <update_battery_voltage+0x3c>)
+  1a:	f8b2 205e 	ldrh.w	r2, [r2, #94]
+  1e:	749a      	strb	r2, [r3, #18]
+  20:	460a      	mov	r2, r1
+  22:	4b07      	ldr	r3, [pc, #28]	(40 <update_battery_voltage+0x40>)
+  24:	5c9b      	ldrb	r3, [r3, r2]
+  26:	3201      	adds	r2, #1
+  28:	18cb      	adds	r3, r1, r3
+  2a:	2a10      	cmp	r2, #16
+  2c:	b299      	uxth	r1, r3
+  2e:	d1f8      	bne.n	22 <update_battery_voltage+0x22>
+  30:	4b04      	ldr	r3, [pc, #16]	(44 <update_battery_voltage+0x44>)
+  32:	8019      	strh	r1, [r3, #0]
+  34:	4770      	bx	lr
+  36:	46c0      	nop			(mov r8, r8)
+	...
+  40:	00000012 	.word	0x00000012
+  44:	00000000 	.word	0x00000000
+Disassembly of section .text.turn_leds_off:
+
+00000000 <turn_leds_off>:
+turn_leds_off():
+   0:	4b03      	ldr	r3, [pc, #12]	(10 <turn_leds_off+0x10>)
+   2:	2200      	movs	r2, #0
+   4:	701a      	strb	r2, [r3, #0]
+   6:	4b03      	ldr	r3, [pc, #12]	(14 <turn_leds_off+0x14>)
+   8:	701a      	strb	r2, [r3, #0]
+   a:	4b03      	ldr	r3, [pc, #12]	(18 <turn_leds_off+0x18>)
+   c:	701a      	strb	r2, [r3, #0]
+   e:	4770      	bx	lr
+	...
+Disassembly of section .text.turn_leds_on:
+
+00000000 <turn_leds_on>:
+turn_leds_on():
+   0:	4b03      	ldr	r3, [pc, #12]	(10 <turn_leds_on+0x10>)
+   2:	2201      	movs	r2, #1
+   4:	701a      	strb	r2, [r3, #0]
+   6:	4b03      	ldr	r3, [pc, #12]	(14 <turn_leds_on+0x14>)
+   8:	701a      	strb	r2, [r3, #0]
+   a:	4b03      	ldr	r3, [pc, #12]	(18 <turn_leds_on+0x18>)
+   c:	701a      	strb	r2, [r3, #0]
+   e:	4770      	bx	lr
+	...
+Disassembly of section .text.perform_self_check:
+
+00000000 <perform_self_check>:
+perform_self_check():
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	2500      	movs	r5, #0
+   4:	4a19      	ldr	r2, [pc, #100]	(6c <perform_self_check+0x6c>)
+   6:	6813      	ldr	r3, [r2, #0]
+   8:	ebb1 0f93 	cmp.w	r1, r3, lsr #2
+   c:	d025      	beq.n	5a <perform_self_check+0x5a>
+   e:	2d02      	cmp	r5, #2
+  10:	6816      	ldr	r6, [r2, #0]
+  12:	d002      	beq.n	1a <perform_self_check+0x1a>
+  14:	2d0e      	cmp	r5, #14
+  16:	d11b      	bne.n	50 <perform_self_check+0x50>
+  18:	e007      	b.n	2a <perform_self_check+0x2a>
+  1a:	f7ff fffe 	bl	0 <verify_serial_character>
+  1e:	4601      	mov	r1, r0
+  20:	b9b0      	cbnz	r0, 50 <perform_self_check+0x50>
+  22:	4813      	ldr	r0, [pc, #76]	(70 <perform_self_check+0x70>)
+  24:	f7ff fffe 	bl	0 <show_diagnostic_string>
+  28:	bd70      	pop	{r4, r5, r6, pc}
+  2a:	1c63      	adds	r3, r4, #1
+  2c:	b2dc      	uxtb	r4, r3
+  2e:	2c03      	cmp	r4, #3
+  30:	d80d      	bhi.n	4e <perform_self_check+0x4e>
+  32:	e8df f004 	tbb	[pc, r4]
+  36:	020d      	.short	0x020d
+  38:	0905      	.short	0x0905
+  3a:	2201      	movs	r2, #1
+  3c:	4b0d      	ldr	r3, [pc, #52]	(74 <perform_self_check+0x74>)
+  3e:	e001      	b.n	44 <perform_self_check+0x44>
+  40:	4b0d      	ldr	r3, [pc, #52]	(78 <perform_self_check+0x78>)
+  42:	2201      	movs	r2, #1
+  44:	701a      	strb	r2, [r3, #0]
+  46:	e003      	b.n	50 <perform_self_check+0x50>
+  48:	4b0c      	ldr	r3, [pc, #48]	(7c <perform_self_check+0x7c>)
+  4a:	2201      	movs	r2, #1
+  4c:	701a      	strb	r2, [r3, #0]
+  4e:	2400      	movs	r4, #0
+  50:	1c6b      	adds	r3, r5, #1
+  52:	f3c6 0187 	ubfx	r1, r6, #2, #8
+  56:	f003 050f 	and.w	r5, r3, #15	; 0xf
+  5a:	4b09      	ldr	r3, [pc, #36]	(80 <perform_self_check+0x80>)
+  5c:	f245 5255 	movw	r2, #21845	; 0x5555
+  60:	601a      	str	r2, [r3, #0]
+  62:	f64a 22aa 	movw	r2, #43690	; 0xaaaa
+  66:	601a      	str	r2, [r3, #0]
+  68:	e7cc      	b.n	4 <perform_self_check+0x4>
+  6a:	46c0      	nop			(mov r8, r8)
+	...
+  74:	4223018c 	.word	0x4223018c
+  78:	42230188 	.word	0x42230188
+  7c:	42230190 	.word	0x42230190
+  80:	40003000 	.word	0x40003000
+Disassembly of section .text.update_autostart_state:
+
+00000000 <update_autostart_state>:
+update_autostart_state():
+   0:	4b44      	ldr	r3, [pc, #272]	(114 <update_autostart_state+0x114>)
+   2:	b570      	push	{r4, r5, r6, lr}
+   4:	7818      	ldrb	r0, [r3, #0]
+   6:	b918      	cbnz	r0, 10 <update_autostart_state+0x10>
+   8:	4b43      	ldr	r3, [pc, #268]	(118 <update_autostart_state+0x118>)
+   a:	4604      	mov	r4, r0
+   c:	7018      	strb	r0, [r3, #0]
+   e:	e035      	b.n	7c <update_autostart_state+0x7c>
+  10:	4b42      	ldr	r3, [pc, #264]	(11c <update_autostart_state+0x11c>)
+  12:	4941      	ldr	r1, [pc, #260]	(118 <update_autostart_state+0x118>)
+  14:	781b      	ldrb	r3, [r3, #0]
+  16:	2b08      	cmp	r3, #8
+  18:	d807      	bhi.n	2a <update_autostart_state+0x2a>
+  1a:	2b07      	cmp	r3, #7
+  1c:	d21a      	bcs.n	54 <update_autostart_state+0x54>
+  1e:	2b05      	cmp	r3, #5
+  20:	d00f      	beq.n	42 <update_autostart_state+0x42>
+  22:	d815      	bhi.n	50 <update_autostart_state+0x50>
+  24:	2b02      	cmp	r3, #2
+  26:	d321      	bcc.n	6c <update_autostart_state+0x6c>
+  28:	e009      	b.n	3e <update_autostart_state+0x3e>
+  2a:	2b0a      	cmp	r3, #10
+  2c:	d005      	beq.n	3a <update_autostart_state+0x3a>
+  2e:	d317      	bcc.n	60 <update_autostart_state+0x60>
+  30:	2b0d      	cmp	r3, #13
+  32:	d00f      	beq.n	54 <update_autostart_state+0x54>
+  34:	2b22      	cmp	r3, #34
+  36:	d119      	bne.n	6c <update_autostart_state+0x6c>
+  38:	e001      	b.n	3e <update_autostart_state+0x3e>
+  3a:	2301      	movs	r3, #1
+  3c:	e006      	b.n	4c <update_autostart_state+0x4c>
+  3e:	2302      	movs	r3, #2
+  40:	e004      	b.n	4c <update_autostart_state+0x4c>
+  42:	4b37      	ldr	r3, [pc, #220]	(120 <update_autostart_state+0x120>)
+  44:	681a      	ldr	r2, [r3, #0]
+  46:	4b37      	ldr	r3, [pc, #220]	(124 <update_autostart_state+0x124>)
+  48:	625a      	str	r2, [r3, #36]
+  4a:	2303      	movs	r3, #3
+  4c:	700b      	strb	r3, [r1, #0]
+  4e:	e014      	b.n	7a <update_autostart_state+0x7a>
+  50:	2304      	movs	r3, #4
+  52:	e7fb      	b.n	4c <update_autostart_state+0x4c>
+  54:	780b      	ldrb	r3, [r1, #0]
+  56:	2b05      	cmp	r3, #5
+  58:	d00f      	beq.n	7a <update_autostart_state+0x7a>
+  5a:	2204      	movs	r2, #4
+  5c:	4b2e      	ldr	r3, [pc, #184]	(118 <update_autostart_state+0x118>)
+  5e:	e003      	b.n	68 <update_autostart_state+0x68>
+  60:	2307      	movs	r3, #7
+  62:	700b      	strb	r3, [r1, #0]
+  64:	4b30      	ldr	r3, [pc, #192]	(128 <update_autostart_state+0x128>)
+  66:	2201      	movs	r2, #1
+  68:	701a      	strb	r2, [r3, #0]
+  6a:	e006      	b.n	7a <update_autostart_state+0x7a>
+  6c:	2306      	movs	r3, #6
+  6e:	700b      	strb	r3, [r1, #0]
+  70:	4b2e      	ldr	r3, [pc, #184]	(12c <update_autostart_state+0x12c>)
+  72:	781b      	ldrb	r3, [r3, #0]
+  74:	b10b      	cbz	r3, 7a <update_autostart_state+0x7a>
+  76:	2401      	movs	r4, #1
+  78:	e000      	b.n	7c <update_autostart_state+0x7c>
+  7a:	2400      	movs	r4, #0
+  7c:	4926      	ldr	r1, [pc, #152]	(118 <update_autostart_state+0x118>)
+  7e:	780b      	ldrb	r3, [r1, #0]
+  80:	2b04      	cmp	r3, #4
+  82:	d002      	beq.n	8a <update_autostart_state+0x8a>
+  84:	2b05      	cmp	r3, #5
+  86:	d121      	bne.n	cc <update_autostart_state+0xcc>
+  88:	e00d      	b.n	a6 <update_autostart_state+0xa6>
+  8a:	4b28      	ldr	r3, [pc, #160]	(12c <update_autostart_state+0x12c>)
+  8c:	781b      	ldrb	r3, [r3, #0]
+  8e:	b9eb      	cbnz	r3, cc <update_autostart_state+0xcc>
+  90:	4b27      	ldr	r3, [pc, #156]	(130 <update_autostart_state+0x130>)
+  92:	f893 3028 	ldrb.w	r3, [r3, #40]
+  96:	2b01      	cmp	r3, #1
+  98:	d118      	bne.n	cc <update_autostart_state+0xcc>
+  9a:	4b21      	ldr	r3, [pc, #132]	(120 <update_autostart_state+0x120>)
+  9c:	681a      	ldr	r2, [r3, #0]
+  9e:	4b21      	ldr	r3, [pc, #132]	(124 <update_autostart_state+0x124>)
+  a0:	625a      	str	r2, [r3, #36]
+  a2:	2305      	movs	r3, #5
+  a4:	e003      	b.n	ae <update_autostart_state+0xae>
+  a6:	4b21      	ldr	r3, [pc, #132]	(12c <update_autostart_state+0x12c>)
+  a8:	781b      	ldrb	r3, [r3, #0]
+  aa:	b113      	cbz	r3, b2 <update_autostart_state+0xb2>
+  ac:	2304      	movs	r3, #4
+  ae:	700b      	strb	r3, [r1, #0]
+  b0:	e00c      	b.n	cc <update_autostart_state+0xcc>
+  b2:	4b1b      	ldr	r3, [pc, #108]	(120 <update_autostart_state+0x120>)
+  b4:	681a      	ldr	r2, [r3, #0]
+  b6:	4b1b      	ldr	r3, [pc, #108]	(124 <update_autostart_state+0x124>)
+  b8:	6a5b      	ldr	r3, [r3, #36]
+  ba:	1ad2      	subs	r2, r2, r3
+  bc:	4b1d      	ldr	r3, [pc, #116]	(134 <update_autostart_state+0x134>)
+  be:	b292      	uxth	r2, r2
+  c0:	801a      	strh	r2, [r3, #0]
+  c2:	4b1b      	ldr	r3, [pc, #108]	(130 <update_autostart_state+0x130>)
+  c4:	8a9b      	ldrh	r3, [r3, #20]
+  c6:	4293      	cmp	r3, r2
+  c8:	bf98      	it	ls
+  ca:	2402      	movls	r4, #2
+  cc:	4b15      	ldr	r3, [pc, #84]	(124 <update_autostart_state+0x124>)
+  ce:	f893 3028 	ldrb.w	r3, [r3, #40]
+  d2:	42a3      	cmp	r3, r4
+  d4:	d10d      	bne.n	f2 <update_autostart_state+0xf2>
+  d6:	4d18      	ldr	r5, [pc, #96]	(138 <update_autostart_state+0x138>)
+  d8:	8828      	ldrh	r0, [r5, #0]
+  da:	b150      	cbz	r0, f2 <update_autostart_state+0xf2>
+  dc:	4c17      	ldr	r4, [pc, #92]	(13c <update_autostart_state+0x13c>)
+  de:	4910      	ldr	r1, [pc, #64]	(120 <update_autostart_state+0x120>)
+  e0:	6822      	ldr	r2, [r4, #0]
+  e2:	680b      	ldr	r3, [r1, #0]
+  e4:	429a      	cmp	r2, r3
+  e6:	d013      	beq.n	110 <update_autostart_state+0x110>
+  e8:	680b      	ldr	r3, [r1, #0]
+  ea:	6023      	str	r3, [r4, #0]
+  ec:	1e43      	subs	r3, r0, #1
+  ee:	802b      	strh	r3, [r5, #0]
+  f0:	e00e      	b.n	110 <update_autostart_state+0x110>
+  f2:	4a13      	ldr	r2, [pc, #76]	(140 <update_autostart_state+0x140>)
+  f4:	7813      	ldrb	r3, [r2, #0]
+  f6:	b95b      	cbnz	r3, 110 <update_autostart_state+0x110>
+  f8:	3305      	adds	r3, #5
+  fa:	7013      	strb	r3, [r2, #0]
+  fc:	4b0e      	ldr	r3, [pc, #56]	(138 <update_autostart_state+0x138>)
+  fe:	f04f 02c8 	mov.w	r2, #200	; 0xc8
+ 102:	801a      	strh	r2, [r3, #0]
+ 104:	4620      	mov	r0, r4
+ 106:	f7ff fffe 	bl	0 <setup_command>
+ 10a:	4b06      	ldr	r3, [pc, #24]	(124 <update_autostart_state+0x124>)
+ 10c:	f883 4028 	strb.w	r4, [r3, #40]
+ 110:	bd70      	pop	{r4, r5, r6, pc}
+ 112:	46c0      	nop			(mov r8, r8)
+	...

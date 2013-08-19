@@ -1,0 +1,1478 @@
+Archive member included because of file (symbol)
+
+C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+                              (__io_putchar)
+C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib(write.o)
+                              (_write)
+C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+                              C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o) (GPIO_Init)
+C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+                              C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o) (RCC_APB2PeriphClockCmd)
+C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+                              C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o) (USART_Cmd)
+
+Allocating common symbols
+Common symbol       size              file
+
+top_red_led         0x1               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+raw_analog          0x14              C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+middle_yellow_led   0x1               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+remote_lists        0x5               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+analog_input        0x84              C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+battery_voltage     0x2               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+canMsgBuffer        0x2f              C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+sio_index           0x2               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ram_novram          0x3c              C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+display_data_time   0x1               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+can_buffer_state    0x1               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+command_timer       0x2               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+remote_dump_index   0x2               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+alternator_charge_ok
+                    0x1               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+this_can_address    0x1               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+sio_buffer          0x800             C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ambient_temperature
+                    0x2               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+transmit_fault_log  0x1               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+engine_hours        0x4               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+bottom_green_led    0x1               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+programming_server  0x3               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+can_buffer_index    0x1               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+serial_input        0x14              C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+received_packet_flags
+                    0x6               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+digital_input       0x8               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+dump_to_address     0x1               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ECU_comm_watchdog   0x1               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+can_comm_watchdog   0x1               C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+
+Discarded input sections
+
+ .text          0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+ .data          0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+ .bss           0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .data          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .text.initialize_watchdog
+                0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .data          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .text.deg_c16_to_f
+                0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .text.kpa_to_psi
+                0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .data          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .data          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .text.fill_identity
+                0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .text.write_fault_log
+                0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .text.update_machine_code
+                0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .data          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .bss           0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .data          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .bss           0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .text.clear_interrupt_pending
+                0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .data          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .bss           0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .data          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .bss           0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .data          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+ .data          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+ .bss           0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+ .text.Reset_Handler
+                0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+ .text          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+ .data          0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+ .bss           0x00000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+ .text          0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .data          0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .text.__io_SetMainOscFreq
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .text.__io_getchar
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .text.getchar  0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .text.putchar  0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .text          0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib(write.o)
+ .data          0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib(write.o)
+ .bss           0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib(write.o)
+ .text          0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .data          0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .bss           0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_StructInit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_ReadInputDataBit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_ReadInputData
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_ReadOutputDataBit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_ReadOutputData
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_SetBits
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_ResetBits
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_WriteBit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_Write
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_PinLockConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_EventOutputConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_EventOutputCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_PinRemapConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_EXTILineConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_AFIODeInit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text.GPIO_DeInit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .text          0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .data          0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .bss           0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_DeInit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_HSEConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_WaitForHSEStartUp
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_AdjustHSICalibrationValue
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_HSICmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_PLLConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_PLLCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_SYSCLKConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_GetSYSCLKSource
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_HCLKConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_PCLK1Config
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_PCLK2Config
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_ITConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_USBCLKConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_ADCCLKConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_LSEConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_LSICmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_RTCCLKConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_RTCCLKCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_AHBPeriphClockCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_APB1PeriphClockCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_APB2PeriphResetCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_APB1PeriphResetCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_BackupResetCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_ClockSecuritySystemCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_MCOConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_GetFlagStatus
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_ClearFlag
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_GetITStatus
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text.RCC_ClearITPendingBit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .text          0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .data          0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .bss           0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_StructInit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_ClockInit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_ClockStructInit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_ITConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_DMACmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_SetAddress
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_WakeUpConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_ReceiverWakeUpCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_LINBreakDetectLengthConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_LINCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_ReceiveData
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_SendBreak
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_SetGuardTime
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_SetPrescaler
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_SmartCardCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_SmartCardNACKCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_HalfDuplexCmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_IrDAConfig
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_IrDACmd
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_ClearFlag
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_GetITStatus
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_ClearITPendingBit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ .text.USART_DeInit
+                0x00000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x20000000         0x00008000         xrw
+FLASH            0x08000000         0x00008000         xr
+STARTFLASH       0x00000000         0x00000000         xr
+CRPPATCH         0x00000000         0x00000000         r
+FLASHPATCH       0x00000000         0x00000000         r
+ENDFLASH         0x00000000         0x00000000         xr
+FLASHB1          0x00000000         0x00000000         xr
+EXTMEMB0         0x00000000         0x00000000         xr
+EXTMEMB1         0x00000000         0x00000000         xr
+EXTMEMB2         0x00000000         0x00000000         xr
+EXTMEMB3         0x00000000         0x00000000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+LOAD C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+START GROUP
+LOAD C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a
+LOAD C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib
+LOAD C:\Program Files\Raisonance\Ride\Lib\ARM\smallprintf_thumb.a
+LOAD C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib
+LOAD c:/program files/raisonance/ride/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/thumb2\libc.a
+LOAD c:/program files/raisonance/ride/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/thumb2\libm.a
+END GROUP
+                0x00000400                __Stack_Size = 0x400
+                0x00000400                PROVIDE (_Stack_Size, __Stack_Size)
+                0x20007c00                __Stack_Init = (_estack - __Stack_Size)
+                0x20007c00                PROVIDE (_Stack_Init, __Stack_Init)
+                0x00000100                _Minimum_Stack_Size = 0x100
+                0x00000000                PROVIDE (Undefined_Handler, 0x0)
+                0x00000000                PROVIDE (SWI_Handler, 0x0)
+                0x00000000                PROVIDE (IRQ_Handler, 0x0)
+                0x00000000                PROVIDE (Prefetch_Handler, 0x0)
+                0x00000000                PROVIDE (Abort_Handler, 0x0)
+                0x00000000                PROVIDE (FIQ_Handler, 0x0)
+                0x00000000                PROVIDE (NMIException, 0x0)
+                0x00000000                PROVIDE (NMI_Handler, 0x0)
+                0x00000000                PROVIDE (HardFaultException, 0x0)
+                0x00000000                PROVIDE (HardFault_Handler, 0x0)
+                0x00000000                PROVIDE (MemManageException, 0x0)
+                0x00000000                PROVIDE (MemManage_Handler, 0x0)
+                0x00000000                PROVIDE (BusFaultException, 0x0)
+                0x00000000                PROVIDE (BusFault_Handler, 0x0)
+                0x00000000                PROVIDE (UsageFaultException, 0x0)
+                0x00000000                PROVIDE (UsageFault_Handler, 0x0)
+                0x00000000                PROVIDE (SVCHandler, 0x0)
+                0x00000000                PROVIDE (SVC_Handler, 0x0)
+                0x00000000                PROVIDE (DebugMonitor, 0x0)
+                0x00000000                PROVIDE (DebugMon_Handler, 0x0)
+                0x00000000                PROVIDE (PendSVC, 0x0)
+                0x00000000                PROVIDE (PendSV_Handler, 0x0)
+                0x00000000                PROVIDE (SysTickHandler, 0x0)
+                0x00000000                PROVIDE (SysTick_Handler, 0x0)
+                0x00000000                PROVIDE (WWDG_IRQHandler, 0x0)
+                0x00000000                PROVIDE (PVD_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TAMPER_IRQHandler, 0x0)
+                0x00000000                PROVIDE (RTC_IRQHandler, 0x0)
+                0x00000000                PROVIDE (FLASH_IRQHandler, 0x0)
+                0x00000000                PROVIDE (RCC_IRQHandler, 0x0)
+                0x00000000                PROVIDE (EXTI0_IRQHandler, 0x0)
+                0x00000000                PROVIDE (EXTI1_IRQHandler, 0x0)
+                0x00000000                PROVIDE (EXTI2_IRQHandler, 0x0)
+                0x00000000                PROVIDE (EXTI3_IRQHandler, 0x0)
+                0x00000000                PROVIDE (EXTI4_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMAChannel1_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMAChannel2_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMAChannel3_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMAChannel4_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMAChannel5_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMAChannel6_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMAChannel7_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMA1_Channel1_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMA1_Channel2_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMA1_Channel3_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMA1_Channel4_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMA1_Channel5_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMA1_Channel6_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMA1_Channel7_IRQHandler, 0x0)
+                0x00000000                PROVIDE (ADC_IRQHandler, 0x0)
+                0x00000000                PROVIDE (ADC1_2_IRQHandler, 0x0)
+                0x00000000                PROVIDE (USB_HP_CAN_TX_IRQHandler, 0x0)
+                0x00000000                PROVIDE (USB_HP_CAN1_TX_IRQHandler, 0x0)
+                0x00000000                PROVIDE (USB_LP_CAN_RX0_IRQHandler, 0x0)
+                0x00000000                PROVIDE (USB_LP_CAN1_RX0_IRQHandler, 0x0)
+                0x00000000                PROVIDE (CAN_RX1_IRQHandler, 0x0)
+                0x00000000                PROVIDE (CAN1_RX1_IRQHandler, 0x0)
+                0x00000000                PROVIDE (CAN_SCE_IRQHandler, 0x0)
+                0x00000000                PROVIDE (CAN1_SCE_IRQHandler, 0x0)
+                0x00000000                PROVIDE (EXTI9_5_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM1_BRK_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM1_UP_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM1_TRG_COM_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM1_CC_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM2_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM3_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM4_IRQHandler, 0x0)
+                0x00000000                PROVIDE (I2C1_EV_IRQHandler, 0x0)
+                0x00000000                PROVIDE (I2C1_ER_IRQHandler, 0x0)
+                0x00000000                PROVIDE (I2C2_EV_IRQHandler, 0x0)
+                0x00000000                PROVIDE (I2C2_ER_IRQHandler, 0x0)
+                0x00000000                PROVIDE (SPI1_IRQHandler, 0x0)
+                0x00000000                PROVIDE (SPI2_IRQHandler, 0x0)
+                0x00000000                PROVIDE (USART1_IRQHandler, 0x0)
+                0x00000000                PROVIDE (USART2_IRQHandler, 0x0)
+                0x00000000                PROVIDE (USART3_IRQHandler, 0x0)
+                0x00000000                PROVIDE (EXTI15_10_IRQHandler, 0x0)
+                0x00000000                PROVIDE (RTCAlarm_IRQHandler, 0x0)
+                0x00000000                PROVIDE (USBWakeUp_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM8_BRK_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM8_UP_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM8_TRG_COM_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM8_CC_IRQHandler, 0x0)
+                0x00000000                PROVIDE (ADC3_IRQHandler, 0x0)
+                0x00000000                PROVIDE (FSMC_IRQHandler, 0x0)
+                0x00000000                PROVIDE (SDIO_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM5_IRQHandler, 0x0)
+                0x00000000                PROVIDE (SPI3_IRQHandler, 0x0)
+                0x00000000                PROVIDE (UART4_IRQHandler, 0x0)
+                0x00000000                PROVIDE (UART5_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM6_IRQHandler, 0x0)
+                0x00000000                PROVIDE (TIM7_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMA2_Channel1_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMA2_Channel2_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMA2_Channel3_IRQHandler, 0x0)
+                0x00000000                PROVIDE (DMA2_Channel4_5_IRQHandler, 0x0)
+                0x42000000                PERIPH_BB_BASE = 0x42000000
+                0x22000000                SRAM_BB_BASE = 0x22000000
+                0x20000000                SRAM_BASE = 0x20000000
+                0x40000000                PERIPH_BASE = 0x40000000
+                0x40022000                PROVIDE (FLASH_BASE, 0x40022000)
+                0x1ffff800                PROVIDE (OB_BASE, 0x1ffff800)
+                0x40000000                APB1PERIPH_BASE = PERIPH_BASE
+                0x40010000                APB2PERIPH_BASE = (PERIPH_BASE + 0x10000)
+                0x40020000                AHBPERIPH_BASE = (PERIPH_BASE + 0x20000)
+                0x40000000                PROVIDE (TIM2, (APB1PERIPH_BASE + 0x0))
+                0x40000400                PROVIDE (TIM3, (APB1PERIPH_BASE + 0x400))
+                0x40000800                PROVIDE (TIM4, (APB1PERIPH_BASE + 0x800))
+                0x40002800                PROVIDE (RTC, (APB1PERIPH_BASE + 0x2800))
+                0x40002c00                PROVIDE (WWDG, (APB1PERIPH_BASE + 0x2c00))
+                0x40003000                PROVIDE (IWDG, (APB1PERIPH_BASE + 0x3000))
+                0x40003800                PROVIDE (SPI2, (APB1PERIPH_BASE + 0x3800))
+                0x40004400                PROVIDE (USART2, (APB1PERIPH_BASE + 0x4400))
+                0x40004800                PROVIDE (USART3, (APB1PERIPH_BASE + 0x4800))
+                0x40005400                PROVIDE (I2C1, (APB1PERIPH_BASE + 0x5400))
+                0x40005800                PROVIDE (I2C2, (APB1PERIPH_BASE + 0x5800))
+                0x40006400                PROVIDE (CAN, (APB1PERIPH_BASE + 0x6400))
+                0x40006c00                PROVIDE (BKP, (APB1PERIPH_BASE + 0x6c00))
+                0x40007000                PROVIDE (PWR, (APB1PERIPH_BASE + 0x7000))
+                0x40010000                PROVIDE (AFIO, (APB2PERIPH_BASE + 0x0))
+                0x40010400                PROVIDE (EXTI, (APB2PERIPH_BASE + 0x400))
+                0x40010800                PROVIDE (GPIOA, (APB2PERIPH_BASE + 0x800))
+                0x40010c00                PROVIDE (GPIOB, (APB2PERIPH_BASE + 0xc00))
+                0x40011000                PROVIDE (GPIOC, (APB2PERIPH_BASE + 0x1000))
+                0x40011400                PROVIDE (GPIOD, (APB2PERIPH_BASE + 0x1400))
+                0x40011800                PROVIDE (GPIOE, (APB2PERIPH_BASE + 0x1800))
+                0x40012400                PROVIDE (ADC1, (APB2PERIPH_BASE + 0x2400))
+                0x40012800                PROVIDE (ADC2, (APB2PERIPH_BASE + 0x2800))
+                0x40012c00                PROVIDE (TIM1, (APB2PERIPH_BASE + 0x2c00))
+                0x40013000                PROVIDE (SPI1, (APB2PERIPH_BASE + 0x3000))
+                0x40013800                PROVIDE (USART1, (APB2PERIPH_BASE + 0x3800))
+                0x40020000                PROVIDE (DMA, (AHBPERIPH_BASE + 0x0))
+                0x40020008                PROVIDE (DMA_Channel1, (AHBPERIPH_BASE + 0x8))
+                0x4002001c                PROVIDE (DMA_Channel2, (AHBPERIPH_BASE + 0x1c))
+                0x40020030                PROVIDE (DMA_Channel3, (AHBPERIPH_BASE + 0x30))
+                0x40020044                PROVIDE (DMA_Channel4, (AHBPERIPH_BASE + 0x44))
+                0x40020058                PROVIDE (DMA_Channel5, (AHBPERIPH_BASE + 0x58))
+                0x4002006c                PROVIDE (DMA_Channel6, (AHBPERIPH_BASE + 0x6c))
+                0x40020080                PROVIDE (DMA_Channel7, (AHBPERIPH_BASE + 0x80))
+                0x40021000                PROVIDE (RCC, (AHBPERIPH_BASE + 0x1000))
+                0xe000e000                SCS_BASE = 0xe000e000
+                0xe000e010                PROVIDE (SysTick, (SCS_BASE + 0x10))
+                0xe000e100                PROVIDE (NVIC, (SCS_BASE + 0x100))
+                0xe000ed00                PROVIDE (SCB, (SCS_BASE + 0xd00))
+                0x20008000                _estack = 0x20008000
+
+.isr_vector     0x08000000      0x3c8
+                0x08000000                . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x08000000      0x1e4 C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+                0x08000000                g_pfnVectors
+ .isr_vector    0x080001e4      0x1e4 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+                0x080003c8                . = ALIGN (0x4)
+
+.flash_start    0x00000000        0x0
+                0x00000000                . = ALIGN (0x4)
+ *(.flash_start)
+ *(.flash_start.*)
+                0x00000000                . = ALIGN (0x4)
+
+.crp_patch      0x00000000        0x0
+                0x00000000                . = ALIGN (0x4)
+ *(.crp_patch)
+                0x00000000                . = ALIGN (0x4)
+
+.flashtext      0x080003c8        0x0
+                0x080003c8                . = ALIGN (0x4)
+ *(.flashtext)
+                0x080003c8                . = ALIGN (0x4)
+
+.text           0x080003c8     0x4fa8
+                0x080003c8                . = ALIGN (0x4)
+ *(.text)
+ *(.text.*)
+ .text.Reset_Handler
+                0x080003c8       0x88 C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+                0x080003c8                Reset_Handler
+ .text.initialize_clocks
+                0x08000450      0x10c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+                0x08000450                initialize_clocks
+ .text.initialize_timers
+                0x0800055c       0x30 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+                0x0800055c                initialize_timers
+ .text.wait_for_tic
+                0x0800058c       0x1c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+                0x0800058c                wait_for_tic
+ .text.wait_some_seconds
+                0x080005a8       0x1c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+                0x080005a8                wait_some_seconds
+ .text.SysTick_Handler
+                0x080005c4       0x2c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+                0x080005c4                SysTick_Handler
+ .text.TIM3_IRQHandler
+                0x080005f0       0x20 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+                0x080005f0                TIM3_IRQHandler
+ .text.WWDG_IRQHandler
+                0x08000610       0x14 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+                0x08000610                WWDG_IRQHandler
+ .text.update_analog_input
+                0x08000624       0x6c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+                0x08000624                update_analog_input
+ .text.read_raw_analogs
+                0x08000690      0x114 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+                0x08000690                read_raw_analogs
+ .text.update_analogs
+                0x080007a4       0x6c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+                0x080007a4                update_analogs
+ .text.DMA1_Channel1_IRQHandler
+                0x08000810       0x20 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+                0x08000810                DMA1_Channel1_IRQHandler
+ .text.initialize_analog_input
+                0x08000830       0xe0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+                0x08000830                initialize_analog_input
+ .text.can_filter_0_action
+                0x08000910       0x24 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+                0x08000910                can_filter_0_action
+ .text.maintain_can_comm_wd
+                0x08000934       0x7c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+                0x08000934                maintain_can_comm_wd
+ .text.access_info_screens
+                0x080009b0      0x12c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+                0x080009b0                access_info_screens
+ .text.can_message_action
+                0x08000adc      0x26c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+                0x08000adc                can_message_action
+ .text.check_can
+                0x08000d48      0x144 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+                0x08000d48                check_can
+ .text.initialize_can
+                0x08000e8c      0x1c4 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+                0x08000e8c                initialize_can
+ .text.select_transmitter
+                0x08001050       0x60 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+                0x08001050                select_transmitter
+ .text.transmit_proprietary
+                0x080010b0      0x23c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+                0x080010b0                transmit_proprietary
+ .text.request_engine_hours
+                0x080012ec       0x3c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+                0x080012ec                request_engine_hours
+ .text.dm1_message_action
+                0x08001328       0x20 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+                0x08001328                dm1_message_action
+ .text.request_engine_serial_num
+                0x08001348       0x3c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+                0x08001348                request_engine_serial_num
+ .text.timed_can_messages
+                0x08001384      0x138 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+                0x08001384                timed_can_messages
+ .text.get_engine_serial_number
+                0x080014bc       0xc0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+                0x080014bc                get_engine_serial_number
+ .text.can_send_binary
+                0x0800157c       0xd0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+                0x0800157c                can_send_binary
+ .text.can_start_reprogram
+                0x0800164c       0x3c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+                0x0800164c                can_start_reprogram
+ .text.start_multiple_packets
+                0x08001688       0x94 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+                0x08001688                start_multiple_packets
+ .text.prepare_for_mp_receive
+                0x0800171c       0x90 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+                0x0800171c                prepare_for_mp_receive
+ .text.buffer_a_can_packet
+                0x080017ac      0x100 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+                0x080017ac                buffer_a_can_packet
+ .text.CAN1_RX1_IRQHandler
+                0x080018ac      0x3a4 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+                0x080018ac                CAN1_RX1_IRQHandler
+ .text.USB_LP_CAN1_RX0_IRQHandler
+                0x08001c50       0x68 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+                0x08001c50                USB_LP_CAN1_RX0_IRQHandler
+ .text.end_mp_input
+                0x08001cb8       0x80 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+                0x08001cb8                end_mp_input
+ .text.continue_mp_input
+                0x08001d38       0x68 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+                0x08001d38                continue_mp_input
+ .text.continue_mp_output
+                0x08001da0      0x15c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+                0x08001da0                continue_mp_output
+ .text.transmit_msg_buffer
+                0x08001efc      0x134 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+                0x08001efc                transmit_msg_buffer
+ .text.next_novram_address
+                0x08002030       0x2c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x08002030                next_novram_address
+ .text.number_of_novram
+                0x0800205c       0x24 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x0800205c                number_of_novram
+ .text.update_health_timers
+                0x08002080       0x78 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x08002080                update_health_timers
+ .text.get_recent_identity
+                0x080020f8       0x34 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x080020f8                get_recent_identity
+ .text.get_number_identities
+                0x0800212c       0x3c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x0800212c                get_number_identities
+ .text.fault_address
+                0x08002168       0x30 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x08002168                fault_address
+ .text.number_of_faults
+                0x08002198       0x28 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x08002198                number_of_faults
+ .text.compare_serial_number
+                0x080021c0       0x30 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x080021c0                compare_serial_number
+ .text.erase_fault_log
+                0x080021f0       0x2c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x080021f0                erase_fault_log
+ .text.initialize_health
+                0x0800221c       0x48 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x0800221c                initialize_health
+ .text.fill_a_bool
+                0x08002264       0x20 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x08002264                fill_a_bool
+ .text.fill_engine_code
+                0x08002284       0x30 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x08002284                fill_engine_code
+ .text.fill_a_status
+                0x080022b4       0x1c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x080022b4                fill_a_status
+ .text.fill_fault
+                0x080022d0      0x210 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x080022d0                fill_fault
+ .text.access_fault_log
+                0x080024e0       0xb8 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x080024e0                access_fault_log
+ .text.write_identity
+                0x08002598       0x88 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x08002598                write_identity
+ .text.write_novram
+                0x08002620       0x64 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x08002620                write_novram
+ .text.access_novram_log
+                0x08002684      0x230 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x08002684                access_novram_log
+ .text.initialize_novram
+                0x080028b4       0x44 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x080028b4                initialize_novram
+ .text.read_novram
+                0x080028f8       0x58 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x080028f8                read_novram
+ .text.wait_for_flash
+                0x08002950       0x9c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+                0x08002950                wait_for_flash
+ .text.write_flash_int
+                0x080029ec       0x30 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+                0x080029ec                write_flash_int
+ .text.unlock_FPEC
+                0x08002a1c       0x3c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+                0x08002a1c                unlock_FPEC
+ .text.set_option_bytes
+                0x08002a58       0xd0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+                0x08002a58                set_option_bytes
+ .text.erase_flash_page
+                0x08002b28       0x68 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+                0x08002b28                erase_flash_page
+ .text.enable_interrupt
+                0x08002b90       0x28 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                0x08002b90                enable_interrupt
+ .text.get_reg  0x08002bb8        0x4 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                0x08002bb8                get_reg
+ .text.PendSV_Handler
+                0x08002bbc       0x10 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                0x08002bbc                PendSV_Handler
+ .text.DebugMon_Handler
+                0x08002bcc       0x10 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                0x08002bcc                DebugMon_Handler
+ .text.SVC_Handler
+                0x08002bdc       0x10 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                0x08002bdc                SVC_Handler
+ .text.NMI_Handler
+                0x08002bec       0x10 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                0x08002bec                NMI_Handler
+ .text.software_reset
+                0x08002bfc       0x48 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                0x08002bfc                software_reset
+ .text.send_status
+                0x08002c44       0x50 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                0x08002c44                send_status
+ .text.UsageFault_Handler
+                0x08002c94       0x14 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                0x08002c94                UsageFault_Handler
+ .text.BusFault_Handler
+                0x08002ca8       0x14 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                0x08002ca8                BusFault_Handler
+ .text.MemManage_Handler
+                0x08002cbc       0x14 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                0x08002cbc                MemManage_Handler
+ .text.HardFault_Handler
+                0x08002cd0       0x14 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                0x08002cd0                HardFault_Handler
+ .text.initialize_ports
+                0x08002ce4       0xa8 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+                0x08002ce4                initialize_ports
+ .text.update_leds
+                0x08002d8c      0x108 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+                0x08002d8c                update_leds
+ .text.get_input_state
+                0x08002e94       0xc8 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+                0x08002e94                get_input_state
+ .text.update_input_state
+                0x08002f5c       0x5c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+                0x08002f5c                update_input_state
+ .text.update_digital_in
+                0x08002fb8       0x20 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+                0x08002fb8                update_digital_in
+ .text.main     0x08002fd8      0x1ec C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+                0x08002fd8                main
+ .text.fill_a_switch
+                0x080031c4       0x58 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+                0x080031c4                fill_a_switch
+ .text.fill_a_minutes
+                0x0800321c       0x28 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+                0x0800321c                fill_a_minutes
+ .text.fill_a_this_mins
+                0x08003244       0x28 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+                0x08003244                fill_a_this_mins
+ .text.fill_a_hours
+                0x0800326c       0x28 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+                0x0800326c                fill_a_hours
+ .text.send_health_screen
+                0x08003294       0x8c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+                0x08003294                send_health_screen
+ .text.fill_terminal_info
+                0x08003320      0x1cc C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+                0x08003320                fill_terminal_info
+ .text.display_analogs
+                0x080034ec      0x1b0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+                0x080034ec                display_analogs
+ .text.serial_receive
+                0x0800369c      0x340 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+                0x0800369c                serial_receive
+ .text.check_serial
+                0x080039dc       0x9c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+                0x080039dc                check_serial
+ .text.DMA1_Channel4_IRQHandler
+                0x08003a78       0x2c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003a78                DMA1_Channel4_IRQHandler
+ .text.get_serial_character
+                0x08003aa4       0x54 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003aa4                get_serial_character
+ .text.hex_to_ascii
+                0x08003af8       0x10 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003af8                hex_to_ascii
+ .text.fill_a_byte
+                0x08003b08       0x3c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003b08                fill_a_byte
+ .text.fill_an_int
+                0x08003b44       0x1c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003b44                fill_an_int
+ .text.fill_a_long
+                0x08003b60       0x1c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003b60                fill_a_long
+ .text.fill_a_number
+                0x08003b7c       0xcc C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003b7c                fill_a_number
+ .text.fill_a_decimal
+                0x08003c48        0xc C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003c48                fill_a_decimal
+ .text.fill_a_string
+                0x08003c54       0x38 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003c54                fill_a_string
+ .text.buffer_is_busy
+                0x08003c8c       0x10 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003c8c                buffer_is_busy
+ .text.wait_for_buffer
+                0x08003c9c        0xc C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003c9c                wait_for_buffer
+ .text.start_transmitting
+                0x08003ca8       0x1c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003ca8                start_transmitting
+ .text.send_sio_buffer
+                0x08003cc4       0x14 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003cc4                send_sio_buffer
+ .text.send_a_string
+                0x08003cd8       0x14 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003cd8                send_a_string
+ .text.initialize_serial
+                0x08003cec       0x94 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x08003cec                initialize_serial
+ .text.Default_Handler
+                0x08003d80        0x2 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+                0x08003d80                EXTI2_IRQHandler
+                0x08003d80                TIM8_TRG_COM_IRQHandler
+                0x08003d80                TIM8_CC_IRQHandler
+                0x08003d80                TIM1_CC_IRQHandler
+                0x08003d80                TIM6_IRQHandler
+                0x08003d80                PVD_IRQHandler
+                0x08003d80                SDIO_IRQHandler
+                0x08003d80                EXTI3_IRQHandler
+                0x08003d80                EXTI0_IRQHandler
+                0x08003d80                I2C2_EV_IRQHandler
+                0x08003d80                ADC1_2_IRQHandler
+                0x08003d80                SPI1_IRQHandler
+                0x08003d80                TAMPER_IRQHandler
+                0x08003d80                TIM8_UP_IRQHandler
+                0x08003d80                DMA2_Channel2_IRQHandler
+                0x08003d80                USART3_IRQHandler
+                0x08003d80                RTC_IRQHandler
+                0x08003d80                DMA1_Channel7_IRQHandler
+                0x08003d80                UART5_IRQHandler
+                0x08003d80                ADC3_IRQHandler
+                0x08003d80                TIM4_IRQHandler
+                0x08003d80                DMA2_Channel1_IRQHandler
+                0x08003d80                I2C1_EV_IRQHandler
+                0x08003d80                DMA1_Channel6_IRQHandler
+                0x08003d80                UART4_IRQHandler
+                0x08003d80                RCC_IRQHandler
+                0x08003d80                TIM1_TRG_COM_IRQHandler
+                0x08003d80                Default_Handler
+                0x08003d80                EXTI15_10_IRQHandler
+                0x08003d80                TIM7_IRQHandler
+                0x08003d80                TIM5_IRQHandler
+                0x08003d80                EXTI9_5_IRQHandler
+                0x08003d80                SPI2_IRQHandler
+                0x08003d80                DMA1_Channel5_IRQHandler
+                0x08003d80                EXTI4_IRQHandler
+                0x08003d80                USB_HP_CAN1_TX_IRQHandler
+                0x08003d80                DMA1_Channel3_IRQHandler
+                0x08003d80                FSMC_IRQHandler
+                0x08003d80                TIM1_UP_IRQHandler
+                0x08003d80                TIM2_IRQHandler
+                0x08003d80                TIM1_BRK_IRQHandler
+                0x08003d80                EXTI1_IRQHandler
+                0x08003d80                RTCAlarm_IRQHandler
+                0x08003d80                DMA2_Channel4_5_IRQHandler
+                0x08003d80                USART2_IRQHandler
+                0x08003d80                I2C2_ER_IRQHandler
+                0x08003d80                DMA1_Channel2_IRQHandler
+                0x08003d80                TIM8_BRK_IRQHandler
+                0x08003d80                CAN1_SCE_IRQHandler
+                0x08003d80                FLASH_IRQHandler
+                0x08003d80                USART1_IRQHandler
+                0x08003d80                SPI3_IRQHandler
+                0x08003d80                I2C1_ER_IRQHandler
+                0x08003d80                USBWakeUp_IRQHandler
+                0x08003d80                DMA2_Channel3_IRQHandler
+ *fill*         0x08003d82        0x2 00
+ .text.__io_init
+                0x08003d84       0xac C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+                0x08003d84                __io_init
+ .text.__io_putchar
+                0x08003e30       0x4c C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+                0x08003e30                __io_putchar
+ .text._write   0x08003e7c        0x4 C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib(write.o)
+                0x08003e7c                _write
+ .text.GPIO_Init
+                0x08003e80       0xd8 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+                0x08003e80                GPIO_Init
+ .text.RCC_GetClocksFreq
+                0x08003f58       0xb0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+                0x08003f58                RCC_GetClocksFreq
+ .text.RCC_APB2PeriphClockCmd
+                0x08004008       0x28 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+                0x08004008                RCC_APB2PeriphClockCmd
+ .text.USART_Cmd
+                0x08004030       0x1c C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+                0x08004030                USART_Cmd
+ .text.USART_SendData
+                0x0800404c        0x8 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+                0x0800404c                USART_SendData
+ .text.USART_GetFlagStatus
+                0x08004054        0xc C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+                0x08004054                USART_GetFlagStatus
+ .text.USART_Init
+                0x08004060       0xa4 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+                0x08004060                USART_Init
+ *(.rodata)
+ .rodata        0x08004104       0x84 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+                0x08004104                multiplexer_setup
+ .rodata        0x08004188      0x400 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+                0x08004188                temp16_lookup
+ .rodata        0x08004588       0x14 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ *(.rodata*)
+ .rodata.str1.4
+                0x0800459c        0xe C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+                                 0x10 (size before relaxing)
+ *fill*         0x080045aa        0x2 00
+ .rodata.str1.4
+                0x080045ac       0x57 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+                                 0x58 (size before relaxing)
+ *fill*         0x08004603        0x1 00
+ .rodata.str1.4
+                0x08004604        0xe C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+                                 0x10 (size before relaxing)
+ *fill*         0x08004612        0x2 00
+ .rodata.str1.4
+                0x08004614      0x551 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                                0x554 (size before relaxing)
+ *fill*         0x08004b65        0x3 00
+ .rodata.str1.4
+                0x08004b68       0x33 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+                                 0x34 (size before relaxing)
+ *fill*         0x08004b9b        0x1 00
+ .rodata.str1.4
+                0x08004b9c       0x82 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                                 0x84 (size before relaxing)
+ *fill*         0x08004c1e        0x2 00
+ .rodata.str1.4
+                0x08004c20       0x5e C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+                                 0x60 (size before relaxing)
+ *fill*         0x08004c7e        0x2 00
+ .rodata.str1.4
+                0x08004c80      0x6f0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+                                0x704 (size before relaxing)
+ *(.glue_7)
+ .glue_7        0x08005370        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+ .glue_7        0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+ .glue_7        0x08005370        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .glue_7        0x08005370        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib(write.o)
+ .glue_7        0x08005370        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .glue_7        0x08005370        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .glue_7        0x08005370        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+ *(.glue_7t)
+ .glue_7t       0x08005370        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+ .glue_7t       0x08005370        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+ .glue_7t       0x08005370        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .glue_7t       0x08005370        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib(write.o)
+ .glue_7t       0x08005370        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .glue_7t       0x08005370        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .glue_7t       0x08005370        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+                0x08005370                . = ALIGN (0x4)
+                0x08005370                _etext = .
+                0x08005370                _sidata = _etext
+
+.vfp11_veneer   0x20000000        0x0
+ .vfp11_veneer  0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+ .vfp11_veneer  0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+ .vfp11_veneer  0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .vfp11_veneer  0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib(write.o)
+ .vfp11_veneer  0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .vfp11_veneer  0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .vfp11_veneer  0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+
+.janus_2cc_veneer
+                0x20000000        0x0
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib(write.o)
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .janus_2cc_veneer
+                0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+
+.v4_bx          0x20000000        0x0
+ .v4_bx         0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+ .v4_bx         0x20000000        0x0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+ .v4_bx         0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .v4_bx         0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib(write.o)
+ .v4_bx         0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .v4_bx         0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .v4_bx         0x20000000        0x0 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+
+.flashpatch     0x00000000        0x0
+                0x00000000                . = ALIGN (0x4)
+ *(.flashpatch)
+                0x00000000                . = ALIGN (0x4)
+
+.endflash       0x00000000        0x0
+                0x00000000                . = ALIGN (0x4)
+ *(.endflash)
+                0x00000000                . = ALIGN (0x4)
+                0x00000000                _e_endflash = .
+
+.data           0x20000000        0xc load address 0x08005370
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _sdata = .
+                0x20000000                _data = .
+ *(.data)
+ .data          0x20000000        0x1 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+                0x20000000                can_on_line
+ *fill*         0x20000001        0x1 00
+ .data          0x20000002        0x8 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .data          0x2000000a        0x2 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ *(.data.*)
+ *(.RAMtext)
+                0x2000000c                . = ALIGN (0x4)
+                0x2000000c                _edata = .
+                0x0800537c                _eidata = ((_sidata + _edata) - _sdata)
+                0x08008000                _lastdataromaddress = 0x8008000
+                0x00000000                toobig = (_eidata > _lastdataromaddress)?!!!!!!!!! FLASH IS FULL !!!!!!!!!:0x0
+
+.bss            0x2000000c      0x978 load address 0x0800537c
+                0x2000000c                . = ALIGN (0x4)
+                0x2000000c                _sbss = .
+                0x2000000c                _bss = .
+ *(.bss)
+ .bss           0x2000000c        0x8 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+                0x2000000c                system_timer
+ .bss           0x20000014        0x1 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ *fill*         0x20000015        0x1 00
+ .bss           0x20000016        0xa C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+                0x2000001a                remote_list_index
+                0x2000001e                engine_sn_received
+                0x20000016                dm1_timout_count
+                0x20000018                remote_access_state
+                0x2000001d                packets_to_transmit
+ .bss           0x20000020        0x2 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .bss           0x20000022        0x1 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ *fill*         0x20000023        0x1 00
+ .bss           0x20000024        0xa C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x20000028                fault_transmit_count
+                0x2000002c                health_transmit_count
+                0x20000026                this_on_time
+ .bss           0x2000002e        0x6 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .bss           0x20000034        0x1 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .bss           0x20000035        0x1 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+                0x20000035                __io_init_done
+ *(COMMON)
+ COMMON         0x20000036       0x9e C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+                0x20000036                raw_analog
+                0x2000004a                analog_input
+                0x200000ce                battery_voltage
+                0x200000d0                alternator_charge_ok
+                0x200000d2                ambient_temperature
+ COMMON         0x200000d4        0xf C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+                0x200000d4                remote_lists
+                0x200000d9                display_data_time
+                0x200000dc                engine_hours
+                0x200000e0                dump_to_address
+                0x200000e1                ECU_comm_watchdog
+                0x200000e2                can_comm_watchdog
+ *fill*         0x200000e3        0x1 00
+ COMMON         0x200000e4        0x6 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+                0x200000e4                remote_dump_index
+                0x200000e6                this_can_address
+                0x200000e7                programming_server
+ COMMON         0x200000ea       0x37 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+                0x200000ea                canMsgBuffer
+                0x20000119                can_buffer_state
+                0x2000011a                can_buffer_index
+                0x2000011b                received_packet_flags
+ *fill*         0x20000121        0x3 00
+ COMMON         0x20000124       0x3d C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                0x20000124                ram_novram
+                0x20000160                transmit_fault_log
+ COMMON         0x20000161        0xb C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+                0x20000161                top_red_led
+                0x20000162                middle_yellow_led
+                0x20000163                bottom_green_led
+                0x20000164                digital_input
+ COMMON         0x2000016c        0x2 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+                0x2000016c                command_timer
+ COMMON         0x2000016e      0x816 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                0x2000016e                sio_index
+                0x20000170                sio_buffer
+                0x20000970                serial_input
+                0x20000984                . = ALIGN (0x4)
+                0x20000984                _ebss = .
+                0x20000984                PROVIDE (end, _ebss)
+                0x20000984                PROVIDE (_end, _ebss)
+
+._usrstack      0x20000984      0x100 load address 0x08005cf4
+                0x20000984                . = ALIGN (0x4)
+                0x20000984                _susrstack = .
+                0x20000a84                . = (. + _Minimum_Stack_Size)
+ *fill*         0x20000984      0x100 00
+                0x20000a84                . = ALIGN (0x4)
+                0x20000a84                _eusrstack = .
+
+.b1text
+ *(.b1text)
+ *(.b1rodata)
+ *(.b1rodata*)
+
+.eb0text
+ *(.eb0text)
+ *(.eb0rodata)
+ *(.eb0rodata*)
+
+.eb1text
+ *(.eb1text)
+ *(.eb1rodata)
+ *(.eb1rodata*)
+
+.eb2text
+ *(.eb2text)
+ *(.eb2rodata)
+ *(.eb2rodata*)
+
+.eb3text
+ *(.eb3text)
+ *(.eb3rodata)
+ *(.eb3rodata*)
+                0x20000a84                __exidx_start = .
+                0x20000a84                __exidx_end = .
+
+/DISCARD/
+ libc.a(*)
+ libm.a(*)
+ libgcc.a(*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000      0x31e
+ *(.comment)
+ .comment       0x00000000       0x2a C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+ .comment       0x0000002a       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .comment       0x00000054       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .comment       0x0000007e       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .comment       0x000000a8       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .comment       0x000000d2       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .comment       0x000000fc       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .comment       0x00000126       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .comment       0x00000150       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .comment       0x0000017a       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .comment       0x000001a4       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .comment       0x000001ce       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .comment       0x000001f8       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .comment       0x00000222       0x2a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+ .comment       0x0000024c       0x2a C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .comment       0x00000276       0x2a C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib(write.o)
+ .comment       0x000002a0       0x2a C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .comment       0x000002ca       0x2a C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .comment       0x000002f4       0x2a C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x490
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x58 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .debug_aranges
+                0x00000058       0x50 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .debug_aranges
+                0x000000a8       0x48 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .debug_aranges
+                0x000000f0       0x60 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .debug_aranges
+                0x00000150       0x60 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .debug_aranges
+                0x000001b0       0xd0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .debug_aranges
+                0x00000280       0x40 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .debug_aranges
+                0x000002c0       0x80 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .debug_aranges
+                0x00000340       0x40 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .debug_aranges
+                0x00000380       0x20 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .debug_aranges
+                0x000003a0       0x60 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .debug_aranges
+                0x00000400       0x90 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+
+.debug_pubnames
+                0x00000000      0xd0f
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0xca C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .debug_pubnames
+                0x000000ca      0x126 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .debug_pubnames
+                0x000001f0      0x18d C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .debug_pubnames
+                0x0000037d      0x132 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .debug_pubnames
+                0x000004af      0x142 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .debug_pubnames
+                0x000005f1      0x258 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .debug_pubnames
+                0x00000849       0x73 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .debug_pubnames
+                0x000008bc      0x112 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .debug_pubnames
+                0x000009ce       0xc5 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .debug_pubnames
+                0x00000a93       0x1b C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .debug_pubnames
+                0x00000aae       0xd5 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .debug_pubnames
+                0x00000b83      0x168 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .debug_pubnames
+                0x00000ceb       0x24 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+
+.debug_info     0x00000000     0x6345
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x94b C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .debug_info    0x0000094b      0x802 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .debug_info    0x0000114d      0xb3b C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .debug_info    0x00001c88      0xb84 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .debug_info    0x0000280c      0x8e9 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .debug_info    0x000030f5      0x965 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .debug_info    0x00003a5a      0x45e C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .debug_info    0x00003eb8      0x5d9 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .debug_info    0x00004491      0x623 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .debug_info    0x00004ab4      0x82a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .debug_info    0x000052de      0x821 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .debug_info    0x00005aff      0x78a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .debug_info    0x00006289       0xbc C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+
+.debug_abbrev   0x00000000     0x1581
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x180 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .debug_abbrev  0x00000180      0x1ea C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .debug_abbrev  0x0000036a      0x1d8 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .debug_abbrev  0x00000542      0x212 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .debug_abbrev  0x00000754      0x204 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .debug_abbrev  0x00000958      0x22a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .debug_abbrev  0x00000b82      0x165 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .debug_abbrev  0x00000ce7      0x16d C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .debug_abbrev  0x00000e54      0x1ad C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .debug_abbrev  0x00001001      0x13d C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .debug_abbrev  0x0000113e      0x192 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .debug_abbrev  0x000012d0      0x224 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .debug_abbrev  0x000014f4       0x8d C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+
+.debug_line     0x00000000     0x2123
+ *(.debug_line)
+ .debug_line    0x00000000      0x214 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .debug_line    0x00000214      0x23a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .debug_line    0x0000044e      0x2d7 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .debug_line    0x00000725      0x2da C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .debug_line    0x000009ff      0x301 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .debug_line    0x00000d00      0x469 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .debug_line    0x00001169      0x1fe C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .debug_line    0x00001367      0x25b C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .debug_line    0x000015c2      0x225 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .debug_line    0x000017e7      0x1ef C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .debug_line    0x000019d6      0x313 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .debug_line    0x00001ce9      0x2d0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .debug_line    0x00001fb9      0x16a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+
+.debug_frame    0x00000000      0xa94
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x9c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .debug_frame   0x0000009c       0xa8 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .debug_frame   0x00000144       0x94 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .debug_frame   0x000001d8       0xe4 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .debug_frame   0x000002bc       0xdc C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .debug_frame   0x00000398      0x244 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .debug_frame   0x000005dc       0x7c C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .debug_frame   0x00000658      0x130 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .debug_frame   0x00000788       0x74 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .debug_frame   0x000007fc       0x38 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .debug_frame   0x00000834       0xec C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .debug_frame   0x00000920      0x174 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+
+.debug_str      0x00000000     0x26fb
+ *(.debug_str)
+ .debug_str     0x00000000      0x6cf C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+                                0x732 (size before relaxing)
+ .debug_str     0x000006cf      0x3af C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+                                0x848 (size before relaxing)
+ .debug_str     0x00000a7e      0x908 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+                                0xe06 (size before relaxing)
+ .debug_str     0x00001386      0x305 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+                                0xba2 (size before relaxing)
+ .debug_str     0x0000168b      0x259 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+                                0x98a (size before relaxing)
+ .debug_str     0x000018e4      0x574 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+                                0x81a (size before relaxing)
+ .debug_str     0x00001e58       0xe0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+                                0x351 (size before relaxing)
+ .debug_str     0x00001f38      0x179 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+                                0x2c7 (size before relaxing)
+ .debug_str     0x000020b1      0x26e C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+                                0x63a (size before relaxing)
+ .debug_str     0x0000231f       0x91 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+                                0x85a (size before relaxing)
+ .debug_str     0x000023b0      0x123 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+                                0xa42 (size before relaxing)
+ .debug_str     0x000024d3      0x1c8 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+                                0x837 (size before relaxing)
+ .debug_str     0x0000269b       0x60 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+                                0x113 (size before relaxing)
+
+.debug_loc      0x00000000     0x136b
+ *(.debug_loc)
+ .debug_loc     0x00000000       0x50 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .debug_loc     0x00000050       0xc8 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .debug_loc     0x00000118       0xb0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .debug_loc     0x000001c8      0x20a C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .debug_loc     0x000003d2      0x180 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .debug_loc     0x00000552      0x529 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .debug_loc     0x00000a7b      0x109 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .debug_loc     0x00000b84      0x1a0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .debug_loc     0x00000d24      0x15b C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .debug_loc     0x00000e7f       0x1f C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .debug_loc     0x00000e9e      0x1dd C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .debug_loc     0x0000107b      0x2f0 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+START GROUP
+LOAD c:/program files/raisonance/ride/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.3.2/thumb2\libgcc.a
+LOAD c:/program files/raisonance/ride/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/thumb2\libc.a
+END GROUP
+OUTPUT(C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\cortexst.elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x31
+ .ARM.attributes
+                0x00000000       0x31 C:\Program Files\Raisonance\Ride\Lib\ARM\crt0_STM32x_HD.o
+ .ARM.attributes
+                0x00000031       0x31 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .ARM.attributes
+                0x00000062       0x31 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .ARM.attributes
+                0x00000093       0x31 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .ARM.attributes
+                0x000000c4       0x31 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .ARM.attributes
+                0x000000f5       0x31 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .ARM.attributes
+                0x00000126       0x31 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .ARM.attributes
+                0x00000157       0x31 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .ARM.attributes
+                0x00000188       0x31 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .ARM.attributes
+                0x000001b9       0x31 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .ARM.attributes
+                0x000001ea       0x31 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .ARM.attributes
+                0x0000021b       0x31 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .ARM.attributes
+                0x0000024c       0x31 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o
+ .ARM.attributes
+                0x0000027d       0x21 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\startup.o
+ .ARM.attributes
+                0x0000029e       0x2f C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\ThermTables.o
+ .ARM.attributes
+                0x000002cd       0x31 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32x_io_putchar_thumb.a(STM32F10X_IO_putchar.o)
+ .ARM.attributes
+                0x000002fe       0x2e C:\Program Files\Raisonance\Ride\Lib\ARM\std_sbrk_thumb.lib(write.o)
+ .ARM.attributes
+                0x0000032c       0x31 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_gpio.o)
+ .ARM.attributes
+                0x0000035d       0x31 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_rcc.o)
+ .ARM.attributes
+                0x0000038e       0x31 C:\Program Files\Raisonance\Ride\Lib\ARM\STM32F10x_thumb.lib(stm32f10x_usart.o)
+
+.debug_ranges   0x00000000      0x430
+ .debug_ranges  0x00000000       0x50 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+ .debug_ranges  0x00000050       0x48 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Analog.o
+ .debug_ranges  0x00000098       0x40 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Canbus.o
+ .debug_ranges  0x000000d8       0x58 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanCommands.o
+ .debug_ranges  0x00000130       0x58 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\CanPackets.o
+ .debug_ranges  0x00000188       0xc8 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\E3prom.o
+ .debug_ranges  0x00000250       0x38 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Flash.o
+ .debug_ranges  0x00000288       0x78 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Interrupt.o
+ .debug_ranges  0x00000300       0x38 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+ .debug_ranges  0x00000338       0x18 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\main.o
+ .debug_ranges  0x00000350       0x58 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Serial.o
+ .debug_ranges  0x000003a8       0x88 C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\SerialBuffer.o

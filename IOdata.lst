@@ -1,0 +1,547 @@
+
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o:     file format elf32-littlearm
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\IOdata.o
+
+Disassembly of section .text.initialize_ports:
+
+00000000 <initialize_ports>:
+initialize_ports():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:68
+	 *		PA.15 -
+	 *-----------------------------------------------------------*/
+
+	// All lower bits are analog inputs.
+	// The DAC bits are connected to the DAC outputs
+	GPIOA->CRL = 0x00000000;
+   0:	f640 0200 	movw	r2, #2048	; 0x800
+   4:	f2c4 0201 	movt	r2, #16385	; 0x4001
+   8:	f04f 0100 	mov.w	r1, #0	; 0x0
+   c:	6011      	str	r1, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:72
+
+	// Bits 9 and 12 are alternate function push-pull outputs with 2MHz maximum
+	// All other upper bits are general purpose floating digital inputs
+	GPIOA->CRH = 0x444A44A4;
+   e:	f244 43a4 	movw	r3, #17572	; 0x44a4
+  12:	f2c4 434a 	movt	r3, #17482	; 0x444a
+  16:	6053      	str	r3, [r2, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:75
+
+	// Write all outputs low
+	GPIOA->ODR = 0;
+  18:	60d1      	str	r1, [r2, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:99
+	 *		PB.15 - SPI2 bus serial data out to current sense gain
+	 *-----------------------------------------------------------*/
+
+	// Bit 6 and 7 are general purpose push-pull digital outputs with 2MHz maximum
+	// All other lower bits are general purpose floating digital inputs
+	GPIOB->CRL = 0x22444444;
+  1a:	f640 4200 	movw	r2, #3072	; 0xc00
+  1e:	f2c4 0201 	movt	r2, #16385	; 0x4001
+  22:	f244 4344 	movw	r3, #17476	; 0x4444
+  26:	f2c2 2344 	movt	r3, #8772	; 0x2244
+  2a:	6013      	str	r3, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:105
+
+	// Bits 8 and 9 are general purpose floating digital input
+	// Bit 12 is general purpose open collector digital output with 10MHz maximum
+	// Bits 13 and 15 are alternate function open collector outputs with 10MHz maximum
+	// All other upper bits are general purpose push-pull digital outputs with 2MHz maximum
+	GPIOB->CRH = 0xD2D52244;
+  2c:	f242 2344 	movw	r3, #8772	; 0x2244
+  30:	f2cd 23d5 	movt	r3, #53973	; 0xd2d5
+  34:	6053      	str	r3, [r2, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:109
+
+	// Set AIN9 current sense chip select
+	// Write all other outputs low
+	GPIOB->ODR = 0x1000;
+  36:	f44f 5380 	mov.w	r3, #4096	; 0x1000
+  3a:	60d3      	str	r3, [r2, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:133
+	 *		PC.15 - Analog multiplexer select2 digital output
+	 *--------------------------------------------------------*/
+
+	// Bits 0, 1, 4 and 5 are analog input
+	// All other lower bits are general purpose floating digital inputs
+	GPIOC->CRL = 0x44004400;
+  3c:	f241 0200 	movw	r2, #4096	; 0x1000
+  40:	f2c4 0201 	movt	r2, #16385	; 0x4001
+  44:	f244 4300 	movw	r3, #17408	; 0x4400
+  48:	f2c4 4300 	movt	r3, #17408	; 0x4400
+  4c:	6013      	str	r3, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:136
+
+	// All upper bits are general purpose push-pull digital outputs with 2MHz maximum
+	GPIOC->CRH = 0x22222222;
+  4e:	f04f 3322 	mov.w	r3, #572662306	; 0x22222222
+  52:	6053      	str	r3, [r2, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:140
+
+	// Set RS232 Force OFF FALSE, RS232 Force ON TRUE, RS232 Enable TRUE
+	// Write all other outputs low
+	GPIOC->ODR = 0x00000C00;				// 0000 0000 0000 0000 0000 1100 0000 0000
+  54:	f44f 6340 	mov.w	r3, #3072	; 0xc00
+  58:	60d3      	str	r3, [r2, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:163
+	 *		PD.14 - Power Down request input signal from ON switch
+	 *		PD.15 - Power Hold output, low to shutdown if PD.14 is low
+	 *---------------------------------------------------------------*/
+
+	// All lower bits are general purpose floating digital inputs
+	GPIOD->CRL = 0x44444444;
+  5a:	f241 4200 	movw	r2, #5120	; 0x1400
+  5e:	f2c4 0201 	movt	r2, #16385	; 0x4001
+  62:	f04f 3344 	mov.w	r3, #1145324612	; 0x44444444
+  66:	6013      	str	r3, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:167
+
+	// Bits 12, 13 and 15 are general purpose push-pull digital outputs with 2MHz maximum
+	// All other upper bits are general purpose floating digital inputs
+	GPIOD->CRH = 0x24224444;
+  68:	f244 4344 	movw	r3, #17476	; 0x4444
+  6c:	f2c2 4322 	movt	r3, #9250	; 0x2422
+  70:	6053      	str	r3, [r2, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:170
+
+	// Set all outputs low
+	GPIOD->ODR = 0;
+  72:	60d1      	str	r1, [r2, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:195
+	 *--------------------------------------------------------------*/
+
+	// Bit 1 is a general purpose floating digital input
+	// Bit 7 is general purpose open collector digital output with 10MHz maximum
+	// All other lower bits are general purpose push-pull digital outputs with 2MHz maximum
+	GPIOE->CRL = 0x52222242;
+  74:	f641 0200 	movw	r2, #6144	; 0x1800
+  78:	f2c4 0201 	movt	r2, #16385	; 0x4001
+  7c:	f242 2342 	movw	r3, #8770	; 0x2242
+  80:	f2c5 2322 	movt	r3, #21026	; 0x5222
+  84:	6013      	str	r3, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:199
+
+	// Bit 12 is a general purpose floating digital input
+	// All other upper bits are general purpose push-pull digital outputs with 2MHz maximum
+	GPIOE->CRH = 0x22242222;
+  86:	f242 2322 	movw	r3, #8738	; 0x2222
+  8a:	f2c2 2324 	movt	r3, #8740	; 0x2224
+  8e:	6053      	str	r3, [r2, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:204
+
+	// Set AIN8 current sense chip selsct
+	// Turn off both low side drivers (active low control), turn on all three LEDs
+	// Write all other outputs low
+	GPIOE->ODR = 0x00000A9C;				// 0000 0000 0000 0000 0000 1010 1001 1100
+  90:	f640 239c 	movw	r3, #2716	; 0xa9c
+  94:	60d3      	str	r3, [r2, #12]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:214
+
+	// Remap TIM4 to CH1-PD12(POUT4), CH2-PD13(POUT3)
+	// Remap TIM3 to CH2-PB5(FREQ)
+	// Remap TIM2 to CH3-PB10(POUT8), CH4-PB11(POUT7)
+	// Remap TIM1 to CH1-PE9(LS1), CH2-PE11(LS2), CH3-PE13(POUT2), CH4-PE14(POUT1)
+	AFIO->MAPR = 0x00001BC0;				// rrrr r000 rrr0 0000 0001 1011 1100 0000
+  96:	f240 0300 	movw	r3, #0	; 0x0
+  9a:	f2c4 0301 	movt	r3, #16385	; 0x4001
+  9e:	f44f 52de 	mov.w	r2, #7104	; 0x1bc0
+  a2:	605a      	str	r2, [r3, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:215
+}
+  a4:	4770      	bx	lr
+  a6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.update_leds:
+
+00000000 <update_leds>:
+update_leds():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:232
+
+void update_leds(void)
+{
+	bool blink_state;
+
+	blink_state	= system_timer & 0x40;
+   0:	f240 0300 	movw	r3, #0	; 0x0
+   4:	f2c0 0300 	movt	r3, #0	; 0x0
+   8:	681b      	ldr	r3, [r3, #0]
+   a:	f003 0140 	and.w	r1, r3, #64	; 0x40
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:234
+
+	if ( (top_red_led == LED_ON)
+   e:	f240 0300 	movw	r3, #0	; 0x0
+  12:	f2c0 0300 	movt	r3, #0	; 0x0
+  16:	781a      	ldrb	r2, [r3, #0]
+  18:	2a01      	cmp	r2, #1
+  1a:	d012      	beq.n	42 <update_leds+0x42>
+  1c:	1e0b      	subs	r3, r1, #0
+  1e:	bf18      	it	ne
+  20:	2301      	movne	r3, #1
+  22:	2a02      	cmp	r2, #2
+  24:	bf14      	ite	ne
+  26:	2300      	movne	r3, #0
+  28:	f003 0301 	andeq.w	r3, r3, #1	; 0x1
+  2c:	b94b      	cbnz	r3, 42 <update_leds+0x42>
+  2e:	f1d1 0301 	rsbs	r3, r1, #1	; 0x1
+  32:	bf38      	it	cc
+  34:	2300      	movcc	r3, #0
+  36:	2a03      	cmp	r2, #3
+  38:	bf14      	ite	ne
+  3a:	2300      	movne	r3, #0
+  3c:	f003 0301 	andeq.w	r3, r3, #1	; 0x1
+  40:	b13b      	cbz	r3, 52 <update_leds+0x52>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:238
+			|| ( (top_red_led == LED_BLINK) && blink_state )
+			|| ( (top_red_led == LED_NEG_BLINK) && !blink_state) )
+	{
+		TURN_ON(LED_RED);
+  42:	f240 1390 	movw	r3, #400	; 0x190
+  46:	f2c4 2323 	movt	r3, #16931	; 0x4223
+  4a:	f04f 0201 	mov.w	r2, #1	; 0x1
+  4e:	701a      	strb	r2, [r3, #0]
+  50:	e006      	b.n	60 <update_leds+0x60>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:241
+	}
+	else
+		TURN_OFF(LED_RED);
+  52:	f240 1390 	movw	r3, #400	; 0x190
+  56:	f2c4 2323 	movt	r3, #16931	; 0x4223
+  5a:	f04f 0200 	mov.w	r2, #0	; 0x0
+  5e:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:243
+
+	if ( (middle_yellow_led == LED_ON)
+  60:	f240 0300 	movw	r3, #0	; 0x0
+  64:	f2c0 0300 	movt	r3, #0	; 0x0
+  68:	781a      	ldrb	r2, [r3, #0]
+  6a:	2a01      	cmp	r2, #1
+  6c:	d012      	beq.n	94 <update_leds+0x94>
+  6e:	1e0b      	subs	r3, r1, #0
+  70:	bf18      	it	ne
+  72:	2301      	movne	r3, #1
+  74:	2a02      	cmp	r2, #2
+  76:	bf14      	ite	ne
+  78:	2300      	movne	r3, #0
+  7a:	f003 0301 	andeq.w	r3, r3, #1	; 0x1
+  7e:	b94b      	cbnz	r3, 94 <update_leds+0x94>
+  80:	f1d1 0301 	rsbs	r3, r1, #1	; 0x1
+  84:	bf38      	it	cc
+  86:	2300      	movcc	r3, #0
+  88:	2a03      	cmp	r2, #3
+  8a:	bf14      	ite	ne
+  8c:	2300      	movne	r3, #0
+  8e:	f003 0301 	andeq.w	r3, r3, #1	; 0x1
+  92:	b13b      	cbz	r3, a4 <update_leds+0xa4>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:247
+			|| ( (middle_yellow_led == LED_BLINK) && blink_state )
+			|| ( (middle_yellow_led == LED_NEG_BLINK) && !blink_state) )
+	{
+		TURN_ON(LED_YELLOW);
+  94:	f240 138c 	movw	r3, #396	; 0x18c
+  98:	f2c4 2323 	movt	r3, #16931	; 0x4223
+  9c:	f04f 0201 	mov.w	r2, #1	; 0x1
+  a0:	701a      	strb	r2, [r3, #0]
+  a2:	e006      	b.n	b2 <update_leds+0xb2>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:250
+	}
+	else
+		TURN_OFF(LED_YELLOW);
+  a4:	f240 138c 	movw	r3, #396	; 0x18c
+  a8:	f2c4 2323 	movt	r3, #16931	; 0x4223
+  ac:	f04f 0200 	mov.w	r2, #0	; 0x0
+  b0:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:252
+	
+	if ( (bottom_green_led == LED_ON)
+  b2:	f240 0300 	movw	r3, #0	; 0x0
+  b6:	f2c0 0300 	movt	r3, #0	; 0x0
+  ba:	781a      	ldrb	r2, [r3, #0]
+  bc:	2a01      	cmp	r2, #1
+  be:	d012      	beq.n	e7 <update_leds+0xe7>
+  c0:	1e0b      	subs	r3, r1, #0
+  c2:	bf18      	it	ne
+  c4:	2301      	movne	r3, #1
+  c6:	2a02      	cmp	r2, #2
+  c8:	bf14      	ite	ne
+  ca:	2300      	movne	r3, #0
+  cc:	f003 0301 	andeq.w	r3, r3, #1	; 0x1
+  d0:	b94b      	cbnz	r3, e7 <update_leds+0xe7>
+  d2:	f1d1 0301 	rsbs	r3, r1, #1	; 0x1
+  d6:	bf38      	it	cc
+  d8:	2300      	movcc	r3, #0
+  da:	2a03      	cmp	r2, #3
+  dc:	bf14      	ite	ne
+  de:	2300      	movne	r3, #0
+  e0:	f003 0301 	andeq.w	r3, r3, #1	; 0x1
+  e4:	b13b      	cbz	r3, f7 <update_leds+0xf7>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:256
+			|| ( (bottom_green_led == LED_BLINK) && blink_state )
+			|| ( (bottom_green_led == LED_NEG_BLINK) && !blink_state) )
+	{
+		TURN_ON(LED_GREEN);
+  e6:	f240 1388 	movw	r3, #392	; 0x188
+  ea:	f2c4 2323 	movt	r3, #16931	; 0x4223
+  ee:	f04f 0201 	mov.w	r2, #1	; 0x1
+  f2:	701a      	strb	r2, [r3, #0]
+  f4:	e006      	b.n	105 <update_leds+0x105>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:259
+	}
+	else
+		TURN_OFF(LED_GREEN);
+  f6:	f240 1388 	movw	r3, #392	; 0x188
+  fa:	f2c4 2323 	movt	r3, #16931	; 0x4223
+  fe:	f04f 0200 	mov.w	r2, #0	; 0x0
+ 102:	701a      	strb	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:260
+}
+ 104:	4770      	bx	lr
+ 106:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.get_input_state:
+
+00000000 <get_input_state>:
+get_input_state():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:272
+ *  the switch is closed, otherwise return FALSE
+ *-------------------------------------------------*/
+
+bool get_input_state(digital_index which_input)
+{
+	switch (which_input)
+   0:	2807      	cmp	r0, #7
+   2:	d805      	bhi.n	10 <get_input_state+0x10>
+   4:	e8df f000 	tbb	[pc, r0]
+   8:	251c1107 	.word	0x251c1107
+   c:	54483d31 	.word	0x54483d31
+  10:	f04f 0000 	mov.w	r0, #0	; 0x0
+  14:	e057      	b.n	c6 <get_input_state+0xc6>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:277
+	{
+		case DIN_FILTER:
+
+			// Filter restriction is inverted on the board
+			if(*(u8 *)DIN1_FREQ_INPUT == 0)
+  16:	f248 1314 	movw	r3, #33044	; 0x8114
+  1a:	f2c4 2321 	movt	r3, #16929	; 0x4221
+  1e:	781b      	ldrb	r3, [r3, #0]
+  20:	f1d3 0001 	rsbs	r0, r3, #1	; 0x1
+  24:	bf38      	it	cc
+  26:	2000      	movcc	r0, #0
+  28:	e04d      	b.n	c6 <get_input_state+0xc6>
+  2a:	f240 0300 	movw	r3, #0	; 0x0
+  2e:	f2c0 0300 	movt	r3, #0	; 0x0
+  32:	8a5b      	ldrh	r3, [r3, #18]
+  34:	f5b3 6f20 	cmp.w	r3, #2560	; 0xa00
+  38:	bf94      	ite	ls
+  3a:	2000      	movls	r0, #0
+  3c:	2001      	movhi	r0, #1
+  3e:	e042      	b.n	c6 <get_input_state+0xc6>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:291
+
+			break;
+
+		case DIN_POWER_SIGNAL:
+
+			if (*(u8 *)POWER_SIGNAL)
+  40:	f248 1338 	movw	r3, #33080	; 0x8138
+  44:	f2c4 2322 	movt	r3, #16930	; 0x4222
+  48:	781b      	ldrb	r3, [r3, #0]
+  4a:	1e18      	subs	r0, r3, #0
+  4c:	bf18      	it	ne
+  4e:	2001      	movne	r0, #1
+  50:	e039      	b.n	c6 <get_input_state+0xc6>
+  52:	f240 0300 	movw	r3, #0	; 0x0
+  56:	f2c0 0300 	movt	r3, #0	; 0x0
+  5a:	f9b3 3046 	ldrsh.w	r3, [r3, #70]
+  5e:	f5b3 5f10 	cmp.w	r3, #9216	; 0x2400
+  62:	bfd4      	ite	le
+  64:	2000      	movle	r0, #0
+  66:	2001      	movgt	r0, #1
+  68:	e02d      	b.n	c6 <get_input_state+0xc6>
+  6a:	f240 0300 	movw	r3, #0	; 0x0
+  6e:	f2c0 0300 	movt	r3, #0	; 0x0
+  72:	f9b3 3046 	ldrsh.w	r3, [r3, #70]
+  76:	f5b3 7f3c 	cmp.w	r3, #752	; 0x2f0
+  7a:	bfac      	ite	ge
+  7c:	2000      	movge	r0, #0
+  7e:	2001      	movlt	r0, #1
+  80:	e021      	b.n	c6 <get_input_state+0xc6>
+  82:	f240 0300 	movw	r3, #0	; 0x0
+  86:	f2c0 0300 	movt	r3, #0	; 0x0
+  8a:	8a1b      	ldrh	r3, [r3, #16]
+  8c:	f5b3 6f20 	cmp.w	r3, #2560	; 0xa00
+  90:	bf94      	ite	ls
+  92:	2000      	movls	r0, #0
+  94:	2001      	movhi	r0, #1
+  96:	e016      	b.n	c6 <get_input_state+0xc6>
+  98:	f240 0300 	movw	r3, #0	; 0x0
+  9c:	f2c0 0300 	movt	r3, #0	; 0x0
+  a0:	f9b3 3052 	ldrsh.w	r3, [r3, #82]
+  a4:	f5b3 7f3c 	cmp.w	r3, #752	; 0x2f0
+  a8:	bfac      	ite	ge
+  aa:	2000      	movge	r0, #0
+  ac:	2001      	movlt	r0, #1
+  ae:	e00a      	b.n	c6 <get_input_state+0xc6>
+  b0:	f240 0300 	movw	r3, #0	; 0x0
+  b4:	f2c0 0300 	movt	r3, #0	; 0x0
+  b8:	f9b3 3052 	ldrsh.w	r3, [r3, #82]
+  bc:	f5b3 5f60 	cmp.w	r3, #14336	; 0x3800
+  c0:	bfd4      	ite	le
+  c2:	2000      	movle	r0, #0
+  c4:	2001      	movgt	r0, #1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:333
+
+			break;
+	}
+
+	return FALSE;
+}
+  c6:	4770      	bx	lr
+Disassembly of section .text.update_input_state:
+
+00000000 <update_input_state>:
+update_input_state():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:343
+ *
+ * Called repeatedly for each digital input to debounce and set the new state
+ *--------------------------------------------------------------------------*/
+
+void update_input_state(digital_index which)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:347
+	switch_state new_state;
+	bool pin_state;
+
+	pin_state = get_input_state(which);
+   4:	f7ff fffe 	bl	0 <update_input_state>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:349
+
+ 	switch (digital_input[which])
+   8:	f240 0300 	movw	r3, #0	; 0x0
+   c:	f2c0 0300 	movt	r3, #0	; 0x0
+  10:	5d1b      	ldrb	r3, [r3, r4]
+  12:	2b05      	cmp	r3, #5
+  14:	d817      	bhi.n	46 <update_input_state+0x46>
+  16:	e8df f003 	tbb	[pc, r3]
+  1a:	0703      	.short	0x0703
+  1c:	15110d0b 	.word	0x15110d0b
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:355
+	{
+		case SW_OPEN:
+
+			// If the pin is high, the switch is closing,
+			//  if not, leave it open
+			if (pin_state)
+  20:	b1d8      	cbz	r0, 5a <update_input_state+0x5a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:358
+				new_state = SW_CLOSING_A;
+			else
+				return;
+  22:	f04f 0201 	mov.w	r2, #1	; 0x1
+  26:	e013      	b.n	50 <update_input_state+0x50>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:366
+
+		case SW_CLOSING_A:
+
+			// If the pin is high, the switch is still closing,
+			//  if not, it is open
+			if (pin_state)
+  28:	b168      	cbz	r0, 46 <update_input_state+0x46>
+  2a:	f04f 0202 	mov.w	r2, #2	; 0x2
+  2e:	e00f      	b.n	50 <update_input_state+0x50>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:376
+			break;
+
+		case SW_CLOSING_B:
+
+			// If the switch is still closing, it is closed
+			if (pin_state)
+  30:	b960      	cbnz	r0, 4c <update_input_state+0x4c>
+  32:	e008      	b.n	46 <update_input_state+0x46>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:387
+
+		case SW_CLOSED:
+
+			// If the pin is low, the switch is opening, 
+			//  if not, leave it closed
+			if (!pin_state)
+  34:	b988      	cbnz	r0, 5a <update_input_state+0x5a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:390
+				new_state = SW_OPENING_A;
+			else
+				return;
+  36:	f04f 0204 	mov.w	r2, #4	; 0x4
+  3a:	e009      	b.n	50 <update_input_state+0x50>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:398
+
+		case SW_OPENING_A:
+
+			// If the pin is low, the switch is still opening, 
+			//  if not, it is closed
+			if (!pin_state)
+  3c:	b930      	cbnz	r0, 4c <update_input_state+0x4c>
+  3e:	f04f 0205 	mov.w	r2, #5	; 0x5
+  42:	e005      	b.n	50 <update_input_state+0x50>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:408
+			break;
+
+		case SW_OPENING_B:
+
+			// If the switch is still opening, it is open
+			if (!pin_state)
+  44:	b910      	cbnz	r0, 4c <update_input_state+0x4c>
+  46:	f04f 0200 	mov.w	r2, #0	; 0x0
+  4a:	e001      	b.n	50 <update_input_state+0x50>
+  4c:	f04f 0203 	mov.w	r2, #3	; 0x3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:421
+			// Just to get us back in range if something is awry
+			new_state = SW_OPEN;
+			break;
+	}
+	
+	digital_input[which] = new_state;
+  50:	f240 0300 	movw	r3, #0	; 0x0
+  54:	f2c0 0300 	movt	r3, #0	; 0x0
+  58:	551a      	strb	r2, [r3, r4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:422
+}
+  5a:	bd10      	pop	{r4, pc}
+Disassembly of section .text.update_digital_in:
+
+00000000 <update_digital_in>:
+update_digital_in():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:434
+ *  to read and debounce the digital inputs.
+ * We may be away for longer if the foreground is busy
+ *------------------------------------------------------------*/
+
+void update_digital_in(void)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	f04f 0400 	mov.w	r4, #0	; 0x0
+   6:	4625      	mov	r5, r4
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:438
+	digital_index input_number;
+
+	for (input_number = 0; input_number < NUMBER_DIGITAL_INPUTS; input_number++)
+		update_input_state(input_number);
+   8:	4620      	mov	r0, r4
+   a:	f7ff fffe 	bl	0 <update_digital_in>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:437
+
+void update_digital_in(void)
+{
+	digital_index input_number;
+
+	for (input_number = 0; input_number < NUMBER_DIGITAL_INPUTS; input_number++)
+   e:	f104 0301 	add.w	r3, r4, #1	; 0x1
+  12:	b2dc      	uxtb	r4, r3
+  14:	f105 0501 	add.w	r5, r5, #1	; 0x1
+  18:	2d08      	cmp	r5, #8
+  1a:	d1f5      	bne.n	8 <update_digital_in+0x8>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/IOdata.c:439
+		update_input_state(input_number);
+}
+  1c:	bd70      	pop	{r4, r5, r6, pc}
+  1e:	46c0      	nop			(mov r8, r8)

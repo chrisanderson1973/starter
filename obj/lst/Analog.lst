@@ -1,0 +1,236 @@
+
+C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o:     file format elf32-littlearm
+C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\Analog.o
+
+Disassembly of section .text.update_analog_input:
+
+00000000 <update_analog_input>:
+update_analog_input():
+   0:	b530      	push	{r4, r5, lr}
+   2:	220c      	movs	r2, #12
+   4:	4342      	muls	r2, r0
+   6:	4c0e      	ldr	r4, [pc, #56]	(40 <update_analog_input+0x40>)
+   8:	5ca3      	ldrb	r3, [r4, r2]
+   a:	18a5      	adds	r5, r4, r2
+   c:	3301      	adds	r3, #1
+   e:	f003 0303 	and.w	r3, r3, #3	; 0x3
+  12:	54a3      	strb	r3, [r4, r2]
+  14:	2206      	movs	r2, #6
+  16:	4342      	muls	r2, r0
+  18:	18d3      	adds	r3, r2, r3
+  1a:	eb04 0343 	add.w	r3, r4, r3, lsl #1
+  1e:	8059      	strh	r1, [r3, #2]
+  20:	eb04 0242 	add.w	r2, r4, r2, lsl #1
+  24:	886b      	ldrh	r3, [r5, #2]
+  26:	8892      	ldrh	r2, [r2, #4]
+  28:	18d2      	adds	r2, r2, r3
+  2a:	2303      	movs	r3, #3
+  2c:	4343      	muls	r3, r0
+  2e:	eb04 0483 	add.w	r4, r4, r3, lsl #2
+  32:	88e3      	ldrh	r3, [r4, #6]
+  34:	18d2      	adds	r2, r2, r3
+  36:	892b      	ldrh	r3, [r5, #8]
+  38:	18d2      	adds	r2, r2, r3
+  3a:	816a      	strh	r2, [r5, #10]
+  3c:	bd30      	pop	{r4, r5, pc}
+  3e:	46c0      	nop			(mov r8, r8)
+  40:	00000000 	.word	0x00000000
+Disassembly of section .text.read_raw_analogs:
+
+00000000 <read_raw_analogs>:
+read_raw_analogs():
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4d23      	ldr	r5, [pc, #140]	(90 <read_raw_analogs+0x90>)
+   4:	2007      	movs	r0, #7
+   6:	8869      	ldrh	r1, [r5, #2]
+   8:	f7ff fffe 	bl	0 <read_raw_analogs>
+   c:	2008      	movs	r0, #8
+   e:	89e9      	ldrh	r1, [r5, #14]
+  10:	f7ff fffe 	bl	0 <read_raw_analogs>
+  14:	2009      	movs	r0, #9
+  16:	89a9      	ldrh	r1, [r5, #12]
+  18:	f7ff fffe 	bl	0 <read_raw_analogs>
+  1c:	200a      	movs	r0, #10
+  1e:	8829      	ldrh	r1, [r5, #0]
+  20:	f7ff fffe 	bl	0 <read_raw_analogs>
+  24:	4b1b      	ldr	r3, [pc, #108]	(94 <read_raw_analogs+0x94>)
+  26:	781c      	ldrb	r4, [r3, #0]
+  28:	2c05      	cmp	r4, #5
+  2a:	d105      	bne.n	38 <read_raw_analogs+0x38>
+  2c:	892b      	ldrh	r3, [r5, #8]
+  2e:	4a1a      	ldr	r2, [pc, #104]	(98 <read_raw_analogs+0x98>)
+  30:	009b      	lsls	r3, r3, #2
+  32:	f8a2 3046 	strh.w	r3, [r2, #70]
+  36:	e008      	b.n	4a <read_raw_analogs+0x4a>
+  38:	230c      	movs	r3, #12
+  3a:	4363      	muls	r3, r4
+  3c:	4a17      	ldr	r2, [pc, #92]	(9c <read_raw_analogs+0x9c>)
+  3e:	4620      	mov	r0, r4
+  40:	5cd3      	ldrb	r3, [r2, r3]
+  42:	f835 1013 	ldrh.w	r1, [r5, r3, lsl #1]
+  46:	f7ff fffe 	bl	0 <read_raw_analogs>
+  4a:	4b14      	ldr	r3, [pc, #80]	(9c <read_raw_analogs+0x9c>)
+  4c:	220c      	movs	r2, #12
+  4e:	fb02 3204 	mla	r2, r2, r4, r3
+  52:	6853      	ldr	r3, [r2, #4]
+  54:	2100      	movs	r1, #0
+  56:	7019      	strb	r1, [r3, #0]
+  58:	6893      	ldr	r3, [r2, #8]
+  5a:	2c05      	cmp	r4, #5
+  5c:	7019      	strb	r1, [r3, #0]
+  5e:	4a0d      	ldr	r2, [pc, #52]	(94 <read_raw_analogs+0x94>)
+  60:	d802      	bhi.n	68 <read_raw_analogs+0x68>
+  62:	1c63      	adds	r3, r4, #1
+  64:	7013      	strb	r3, [r2, #0]
+  66:	e000      	b.n	6a <read_raw_analogs+0x6a>
+  68:	7011      	strb	r1, [r2, #0]
+  6a:	4b0a      	ldr	r3, [pc, #40]	(94 <read_raw_analogs+0x94>)
+  6c:	220c      	movs	r2, #12
+  6e:	7819      	ldrb	r1, [r3, #0]
+  70:	4b0a      	ldr	r3, [pc, #40]	(9c <read_raw_analogs+0x9c>)
+  72:	fb02 3101 	mla	r1, r2, r1, r3
+  76:	784b      	ldrb	r3, [r1, #1]
+  78:	4a09      	ldr	r2, [pc, #36]	(a0 <read_raw_analogs+0xa0>)
+  7a:	035b      	lsls	r3, r3, #13
+  7c:	f043 4360 	orr.w	r3, r3, #3758096384	; 0xe0000000
+  80:	6113      	str	r3, [r2, #16]
+  82:	684b      	ldr	r3, [r1, #4]
+  84:	2201      	movs	r2, #1
+  86:	701a      	strb	r2, [r3, #0]
+  88:	688b      	ldr	r3, [r1, #8]
+  8a:	701a      	strb	r2, [r3, #0]
+  8c:	bd70      	pop	{r4, r5, r6, pc}
+  8e:	46c0      	nop			(mov r8, r8)
+	...
+  a0:	40011000 	.word	0x40011000
+Disassembly of section .text.deg_c16_to_f:
+
+00000000 <deg_c16_to_f>:
+deg_c16_to_f():
+   0:	2309      	movs	r3, #9
+   2:	4343      	muls	r3, r0
+   4:	3328      	adds	r3, #40
+   6:	2250      	movs	r2, #80
+   8:	b21b      	sxth	r3, r3
+   a:	fb93 f3f2 	sdiv	r3, r3, r2
+   e:	3320      	adds	r3, #32
+  10:	b218      	sxth	r0, r3
+  12:	4770      	bx	lr
+Disassembly of section .text.kpa_to_psi:
+
+00000000 <kpa_to_psi>:
+kpa_to_psi():
+   0:	f645 43cc 	movw	r3, #23756	; 0x5ccc
+   4:	4343      	muls	r3, r0
+   6:	f503 3300 	add.w	r3, r3, #131072	; 0x20000
+   a:	1498      	asrs	r0, r3, #18
+   c:	4770      	bx	lr
+   e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.update_analogs:
+
+00000000 <update_analogs>:
+update_analogs():
+   0:	480e      	ldr	r0, [pc, #56]	(3c <update_analogs+0x3c>)
+   2:	490f      	ldr	r1, [pc, #60]	(40 <update_analogs+0x40>)
+   4:	f9b0 302e 	ldrsh.w	r3, [r0, #46]
+   8:	4a0e      	ldr	r2, [pc, #56]	(44 <update_analogs+0x44>)
+   a:	115b      	asrs	r3, r3, #5
+   c:	f831 3013 	ldrh.w	r3, [r1, r3, lsl #1]
+  10:	8013      	strh	r3, [r2, #0]
+  12:	f9b0 205e 	ldrsh.w	r2, [r0, #94]
+  16:	f240 535c 	movw	r3, #1372	; 0x55c
+  1a:	4353      	muls	r3, r2
+  1c:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+  20:	0c1a      	lsrs	r2, r3, #16
+  22:	4b09      	ldr	r3, [pc, #36]	(48 <update_analogs+0x48>)
+  24:	f5b2 7f82 	cmp.w	r2, #260	; 0x104
+  28:	801a      	strh	r2, [r3, #0]
+  2a:	d901      	bls.n	30 <update_analogs+0x30>
+  2c:	2201      	movs	r2, #1
+  2e:	e002      	b.n	36 <update_analogs+0x36>
+  30:	2afe      	cmp	r2, #254
+  32:	d802      	bhi.n	3a <update_analogs+0x3a>
+  34:	2200      	movs	r2, #0
+  36:	4b05      	ldr	r3, [pc, #20]	(4c <update_analogs+0x4c>)
+  38:	701a      	strb	r2, [r3, #0]
+  3a:	4770      	bx	lr
+	...
+Disassembly of section .text.DMA1_Channel1_IRQHandler:
+
+00000000 <DMA1_Channel1_IRQHandler>:
+DMA1_Channel1_IRQHandler():
+   0:	b510      	push	{r4, lr}
+   2:	4803      	ldr	r0, [pc, #12]	(10 <DMA1_Channel1_IRQHandler+0x10>)
+   4:	f7ff fffe 	bl	0 <send_a_string>
+   8:	4b02      	ldr	r3, [pc, #8]	(14 <DMA1_Channel1_IRQHandler+0x14>)
+   a:	2201      	movs	r2, #1
+   c:	605a      	str	r2, [r3, #4]
+   e:	bd10      	pop	{r4, pc}
+  10:	00000000 	.word	0x00000000
+  14:	40020000 	.word	0x40020000
+Disassembly of section .text.initialize_analog_input:
+
+00000000 <initialize_analog_input>:
+initialize_analog_input():
+   0:	4a1f      	ldr	r2, [pc, #124]	(80 <initialize_analog_input+0x80>)
+   2:	2300      	movs	r3, #0
+   4:	6013      	str	r3, [r2, #0]
+   6:	4b1f      	ldr	r3, [pc, #124]	(84 <initialize_analog_input+0x84>)
+   8:	491f      	ldr	r1, [pc, #124]	(88 <initialize_analog_input+0x88>)
+   a:	6093      	str	r3, [r2, #8]
+   c:	4b1f      	ldr	r3, [pc, #124]	(8c <initialize_analog_input+0x8c>)
+   e:	b510      	push	{r4, lr}
+  10:	60d3      	str	r3, [r2, #12]
+  12:	230a      	movs	r3, #10
+  14:	6053      	str	r3, [r2, #4]
+  16:	f242 53a8 	movw	r3, #9640	; 0x25a8
+  1a:	6013      	str	r3, [r2, #0]
+  1c:	684b      	ldr	r3, [r1, #4]
+  1e:	200b      	movs	r0, #11
+  20:	f043 030f 	orr.w	r3, r3, #15	; 0xf
+  24:	604b      	str	r3, [r1, #4]
+  26:	6813      	ldr	r3, [r2, #0]
+  28:	2102      	movs	r1, #2
+  2a:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  2e:	6013      	str	r3, [r2, #0]
+  30:	f7ff fffe 	bl	0 <enable_interrupt>
+  34:	4a16      	ldr	r2, [pc, #88]	(90 <initialize_analog_input+0x90>)
+  36:	f44f 7380 	mov.w	r3, #256	; 0x100
+  3a:	6053      	str	r3, [r2, #4]
+  3c:	4b15      	ldr	r3, [pc, #84]	(94 <initialize_analog_input+0x94>)
+  3e:	6093      	str	r3, [r2, #8]
+  40:	4b15      	ldr	r3, [pc, #84]	(98 <initialize_analog_input+0x98>)
+  42:	60d3      	str	r3, [r2, #12]
+  44:	f103 53d8 	add.w	r3, r3, #452984832	; 0x1b000000
+  48:	6113      	str	r3, [r2, #16]
+  4a:	f44f 0310 	mov.w	r3, #9437184	; 0x900000
+  4e:	62d3      	str	r3, [r2, #44]
+  50:	4b12      	ldr	r3, [pc, #72]	(9c <initialize_analog_input+0x9c>)
+  52:	6313      	str	r3, [r2, #48]
+  54:	4b12      	ldr	r3, [pc, #72]	(a0 <initialize_analog_input+0xa0>)
+  56:	6353      	str	r3, [r2, #52]
+  58:	4a0d      	ldr	r2, [pc, #52]	(90 <initialize_analog_input+0x90>)
+  5a:	6893      	ldr	r3, [r2, #8]
+  5c:	f013 0f08 	tst.w	r3, #8	; 0x8
+  60:	d1fa      	bne.n	58 <initialize_analog_input+0x58>
+  62:	6893      	ldr	r3, [r2, #8]
+  64:	f043 0304 	orr.w	r3, r3, #4	; 0x4
+  68:	6093      	str	r3, [r2, #8]
+  6a:	4a09      	ldr	r2, [pc, #36]	(90 <initialize_analog_input+0x90>)
+  6c:	6893      	ldr	r3, [r2, #8]
+  6e:	f013 0f04 	tst.w	r3, #4	; 0x4
+  72:	d1fa      	bne.n	6a <initialize_analog_input+0x6a>
+  74:	6893      	ldr	r3, [r2, #8]
+  76:	f443 0380 	orr.w	r3, r3, #4194304	; 0x400000
+  7a:	6093      	str	r3, [r2, #8]
+  7c:	bd10      	pop	{r4, pc}
+  7e:	46c0      	nop			(mov r8, r8)
+  80:	40020008 	.word	0x40020008
+  84:	4001244c 	.word	0x4001244c
+  88:	40020000 	.word	0x40020000
+  8c:	00000000 	.word	0x00000000
+  90:	40012400 	.word	0x40012400
+  94:	001e010b 	.word	0x001e010b
+  98:	006db6db 	.word	0x006db6db
+  9c:	0005a9ee 	.word	0x0005a9ee
+  a0:	0e618820 	.word	0x0e618820

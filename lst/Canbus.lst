@@ -1,0 +1,459 @@
+
+C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o:     file format elf32-littlearm
+C:\Users\Chris\Desktop\Development\Embedded\autostart\obj\Canbus.o
+
+Disassembly of section .text.fill_software_identity:
+
+00000000 <fill_software_identity>:
+fill_software_identity():
+   0:	4a0e      	ldr	r2, [pc, #56]	(3c <fill_software_identity+0x3c>)
+   2:	f06f 0310 	mvn.w	r3, #16	; 0x10
+   6:	70d3      	strb	r3, [r2, #3]
+   8:	4b0d      	ldr	r3, [pc, #52]	(40 <fill_software_identity+0x40>)
+   a:	2105      	movs	r1, #5
+   c:	781b      	ldrb	r3, [r3, #0]
+   e:	7013      	strb	r3, [r2, #0]
+  10:	2326      	movs	r3, #38
+  12:	7093      	strb	r3, [r2, #2]
+  14:	4b0b      	ldr	r3, [pc, #44]	(44 <fill_software_identity+0x44>)
+  16:	7019      	strb	r1, [r3, #0]
+  18:	f06f 035a 	mvn.w	r3, #90	; 0x5a
+  1c:	7153      	strb	r3, [r2, #5]
+  1e:	f06f 0378 	mvn.w	r3, #120	; 0x78
+  22:	7193      	strb	r3, [r2, #6]
+  24:	3340      	adds	r3, #64
+  26:	71d3      	strb	r3, [r2, #7]
+  28:	333b      	adds	r3, #59
+  2a:	7213      	strb	r3, [r2, #8]
+  2c:	3b01      	subs	r3, #1
+  2e:	7253      	strb	r3, [r2, #9]
+  30:	185b      	adds	r3, r3, r1
+  32:	7053      	strb	r3, [r2, #1]
+  34:	2300      	movs	r3, #0
+  36:	7113      	strb	r3, [r2, #4]
+  38:	4770      	bx	lr
+  3a:	46c0      	nop			(mov r8, r8)
+	...
+Disassembly of section .text.fill_master_timing:
+
+00000000 <fill_master_timing>:
+fill_master_timing():
+   0:	4a0f      	ldr	r2, [pc, #60]	(40 <fill_master_timing+0x40>)
+   2:	f06f 0310 	mvn.w	r3, #16	; 0x10
+   6:	490f      	ldr	r1, [pc, #60]	(44 <fill_master_timing+0x44>)
+   8:	70d3      	strb	r3, [r2, #3]
+   a:	3341      	adds	r3, #65
+   c:	7013      	strb	r3, [r2, #0]
+   e:	2303      	movs	r3, #3
+  10:	7093      	strb	r3, [r2, #2]
+  12:	f891 302a 	ldrb.w	r3, [r1, #42]
+  16:	7153      	strb	r3, [r2, #5]
+  18:	8a4b      	ldrh	r3, [r1, #18]
+  1a:	7193      	strb	r3, [r2, #6]
+  1c:	0a1b      	lsrs	r3, r3, #8
+  1e:	71d3      	strb	r3, [r2, #7]
+  20:	8a8b      	ldrh	r3, [r1, #20]
+  22:	7213      	strb	r3, [r2, #8]
+  24:	0a1b      	lsrs	r3, r3, #8
+  26:	7253      	strb	r3, [r2, #9]
+  28:	8acb      	ldrh	r3, [r1, #22]
+  2a:	210c      	movs	r1, #12
+  2c:	7293      	strb	r3, [r2, #10]
+  2e:	0a1b      	lsrs	r3, r3, #8
+  30:	72d3      	strb	r3, [r2, #11]
+  32:	4b05      	ldr	r3, [pc, #20]	(48 <fill_master_timing+0x48>)
+  34:	7019      	strb	r1, [r3, #0]
+  36:	2307      	movs	r3, #7
+  38:	7053      	strb	r3, [r2, #1]
+  3a:	2300      	movs	r3, #0
+  3c:	7113      	strb	r3, [r2, #4]
+  3e:	4770      	bx	lr
+	...
+Disassembly of section .text.setup_command:
+
+00000000 <setup_command>:
+setup_command():
+   0:	4a13      	ldr	r2, [pc, #76]	(50 <setup_command+0x50>)
+   2:	f06f 0310 	mvn.w	r3, #16	; 0x10
+   6:	70d3      	strb	r3, [r2, #3]
+   8:	3341      	adds	r3, #65
+   a:	7013      	strb	r3, [r2, #0]
+   c:	4b11      	ldr	r3, [pc, #68]	(54 <setup_command+0x54>)
+   e:	f04f 0c01 	mov.w	ip, #1	; 0x1
+  12:	781b      	ldrb	r3, [r3, #0]
+  14:	f882 c002 	strb.w	ip, [r2, #2]
+  18:	7153      	strb	r3, [r2, #5]
+  1a:	4b0f      	ldr	r3, [pc, #60]	(58 <setup_command+0x58>)
+  1c:	71d0      	strb	r0, [r2, #7]
+  1e:	781b      	ldrb	r3, [r3, #0]
+  20:	7193      	strb	r3, [r2, #6]
+  22:	2300      	movs	r3, #0
+  24:	7213      	strb	r3, [r2, #8]
+  26:	7253      	strb	r3, [r2, #9]
+  28:	4b0c      	ldr	r3, [pc, #48]	(5c <setup_command+0x5c>)
+  2a:	7819      	ldrb	r1, [r3, #0]
+  2c:	b911      	cbnz	r1, 34 <setup_command+0x34>
+  2e:	f882 c00a 	strb.w	ip, [r2, #10]
+  32:	e003      	b.n	3c <setup_command+0x3c>
+  34:	4b0a      	ldr	r3, [pc, #40]	(60 <setup_command+0x60>)
+  36:	f893 3030 	ldrb.w	r3, [r3, #48]
+  3a:	7293      	strb	r3, [r2, #10]
+  3c:	4a04      	ldr	r2, [pc, #16]	(50 <setup_command+0x50>)
+  3e:	4b09      	ldr	r3, [pc, #36]	(64 <setup_command+0x64>)
+  40:	72d1      	strb	r1, [r2, #11]
+  42:	210c      	movs	r1, #12
+  44:	7019      	strb	r1, [r3, #0]
+  46:	2307      	movs	r3, #7
+  48:	7053      	strb	r3, [r2, #1]
+  4a:	2300      	movs	r3, #0
+  4c:	7113      	strb	r3, [r2, #4]
+  4e:	4770      	bx	lr
+	...
+Disassembly of section .text.can_filter_0_action:
+
+00000000 <can_filter_0_action>:
+can_filter_0_action():
+   0:	6803      	ldr	r3, [r0, #0]
+   2:	f3c3 23c7 	ubfx	r3, r3, #11, #8
+   6:	2be5      	cmp	r3, #229
+   8:	d104      	bne.n	14 <can_filter_0_action+0x14>
+   a:	6883      	ldr	r3, [r0, #8]
+   c:	4a02      	ldr	r2, [pc, #8]	(18 <can_filter_0_action+0x18>)
+   e:	3301      	adds	r3, #1
+  10:	085b      	lsrs	r3, r3, #1
+  12:	6013      	str	r3, [r2, #0]
+  14:	4770      	bx	lr
+  16:	46c0      	nop			(mov r8, r8)
+  18:	00000000 	.word	0x00000000
+Disassembly of section .text.maintain_can_comm_wd:
+
+00000000 <maintain_can_comm_wd>:
+maintain_can_comm_wd():
+   0:	4908      	ldr	r1, [pc, #32]	(24 <maintain_can_comm_wd+0x24>)
+   2:	880a      	ldrh	r2, [r1, #0]
+   4:	b112      	cbz	r2, c <maintain_can_comm_wd+0xc>
+   6:	1e53      	subs	r3, r2, #1
+   8:	800b      	strh	r3, [r1, #0]
+   a:	e001      	b.n	10 <maintain_can_comm_wd+0x10>
+   c:	4b06      	ldr	r3, [pc, #24]	(28 <maintain_can_comm_wd+0x28>)
+   e:	701a      	strb	r2, [r3, #0]
+  10:	4a06      	ldr	r2, [pc, #24]	(2c <maintain_can_comm_wd+0x2c>)
+  12:	4907      	ldr	r1, [pc, #28]	(30 <maintain_can_comm_wd+0x30>)
+  14:	8813      	ldrh	r3, [r2, #0]
+  16:	b113      	cbz	r3, 1e <maintain_can_comm_wd+0x1e>
+  18:	3b01      	subs	r3, #1
+  1a:	8013      	strh	r3, [r2, #0]
+  1c:	2303      	movs	r3, #3
+  1e:	700b      	strb	r3, [r1, #0]
+  20:	4770      	bx	lr
+  22:	46c0      	nop			(mov r8, r8)
+	...
+Disassembly of section .text.access_info_screens:
+
+00000000 <access_info_screens>:
+access_info_screens():
+   0:	4b08      	ldr	r3, [pc, #32]	(24 <access_info_screens+0x24>)
+   2:	b510      	push	{r4, lr}
+   4:	789b      	ldrb	r3, [r3, #2]
+   6:	b113      	cbz	r3, e <access_info_screens+0xe>
+   8:	2b01      	cmp	r3, #1
+   a:	d10a      	bne.n	22 <access_info_screens+0x22>
+   c:	e004      	b.n	18 <access_info_screens+0x18>
+   e:	f7ff fffe 	bl	0 <access_novram_log>
+  12:	f7ff fffe 	bl	0 <access_fault_log>
+  16:	e004      	b.n	22 <access_info_screens+0x22>
+  18:	4b03      	ldr	r3, [pc, #12]	(28 <access_info_screens+0x28>)
+  1a:	2041      	movs	r0, #65
+  1c:	7819      	ldrb	r1, [r3, #0]
+  1e:	f7ff fffe 	bl	0 <transmit_proprietary>
+  22:	bd10      	pop	{r4, pc}
+	...
+Disassembly of section .text.can_message_action:
+
+00000000 <can_message_action>:
+can_message_action():
+   0:	b510      	push	{r4, lr}
+   2:	4c27      	ldr	r4, [pc, #156]	(a0 <can_message_action+0xa0>)
+   4:	78e3      	ldrb	r3, [r4, #3]
+   6:	2bef      	cmp	r3, #239
+   8:	d002      	beq.n	10 <can_message_action+0x10>
+   a:	2bfe      	cmp	r3, #254
+   c:	d145      	bne.n	9a <can_message_action+0x9a>
+   e:	e039      	b.n	84 <can_message_action+0x84>
+  10:	78a3      	ldrb	r3, [r4, #2]
+  12:	2b0f      	cmp	r3, #15
+  14:	d017      	beq.n	46 <can_message_action+0x46>
+  16:	d802      	bhi.n	1e <can_message_action+0x1e>
+  18:	2b02      	cmp	r3, #2
+  1a:	d13e      	bne.n	9a <can_message_action+0x9a>
+  1c:	e004      	b.n	28 <can_message_action+0x28>
+  1e:	2b1d      	cmp	r3, #29
+  20:	d018      	beq.n	54 <can_message_action+0x54>
+  22:	2b40      	cmp	r3, #64
+  24:	d139      	bne.n	9a <can_message_action+0x9a>
+  26:	e022      	b.n	6e <can_message_action+0x6e>
+  28:	7963      	ldrb	r3, [r4, #5]
+  2a:	2b0a      	cmp	r3, #10
+  2c:	d101      	bne.n	32 <can_message_action+0x32>
+  2e:	3346      	adds	r3, #70
+  30:	e016      	b.n	60 <can_message_action+0x60>
+  32:	481c      	ldr	r0, [pc, #112]	(a4 <can_message_action+0xa4>)
+  34:	8881      	ldrh	r1, [r0, #4]
+  36:	2903      	cmp	r1, #3
+  38:	d82f      	bhi.n	9a <can_message_action+0x9a>
+  3a:	7823      	ldrb	r3, [r4, #0]
+  3c:	4a1a      	ldr	r2, [pc, #104]	(a8 <can_message_action+0xa8>)
+  3e:	5453      	strb	r3, [r2, r1]
+  40:	1c4b      	adds	r3, r1, #1
+  42:	8083      	strh	r3, [r0, #4]
+  44:	e029      	b.n	9a <can_message_action+0x9a>
+  46:	4a19      	ldr	r2, [pc, #100]	(ac <can_message_action+0xac>)
+  48:	7893      	ldrb	r3, [r2, #2]
+  4a:	2b06      	cmp	r3, #6
+  4c:	d125      	bne.n	9a <can_message_action+0x9a>
+  4e:	3301      	adds	r3, #1
+  50:	7093      	strb	r3, [r2, #2]
+  52:	e022      	b.n	9a <can_message_action+0x9a>
+  54:	7963      	ldrb	r3, [r4, #5]
+  56:	2b0a      	cmp	r3, #10
+  58:	d105      	bne.n	66 <can_message_action+0x66>
+  5a:	f7ff fffe 	bl	0 <initialize_novram>
+  5e:	2350      	movs	r3, #80
+  60:	7163      	strb	r3, [r4, #5]
+  62:	2001      	movs	r0, #1
+  64:	e01a      	b.n	9c <can_message_action+0x9c>
+  66:	4812      	ldr	r0, [pc, #72]	(b0 <can_message_action+0xb0>)
+  68:	f7ff fffe 	bl	0 <send_a_string>
+  6c:	e015      	b.n	9a <can_message_action+0x9a>
+  6e:	7822      	ldrb	r2, [r4, #0]
+  70:	4b10      	ldr	r3, [pc, #64]	(b4 <can_message_action+0xb4>)
+  72:	701a      	strb	r2, [r3, #0]
+  74:	4b0b      	ldr	r3, [pc, #44]	(a4 <can_message_action+0xa4>)
+  76:	2201      	movs	r2, #1
+  78:	709a      	strb	r2, [r3, #2]
+  7a:	4b0f      	ldr	r3, [pc, #60]	(b8 <can_message_action+0xb8>)
+  7c:	f04f 0200 	mov.w	r2, #0	; 0x0
+  80:	801a      	strh	r2, [r3, #0]
+  82:	e00a      	b.n	9a <can_message_action+0x9a>
+  84:	78a3      	ldrb	r3, [r4, #2]
+  86:	2bca      	cmp	r3, #202
+  88:	d002      	beq.n	90 <can_message_action+0x90>
+  8a:	2beb      	cmp	r3, #235
+  8c:	d105      	bne.n	9a <can_message_action+0x9a>
+  8e:	e002      	b.n	96 <can_message_action+0x96>
+  90:	f7ff fffe 	bl	0 <dm1_message_action>
+  94:	e001      	b.n	6 <get_engine_serial_number+0x6>
+  96:	f7ff fffe 	bl	0 <get_engine_serial_number>
+  9a:	2000      	movs	r0, #0
+  9c:	bd10      	pop	{r4, pc}
+  9e:	46c0      	nop			(mov r8, r8)
+	...
+Disassembly of section .text.check_can:
+
+00000000 <check_can>:
+check_can():
+   0:	4b34      	ldr	r3, [pc, #208]	(d4 <check_can+0xd4>)
+   2:	b570      	push	{r4, r5, r6, lr}
+   4:	699b      	ldr	r3, [r3, #24]
+   6:	4a34      	ldr	r2, [pc, #208]	(d8 <check_can+0xd8>)
+   8:	f013 0f04 	tst.w	r3, #4	; 0x4
+   c:	4b33      	ldr	r3, [pc, #204]	(dc <check_can+0xdc>)
+   e:	d007      	beq.n	20 <check_can+0x20>
+  10:	681b      	ldr	r3, [r3, #0]
+  12:	4833      	ldr	r0, [pc, #204]	(e0 <check_can+0xe0>)
+  14:	3364      	adds	r3, #100
+  16:	7193      	strb	r3, [r2, #6]
+  18:	f7ff fffe 	bl	0 <send_a_string>
+  1c:	2200      	movs	r2, #0
+  1e:	e005      	b.n	2c <check_can+0x2c>
+  20:	681b      	ldr	r3, [r3, #0]
+  22:	7992      	ldrb	r2, [r2, #6]
+  24:	b2db      	uxtb	r3, r3
+  26:	429a      	cmp	r2, r3
+  28:	d102      	bne.n	30 <check_can+0x30>
+  2a:	2201      	movs	r2, #1
+  2c:	4b2d      	ldr	r3, [pc, #180]	(e4 <check_can+0xe4>)
+  2e:	701a      	strb	r2, [r3, #0]
+  30:	4b2d      	ldr	r3, [pc, #180]	(e8 <check_can+0xe8>)
+  32:	781b      	ldrb	r3, [r3, #0]
+  34:	2b06      	cmp	r3, #6
+  36:	d84b      	bhi.n	d0 <check_can+0xd0>
+  38:	e8df f003 	tbb	[pc, r3]
+  3c:	0e4a0436 	.word	0x0e4a0436
+  40:	00242116 	.word	0x00242116
+  44:	f7ff fffe 	bl	0 <continue_mp_input>
+  48:	2800      	cmp	r0, #0
+  4a:	d041      	beq.n	d0 <check_can+0xd0>
+  4c:	4b27      	ldr	r3, [pc, #156]	(ec <check_can+0xec>)
+  4e:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
+  52:	801a      	strh	r2, [r3, #0]
+  54:	2202      	movs	r2, #2
+  56:	e004      	b.n	62 <check_can+0x62>
+  58:	f7ff fffe 	bl	0 <end_mp_input>
+  5c:	2800      	cmp	r0, #0
+  5e:	d037      	beq.n	d0 <check_can+0xd0>
+  60:	2204      	movs	r2, #4
+  62:	4b21      	ldr	r3, [pc, #132]	(e8 <check_can+0xe8>)
+  64:	701a      	strb	r2, [r3, #0]
+  66:	e033      	b.n	d0 <check_can+0xd0>
+  68:	f7ff fffe 	bl	0 <check_can>
+  6c:	491e      	ldr	r1, [pc, #120]	(e8 <check_can+0xe8>)
+  6e:	4603      	mov	r3, r0
+  70:	b118      	cbz	r0, 7a <check_can+0x7a>
+  72:	4a1f      	ldr	r2, [pc, #124]	(f0 <check_can+0xf0>)
+  74:	2300      	movs	r3, #0
+  76:	7113      	strb	r3, [r2, #4]
+  78:	3305      	adds	r3, #5
+  7a:	700b      	strb	r3, [r1, #0]
+  7c:	e028      	b.n	d0 <check_can+0xd0>
+  7e:	f7ff fffe 	bl	0 <transmit_msg_buffer>
+  82:	e025      	b.n	d0 <check_can+0xd0>
+  84:	4c14      	ldr	r4, [pc, #80]	(d8 <check_can+0xd8>)
+  86:	79e3      	ldrb	r3, [r4, #7]
+  88:	b313      	cbz	r3, d0 <check_can+0xd0>
+  8a:	4b18      	ldr	r3, [pc, #96]	(ec <check_can+0xec>)
+  8c:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
+  90:	801a      	strh	r2, [r3, #0]
+  92:	f7ff fffe 	bl	0 <continue_mp_output>
+  96:	b1d8      	cbz	r0, d0 <check_can+0xd0>
+  98:	4b15      	ldr	r3, [pc, #84]	(f0 <check_can+0xf0>)
+  9a:	791a      	ldrb	r2, [r3, #4]
+  9c:	3201      	adds	r2, #1
+  9e:	711a      	strb	r2, [r3, #4]
+  a0:	79e3      	ldrb	r3, [r4, #7]
+  a2:	3b01      	subs	r3, #1
+  a4:	71e3      	strb	r3, [r4, #7]
+  a6:	e013      	b.n	d0 <check_can+0xd0>
+  a8:	4d0b      	ldr	r5, [pc, #44]	(d8 <check_can+0xd8>)
+  aa:	7a2c      	ldrb	r4, [r5, #8]
+  ac:	b13c      	cbz	r4, be <check_can+0xbe>
+  ae:	4a0e      	ldr	r2, [pc, #56]	(e8 <check_can+0xe8>)
+  b0:	2305      	movs	r3, #5
+  b2:	7013      	strb	r3, [r2, #0]
+  b4:	f7ff fffe 	bl	0 <check_can>
+  b8:	2300      	movs	r3, #0
+  ba:	722b      	strb	r3, [r5, #8]
+  bc:	e008      	b.n	d0 <check_can+0xd0>
+  be:	4d0d      	ldr	r5, [pc, #52]	(f4 <check_can+0xf4>)
+  c0:	782b      	ldrb	r3, [r5, #0]
+  c2:	b12b      	cbz	r3, d0 <check_can+0xd0>
+  c4:	4b08      	ldr	r3, [pc, #32]	(e8 <check_can+0xe8>)
+  c6:	2205      	movs	r2, #5
+  c8:	701a      	strb	r2, [r3, #0]
+  ca:	f7ff fffe 	bl	0 <check_can>
+  ce:	702c      	strb	r4, [r5, #0]
+  d0:	bd70      	pop	{r4, r5, r6, pc}
+  d2:	46c0      	nop			(mov r8, r8)
+  d4:	40006400 	.word	0x40006400
+	...
+  e0:	0000001c 	.word	0x0000001c
+	...
+Disassembly of section .text.initialize_can:
+
+00000000 <initialize_can>:
+initialize_can():
+   0:	4a40      	ldr	r2, [pc, #256]	(104 <initialize_can+0x104>)
+   2:	4b41      	ldr	r3, [pc, #260]	(108 <initialize_can+0x108>)
+   4:	b510      	push	{r4, lr}
+   6:	601a      	str	r2, [r3, #0]
+   8:	2200      	movs	r2, #0
+   a:	e005      	b.n	18 <initialize_can+0x18>
+   c:	3201      	adds	r2, #1
+   e:	f5b2 3f80 	cmp.w	r2, #65536	; 0x10000
+  12:	d101      	bne.n	18 <initialize_can+0x18>
+  14:	483d      	ldr	r0, [pc, #244]	(10c <initialize_can+0x10c>)
+  16:	e011      	b.n	3c <initialize_can+0x3c>
+  18:	493b      	ldr	r1, [pc, #236]	(108 <initialize_can+0x108>)
+  1a:	684b      	ldr	r3, [r1, #4]
+  1c:	f013 0f01 	tst.w	r3, #1	; 0x1
+  20:	d0f4      	beq.n	c <initialize_can+0xc>
+  22:	4b3b      	ldr	r3, [pc, #236]	(110 <initialize_can+0x110>)
+  24:	2200      	movs	r2, #0
+  26:	61cb      	str	r3, [r1, #28]
+  28:	680b      	ldr	r3, [r1, #0]
+  2a:	f023 0301 	bic.w	r3, r3, #1	; 0x1
+  2e:	600b      	str	r3, [r1, #0]
+  30:	e007      	b.n	42 <initialize_can+0x42>
+  32:	3201      	adds	r2, #1
+  34:	f5b2 3f80 	cmp.w	r2, #65536	; 0x10000
+  38:	d103      	bne.n	42 <initialize_can+0x42>
+  3a:	4836      	ldr	r0, [pc, #216]	(114 <initialize_can+0x114>)
+  3c:	f7ff fffe 	bl	0 <send_a_string>
+  40:	e05e      	b.n	100 <initialize_can+0x100>
+  42:	4831      	ldr	r0, [pc, #196]	(108 <initialize_can+0x108>)
+  44:	6843      	ldr	r3, [r0, #4]
+  46:	f013 0401 	ands.w	r4, r3, #1	; 0x1
+  4a:	d1f2      	bne.n	32 <initialize_can+0x32>
+  4c:	f8d0 3200 	ldr.w	r3, [r0, #512]
+  50:	4a31      	ldr	r2, [pc, #196]	(118 <initialize_can+0x118>)
+  52:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  56:	f8c0 3200 	str.w	r3, [r0, #512]
+  5a:	f643 73ff 	movw	r3, #16383	; 0x3fff
+  5e:	f8c0 421c 	str.w	r4, [r0, #540]
+  62:	f8c0 320c 	str.w	r3, [r0, #524]
+  66:	f642 23b2 	movw	r3, #10930	; 0x2ab2
+  6a:	f8c0 4204 	str.w	r4, [r0, #516]
+  6e:	f8c0 3214 	str.w	r3, [r0, #532]
+  72:	4b2a      	ldr	r3, [pc, #168]	(11c <initialize_can+0x11c>)
+  74:	492a      	ldr	r1, [pc, #168]	(120 <initialize_can+0x120>)
+  76:	f8c0 3240 	str.w	r3, [r0, #576]
+  7a:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+  7e:	f8c0 2244 	str.w	r2, [r0, #580]
+  82:	f8c0 3248 	str.w	r3, [r0, #584]
+  86:	f5a3 03ef 	sub.w	r3, r3, #7831552	; 0x778000
+  8a:	f8c0 224c 	str.w	r2, [r0, #588]
+  8e:	f8c0 3250 	str.w	r3, [r0, #592]
+  92:	4b24      	ldr	r3, [pc, #144]	(124 <initialize_can+0x124>)
+  94:	4a24      	ldr	r2, [pc, #144]	(128 <initialize_can+0x128>)
+  96:	f8c0 3254 	str.w	r3, [r0, #596]
+  9a:	4b24      	ldr	r3, [pc, #144]	(12c <initialize_can+0x12c>)
+  9c:	f8c0 3258 	str.w	r3, [r0, #600]
+  a0:	4b23      	ldr	r3, [pc, #140]	(130 <initialize_can+0x130>)
+  a2:	f8c0 125c 	str.w	r1, [r0, #604]
+  a6:	f8c0 3260 	str.w	r3, [r0, #608]
+  aa:	4b22      	ldr	r3, [pc, #136]	(134 <initialize_can+0x134>)
+  ac:	f8c0 2264 	str.w	r2, [r0, #612]
+  b0:	781b      	ldrb	r3, [r3, #0]
+  b2:	02db      	lsls	r3, r3, #11
+  b4:	f043 63e8 	orr.w	r3, r3, #121634816	; 0x7400000
+  b8:	f043 0304 	orr.w	r3, r3, #4	; 0x4
+  bc:	f8c0 3268 	str.w	r3, [r0, #616]
+  c0:	4b1d      	ldr	r3, [pc, #116]	(138 <initialize_can+0x138>)
+  c2:	f8c0 226c 	str.w	r2, [r0, #620]
+  c6:	f8c0 3270 	str.w	r3, [r0, #624]
+  ca:	237f      	movs	r3, #127
+  cc:	f8c0 1274 	str.w	r1, [r0, #628]
+  d0:	f8c0 321c 	str.w	r3, [r0, #540]
+  d4:	f8d0 3200 	ldr.w	r3, [r0, #512]
+  d8:	2101      	movs	r1, #1
+  da:	f023 0301 	bic.w	r3, r3, #1	; 0x1
+  de:	f8c0 3200 	str.w	r3, [r0, #512]
+  e2:	2312      	movs	r3, #18
+  e4:	6143      	str	r3, [r0, #20]
+  e6:	2014      	movs	r0, #20
+  e8:	f7ff fffe 	bl	0 <enable_interrupt>
+  ec:	2015      	movs	r0, #21
+  ee:	2101      	movs	r1, #1
+  f0:	f7ff fffe 	bl	0 <enable_interrupt>
+  f4:	4b11      	ldr	r3, [pc, #68]	(13c <initialize_can+0x13c>)
+  f6:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
+  fa:	701c      	strb	r4, [r3, #0]
+  fc:	4b10      	ldr	r3, [pc, #64]	(140 <initialize_can+0x140>)
+  fe:	801a      	strh	r2, [r3, #0]
+ 100:	bd10      	pop	{r4, pc}
+ 102:	46c0      	nop			(mov r8, r8)
+ 104:	00010041 	.word	0x00010041
+ 108:	40006400 	.word	0x40006400
+ 10c:	0000002b 	.word	0x0000002b
+ 110:	003a0007 	.word	0x003a0007
+ 114:	0000003d 	.word	0x0000003d
+ 118:	0fff8006 	.word	0x0fff8006
+ 11c:	07f70004 	.word	0x07f70004
+ 120:	0ffff806 	.word	0x0ffff806
+ 124:	0fffc006 	.word	0x0fffc006
+ 128:	0fc7f806 	.word	0x0fc7f806
+ 12c:	07f65004 	.word	0x07f65004
+ 130:	0747f804 	.word	0x0747f804
+ 134:	00000000 	.word	0x00000000
+ 138:	07f6f804 	.word	0x07f6f804
+	...

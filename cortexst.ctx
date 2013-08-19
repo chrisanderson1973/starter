@@ -1,0 +1,45 @@
+
+<Debug>
+	<Flags>
+		<Report>
+			<Def Header="FlagReport" NbCol="9" >
+				<Col Type="PT_BOOL" Header="Check" sizeCache="18" AutoSize="0" Edit="1" Sortable="1" Icon="C:\Program Files\Raisonance\Ride\Config\Resources\check.bmp" />
+				<Col Type="PT_STRING" Header="Kind" sizeCache="DDDDDDDDDDD" AutoSize="1" Edit="0" Sortable="1" />
+				<Col Type="PT_STRING" Header="KindID" sizeCache="DD" AutoSize="1" Edit="0" Sortable="1" Visible="0" />
+				<Col Type="PT_STRING" Header="Space" sizeCache="DDDDDD" AutoSize="1" Edit="0" Sortable="1" />
+				<Col Type="PT_STRING" Header="SpaceID" sizeCache="DD" AutoSize="0" Edit="0" Sortable="0" Visible="0" />
+				<Col Type="PT_STRING" Header="Line" sizeCache="DDDDDDDDD" AutoSize="1" Edit="0" Sortable="1" Visible="1" />
+				<Col Type="PT_STRING" Header="File" sizeCache="DDDDDDDDDDDDDDDDDDDD" AutoSize="1" Edit="0" Sortable="1" Visible="1" />
+				<Col Type="PT_STRING" Header="Path" sizeCache="DDDDDDDDDDDDDDDDDDDD" AutoSize="1" Edit="0" Sortable="0" Visible="0" />
+				<Col Type="PT_STRING" Header="Condition" sizeCache="DDDDDDDDDDDDDDDDDDDDDDDD" AutoSize="1" Edit="0" Sortable="0" />
+				<Col Type="PT_STRING" Header="Condexpr" sizeCache="DD" AutoSize="1" Edit="0" Sortable="0" Visible="0" />
+				<Col Type="PT_STRING" Header="Condcount" sizeCache="DD" AutoSize="1" Edit="0" Sortable="0" Visible="0" />
+							
+			</Def>
+			<Rows>
+				<Row Check="True" Kind="Breakpoint" KindID="0" Space="code" SpaceID="0" Condition="" Line="L:250" File="Serial.c" Path="C:\Users\Chris\Desktop\Development\Embedded\autostart\Serial.c" />
+							
+			</Rows>
+					
+		</Report>
+			
+	</Flags>
+	<Views>
+		<View File="C:\Users\Chris\Desktop\Development\Embedded\autostart\CanCommands.c" Line="261" Index="0" />
+		<View File="C:\Users\Chris\Desktop\Development\Embedded\autostart\CanPackets.c" Line="904" Index="1" focus="1" />
+		<View File="C:\Users\Chris\Desktop\Development\Embedded\autostart\CanCommands.h" Line="98" Index="2" />
+		<View File="C:\Users\Chris\Desktop\Development\Embedded\autostart\Canbus.c" Line="710" Index="3" />
+		<View File="C:\Users\Chris\Desktop\Development\Embedded\autostart\AStuff.c" Line="149" Index="4" />
+		<View File="C:\Users\Chris\Desktop\Development\Embedded\autostart\canbus.h" Line="25" Index="5" />
+	</Views>
+	<FindStrings>
+		<Find>timed_can</Find>
+		<Find>transducer_pressure</Find>
+		<Find>this_can_address</Find>
+		<Find>this_can</Find>
+		<Find>this-Can</Find>
+		<Find>fill_master_timing</Find>
+		<Find>TPCM_RTS</Find>
+	</FindStrings>
+	<ReplaceStrings/>
+</Debug>

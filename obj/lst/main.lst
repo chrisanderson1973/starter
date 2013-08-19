@@ -1,0 +1,143 @@
+
+C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o:     file format elf32-littlearm
+C:\Users\chrisanderson\Desktop\Chris\Autostart-Cortex\CWork\Cortex\Projects\CortexAutoStart\obj\main.o
+
+Disassembly of section .text.main:
+
+00000000 <main>:
+main():
+   0:	4a4f      	ldr	r2, [pc, #316]	(140 <main+0x140>)
+   2:	4b50      	ldr	r3, [pc, #320]	(144 <main+0x144>)
+   4:	b510      	push	{r4, lr}
+   6:	60da      	str	r2, [r3, #12]
+   8:	f7ff fffe 	bl	0 <initialize_clocks>
+   c:	f7ff fffe 	bl	0 <initialize_ports>
+  10:	4b4d      	ldr	r3, [pc, #308]	(148 <main+0x148>)
+  12:	2201      	movs	r2, #1
+  14:	701a      	strb	r2, [r3, #0]
+  16:	f7ff fffe 	bl	0 <initialize_serial>
+  1a:	f7ff fffe 	bl	0 <initialize_timers>
+  1e:	4b4b      	ldr	r3, [pc, #300]	(14c <main+0x14c>)
+  20:	2230      	movs	r2, #48
+  22:	701a      	strb	r2, [r3, #0]
+  24:	f7ff fffe 	bl	0 <initialize_can>
+  28:	f7ff fffe 	bl	0 <unlock_FPEC>
+  2c:	4b48      	ldr	r3, [pc, #288]	(150 <main+0x150>)
+  2e:	f645 243c 	movw	r4, #23100	; 0x5a3c
+  32:	69db      	ldr	r3, [r3, #28]
+  34:	ebb4 2f93 	cmp.w	r4, r3, lsr #10
+  38:	d00d      	beq.n	56 <main+0x56>
+  3a:	4b46      	ldr	r3, [pc, #280]	(154 <main+0x154>)
+  3c:	200f      	movs	r0, #15
+  3e:	88d9      	ldrh	r1, [r3, #6]
+  40:	b2c9      	uxtb	r1, r1
+  42:	f7ff fffe 	bl	0 <transmit_proprietary>
+  46:	2002      	movs	r0, #2
+  48:	f7ff fffe 	bl	0 <wait_for_tic>
+  4c:	4620      	mov	r0, r4
+  4e:	f7ff fffe 	bl	0 <set_option_bytes>
+  52:	f7ff fffe 	bl	0 <software_reset>
+  56:	f7ff fffe 	bl	0 <initialize_analog_input>
+  5a:	483f      	ldr	r0, [pc, #252]	(100 <send_a_string+0x100>)
+  5c:	f7ff fffe 	bl	0 <send_a_string>
+  60:	483e      	ldr	r0, [pc, #248]	(fc <send_a_string+0xfc>)
+  62:	f7ff fffe 	bl	0 <send_a_string>
+  66:	f7ff fffe 	bl	0 <read_novram>
+  6a:	4b3d      	ldr	r3, [pc, #244]	(160 <main+0x160>)
+  6c:	2200      	movs	r2, #0
+  6e:	709a      	strb	r2, [r3, #2]
+  70:	4b3c      	ldr	r3, [pc, #240]	(164 <main+0x164>)
+  72:	2001      	movs	r0, #1
+  74:	701a      	strb	r2, [r3, #0]
+  76:	4b3c      	ldr	r3, [pc, #240]	(168 <main+0x168>)
+  78:	3203      	adds	r2, #3
+  7a:	701a      	strb	r2, [r3, #0]
+  7c:	4b3b      	ldr	r3, [pc, #236]	(16c <main+0x16c>)
+  7e:	3a01      	subs	r2, #1
+  80:	701a      	strb	r2, [r3, #0]
+  82:	4a3b      	ldr	r2, [pc, #236]	(170 <main+0x170>)
+  84:	f245 5355 	movw	r3, #21845	; 0x5555
+  88:	6013      	str	r3, [r2, #0]
+  8a:	f64a 23aa 	movw	r3, #43690	; 0xaaaa
+  8e:	6013      	str	r3, [r2, #0]
+  90:	f7ff fffe 	bl	0 <wait_some_seconds>
+  94:	4837      	ldr	r0, [pc, #220]	(174 <main+0x174>)
+  96:	4938      	ldr	r1, [pc, #224]	(178 <main+0x178>)
+  98:	6803      	ldr	r3, [r0, #0]
+  9a:	880a      	ldrh	r2, [r1, #0]
+  9c:	b29b      	uxth	r3, r3
+  9e:	429a      	cmp	r2, r3
+  a0:	d033      	beq.n	10a <main+0x10a>
+  a2:	6803      	ldr	r3, [r0, #0]
+  a4:	800b      	strh	r3, [r1, #0]
+  a6:	884b      	ldrh	r3, [r1, #2]
+  a8:	3301      	adds	r3, #1
+  aa:	b29a      	uxth	r2, r3
+  ac:	2a32      	cmp	r2, #50
+  ae:	804a      	strh	r2, [r1, #2]
+  b0:	d901      	bls.n	b6 <main+0xb6>
+  b2:	2301      	movs	r3, #1
+  b4:	710b      	strb	r3, [r1, #4]
+  b6:	f002 030f 	and.w	r3, r2, #15	; 0xf
+  ba:	2b04      	cmp	r3, #4
+  bc:	d818      	bhi.n	f0 <main+0xf0>
+  be:	e8df f003 	tbb	[pc, r3]
+  c2:	0603      	.short	0x0603
+  c4:	00151709 	.word	0x00151709
+  c8:	f7ff fffe 	bl	0 <update_leds>
+  cc:	e010      	b.n	24 <update_health_timers+0x24>
+  ce:	f7ff fffe 	bl	0 <update_health_timers>
+  d2:	e00d      	b.n	f0 <main+0xf0>
+  d4:	4a22      	ldr	r2, [pc, #136]	(160 <main+0x160>)
+  d6:	7893      	ldrb	r3, [r2, #2]
+  d8:	2b02      	cmp	r3, #2
+  da:	d002      	beq.n	e2 <main+0xe2>
+  dc:	2b03      	cmp	r3, #3
+  de:	d107      	bne.n	f0 <main+0xf0>
+  e0:	e001      	b.n	e6 <main+0xe6>
+  e2:	2303      	movs	r3, #3
+  e4:	e000      	b.n	e8 <main+0xe8>
+  e6:	2304      	movs	r3, #4
+  e8:	7093      	strb	r3, [r2, #2]
+  ea:	e001      	b.n	f0 <main+0xf0>
+  ec:	f7ff fffe 	bl	0 <update_analogs>
+  f0:	f7ff fffe 	bl	0 <maintain_can_comm_wd>
+  f4:	f7ff fffe 	bl	0 <read_raw_analogs>
+  f8:	f7ff fffe 	bl	0 <update_digital_in>
+  fc:	4a1f      	ldr	r2, [pc, #124]	(17c <main+0x17c>)
+  fe:	8813      	ldrh	r3, [r2, #0]
+ 100:	b10b      	cbz	r3, 106 <main+0x106>
+ 102:	3b01      	subs	r3, #1
+ 104:	8013      	strh	r3, [r2, #0]
+ 106:	f7ff fffe 	bl	0 <access_info_screens>
+ 10a:	f7ff fffe 	bl	0 <timed_can_messages>
+ 10e:	f7ff fffe 	bl	0 <check_can>
+ 112:	f7ff fffe 	bl	0 <check_serial>
+ 116:	4b1a      	ldr	r3, [pc, #104]	(180 <main+0x180>)
+ 118:	789c      	ldrb	r4, [r3, #2]
+ 11a:	b94c      	cbnz	r4, 130 <main+0x130>
+ 11c:	f7ff fffe 	bl	0 <write_novram>
+ 120:	4818      	ldr	r0, [pc, #96]	(64 <send_a_string+0x64>)
+ 122:	f7ff fffe 	bl	0 <send_a_string>
+ 126:	f7ff fffe 	bl	0 <wait_for_buffer>
+ 12a:	4b07      	ldr	r3, [pc, #28]	(148 <main+0x148>)
+ 12c:	701c      	strb	r4, [r3, #0]
+ 12e:	e7fe      	b.n	12e <main+0x12e>
+ 130:	4b0f      	ldr	r3, [pc, #60]	(170 <main+0x170>)
+ 132:	f245 5255 	movw	r2, #21845	; 0x5555
+ 136:	601a      	str	r2, [r3, #0]
+ 138:	f64a 22aa 	movw	r2, #43690	; 0xaaaa
+ 13c:	601a      	str	r2, [r3, #0]
+ 13e:	e7a9      	b.n	94 <main+0x94>
+ 140:	05fa0700 	.word	0x05fa0700
+ 144:	e000ed00 	.word	0xe000ed00
+ 148:	422281bc 	.word	0x422281bc
+ 14c:	00000000 	.word	0x00000000
+ 150:	40022000 	.word	0x40022000
+ 154:	1ffff800 	.word	0x1ffff800
+ 158:	00000000 	.word	0x00000000
+ 15c:	0000002a 	.word	0x0000002a
+	...
+ 170:	40003000 	.word	0x40003000
+	...
+ 184:	00000048 	.word	0x00000048

@@ -1,0 +1,393 @@
+
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o:     file format elf32-littlearm
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart\Timer.o
+
+Disassembly of section .text.initialize_clocks:
+
+00000000 <initialize_clocks>:
+initialize_clocks():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:47
+ *-----------------------------------------------------------------*/
+
+void initialize_clocks(void)
+{
+	// Make sure the HSI is on
+	RCC->CR |= 0x01;
+   0:	f241 0300 	movw	r3, #4096	; 0x1000
+   4:	f2c4 0302 	movt	r3, #16386	; 0x4002
+   8:	681a      	ldr	r2, [r3, #0]
+   a:	f042 0201 	orr.w	r2, r2, #1	; 0x1
+   e:	601a      	str	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:50
+
+	// Wait for the HSI to be stable
+	while( (RCC->CR & 0x02) == 0 );
+  10:	f241 0300 	movw	r3, #4096	; 0x1000
+  14:	461a      	mov	r2, r3
+  16:	f2c4 0202 	movt	r2, #16386	; 0x4002
+  1a:	6813      	ldr	r3, [r2, #0]
+  1c:	f013 0f02 	tst.w	r3, #2	; 0x2
+  20:	d0fb      	beq.n	1a <initialize_clocks+0x1a>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:53
+
+	// Select HSI as system clock
+	RCC->CFGR = SYSTEM_CLOCK_CONFIG & 0xFFFFFFFC;
+  22:	f241 0200 	movw	r2, #4096	; 0x1000
+  26:	f2c4 0202 	movt	r2, #16386	; 0x4002
+  2a:	f44f 2314 	mov.w	r3, #606208	; 0x94000
+  2e:	6053      	str	r3, [r2, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:56
+
+	// Disable the PLL, clock security system and HSE
+	RCC->CR &= (uint32_t)0xFEF6FFFF;
+  30:	6811      	ldr	r1, [r2, #0]
+  32:	f64f 73ff 	movw	r3, #65535	; 0xffff
+  36:	f6cf 63f6 	movt	r3, #65270	; 0xfef6
+  3a:	ea01 0103 	and.w	r1, r1, r3
+  3e:	6011      	str	r1, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:59
+
+	// Disable HSE bypass (if HSE is disabled)
+	RCC->CR &= (uint32_t)0xFFFBFFFF;
+  40:	6813      	ldr	r3, [r2, #0]
+  42:	f423 2380 	bic.w	r3, r3, #262144	; 0x40000
+  46:	6013      	str	r3, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:63
+
+	// Disable interrupts and clear pending bits for 
+	//  the PLL, HSE, HSI, LSE, LSI and Clock Security ready interrupts
+	RCC->CIR = 0x009F0000;
+  48:	f44f 031f 	mov.w	r3, #10420224	; 0x9f0000
+  4c:	6093      	str	r3, [r2, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:66
+
+	// Enable the HSE clock
+	RCC->CR |= (uint32_t)0x00010000;
+  4e:	6813      	ldr	r3, [r2, #0]
+  50:	f443 3380 	orr.w	r3, r3, #65536	; 0x10000
+  54:	6013      	str	r3, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:69
+
+	// Wait for the HSE crystal to stabilize
+	while( (RCC->CR & 0x00020000) == 0 );
+  56:	f241 0300 	movw	r3, #4096	; 0x1000
+  5a:	461a      	mov	r2, r3
+  5c:	f2c4 0202 	movt	r2, #16386	; 0x4002
+  60:	6813      	ldr	r3, [r2, #0]
+  62:	f413 3f00 	tst.w	r3, #131072	; 0x20000
+  66:	d0fb      	beq.n	60 <initialize_clocks+0x60>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:73
+
+	// Enable FLASH Prefetch Buffer, disable FLASH half cycle access
+	// Setup for one wait state on FLASH access for 24MHz <= SYSCLK <= 48MHz
+	FLASH->ACR = 0x11;
+  68:	f242 0300 	movw	r3, #8192	; 0x2000
+  6c:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  70:	f04f 0211 	mov.w	r2, #17	; 0x11
+  74:	601a      	str	r2, [r3, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:85
+	// Now that the PLL is disabled, rewrite the configuration register 
+	//  to set the parameters that depend on disabled PLL
+	// Configure the PLL: PLLCLK = HSE * 4 = 32MHz
+	// PLL multiplication factor is 4, HSE is not divided
+	// Select HSE as PLL clock, keep HSI as system clock
+	RCC->CFGR = SYSTEM_CLOCK_CONFIG & 0xFFFFFFFC;
+  76:	f241 0200 	movw	r2, #4096	; 0x1000
+  7a:	f2c4 0202 	movt	r2, #16386	; 0x4002
+  7e:	f44f 2314 	mov.w	r3, #606208	; 0x94000
+  82:	6053      	str	r3, [r2, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:88
+
+	// Enable the PLL
+	RCC->CR |= 0x01000000;
+  84:	6813      	ldr	r3, [r2, #0]
+  86:	f043 7380 	orr.w	r3, r3, #16777216	; 0x1000000
+  8a:	6013      	str	r3, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:91
+
+	// Wait for the PLL to stabilize
+	while((RCC->CR & 0x02000000) == 0);
+  8c:	f241 0300 	movw	r3, #4096	; 0x1000
+  90:	461a      	mov	r2, r3
+  92:	f2c4 0202 	movt	r2, #16386	; 0x4002
+  96:	6813      	ldr	r3, [r2, #0]
+  98:	f013 7f00 	tst.w	r3, #33554432	; 0x2000000
+  9c:	d0fb      	beq.n	96 <initialize_clocks+0x96>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:94
+
+	// Select PLL as system clock source
+	RCC->CFGR = SYSTEM_CLOCK_CONFIG;    
+  9e:	f241 0300 	movw	r3, #4096	; 0x1000
+  a2:	f2c4 0302 	movt	r3, #16386	; 0x4002
+  a6:	f244 0202 	movw	r2, #16386	; 0x4002
+  aa:	f2c0 0209 	movt	r2, #9	; 0x9
+  ae:	605a      	str	r2, [r3, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:97
+
+	// Wait until the PLL is used as system clock source
+	while ( (RCC->CFGR & (uint32_t)0x0000000C) != (uint32_t)0x08 );
+  b0:	f241 0300 	movw	r3, #4096	; 0x1000
+  b4:	461a      	mov	r2, r3
+  b6:	f2c4 0202 	movt	r2, #16386	; 0x4002
+  ba:	6853      	ldr	r3, [r2, #4]
+  bc:	f003 030c 	and.w	r3, r3, #12	; 0xc
+  c0:	2b08      	cmp	r3, #8
+  c2:	d1fa      	bne.n	ba <initialize_clocks+0xba>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:105
+	 * Enable some peripheral clocks
+	 * Leave the HSI clock running as FLASH write and erase functions require it
+	 *-------------------------------------------------------------------------*/
+
+	// CAN1 and SPI2
+    RCC->APB1ENR |= 0x02004000;
+  c4:	f241 0200 	movw	r2, #4096	; 0x1000
+  c8:	f2c4 0202 	movt	r2, #16386	; 0x4002
+  cc:	69d1      	ldr	r1, [r2, #28]
+  ce:	f244 0300 	movw	r3, #16384	; 0x4000
+  d2:	f2c0 2300 	movt	r3, #512	; 0x200
+  d6:	ea41 0103 	orr.w	r1, r1, r3
+  da:	61d1      	str	r1, [r2, #28]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:108
+
+	// USART1, ADC1, GPIOA, GPIOB, GPIOC, GPIOD, GPIOE and AFIO
+    RCC->APB2ENR = 0x0000427D;
+  dc:	f244 237d 	movw	r3, #17021	; 0x427d
+  e0:	6193      	str	r3, [r2, #24]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:111
+
+	// DMA1
+	RCC->AHBENR |= 0x00000001;
+  e2:	6953      	ldr	r3, [r2, #20]
+  e4:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  e8:	6153      	str	r3, [r2, #20]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:113
+
+	FSMC_Bank1->BTCR[0] = 0x00000080;		// SRAM/NOR Flash CS control register 1
+  ea:	f04f 4220 	mov.w	r2, #2684354560	; 0xa0000000
+  ee:	f04f 0380 	mov.w	r3, #128	; 0x80
+  f2:	6013      	str	r3, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:115
+//	FSMC_Bank1->BTCR[1];					// SRAM/NOR - Flash CS timing register 1
+	FSMC_Bank1->BTCR[2] = 0x00000080;		// 		" control 2
+  f4:	6093      	str	r3, [r2, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:117
+//	FSMC_Bank1->BTCR[3];					// 		" timing 2
+	FSMC_Bank1->BTCR[4] = 0x00000080;		// 		" control 3
+  f6:	6113      	str	r3, [r2, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:119
+//	FSMC_Bank1->BTCR[5];					// 		" timing 3
+	FSMC_Bank1->BTCR[6] = 0x00000080;		// 		" control 4
+  f8:	6193      	str	r3, [r2, #24]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:151
+//	FSMC_Bank4->PMEM4;						// Common Memory Space Timing register 4
+//	FSMC_Bank4->PATT4;						// Attribute Memory Space Timing register 4
+//	FSMC_Bank4->PIO4;						// IO Space Timing register 4
+
+	// Enable Usage Fault, Bus Fault and Memory Manager Fault exceptions
+	SCB->SHCSR = 0x00070000;				// System Handler Control and State register
+  fa:	f64e 5300 	movw	r3, #60672	; 0xed00
+  fe:	f2ce 0300 	movt	r3, #57344	; 0xe000
+ 102:	f44f 22e0 	mov.w	r2, #458752	; 0x70000
+ 106:	625a      	str	r2, [r3, #36]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:152
+}
+ 108:	4770      	bx	lr
+ 10a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.initialize_watchdog:
+
+00000000 <initialize_watchdog>:
+initialize_watchdog():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:160
+void initialize_watchdog(void)
+{
+	/*-----------------------------------------------
+	 * Configure the WDG to generate an EOC interrupt
+	 *----------------------------------------------*/
+}
+   0:	4770      	bx	lr
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.initialize_timers:
+
+00000000 <initialize_timers>:
+initialize_timers():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:170
+	/*--------------------------------------------------------------
+	 * Configure the core SysTick as the system 10ms timer interrupt 
+	 *-------------------------------------------------------------*/
+
+	// Set reload register for 10ms interrupts: 32MHz x 0.005sec
+	SysTick->LOAD = (SYSTEM_CLOCK_FREQ / 200) - 1;
+   0:	f24e 0110 	movw	r1, #57360	; 0xe010
+   4:	f2ce 0100 	movt	r1, #57344	; 0xe000
+   8:	f247 03ff 	movw	r3, #28927	; 0x70ff
+   c:	f2c0 0302 	movt	r3, #2	; 0x2
+  10:	604b      	str	r3, [r1, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:174
+
+	// Set the priority for Cortex-M0 SysTick System Interrupt
+	// Priority is the upper nybble, 15 is the lowest
+    SCB->SHP[SysTick_IRQn + 12] = 0x60;
+  12:	f64e 5300 	movw	r3, #60672	; 0xed00
+  16:	f2ce 0300 	movt	r3, #57344	; 0xe000
+  1a:	f04f 0260 	mov.w	r2, #96	; 0x60
+  1e:	f883 2023 	strb.w	r2, [r3, #35]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:177
+
+	// Load the SysTick Counter Value
+	SysTick->VAL = 0;
+  22:	f04f 0300 	mov.w	r3, #0	; 0x0
+  26:	608b      	str	r3, [r1, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:181
+
+	// Set the SysTick clock source to the core clock ( > 2.5 x reference clock)
+	// Enable SysTick IRQ and start the SysTick timer
+	SysTick->CTRL = 0x07;
+  28:	f103 0307 	add.w	r3, r3, #7	; 0x7
+  2c:	600b      	str	r3, [r1, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:182
+}
+  2e:	4770      	bx	lr
+Disassembly of section .text.wait_for_tic:
+
+00000000 <wait_for_tic>:
+wait_for_tic():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:189
+
+void wait_for_tic(u8 count)
+{
+	s32 time;
+
+	time = system_timer + count;
+   0:	f240 0300 	movw	r3, #0	; 0x0
+   4:	f2c0 0300 	movt	r3, #0	; 0x0
+   8:	681b      	ldr	r3, [r3, #0]
+   a:	4418      	add	r0, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:192
+
+	// Wait for system_timer to get to the target
+	while (time != system_timer);
+   c:	f240 0200 	movw	r2, #0	; 0x0
+  10:	f2c0 0200 	movt	r2, #0	; 0x0
+  14:	6813      	ldr	r3, [r2, #0]
+  16:	4298      	cmp	r0, r3
+  18:	d1fc      	bne.n	14 <wait_for_tic+0x14>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:193
+}
+  1a:	4770      	bx	lr
+Disassembly of section .text.wait_some_seconds:
+
+00000000 <wait_some_seconds>:
+wait_some_seconds():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:204
+ * Delay loop sticks here until the system timer ticks 
+ *  100 * the input parameter
+ *---------------------------------------------------*/
+ 
+void wait_some_seconds(s8 delay)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:206
+	// Construct a the delay from 0.01sec timer ticks
+	while (delay--)	
+   2:	b150      	cbz	r0, 1a <wait_some_seconds+0x1a>
+   4:	b2c4      	uxtb	r4, r0
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:207
+		wait_for_tic(100);
+   6:	f04f 0564 	mov.w	r5, #100	; 0x64
+   a:	4628      	mov	r0, r5
+   c:	f7ff fffe 	bl	0 <wait_some_seconds>
+  10:	f104 33ff 	add.w	r3, r4, #4294967295	; 0xffffffff
+  14:	b2dc      	uxtb	r4, r3
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:206
+ *---------------------------------------------------*/
+ 
+void wait_some_seconds(s8 delay)
+{
+	// Construct a the delay from 0.01sec timer ticks
+	while (delay--)	
+  16:	2c00      	cmp	r4, #0
+  18:	d1f7      	bne.n	a <wait_some_seconds+0xa>
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:208
+		wait_for_tic(100);
+}
+  1a:	bd70      	pop	{r4, r5, r6, pc}
+Disassembly of section .text.SysTick_Handler:
+
+00000000 <SysTick_Handler>:
+SysTick_Handler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:222
+
+void SysTick_Handler(void)
+{
+	static u16 local_count;
+
+	local_count++;
+   0:	f240 0200 	movw	r2, #0	; 0x0
+   4:	f2c0 0200 	movt	r2, #0	; 0x0
+   8:	8893      	ldrh	r3, [r2, #4]
+   a:	f103 0301 	add.w	r3, r3, #1	; 0x1
+   e:	b29b      	uxth	r3, r3
+  10:	8093      	strh	r3, [r2, #4]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:224
+
+	if (local_count & 0x01)
+  12:	f013 0f01 	tst.w	r3, #1	; 0x1
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:225
+		system_timer++;
+  16:	bf1f      	itttt	ne
+  18:	f240 0200 	movwne	r2, #0	; 0x0
+  1c:	f2c0 0200 	movtne	r2, #0	; 0x0
+  20:	6813      	ldrne	r3, [r2, #0]
+  22:	3301      	addne	r3, #1
+  24:	bf18      	it	ne
+  26:	6013      	strne	r3, [r2, #0]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:226
+}
+  28:	4770      	bx	lr
+  2a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.TIM3_IRQHandler:
+
+00000000 <TIM3_IRQHandler>:
+TIM3_IRQHandler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:272
+ * TIM3 interrupt request
+ *----------------------------------------------------------------*/
+void TIM3_IRQHandler(void)
+{
+	// Clear the Output Compare 1 flag
+	TIM3->SR &= ~0x4000;
+   0:	f240 4200 	movw	r2, #1024	; 0x400
+   4:	f2c4 0200 	movt	r2, #16384	; 0x4000
+   8:	8a13      	ldrh	r3, [r2, #16]
+   a:	f423 4380 	bic.w	r3, r3, #16384	; 0x4000
+   e:	ea4f 4303 	mov.w	r3, r3, lsl #16
+  12:	ea4f 4313 	mov.w	r3, r3, lsr #16
+  16:	8213      	strh	r3, [r2, #16]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:275
+  
+	// Reset TIM3 Counter
+	TIM3->CNT = 0x1234;
+  18:	f241 2334 	movw	r3, #4660	; 0x1234
+  1c:	8493      	strh	r3, [r2, #36]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:276
+}
+  1e:	4770      	bx	lr
+Disassembly of section .text.WWDG_IRQHandler:
+
+00000000 <WWDG_IRQHandler>:
+WWDG_IRQHandler():
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:288
+ *-----------------------------------*/
+
+void WWDG_IRQHandler(void)
+{
+	// Clear the EOC interrupt pending bit
+	WWDG->SR &= ~0x01;
+   0:	f642 4200 	movw	r2, #11264	; 0x2c00
+   4:	f2c4 0200 	movt	r2, #16384	; 0x4000
+   8:	6893      	ldr	r3, [r2, #8]
+   a:	f023 0301 	bic.w	r3, r3, #1	; 0x1
+   e:	6093      	str	r3, [r2, #8]
+C:\Documents and Settings\All Users\Desktop\CWork\Cortex\Projects\CortexAutoStart/Timer.c:289
+  10:	4770      	bx	lr
+  12:	46c0      	nop			(mov r8, r8)
